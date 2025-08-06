@@ -46,7 +46,8 @@ const navigate = useNavigate();
               ></input>
             </div>
 
-            <div>
+            <div className="flex items-center my-3 space-x-2">
+                <div>
               <p className="text-xl text-[#1976D2]">Phone Number</p>
               <input
                 type="number"
@@ -54,8 +55,17 @@ const navigate = useNavigate();
                 className="border rounded border-gray-300 w-full p-2"
               ></input>
             </div>
+            <div className="">
+              <p className="text-xl text-[#1976D2]">Role</p>
+              <select className="border rounded border-gray-300 w-full p-2">
+                {roles.map((role) => (
+                  <option value={role.value}>{role.label}</option>
+                ))}
+              </select>
+            </div>
+            </div>
 
-            <div className="flex items-center my-3 space-x-2">
+            <div className="flex items-center space-x-2">
               <div className="">
                 <p className="text-xl text-[#1976D2]">Password</p>
                 <input
@@ -75,14 +85,7 @@ const navigate = useNavigate();
               </div>
             </div>
 
-            <div className="">
-              <p className="text-xl text-[#1976D2]">Role</p>
-              <select className="border rounded border-gray-300 w-full p-2">
-                {roles.map((role) => (
-                  <option value={role.value}>{role.label}</option>
-                ))}
-              </select>
-            </div>
+            
 
             <div className="flex mt-10 justify-center">
               <button className="bg-[#1976D2] hover:bg-blue-800 font-semibold py-1 w-full shadow rounded text-white">
