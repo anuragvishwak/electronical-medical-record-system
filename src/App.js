@@ -13,6 +13,9 @@ import NurseDashboard from "./Nurse/NurseDashboard";
 import LabTechnicianDashboard from "./Lab Technician/LabTechnicianDashboard";
 import InsuranceStaffDashboard from "./Insurance Staff/InsuranceStaffDashboard";
 import AdminDashboard from "./Admin & Receptionist/AdminDashboard";
+import AdminPatient from "./Admin & Receptionist/AdminPatient";
+import UserManagement from "./Admin & Receptionist/UserManagement";
+import AdminAppointment from "./Admin & Receptionist/AdminAppointment";
 
 function App() {
   return (
@@ -34,6 +37,11 @@ function App() {
             element={<InsuranceStaffDashboard />}
           />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
+
+          {/* Internal Routes */}
+          <Route path="/AdminPatient" element={<AdminPatient />} />
+          <Route path="/UserManagement" element={<UserManagement />} />
+          <Route path="/AdminAppointment" element={<AdminAppointment />} />
         </Routes>
       </Router>
     </div>
