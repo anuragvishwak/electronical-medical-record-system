@@ -6,7 +6,7 @@ function PatientDashboard() {
     <div>
         <PatientNavbar />
         <div>
-            Patient Dashboard
+            
         </div>
     </div>
   )

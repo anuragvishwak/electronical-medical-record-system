@@ -54,7 +54,7 @@ function Login() {
           detail: `Welcome, ${role.replace("_", " ")}`,
           life: 3000,
         });
-
+        localStorage.setItem("email", email);
         setTimeout(() => {
           switch (role) {
             case "admin":

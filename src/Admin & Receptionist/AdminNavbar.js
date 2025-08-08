@@ -27,13 +27,15 @@ function AdminNavbar() {
           Patient
         </button>
         <button
-        onClick={() => {
+          onClick={() => {
             navigate("/AdminAppointment");
           }}
           className={`${
             location.pathname === "/AdminAppointment" ? "text-[#1976D2]" : ""
           }`}
-        >Appointment</button>
+        >
+          Appointment
+        </button>
         <button
           onClick={() => {
             navigate("/UserManagement");
@@ -46,6 +48,16 @@ function AdminNavbar() {
         </button>
         <button>Billing & Payment</button>
         <button>Insurance Coordination</button>
+        <button
+          onClick={() => {
+            navigate("/MedicinesTreatment");
+          }}
+          className={`${
+            location.pathname === "/MedicinesTreatment" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Medicines
+        </button>
         <button>Staff Management</button>
         <button>Profile / Setting</button>
       </div>
