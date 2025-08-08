@@ -16,6 +16,7 @@ import AdminDashboard from "./Admin & Receptionist/AdminDashboard";
 import AdminPatient from "./Admin & Receptionist/AdminPatient";
 import UserManagement from "./Admin & Receptionist/UserManagement";
 import AdminAppointment from "./Admin & Receptionist/AdminAppointment";
+import MedicinesTreatment from "./Admin & Receptionist/MedicinesTreatment";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
           <Route path="/AdminPatient" element={<AdminPatient />} />
           <Route path="/UserManagement" element={<UserManagement />} />
           <Route path="/AdminAppointment" element={<AdminAppointment />} />
+          <Route path="/MedicinesTreatment" element={<MedicinesTreatment />} />
+
         </Routes>
       </Router>
     </div>
