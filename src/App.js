@@ -19,6 +19,8 @@ import AdminAppointment from "./Admin & Receptionist/AdminAppointment";
 import MedicinesTreatment from "./Admin & Receptionist/MedicinesTreatment";
 import PatientAppointment from "./Patients/PatientAppointment";
 import DoctorAppointment from "./Doctor/DoctorAppointment";
+import DoctorPrescription from "./Doctor/DoctorPrescription";
+import DoctorConsultation from "./Doctor/DoctorConsultation";
 
 function App() {
   return (
@@ -48,9 +50,8 @@ function App() {
           <Route path="/MedicinesTreatment" element={<MedicinesTreatment />} />
           <Route path="/PatientAppointment" element={<PatientAppointment />} />
           <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
-
-
-
+          <Route path="/DoctorPrescription" element={<DoctorPrescription />} />
+          <Route path="/DoctorConsultation" element={<DoctorConsultation />} />
         </Routes>
       </Router>
     </div>

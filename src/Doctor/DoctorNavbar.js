@@ -30,8 +30,23 @@ function DoctorNavbar() {
           Appointments
         </button>
         <button>Patients</button>
-        <button>Prescriptions</button>
-        <button>Consultations</button>
+        <button
+          onClick={() => {
+            navigate("/DoctorPrescription");
+          }}
+          className={`${
+            location.pathname === "/DoctorPrescription" ? "text-[#1976D2]" : ""
+          }`}
+        >Prescriptions</button>
+
+          <button
+          onClick={() => {
+            navigate("/DoctorConsultation");
+          }}
+          className={`${
+            location.pathname === "/DoctorConsultation" ? "text-[#1976D2]" : ""
+          }`}
+        >Consultation</button>
         <button>Lab Reports</button>
         <button>Medical Records</button>
         <button>Billing / Finance</button>
