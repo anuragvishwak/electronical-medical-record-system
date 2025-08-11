@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import { MdDateRange } from "react-icons/md";
 import { BsClock } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
+import CreatingPrescription from "./Doctor/CreatingPrescription";
 
 function CentralizedAppointment({ email }) {
   const [gettingAppointments, setgettingAppointments] = useState([]);
+  const [openingPrescriptionForm, setopeningPrescriptionForm] = useState(false);
   const location = useLocation();
+  const [capturingDataObject, setcapturingDataObject] = useState({});
 
   console.log("Email and current route location", email, location.pathname);
 
@@ -46,16 +49,15 @@ function CentralizedAppointment({ email }) {
 
   return (
     <div>
-      <div className="grid grid-cols-3 m-3 gap-3">
+      <div className="grid grid-cols-4 m-3 gap-3">
         {filteredAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
+            <div className="flex items-start justify-between">
+              <div className="text-sm">
                 <div className="flex items-center space-x-1">
                   <BsClock />
                   <p>{appointment.time}</p>
                 </div>
-                <p className="text-gray-500 px-2">|</p>
                 <div className="flex items-center space-x-1">
                   <MdDateRange />
                   <p>
@@ -71,6 +73,18 @@ function CentralizedAppointment({ email }) {
                   </p>
                 </div>
               </div>
+
+              <select
+                // onChange={(e) => {
+                //   setstatus(e.target.value);
+                // }}
+                className="border text-sm rounded border-gray-300 w- p-1"
+              >
+                <option>Select Status</option>
+                <option value={"scheduled"}>Scheduled</option>
+                <option value={"completed"}>Completed</option>
+                <option value={"cancelled"}>Cancelled</option>
+              </select>
             </div>
 
             <hr className="my-1.5 border-gray-300" />
@@ -90,13 +104,32 @@ function CentralizedAppointment({ email }) {
 
             <hr className="my-1.5 border-gray-300" />
 
-            <p className="text-gray-400">
-              Note:{" "}
+            <p className="bg-gray-50 rounded border border-gray-300 p-3">
+              <span className="text-gray-400">Note:</span>{" "}
               <span className="text-black">{appointment.additionalNote}</span>
             </p>
+
+            <div className="mt-3">
+              <button
+                onClick={() => {
+                  setcapturingDataObject(appointment);
+                  setopeningPrescriptionForm(true);
+                }}
+                className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+              >
+                + Create Prescription
+              </button>
+            </div>
           </div>
         ))}
       </div>
+
+      {openingPrescriptionForm && (
+        <CreatingPrescription
+          setopeningPrescriptionForm={setopeningPrescriptionForm}
+          appointment={capturingDataObject}
+        />
+      )}
     </div>
   );
 }

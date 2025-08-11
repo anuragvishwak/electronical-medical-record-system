@@ -63,7 +63,12 @@ function AdminNavbar() {
       </div>
       <div className="flex items-center space-x-2">
         <button>Notify</button>
-        <button>
+        <button
+          onClick={() => {
+            navigate("/");
+            localStorage.clear();
+          }}
+        >
           <LuLogOut />
         </button>
       </div>

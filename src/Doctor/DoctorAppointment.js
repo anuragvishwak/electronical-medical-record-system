@@ -2,9 +2,11 @@ import React from "react";
 import DoctorNavbar from "./DoctorNavbar";
 import { IoNotifications } from "react-icons/io5";
 import CentralizedAppointment from "../CentralizedAppointment";
+import { useNavigate } from "react-router-dom";
 
 function DoctorAppointment() {
   const email = localStorage.getItem("email");
+  const navigate = useNavigate();
 
   return (
     <div className="bg-gray-50 h-screen">
