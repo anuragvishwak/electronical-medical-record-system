@@ -93,7 +93,7 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
               >
                 <option>Select Doctor</option>
                 {doctorData.map((user) => (
-                  <option value={user.name}>{user.name}</option>
+                  <option value={user.email}>{user.name}</option>
                 ))}
               </select>
             </div>
@@ -106,7 +106,7 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
               >
                 <option>Select Patient</option>
                 {patientData.map((user) => (
-                  <option value={user.name}>{user.name}</option>
+                  <option value={user.email}>{user.name}</option>
                 ))}
               </select>
             </div>

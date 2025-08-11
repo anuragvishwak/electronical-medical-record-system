@@ -1,12 +1,34 @@
 import React from "react";
 import { LuLogOut } from "react-icons/lu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function DoctorNavbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
-    <div className="flex items-center border-b justify-between p-3">
-      <div className="flex items-center space-x-3">
-        <button>Home</button>
-        <button>Appointments</button>
+    <div className="flex bg-white shadow items-center border-b justify-between p-3">
+      <div className="flex items-center space-x-5">
+        <button
+          onClick={() => {
+            navigate("/DoctorDashboard");
+          }}
+          className={`${
+            location.pathname === "/DoctorDashboard" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => {
+            navigate("/DoctorAppointment");
+          }}
+          className={`${
+            location.pathname === "/DoctorAppointment" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Appointments
+        </button>
         <button>Patients</button>
         <button>Prescriptions</button>
         <button>Consultations</button>
@@ -15,7 +37,12 @@ function DoctorNavbar() {
         <button>Billing / Finance</button>
         <button>Profile / Setting</button>
       </div>
-      <button>
+      <button
+        onClick={() => {
+          navigate("/");
+          localStorage.clear();
+        }}
+      >
         <LuLogOut />
       </button>
     </div>

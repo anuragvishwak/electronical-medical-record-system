@@ -115,7 +115,7 @@ function Login() {
     <div className="flex bg-[#ddeeff] justify-center items-center w-full h-screen">
       <Toast ref={toast} />
       <div>
-        <div className="border w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
+        <div className="border m-5 sm:m-0 sm:w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
           <div className="text-center mb-10">
             <p className="text-2xl font-bold">Login</p>
             <p className="text-gray-600">

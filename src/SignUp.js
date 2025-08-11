@@ -24,7 +24,7 @@ function SignUp() {
   const signUpWithEmail = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
+      auth,
         email,
         confirm_password
       );
@@ -52,7 +52,7 @@ function SignUp() {
     <div>
       <div className="flex bg-[#ddeeff] justify-center items-center w-full h-screen">
         <div>
-          <div className="border w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
+          <div className="border m-5 sm:m-0 sm:w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
             <div className="text-center mb-10">
               <p className="text-2xl font-bold">SignUp</p>
               <p className="text-gray-600">
@@ -83,7 +83,7 @@ function SignUp() {
               ></input>
             </div>
 
-            <div className="flex items-center my-3 space-x-2">
+            <div className="sm:flex items-center my-3 sm:space-x-2">
               <div>
                 <p className="font-semibold text-[#1976D2]">Phone Number</p>
                 <input
@@ -114,7 +114,7 @@ function SignUp() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="sm:flex items-center sm:space-x-2">
               <div className="">
                 <p className="font-semibold text-[#1976D2]">Password</p>
                 <input
