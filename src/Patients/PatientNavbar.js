@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import { LuLogOut } from "react-icons/lu";
 import { database } from "../FirebaseConfiguration";
 import { FaUser } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IoNotifications } from "react-icons/io5";
 
 function PatientNavbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const email = localStorage.getItem("email");
   const [gettingUsers, setgettingUsers] = useState([]);
 
@@ -23,10 +27,28 @@ function PatientNavbar() {
   }, []);
 
   return (
-    <div className="flex items-center border-b justify-between p-3">
-      <div className="flex items-center space-x-3">
-        <button>Home</button>
-        <button>Appointments</button>
+    <div className="flex items-center bg-white shadow border-b justify-between p-3">
+      <div className="flex items-center space-x-5">
+        <button
+          onClick={() => {
+            navigate("/PatientDashboard");
+          }}
+          className={`${
+            location.pathname === "/PatientDashboard" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => {
+            navigate("/PatientAppointment");
+          }}
+          className={`${
+            location.pathname === "/PatientAppointment" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Appointments
+        </button>
         <button>Prescriptions</button>
         <button>Lab Reports</button>
         <button>Medical History</button>
@@ -55,7 +77,12 @@ function PatientNavbar() {
             ))}
         </div>
 
-        <button>
+        <button
+          onClick={() => {
+            navigate("/");
+            localStorage.clear();
+          }}
+        >
           <LuLogOut />
         </button>
       </div>
