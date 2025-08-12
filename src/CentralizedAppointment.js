@@ -6,12 +6,15 @@ import { MdDateRange } from "react-icons/md";
 import { BsClock } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import CreatingPrescription from "./Doctor/CreatingPrescription";
+import CreateConsultationForm from "./Doctor/CreateConsultationForm";
 
 function CentralizedAppointment({ email }) {
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [openingPrescriptionForm, setopeningPrescriptionForm] = useState(false);
   const location = useLocation();
   const [capturingDataObject, setcapturingDataObject] = useState({});
+  const [openingCreateConsultationForm, setopeningCreateConsultationForm] =
+    useState(false);
 
   console.log("Email and current route location", email, location.pathname);
 
@@ -109,7 +112,7 @@ function CentralizedAppointment({ email }) {
               <span className="text-black">{appointment.additionalNote}</span>
             </p>
 
-            <div className="mt-3">
+            <div className="flex items-center space-x-2 mt-3">
               <button
                 onClick={() => {
                   setcapturingDataObject(appointment);
@@ -119,6 +122,16 @@ function CentralizedAppointment({ email }) {
               >
                 + Create Prescription
               </button>
+
+              <button
+                onClick={() => {
+                  setcapturingDataObject(appointment);
+                  setopeningCreateConsultationForm(true);
+                }}
+                className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+              >
+                + Create Consultation
+              </button>
             </div>
           </div>
         ))}
@@ -127,6 +140,13 @@ function CentralizedAppointment({ email }) {
       {openingPrescriptionForm && (
         <CreatingPrescription
           setopeningPrescriptionForm={setopeningPrescriptionForm}
+          appointment={capturingDataObject}
+        />
+      )}
+
+      {openingCreateConsultationForm && (
+        <CreateConsultationForm
+          setopeningCreateConsultationForm={setopeningCreateConsultationForm}
           appointment={capturingDataObject}
         />
       )}
