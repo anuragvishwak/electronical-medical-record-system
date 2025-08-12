@@ -6,6 +6,7 @@ import { database } from "../FirebaseConfiguration";
 import { GrNotes } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import AdditionalConsultationDetails from "./AdditionalConsultationDetails";
+import CreateLabOrderForm from "./CreateLabOrderForm";
 
 function DoctorConsultation() {
   const [gettingConsultations, setgettingConsultations] = useState([]);
@@ -13,6 +14,7 @@ function DoctorConsultation() {
   const [openingAdditionalDetails, setopeningAdditionalDetails] =
     useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
+  const [openingLabOrderForm, setopeningLabOrderForm] = useState(false);
 
   async function renderingConsultation() {
     const taskDetails = await getDocs(
@@ -68,33 +70,47 @@ function DoctorConsultation() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {gettingConsultations.map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300 m-3">
-            <div className="p-2 bg-black text-white rounded-t">
-              {gettingUser
-                .filter((user) => user.email === prep.patient)
-                .map((user) => (
-                  <p className="text-xl font-bold">
-                    <span className="font-[300] text-sm">Patient:</span>{" "}
-                    {user?.name}
-                  </p>
-                ))}
-              <p className="text-sm">
-                <span className="">appointment id</span> {prep.appointmentId}
-              </p>
+            <div className="p-2 flex items-start justify-between bg-black text-white rounded-t">
+              <div>
+                {gettingUser
+                  .filter((user) => user.email === prep.patient)
+                  .map((user) => (
+                    <p className="text-xl font-bold">
+                      <span className="font-[300] text-sm">Patient:</span>{" "}
+                      {user?.name}
+                    </p>
+                  ))}
+                <p className="text-sm">
+                  <span className="">appointment id</span> {prep.appointmentId}
+                </p>
+              </div>
+
+              <div>
+                <button
+                  onClick={() => {
+                    setcapturingDataObject(prep);
+                    setopeningLabOrderForm(true);
+                  }}
+                  className="bg-white py-0.5 text-black shadow px-3 rounded"
+                >
+                  Order Lab Tests
+                </button>
+              </div>
             </div>
 
-            <div className="m-3">
+            <div className="m-5">
               <p className="font-semibold text-[#1976D2] mb-1">
                 History of Present Illness
               </p>
-              <p className="text-gray-600 text-sm text-justify">
+              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-blue-500 text-sm text-justify">
                 {prep.historyofPresentIllness}
               </p>
             </div>
 
-            
+            <hr className="" />
 
             <div className="flex items-center justify-end space-x-2 p-3">
               <button
@@ -103,10 +119,7 @@ function DoctorConsultation() {
                     gettingUser.find((user) => user.email === prep.patient)
                       ?.name || "Unknown";
 
-                  setcapturingDataObject({
-                    ...prep,
-                    patientName: userName,
-                  });
+                  setcapturingDataObject(prep);
                   setopeningAdditionalDetails(true);
                 }}
                 className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2 rounded text-white"
@@ -139,6 +152,13 @@ function DoctorConsultation() {
         <AdditionalConsultationDetails
           capturingDataObject={capturingDataObject}
           setopeningAdditionalDetails={setopeningAdditionalDetails}
+        />
+      )}
+
+      {openingLabOrderForm && (
+        <CreateLabOrderForm
+          capturingDataObject={capturingDataObject}
+          setopeningLabOrderForm={setopeningLabOrderForm}
         />
       )}
     </div>

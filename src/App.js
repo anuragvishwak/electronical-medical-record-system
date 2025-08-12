@@ -21,6 +21,9 @@ import PatientAppointment from "./Patients/PatientAppointment";
 import DoctorAppointment from "./Doctor/DoctorAppointment";
 import DoctorPrescription from "./Doctor/DoctorPrescription";
 import DoctorConsultation from "./Doctor/DoctorConsultation";
+import AssignedLabOrders from "./Lab Technician/AssignedLabOrders";
+import UploadTestResults from "./Lab Technician/UploadTestResults";
+
 
 function App() {
   return (
@@ -52,6 +55,8 @@ function App() {
           <Route path="/DoctorAppointment" element={<DoctorAppointment />} />
           <Route path="/DoctorPrescription" element={<DoctorPrescription />} />
           <Route path="/DoctorConsultation" element={<DoctorConsultation />} />
+          <Route path="/AssignedLabOrders" element={<AssignedLabOrders />} />
+          <Route path="/UploadTestResults" element={<UploadTestResults />} />
         </Routes>
       </Router>
     </div>
