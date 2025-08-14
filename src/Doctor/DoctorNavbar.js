@@ -47,7 +47,14 @@ function DoctorNavbar() {
             location.pathname === "/DoctorConsultation" ? "text-[#1976D2]" : ""
           }`}
         >Consultation</button>
-        <button>Lab Reports</button>
+        <button
+         onClick={() => {
+            navigate("/DoctorLabReports");
+          }}
+          className={`${
+            location.pathname === "/DoctorLabReports" ? "text-[#1976D2]" : ""
+          }`}
+        >Lab Reports</button>
         <button>Medical Records</button>
         <button>Billing / Finance</button>
         <button>Profile / Setting</button>
