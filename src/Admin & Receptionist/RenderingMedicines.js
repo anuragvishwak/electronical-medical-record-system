@@ -2,9 +2,9 @@ import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { FiDelete } from "react-icons/fi";
+import { FiAlertTriangle, FiDelete } from "react-icons/fi";
 
-function RenderingMedicines() {
+function RenderingMedicines({ search }) {
   const [gettingMedicines, setgettingMedicines] = useState([]);
   const [openingAdditionalDetails, setOpeningAdditionalDetails] =
     useState(false);
@@ -22,9 +22,16 @@ function RenderingMedicines() {
     setgettingMedicines(multipleArray);
   }
 
+  const filteringMedicines = gettingMedicines.filter(
+    (med) => med.name === search
+  );
+
+
+  console.log(filteringMedicines)
+
   useEffect(() => {
     renderingMedicines();
-  }, []);
+  }, [search]);
 
   return (
     <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
@@ -92,7 +99,8 @@ function RenderingMedicines() {
                       Description: {capturingDataObject.description}
                     </p>
                     <div className="text-gray-700">
-                      Dosage: {capturingDataObject.dosage.map((dosage)=>(
+                      Dosage:{" "}
+                      {capturingDataObject.dosage.map((dosage) => (
                         <div className="flex items-center space-x-2">
                           <input type="checkbox"></input>
                           <p>{dosage}</p>

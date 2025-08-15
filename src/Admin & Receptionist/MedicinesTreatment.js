@@ -7,6 +7,7 @@ import RenderingMedicines from "./RenderingMedicines";
 
 function MedicinesTreatment() {
   const [openingMedicineForm, setopeningMedicineForm] = useState();
+  const [search, setsearch] = useState("");
 
   return (
     <div className="bg-gray-100 h-screen">
@@ -21,35 +22,30 @@ function MedicinesTreatment() {
 
         <div className="flex items-center space-x-2">
           <input
+            onChange={(e) => {
+              setsearch(e.target.value);
+            }}
             placeholder="Search Medicines..."
             className="border border-gray-400 w-60 p-1 rounded"
           ></input>
-          <button>
-            <FaSearch
-              size={33}
-              className="border border-[#1976D2] p-1.5 rounded text-[#1976D2]"
-            />
-          </button>
 
-            <button
-              onClick={() => {
-                setopeningMedicineForm(true);
-              }}
-              className="bg-[#1976D2] py-1.5 px-3 rounded shadow text-white"
-            >
-              + Create Medicine
-            </button>
-         
+          <button
+            onClick={() => {
+              setopeningMedicineForm(true);
+            }}
+            className="bg-[#1976D2] py-1.5 px-3 rounded shadow text-white"
+          >
+            + Create Medicine
+          </button>
         </div>
       </div>
       <div>
-          <RenderingMedicines />
+        <RenderingMedicines search = {search} />
       </div>
 
       {openingMedicineForm && (
         <CreateMedicineForm setopeningMedicineForm={setopeningMedicineForm} />
       )}
-
     </div>
   );
 }
