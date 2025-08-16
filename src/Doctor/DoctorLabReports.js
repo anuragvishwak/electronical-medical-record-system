@@ -187,6 +187,7 @@ function DoctorLabReports() {
                             }
                             return null;
                           })}
+                          
                       </tbody>
                     </table>
                   </div>
