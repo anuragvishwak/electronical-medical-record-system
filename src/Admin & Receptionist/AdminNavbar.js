@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { LuLogOut } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
+import HRMS from "./HRMS/HRMS";
 
 function AdminNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [openingHRMS, setopeningHRMS] = useState(false);
 
   return (
     <div className="flex items-center bg-white shadow border-b justify-between p-3">
@@ -62,6 +64,14 @@ function AdminNavbar() {
         <button>Profile / Setting</button>
       </div>
       <div className="flex items-center space-x-2">
+        <button
+          onClick={() => {
+            setopeningHRMS(true);
+          }}
+          className="bg-[#1976D2] hover:border-blue-800 hover:bg-blue-800 border border-[#1976D2] text-white py-0.5 px-2.5 rounded"
+        >
+          HRMS
+        </button>
         <button>Notify</button>
         <button
           onClick={() => {
@@ -72,6 +82,8 @@ function AdminNavbar() {
           <LuLogOut />
         </button>
       </div>
+
+      {openingHRMS && <HRMS setopeningHRMS={setopeningHRMS} />}
     </div>
   );
 }

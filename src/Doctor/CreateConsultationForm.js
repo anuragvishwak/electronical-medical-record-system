@@ -24,13 +24,7 @@ function CreateConsultationForm({
   const [additionalInstructions, setAdditionalInstructions] = useState("");
   const [patientData, setpatientData] = useState([]);
   const [istreatmentRequired, setistreatmentRequired] = useState(false);
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [bloodPressure, setBloodPressure] = useState("");
-  const [pulseRate, setPulseRate] = useState("");
-  const [respiratoryRate, setRespiratoryRate] = useState("");
-  const [oxygenSaturation, setOxygenSaturation] = useState("");
+  
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -58,13 +52,6 @@ function CreateConsultationForm({
         dosage: dosage,
         duration: duration,
         diagnosis: diafgnosis,
-        height: height,
-        weight: weight,
-        temperature: temperature,
-        bloodPressure: bloodPressure,
-        pulseRate: pulseRate,
-        respiratoryRate: respiratoryRate,
-        oxygenSaturation: oxygenSaturation,
         followUpDate: followUpDate,
         medication_procedures: medication_procedures,
         additionalInstructions: additionalInstructions,
@@ -156,100 +143,7 @@ function CreateConsultationForm({
             </div>
           </div>
 
-          <div className="mb-3">
-            <p className="text-xl font-bold">Vitals</p>
-            <div className="grid grid-cols-4 gap-3">
-              <div>
-                <p className="font-semibold text-[#1976D2]">Height (cm)</p>
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    setHeight(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter height..."
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">Weight (kg)</p>
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    setWeight(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter weight..."
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">Temperature (°C)</p>
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    setTemperature(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter temperature..."
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">
-                  Blood Pressure (mmHg)
-                </p>
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setBloodPressure(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="e.g. 120/80"
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">Pulse Rate (bpm)</p>
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    setPulseRate(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter pulse rate..."
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">
-                  Respiratory Rate (breaths/min)
-                </p>
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    setRespiratoryRate(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter respiratory rate..."
-                />
-              </div>
-
-              <div>
-                <p className="font-semibold text-[#1976D2]">
-                  Oxygen Saturation (%)
-                </p>
-                <input
-                  onChange={(e) => {
-                    setOxygenSaturation(e.target.value);
-                  }}
-                  type="number"
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Enter SpO₂..."
-                />
-              </div>
-            </div>
-          </div>
+          
 
           <CentralizedDiagnosis setdiagnosis = {setdiagnosis} />
 

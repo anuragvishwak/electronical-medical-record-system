@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import React from "react";
 import { database } from "./FirebaseConfiguration";
 import { useEffect, useState } from "react";
@@ -15,8 +15,6 @@ function CentralizedAppointment({ email }) {
   const [capturingDataObject, setcapturingDataObject] = useState({});
   const [openingCreateConsultationForm, setopeningCreateConsultationForm] =
     useState(false);
-
-  console.log("Email and current route location", email, location.pathname);
 
   async function renderingAppointments() {
     const taskDetails = await getDocs(
@@ -50,9 +48,42 @@ function CentralizedAppointment({ email }) {
     filteredAppointments = gettingAppointments;
   }
 
+  async function updateVisitStatus(appointmentId, status) {
+    try {
+      const appointmentRef = doc(
+        database,
+        "appointment_database",
+        appointmentId
+      );
+
+      let payload = { visitStatus: status };
+
+      if (status === "Checked-In") {
+        payload.checkInTime = new Date().toISOString();
+      }
+
+      if (status === "Checked-Out") {
+        payload.checkOutTime = new Date().toISOString();
+      }
+
+      await updateDoc(appointmentRef, payload);
+
+      console.log("Visit status updated successfully!");
+      renderingAppointments();
+    } catch (error) {
+      console.error("Error updating visit status:", error.message);
+    }
+  }
+
   return (
     <div>
-      <div className="grid grid-cols-4 m-3 gap-3">
+      <div
+        className={`grid ${
+          location.pathname === "/CheckInCheckOut"
+            ? "grid-cols-3"
+            : "grid-cols-4"
+        } m-3 gap-3`}
+      >
         {filteredAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-start justify-between">
@@ -77,17 +108,34 @@ function CentralizedAppointment({ email }) {
                 </div>
               </div>
 
-              <select
-                // onChange={(e) => {
-                //   setstatus(e.target.value);
-                // }}
-                className="border text-sm rounded border-gray-300 w- p-1"
-              >
-                <option>Select Status</option>
-                <option value={"scheduled"}>Scheduled</option>
-                <option value={"completed"}>Completed</option>
-                <option value={"cancelled"}>Cancelled</option>
-              </select>
+              <div className="flex items-center space-x-2">
+                <select
+                  // onChange={(e) => {
+                  //   setstatus(e.target.value);
+                  // }}
+                  className="border text-sm rounded border-gray-300 w- p-1"
+                >
+                  <option>Select Status</option>
+                  <option value={"scheduled"}>Scheduled</option>
+                  <option value={"completed"}>Completed</option>
+                  <option value={"cancelled"}>Cancelled</option>
+                </select>
+
+                {location.pathname == "/CheckInCheckOut" && (
+                  <select
+                    value={appointment.visitStatus || "Not Arrived"}
+                    onChange={(e) =>
+                      updateVisitStatus(appointment.id, e.target.value)
+                    }
+                    className="border rounded border-gray-300 text-sm p-1"
+                  >
+                    <option value="Not Arrived">Not Arrived</option>
+                    <option value="Checked-In">Checked-In</option>
+                    <option value="In Consultation">In Consultation</option>
+                    <option value="Checked-Out">Checked-Out</option>
+                  </select>
+                )}
+              </div>
             </div>
 
             <hr className="my-1.5 border-gray-300" />
@@ -112,27 +160,31 @@ function CentralizedAppointment({ email }) {
               <span className="text-black">{appointment.additionalNote}</span>
             </p>
 
-            <div className="flex items-center space-x-2 mt-3">
-              <button
-                onClick={() => {
-                  setcapturingDataObject(appointment);
-                  setopeningPrescriptionForm(true);
-                }}
-                className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
-              >
-                + Create Prescription
-              </button>
+            {location.pathname !== "/NurseVitals" &&
+              location.pathname !== "/PatientAppointment" &&
+              location.pathname !== "/CheckInCheckOut" && (
+                <div className="flex items-center space-x-2 mt-3">
+                  <button
+                    onClick={() => {
+                      setcapturingDataObject(appointment);
+                      setopeningPrescriptionForm(true);
+                    }}
+                    className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+                  >
+                    + Create Prescription
+                  </button>
 
-              <button
-                onClick={() => {
-                  setcapturingDataObject(appointment);
-                  setopeningCreateConsultationForm(true);
-                }}
-                className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
-              >
-                + Create Consultation
-              </button>
-            </div>
+                  <button
+                    onClick={() => {
+                      setcapturingDataObject(appointment);
+                      setopeningCreateConsultationForm(true);
+                    }}
+                    className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+                  >
+                    + Create Consultation
+                  </button>
+                </div>
+              )}
           </div>
         ))}
       </div>

@@ -24,7 +24,8 @@ import DoctorConsultation from "./Doctor/DoctorConsultation";
 import AssignedLabOrders from "./Lab Technician/AssignedLabOrders";
 import UploadTestResults from "./Lab Technician/UploadTestResults";
 import DoctorLabReports from "./Doctor/DoctorLabReports";
-
+import NurseVitals from "./Nurse/NurseVitals";
+import CheckInCheckOut from "./Nurse/CheckInCheckOut";
 
 function App() {
   return (
@@ -59,6 +60,8 @@ function App() {
           <Route path="/AssignedLabOrders" element={<AssignedLabOrders />} />
           <Route path="/UploadTestResults" element={<UploadTestResults />} />
           <Route path="/DoctorLabReports" element={<DoctorLabReports />} />
+          <Route path="/NurseVitals" element={<NurseVitals />} />
+          <Route path="/CheckInCheckOut" element={<CheckInCheckOut />} />
 
         </Routes>
       </Router>
