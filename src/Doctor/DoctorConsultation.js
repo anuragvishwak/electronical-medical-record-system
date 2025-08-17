@@ -55,7 +55,7 @@ function DoctorConsultation() {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div Name="flex items-center space-x-2">
           <input
             placeholder="Search Users..."
             className="border border-gray-400 w-60 p-1 rounded"
