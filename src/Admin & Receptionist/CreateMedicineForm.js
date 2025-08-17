@@ -342,7 +342,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
             onClick={() => {
               creatingMedicine();
             }}
-            className="bg-[#1976D2] border border-[#1976D2] text-white py-1 px-4 rounded"
+            className="bg-[#1976D2] border hover:text-white hover:bg-[#1976D2] border-[#1976D2] text-white py-1 px-4 rounded"
           >
             Create Medicine
           </button>
