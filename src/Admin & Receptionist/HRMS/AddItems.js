@@ -1,6 +1,8 @@
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
+import { database } from "../../FirebaseConfiguration";
 
-function AddItems() {
+function AddItems({ setopeningAddItemForm, renderingItems }) {
   const [selectedCategory, setselectedCategory] = useState("");
   const [selectedSubCategory, setselectedSubCategory] = useState("");
   const [name, setname] = useState("");
@@ -9,30 +11,21 @@ function AddItems() {
   const [purchaseDate, setpurchaseDate] = useState("");
   const [remarks, setremarks] = useState("");
 
-  function creatingMedicine() {
+  function AddItems() {
     try {
-      addDoc(collection(database, "medicine_database"), {
+      addDoc(collection(database, "advanced_inventory_management_database"), {
+        category: selectedCategory,
+        subCategory: selectedSubCategory,
         name: name,
-        brand: brand,
-        category: category,
-        genericName: genericName,
-        Form: Form,
-        dosage: dosage,
-        dosage_instruction: dosage_instruction,
-        maxDailyDose: maxDailyDose,
-        ageGroupRestriction: ageGroupRestriction,
-        timing: timing,
-        frequency: frequency,
-        precautions: precautions,
-        sideEffects: sideEffects,
-        constraindications: constraindications,
-        storage_instruction: storage_instruction,
-        stock: stock,
-        expiry_date: expiry_date,
+        quantity: quantity,
+        vendor: vendor,
+        purchaseDate: purchaseDate,
+        remarks: remarks,
       });
 
       console.log("Medicine added to Firestore.");
-    //   setopeningMedicineForm(false);
+      setopeningAddItemForm(false);
+      renderingItems();
     } catch (error) {
       console.error("Error during sign up:", error.message);
       throw error;
@@ -92,7 +85,7 @@ function AddItems() {
         <div>
           <p className="font-semibold text-[#1976D2]">Sub Category</p>
           <select
-           onChange={(e) => {
+            onChange={(e) => {
               setselectedSubCategory(e.target.value);
             }}
             disabled={!selectedCategory}
@@ -140,7 +133,7 @@ function AddItems() {
           <p className="font-semibold text-[#1976D2]">Vendor</p>
           <input
             type="text"
-             onChange={(e) => {
+            onChange={(e) => {
               setvendor(e.target.value);
             }}
             placeholder="Camblin"
@@ -152,7 +145,7 @@ function AddItems() {
           <p className="font-semibold text-[#1976D2]">Purchase Date</p>
           <input
             type="date"
-             onChange={(e) => {
+            onChange={(e) => {
               setpurchaseDate(e.target.value);
             }}
             className="border rounded border-gray-300 w-full p-1.5"
@@ -165,16 +158,21 @@ function AddItems() {
         </p>
         <textarea
           type="text"
-           onChange={(e) => {
-              setremarks(e.target.value);
-            }}
+          onChange={(e) => {
+            setremarks(e.target.value);
+          }}
           placeholder="Pen's quality are good!!!"
           className="border rounded h-32 border-gray-300 w-full p-1.5"
         />
       </div>
 
       <div className="flex justify-end mt-3">
-        <button className="bg-[#1976D2] border hover:text-white hover:bg-[#1976D2] border-[#1976D2] text-white py-1 px-4 rounded">
+        <button
+          onClick={() => {
+            AddItems();
+          }}
+          className="bg-[#1976D2] border hover:text-white hover:bg-[#1976D2] border-[#1976D2] text-white py-1 px-4 rounded"
+        >
           + Add Item
         </button>
       </div>
