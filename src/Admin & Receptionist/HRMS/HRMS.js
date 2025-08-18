@@ -9,7 +9,7 @@ function HRMS({ setopeningHRMS }) {
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white h-screen my-10 w-10/12 p-4 rounded">
+      <div className="bg-white h-screen my-7 w-10/12 p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
           <p className="text-[#1976D2] text-xl font-bold">
             Hospital Resource Management System (HRMS)
