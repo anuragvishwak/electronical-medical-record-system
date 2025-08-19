@@ -29,7 +29,7 @@ function HousekeepingMaintainenace() {
     setgettingUser(multipleArray);
   }
 
-  async function renderingUser() {
+  async function renderingHousekeeping() {
     const taskDetails = await getDocs(
       collection(database, "facility_infrastructure_management_database")
     );
@@ -80,7 +80,7 @@ function HousekeepingMaintainenace() {
         life: 3000,
       });
       setopeningHousekeepingMaintainenance(false);
-      // renderingAppointments();
+      renderingHousekeeping();
     } catch (error) {
       console.error("Error during sign up:", error.message);
       throw error;
@@ -89,6 +89,7 @@ function HousekeepingMaintainenace() {
 
   useEffect(() => {
     renderingUser();
+    renderingHousekeeping();
   }, []);
 
   return (
