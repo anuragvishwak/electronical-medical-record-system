@@ -49,8 +49,36 @@ function PatientNavbar() {
         >
           Appointments
         </button>
-        <button>Prescriptions</button>
-        <button>Lab Reports</button>
+        <button
+          onClick={() => {
+            navigate("/PatientPrescription");
+          }}
+          className={`${
+            location.pathname === "/PatientPrescription" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Prescription
+        </button>
+        <button
+          onClick={() => {
+            navigate("/PatientConsultation");
+          }}
+          className={`${
+            location.pathname === "/PatientConsultation" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Consultation
+        </button>
+        <button
+          onClick={() => {
+            navigate("/PatientLabReport");
+          }}
+          className={`${
+            location.pathname === "/PatientLabReport" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Lab Reports
+        </button>
         <button>Medical History</button>
         <button>Payment History</button>
         <button>Insurance Details</button>

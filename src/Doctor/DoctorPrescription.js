@@ -162,6 +162,7 @@ function DoctorPrescription() {
           </div>
         ))}
       </div>
+      
     </div>
   );
 }
