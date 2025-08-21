@@ -199,7 +199,7 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
               <option value="completed">Completed</option>
               <option value="cancelled">Cancelled</option>
               <option value="rejected">Rejected</option>
-            </select>
+            </select> 
           </div>
         </div>
 

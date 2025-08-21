@@ -64,130 +64,130 @@ function PatientLabReport() {
         </div>
       </div>
 
-       <div className="m-3 grid grid-cols-2 gap-3">
-              {gettingLabResults.map((lab) => (
-                <div className="rounded bg-white shadow">
-                  <div className=" bg-black rounded-t p-3 text-white ">
-                    <div className="flex text-sm items-center space-x-1">
-                      <p>
-                        <span className="text-gray-400">Appointment Id:</span>{" "}
-                        {lab.appointmentId}
-                      </p>
-                    </div>
-                    <p>
-                      <span className="text-gray-400">Consultation Id:</span>{" "}
-                      {lab.constulationId}
+      <div className="m-3 grid grid-cols-2 gap-3">
+        {gettingLabResults.map((lab) => (
+          <div className="rounded bg-white shadow">
+            <div className=" bg-black rounded-t p-3 text-white ">
+              <div className="flex text-sm items-center space-x-1">
+                <p>
+                  <span className="text-gray-400">Appointment Id:</span>{" "}
+                  {lab.appointmentId}
+                </p>
+              </div>
+              <p>
+                <span className="text-gray-400">Consultation Id:</span>{" "}
+                {lab.constulationId}
+              </p>
+            </div>
+
+            <div className="border m-3 p-2 rounded-lg border-gray-300">
+              {gettingUser
+                .filter((user) => user.email === lab.doctor)
+                .map((user) => (
+                  <p className="">
+                    <span className="text-gray-500">Doctor:</span> {user.name}
+                  </p>
+                ))}
+
+              {gettingUser
+                .filter((user) => user.email === lab.lab_technician)
+                .map((user) => (
+                  <p className="">
+                    <span className="text-gray-500">Lab Technician:</span>{" "}
+                    {user.name}
+                  </p>
+                ))}
+
+              <p className="">
+                <span className="text-gray-500">Test Name:</span>{" "}
+                {lab.testRequested}
+              </p>
+            </div>
+
+            <div
+              className={`flex justify-end px-3 ${
+                !extendingTable ? "mb-3" : ""
+              }`}
+            >
+              <button
+                onClick={() => {
+                  setcapturingResultId(lab.id);
+                  setextendingTable(!extendingTable);
+                }}
+                className="bg-[#1976D2] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
+              >
+                <div className="flex items-center space-x-1">
+                  <FaEye />
+                  <p>View Test Results</p>
+                </div>
+              </button>
+            </div>
+
+            {extendingTable && capturingResultId === lab.id && (
+              <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
+                <div className="bg-white p-3 rounded">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-[#1976D2] text-xl font-semibold">
+                      Lab Results
                     </p>
-                  </div>
-      
-                  <div className="border m-3 p-2 rounded-lg border-gray-300">
-                    {gettingUser
-                      .filter((user) => user.email === lab.doctor)
-                      .map((user) => (
-                        <p className="">
-                          <span className="text-gray-500">Doctor:</span> {user.name}
-                        </p>
-                      ))}
-      
-                    {gettingUser
-                      .filter((user) => user.email === lab.lab_technician)
-                      .map((user) => (
-                        <p className="">
-                          <span className="text-gray-500">Lab Technician:</span>{" "}
-                          {user.name}
-                        </p>
-                      ))}
-      
-                    <p className="">
-                      <span className="text-gray-500">Test Name:</span>{" "}
-                      {lab.testRequested}
-                    </p>
-                  </div>
-      
-                  <div
-                    className={`flex justify-end px-3 ${
-                      !extendingTable ? "mb-3" : ""
-                    }`}
-                  >
                     <button
                       onClick={() => {
-                        setcapturingResultId(lab.id);
-                        setextendingTable(!extendingTable);
+                        setextendingTable(false);
                       }}
-                      className="bg-[#1976D2] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
+                      className="font-semibold text-red-500"
                     >
-                      <div className="flex items-center space-x-1">
-                        <FaEye />
-                        <p>View Test Results</p>
-                      </div>
+                      Close
                     </button>
                   </div>
-      
-                  {extendingTable &&
-                    capturingResultId ===
-                      lab.id && (
-                       <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-                        <div className="bg-white p-3 rounded">
-                            <div className="flex items-center justify-between mb-2">
-<p className="text-[#1976D2] text-xl font-semibold">Lab Results</p>
-<button 
-onClick={()=>{
-    setextendingTable(false);
-}}
-className="font-semibold text-red-500">
-    Close
-</button>
-                            </div>
-                             <div className="border p-3 border-gray-300 rounded text-sm">
-                          <table className="table-auto w-full">
-                            <thead className="bg-gray-100">
-                              <tr>
-                                <th className="py-1">Parameter</th>
-                                <th>Value</th>
-                                <th>Unit</th>
-                                <th>Reference Value</th>
-                              </tr>
-                            </thead>
-      
-                            <tbody>
-                              {lab.testRequested === "Complete Blood Count (CBC)" &&
-                                Object.entries(lab).map(([key, value]) => {
-                                  if (
-                                    typeof value === "object" &&
-                                    value !== null &&
-                                    "value" in value &&
-                                    "unit" in value
-                                  ) {
-                                    return (
-                                      <tr
-                                        className="text-gray-500 border-b border-gray-300"
-                                        key={key}
-                                      >
-                                        <td className="text-center py-1">{key}</td>
-                                        <td className="text-center">{value.value}</td>
-                                        <td className="text-center">{value.unit}</td>
-                                        <td className="">
-                                          <div className=" flex justify-center">
-                                            <p className="text-start">
-                                              {value.reference || "-"}
-                                            </p>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    );
-                                  }
-                                  return null;
-                                })}
-                                
-                            </tbody>
-                          </table>
-                        </div>
-                        </div>
-                       </div>
-                      )}
+                  <div className="border p-3 border-gray-300 rounded text-sm">
+                    <table className="table-auto w-full">
+                      <thead className="bg-gray-100">
+                        <tr>
+                          <th className="py-1">Parameter</th>
+                          <th>Value</th>
+                          <th>Unit</th>
+                          <th>Reference Value</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {lab.testRequested === "Complete Blood Count (CBC)" &&
+                          Object.entries(lab).map(([key, value]) => {
+                            if (
+                              typeof value === "object" &&
+                              value !== null &&
+                              "value" in value &&
+                              "unit" in value
+                            ) {
+                              return (
+                                <tr
+                                  className="text-gray-500 border-b border-gray-300"
+                                  key={key}
+                                >
+                                  <td className="text-center py-1">{key}</td>
+                                  <td className="text-center">{value.value}</td>
+                                  <td className="text-center">{value.unit}</td>
+                                  <td className="">
+                                    <div className=" flex justify-center">
+                                      <p className="text-start">
+                                        {value.reference || "-"}
+                                      </p>
+                                    </div>
+                                  </td>
+                                </tr>
+                              );
+                            }
+                            return null;
+                          })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
