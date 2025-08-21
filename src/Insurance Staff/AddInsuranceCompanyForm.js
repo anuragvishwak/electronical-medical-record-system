@@ -144,7 +144,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
                 }}
                 className="w-full border border-gray-300 rounded-md p-2"
               >
-                <option>Select option</option>
+                <option>Select Poicy Supported</option>
                 <option value={"health"}>Health</option>
                 <option value={"accident"}>Accident</option>
                 <option value={"corporate"}>Corporate (Employer-based)</option>

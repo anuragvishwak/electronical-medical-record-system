@@ -7,6 +7,7 @@ import { database } from "../FirebaseConfiguration";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 
+
 function InsuranceProvider() {
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
     useState(false);
@@ -40,7 +41,7 @@ function InsuranceProvider() {
         <div>
           <p className="text-2xl font-bold">Insurance Provider</p>
           <p className="text-gray-600">
-            All the <span className="text-[#1976D2]">Insurance provider</span>{" "}
+            All the <span className="text-[#1976D2] font-semibold">Insurance provider</span>{" "}
             details will be displayed here.
           </p>
         </div>
