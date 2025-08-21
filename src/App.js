@@ -29,6 +29,8 @@ import CheckInCheckOut from "./Nurse/CheckInCheckOut";
 import PatientPrescription from "./Patients/PatientPrescription";
 import PatientConsultation from "./Patients/PatientConsultation";
 import PatientLabReport from "./Patients/PatientLabReport";
+import ViewInsuranceInfo from "./Insurance Staff/ViewInsuranceInfo";
+import InsuranceProvider from "./Insurance Staff/InsuranceProvider";
 
 function App() {
   return (
@@ -68,6 +70,10 @@ function App() {
           <Route path="/PatientPrescription" element={<PatientPrescription />} />
           <Route path="/PatientConsultation" element={<PatientConsultation />} />
           <Route path="/PatientLabReport" element={<PatientLabReport />} />
+          <Route path="/ViewInsuranceInfo" element={<ViewInsuranceInfo />} />
+          <Route path="/InsuranceProvider" element={<InsuranceProvider />} />
+
+
 
         </Routes>
       </Router>
