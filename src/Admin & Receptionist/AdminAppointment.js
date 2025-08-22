@@ -8,11 +8,16 @@ import { CgLock } from "react-icons/cg";
 import { BsClock } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
+import AddBillingPaymentForm from "./AddBillingPaymentForm";
+import { FaBars } from "react-icons/fa6";
 
 function AdminAppointment() {
   const [openingCreateAppointmentForm, setopeningCreateAppointmentForm] =
     useState(false);
   const [gettingAppointments, setgettingAppointments] = useState([]);
+  const [openingAddBillingPaymentForm, setopeningAddBillingPaymentForm] =
+    useState(false);
+  const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
 
   async function renderingAppointments() {
     const taskDetails = await getDocs(
@@ -32,37 +37,55 @@ function AdminAppointment() {
 
   return (
     <div className="bg-gray-50 h-screen">
-      <AdminNavbar />
-      <div className="mx-3 bg-white p-3 border rounded border-gray-300 flex items-end justify-between mt-3">
+      <AdminNavbar
+        setopeningAdminNavbar={setopeningAdminNavbar}
+        openingAdminNavbar={openingAdminNavbar}
+      />
+      <div className="m-3 bg-white p-3 shadow border rounded border-gray-300 sm:flex items-end justify-between mt-3">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Appointments</p>
-          <p className="text-[#196d8e]">
+          <div className="flex items-center justify-between">
+            <p className="text-lg sm:text-2xl font-bold text-[#212a31]">
+              Appointments
+            </p>
+            <button
+              onClick={() => {
+                setopeningAdminNavbar(true);
+              }}
+              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+            >
+              <FaBars />
+            </button>
+          </div>
+          <p className="text-[#196d8e] text-sm sm:text-base">
             Manage appointments across the healthcare system
           </p>
         </div>
-        <div className="flex items-center space-x-2">
+
+        <div className="sm:flex items-center sm:space-x-2">
           <input
             placeholder="Search Appointments..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 my-3 w-60 p-1 rounded"
           ></input>
-          <button
-            onClick={() => {
-              setopeningCreateAppointmentForm(true);
-            }}
-            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
-          >
-            + Create Appointment
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => {
+                setopeningCreateAppointmentForm(true);
+              }}
+              className="bg-[#196d8e] py-1 sm:px-5 px-7 text-sm sm:text-base rounded shadow text-white"
+            >
+              + Create Appointment
+            </button>
 
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+            <button>
+              <IoNotifications
+                size={31}
+                className="border border-gray-500 p-1 rounded text-gray-500"
+              />
+            </button>
+          </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 m-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 m-3 gap-3">
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="text-[#196d8e] items-center justify-between">
@@ -101,10 +124,16 @@ function AdminAppointment() {
                   <option value={"cancelled"}>Cancelled</option>
                 </select>
 
-                <button className="bg-[#212a31] w-48 text-white py-1 px-3 rounded text-sm">+ Add Charges</button>
+                <button
+                  onClick={() => {
+                    setopeningAddBillingPaymentForm(true);
+                  }}
+                  className="bg-[#212a31] w-48 text-white py-1 px-3 rounded text-sm"
+                >
+                  + Add Bill
+                </button>
               </div>
             </div>
-
 
             <p className="text-gray-400">
               Doctor:{" "}
@@ -123,7 +152,9 @@ function AdminAppointment() {
 
             <p className="text-gray-400">
               Note:{" "}
-              <span className="text-[#196d8e]">{appointment.additionalNote}</span>
+              <span className="text-[#196d8e]">
+                {appointment.additionalNote}
+              </span>
             </p>
           </div>
         ))}
@@ -132,8 +163,13 @@ function AdminAppointment() {
       {openingCreateAppointmentForm && (
         <CreateAppointmentForm
           setopeningCreateAppointmentForm={setopeningCreateAppointmentForm}
+          renderingAppointments={renderingAppointments}
+        />
+      )}
 
-          renderingAppointments = {renderingAppointments}
+      {openingAddBillingPaymentForm && (
+        <AddBillingPaymentForm
+          setopeningAddBillingPaymentForm={setopeningAddBillingPaymentForm}
         />
       )}
     </div>

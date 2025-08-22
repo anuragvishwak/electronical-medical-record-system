@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import AdminNavbar from "./AdminNavbar";
-import { IoNotifications } from "react-icons/io5";
-import { FaSearch } from "react-icons/fa";
 import CreateMedicineForm from "./CreateMedicineForm";
 import RenderingMedicines from "./RenderingMedicines";
+import { FaBars } from "react-icons/fa6";
 
 function MedicinesTreatment() {
   const [openingMedicineForm, setopeningMedicineForm] = useState();
   const [search, setsearch] = useState("");
+  const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
 
   return (
     <div className="bg-gray-100 h-screen">
-      <AdminNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <AdminNavbar setopeningAdminNavbar={setopeningAdminNavbar} openingAdminNavbar={openingAdminNavbar} />
+      <div className="mx-3 mt-3 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Medicines</p>
+       <div className="flex items-center justify-between">
+           <p className="text-2xl font-bold text-[#212a31]">Medicines</p>
+           <button
+                        onClick={() => {
+                          setopeningAdminNavbar(true);
+                        }}
+                        className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+                      >
+                        <FaBars />
+                      </button>
+       </div>
           <p className="text-[#196d8e]">
             Manage medicines across the healthcare system.
           </p>

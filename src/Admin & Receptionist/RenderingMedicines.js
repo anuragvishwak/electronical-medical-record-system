@@ -34,7 +34,7 @@ function RenderingMedicines({ search }) {
   }, [search]);
 
   return (
-    <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
+    <div className="flex bg-white w-auto overflow-x-auto shadow m-3 border border-gray-300 rounded p-3 justify-center">
       <table className="table-auto w-full">
         <thead className="border border-gray-300 text-[#1976D2] bg-blue-50">
           <th className="py-1">Name</th>
