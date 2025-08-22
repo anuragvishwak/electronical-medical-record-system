@@ -3,10 +3,11 @@ import AdminNavbar from "./AdminNavbar";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { IoNotifications } from "react-icons/io5";
-import { FaPhone, FaUser } from "react-icons/fa6";
+import { FaBars, FaPhone, FaUser } from "react-icons/fa6";
 
 function UserManagement() {
   const [gettingUser, setgettingUser] = useState([]);
+  const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -50,12 +51,22 @@ function UserManagement() {
 
   return (
     <div className="bg-gray-50 h-screen">
-      <AdminNavbar />
+      <AdminNavbar setopeningAdminNavbar={setopeningAdminNavbar} openingAdminNavbar={openingAdminNavbar} />
 
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="mx-3 mt-3 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">User Management</p>
-          <p className="text-[#748d92]">
+          <div className="flex items-center justify-between">
+            <p className="text-lg sm:text-2xl font-bold text-[#212a31]">User Management</p>
+            <button
+              onClick={() => {
+                setopeningAdminNavbar(true);
+              }}
+              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+            >
+              <FaBars />
+            </button>
+          </div>
+          <p className="text-[#748d92] sm:text-base text-sm">
             Manage user accounts and permissions across the healthcare system
           </p>
         </div>
@@ -74,20 +85,21 @@ function UserManagement() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-3 p-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1">
                 <div className="w-9 h-9 flex items-center justify-center rounded-full bg-[#212a31] text-white font-bold">
-                {getInitials(user.name)}
+                  {getInitials(user.name)}
+                </div>
+                <div>
+                  <p className="sm:text-lg text-[#196d8e] font-bold">
+                    {user.name}
+                  </p>
+                  <p className="text-[#748d92] text-sm">{user.email}</p>
+                </div>
               </div>
-             <div>
-               <p className="text-lg text-[#196d8e] font-bold">{user.name}</p>
-            <p className="text-[#748d92] text-sm">{user.email}</p>
-             </div>
-
-            </div>
               {user.status === "approved" ? (
                 <p className="text-green-500 font-semibold p-0.5 px-2 rounded-full bg-green-100  text-sm">
                   Approved
@@ -118,11 +130,19 @@ function UserManagement() {
               )}
             </div>
             <hr className="my-2" />
-            <p className="text-[#212a31] flex items-center"><span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5"><FaPhone size=
-            {14}/></span> {user.phone_no}</p>
-           
-             <p className="text-[#212a31] mt-3 flex items-center"><span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5"><FaUser size=
-            {14}/></span> {user.role === "lab_technician" ? "Lab Technician" : user.role}</p>
+            <p className="text-[#212a31] flex items-center">
+              <span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5">
+                <FaPhone size={14} />
+              </span>{" "}
+              {user.phone_no}
+            </p>
+
+            <p className="text-[#212a31] mt-3 flex items-center">
+              <span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5">
+                <FaUser size={14} />
+              </span>{" "}
+              {user.role === "lab_technician" ? "Lab Technician" : user.role}
+            </p>
           </div>
         ))}
       </div>

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import InsuranceStaffNavbar from "./InsuranceStaffNavbar";
 import { IoNotifications } from "react-icons/io5";
+import OperationTheatreSchedulling from "../Admin & Receptionist/HRMS/Facility ad Infrastructure/OperationTheatreSchedulling";
+import AddClaimForm from "./AddClaimForm";
 
 function InsuranceStaffClaimStatus() {
+
+const [openingClaimStatus, setopeningClaimStatus] = useState(false);
+
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
@@ -21,7 +26,11 @@ function InsuranceStaffClaimStatus() {
             placeholder="Search Users..."
             className="border border-gray-400 w-60 p-1 rounded"
           ></input>
-          <button className="bg-[#196d8e] py-1 px-3 rounded shadow text-white">
+          <button 
+          onClick={()=>{
+            setopeningClaimStatus(true);
+          }}
+          className="bg-[#196d8e] py-1 px-3 rounded shadow text-white">
             + Add Claim
           </button>
           <button>
@@ -33,6 +42,10 @@ function InsuranceStaffClaimStatus() {
         </div>
       </div>
       <div></div>
+
+
+
+      {openingClaimStatus && <AddClaimForm setopeningClaimStatus ={setopeningClaimStatus}/>}
     </div>
   );
 }

@@ -12,9 +12,9 @@ function AdminBillingPayment() {
       <AdminNavbar />
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold">Billing & Payment</p>
-          <p className="text-gray-600">
-           Admin can add and manage billing and payment history.
+          <p className="text-2xl text-[#212a31] font-bold">Billing & Payment</p>
+          <p className="text-[#196d8e]">
+           Admin can add and manage <span className="text-[#212a31] font-semibold">Billing</span> and <span className="text-[#212a31] font-semibold">Payment</span> history.
           </p>
         </div>
 
