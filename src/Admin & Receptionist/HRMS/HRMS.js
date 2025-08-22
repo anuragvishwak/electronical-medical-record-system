@@ -11,7 +11,7 @@ function HRMS({ setopeningHRMS }) {
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white h-screen my-7 w-10/12 p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#1976D2] text-xl font-bold">
+          <p className="text-[#212a31] text-xl font-bold">
             Hospital Resource Management System (HRMS)
           </p>
           <button
@@ -24,14 +24,14 @@ function HRMS({ setopeningHRMS }) {
           </button>
         </div>
 
-        <div className="font-semibold flex items-center space-x-5">
+        <div className="font-semibold text-[#212a31] flex items-center space-x-5">
           <button
             onClick={() => {
               setcurrentTab("advanced_inventory_management");
             }}
             className={`${
               currentTab === "advanced_inventory_management"
-                ? "text-[#1976D2]"
+                ? "text-[#196d8e]"
                 : ""
             }`}
           >
@@ -42,7 +42,7 @@ function HRMS({ setopeningHRMS }) {
               setcurrentTab("facility_infrastructure");
             }}
             className={`${
-              currentTab === "facility_infrastructure" ? "text-[#1976D2]" : ""
+              currentTab === "facility_infrastructure" ? "text-[#196d8e]" : ""
             }`}
           >
             Facility & Infrastructure
@@ -52,7 +52,7 @@ function HRMS({ setopeningHRMS }) {
               setcurrentTab("utility_asset_management");
             }}
             className={`${
-              currentTab === "utility_asset_management" ? "text-[#1976D2]" : ""
+              currentTab === "utility_asset_management" ? "text-[#196d8e]" : ""
             }`}
           >
             Utility & Asset Management
@@ -63,7 +63,7 @@ function HRMS({ setopeningHRMS }) {
             }}
             className={`${
               currentTab === "resource_utilization_analysis"
-                ? "text-[#1976D2]"
+                ? "text-[#196d8e]"
                 : ""
             }`}
           >

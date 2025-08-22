@@ -31,12 +31,12 @@ function AdminAppointment() {
   }, []);
 
   return (
-    <div className="bg-gray-100 h-screen">
+    <div className="bg-gray-50 h-screen">
       <AdminNavbar />
       <div className="mx-3 bg-white p-3 border rounded border-gray-300 flex items-end justify-between mt-3">
         <div>
-          <p className="text-2xl font-bold ">Appointments</p>
-          <p className="text-gray-600">
+          <p className="text-2xl font-bold text-[#212a31]">Appointments</p>
+          <p className="text-[#196d8e]">
             Manage appointments across the healthcare system
           </p>
         </div>
@@ -49,7 +49,7 @@ function AdminAppointment() {
             onClick={() => {
               setopeningCreateAppointmentForm(true);
             }}
-            className="bg-[#1976D2] py-1 px-3 rounded shadow text-white"
+            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
           >
             + Create Appointment
           </button>
@@ -65,7 +65,7 @@ function AdminAppointment() {
       <div className="grid grid-cols-3 m-3 gap-3">
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
-            <div className="flex items-center justify-between">
+            <div className="text-[#196d8e] items-center justify-between">
               <div className="flex items-center">
                 <div className="flex items-center space-x-1">
                   <BsClock />
@@ -88,7 +88,7 @@ function AdminAppointment() {
                 </div>
               </div>
 
-              <div>
+              <div className="flex items-center border-y text-gray-500 border-gray-300  py-2.5 m-2 space-x-2">
                 <select
                   // onChange={(e) => {
                   //   setstatus(e.target.value);
@@ -100,20 +100,21 @@ function AdminAppointment() {
                   <option value={"completed"}>Completed</option>
                   <option value={"cancelled"}>Cancelled</option>
                 </select>
+
+                <button className="bg-[#212a31] w-48 text-white py-1 px-3 rounded text-sm">+ Add Charges</button>
               </div>
             </div>
 
-            <hr className="my-1.5 border-gray-300" />
 
             <p className="text-gray-400">
               Doctor:{" "}
-              <span className="text-[#1976D2] font-semibold">
+              <span className="text-[#212a31] font-semibold">
                 {appointment.doctor}
               </span>
             </p>
             <p className="text-gray-400">
               Patient:{" "}
-              <span className="text-[#1976D2] font-semibold">
+              <span className="text-[#212a31] font-semibold">
                 {appointment.patient}
               </span>
             </p>
@@ -122,7 +123,7 @@ function AdminAppointment() {
 
             <p className="text-gray-400">
               Note:{" "}
-              <span className="text-black">{appointment.additionalNote}</span>
+              <span className="text-[#196d8e]">{appointment.additionalNote}</span>
             </p>
           </div>
         ))}

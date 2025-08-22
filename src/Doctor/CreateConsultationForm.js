@@ -24,7 +24,7 @@ function CreateConsultationForm({
   const [additionalInstructions, setAdditionalInstructions] = useState("");
   const [patientData, setpatientData] = useState([]);
   const [istreatmentRequired, setistreatmentRequired] = useState(false);
-  
+  const [consultationCharges, setconsultationCharges] = useState("");
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -58,6 +58,7 @@ function CreateConsultationForm({
         diagnosis: diafgnosis,
         appointmentId: appointment.id,
         treatmentPlanRequired: istreatmentRequired,
+        consultationCharges: consultationCharges
       });
 
       console.log("Consultation added to Firestore.");
@@ -101,7 +102,7 @@ function CreateConsultationForm({
             <div>
               <p className="font-semibold text-[#1976D2]">Patient Name</p>
               <select
-                 onChange={(e) => setpatient(e.target.value)}
+                onChange={(e) => setpatient(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
               >
                 <option>Select Patient</option>
@@ -143,9 +144,19 @@ function CreateConsultationForm({
             </div>
           </div>
 
-          
-
-          <CentralizedDiagnosis setdiagnosis = {setdiagnosis} />
+         <div className="grid grid-cols-2 gap-3">
+           <CentralizedDiagnosis setdiagnosis={setdiagnosis} />
+          <div>
+            <label className="font-semibold text-[#1976D2]">
+              Consultation Charges
+            </label>
+            <input
+              onChange={(e) => setconsultationCharges(e.target.value)}
+              className="w-full border border-gray-300 rounded-md p-2"
+              placeholder="40000/-"
+            />
+          </div>
+         </div>
 
           <div className="flex items-center mt-4 space-x-1">
             <input

@@ -7,7 +7,6 @@ import { database } from "../FirebaseConfiguration";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 
-
 function InsuranceProvider() {
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
     useState(false);
@@ -39,9 +38,14 @@ function InsuranceProvider() {
       <InsuranceStaffNavbar />
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold">Insurance Provider</p>
-          <p className="text-gray-600">
-            All the <span className="text-[#1976D2] font-semibold">Insurance provider</span>{" "}
+          <p className="text-2xl text-[#212a31] font-bold">
+            Insurance Provider
+          </p>
+          <p className="text-[#196d8e]">
+            All the{" "}
+            <span className="text-[#212a31] font-semibold">
+              Insurance provider
+            </span>{" "}
             details will be displayed here.
           </p>
         </div>
@@ -55,7 +59,7 @@ function InsuranceProvider() {
             onClick={() => {
               setopeningAddInsuranceCompany(true);
             }}
-            className="bg-[#1976D2] py-1 px-3 rounded shadow text-white"
+            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
           >
             + Add Insurance Provider
           </button>
@@ -70,8 +74,8 @@ function InsuranceProvider() {
       </div>
       <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
         <table className="w-full table-auto">
-          <thead className="border border-gray-300 text-[#1976D2] bg-blue-50">
-            <th>Company Code</th>
+          <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
+            <th className="py-1">Company Code</th>
             <th>Provider Name</th>
             <th>Contact Person</th>
             <th>Phone No</th>
@@ -83,7 +87,7 @@ function InsuranceProvider() {
           <tbody className="">
             {gettingInsuranceCompanies.map((insurance) => (
               <>
-                <tr className="text-gray-500 border-b border-gray-300">
+                <tr className="text-[#196d8e] border-b border-gray-300">
                   <td className="text-center py-2">{insurance.companyCode}</td>
                   <td className="text-center">{insurance.providerName}</td>
                   <td className="text-center">{insurance.contactPerson}</td>
@@ -99,7 +103,7 @@ function InsuranceProvider() {
                           setopeningAdditionalDetails(true);
                           setcapturingDataObject(insurance);
                         }}
-                        className="border border-[#1976D2] hover:bg-[#1976D2] hover:text-white  text-[#1976D2] px-2 rounded py-0.5"
+                        className="bg-[#212a31] text-sm text-white px-2 rounded py-0.5"
                       >
                         <div className="flex items-center space-x-1">
                           <FaEye />
@@ -140,20 +144,26 @@ function InsuranceProvider() {
             </div>
 
             <div className="">
-               <div>
+              <div>
                 <p className="text-[#1976D2] font-semibold">Address:</p>
-                <p className="text-gray-600 text-justify text-sm w-auto italic">{capturingDataObject.address}</p>
-                </div> 
+                <p className="text-gray-600 text-justify text-sm w-auto italic">
+                  {capturingDataObject.address}
+                </p>
+              </div>
 
-                  <div className="my-3">
+              <div className="my-3">
                 <p className="text-[#1976D2] font-semibold">Coverage Notes:</p>
-                <p className="text-gray-600 text-justify w-auto text-sm italic">{capturingDataObject.coverageNotes}</p>
-                </div>
-                
-                  <div>
+                <p className="text-gray-600 text-justify w-auto text-sm italic">
+                  {capturingDataObject.coverageNotes}
+                </p>
+              </div>
+
+              <div>
                 <p className="text-[#1976D2] font-semibold">Limitations:</p>
-                <p className="text-gray-600 text-justify w-auto text-sm italic">{capturingDataObject.limitations}</p>
-                </div>  
+                <p className="text-gray-600 text-justify w-auto text-sm italic">
+                  {capturingDataObject.limitations}
+                </p>
+              </div>
             </div>
           </div>
         </div>

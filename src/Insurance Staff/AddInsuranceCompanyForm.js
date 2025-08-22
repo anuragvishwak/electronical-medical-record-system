@@ -41,7 +41,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#1976D2] text-xl font-bold">
+          <p className="text-[#212a31] text-xl font-bold">
             Add Insurance Provider
           </p>
           <button
@@ -56,10 +56,10 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
 
         <div>
           <div>
-            <p className="text-xl font-semibold">Basic Information</p>
+            <p className="text-[#212a31] text-lg font-semibold">Basic Information</p>
             <div className="grid grid-cols-2 my-2 gap-3">
               <div>
-                <p className="font-semibold text-[#1976D2]">Provider Name</p>
+                <p className="font-semibold text-[#196d8e]">Provider Name</p>
                 <input
                   onChange={(e) => {
                     setproviderName(e.target.value);
@@ -69,7 +69,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#1976D2]">
+                <p className="font-semibold text-[#196d8e]">
                   Company Code / Short Name
                 </p>
                 <input
@@ -82,7 +82,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
               </div>
             </div>
             <div>
-              <p className="font-semibold text-[#1976D2]">Address</p>
+              <p className="font-semibold text-[#196d8e]">Address</p>
               <textarea
                 onChange={(e) => {
                   setaddress(e.target.value);
@@ -94,10 +94,10 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
           </div>
 
           <div className="my-4">
-            <p className="text-xl font-semibold">Contact Information</p>
+            <p className="text-[#212a31] text-lg font-semibold">Contact Information</p>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <p className="font-semibold text-[#1976D2]">Contact Person</p>
+                <p className="font-semibold text-[#196d8e]">Contact Person</p>
                 <input
                   onChange={(e) => {
                     setcontactPerson(e.target.value);
@@ -107,7 +107,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#1976D2]">Phone Number</p>
+                <p className="font-semibold text-[#196d8e]">Phone Number</p>
                 <input
                   onChange={(e) => {
                     setphoneNumber(e.target.value);
@@ -118,7 +118,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Email</p>
+                <p className="font-semibold text-[#196d8e]">Email</p>
                 <input
                   onChange={(e) => {
                     setemail(e.target.value);
@@ -131,11 +131,11 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
           </div>
 
           <div>
-            <p className="text-xl font-semibold">
+            <p className="text-[#212a31] text-lg font-semibold">
               Policy & Coverage Information
             </p>
             <div className="my-2">
-              <p className="font-semibold text-[#1976D2]">
+              <p className="font-semibold text-[#196d8e]">
                 Policy Type Supported
               </p>
               <select
@@ -155,7 +155,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="">
-                <p className="font-semibold text-[#1976D2]">Coverage Notes</p>
+                <p className="font-semibold text-[#196d8e]">Coverage Notes</p>
                 <textarea
                   onChange={(e) => {
                     setcoverageNotes(e.target.value);
@@ -166,7 +166,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Limitations</p>
+                <p className="font-semibold text-[#196d8e]">Limitations</p>
                 <textarea
                   onChange={(e) => {
                     setlimitations(e.target.value);
@@ -184,7 +184,7 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
             onClick={() => {
               handleAddInsuranceProvider();
             }}
-            className="bg-[#1976D2] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Add Provider Details
           </button>

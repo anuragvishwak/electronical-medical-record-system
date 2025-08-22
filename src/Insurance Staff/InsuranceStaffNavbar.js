@@ -6,7 +6,7 @@ function InsuranceStaffNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <div className="flex items-center border-gray-300 bg-white shadow border-b justify-between p-3">
+    <div className="flex items-center font-semibold text-[#212a31] border-gray-300 bg-white shadow border-b justify-between p-3">
       <div className="flex items-center space-x-5">
         <button>Home</button>
         <button
@@ -14,7 +14,7 @@ function InsuranceStaffNavbar() {
             navigate("/InsuranceProvider");
           }}
           className={`${
-            location.pathname === "/InsuranceProvider" ? "text-[#1976D2]" : ""
+            location.pathname === "/InsuranceProvider" ? "text-[#196d8e]" : ""
           }`}
         >
           Insurance Provider
@@ -24,10 +24,17 @@ function InsuranceStaffNavbar() {
             navigate("/ViewInsuranceInfo");
           }}
           className={`${
-            location.pathname === "/ViewInsuranceInfo" ? "text-[#1976D2]" : ""
+            location.pathname === "/ViewInsuranceInfo" ? "text-[#196d8e]" : ""
           }`}
         >View Insurance Info</button>
-        <button>Claim Status</button>
+        <button
+         onClick={() => {
+            navigate("/InsuranceStaffClaimStatus");
+          }}
+          className={`${
+            location.pathname === "/InsuranceStaffClaimStatus" ? "text-[#196d8e]" : ""
+          }`}
+        >Claim Status</button>
         <button>Profile / Setting</button>
       </div>
       <button
@@ -36,7 +43,7 @@ function InsuranceStaffNavbar() {
         localStorage.clear();
       }}
       >
-        <LuLogOut />
+        <LuLogOut /> 
       </button>
     </div>
   );

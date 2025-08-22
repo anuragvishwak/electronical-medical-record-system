@@ -72,7 +72,7 @@ function AddingInsuranceForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#1976D2] text-xl font-bold">Add Insurance</p>
+          <p className="text-[#212a31] text-xl font-bold">Add Insurance</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -85,10 +85,10 @@ function AddingInsuranceForm({
 
         <div>
           <div>
-            <p className="text-xl font-semibold">Identification</p>
+            <p className="text-[#212a31] text-lg font-semibold">Identification</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <p className="font-semibold text-[#1976D2]">Patient Name</p>
+                <p className="font-semibold text-[#196d8e]">Patient Name</p>
                 <select
                   onChange={(e) => setpatient(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -103,7 +103,7 @@ function AddingInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Provider Name</p>
+                <p className="font-semibold text-[#196d8e]">Provider Name</p>
                 <select
                   onChange={(e) => setproviderName(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -118,10 +118,10 @@ function AddingInsuranceForm({
           </div>
 
           <div className="my-3">
-            <p className="text-xl font-semibold">Policy Details</p>
+            <p className="text-[#212a31] text-lg font-semibold">Policy Details</p>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <p className="font-semibold text-[#1976D2]">Policy Number</p>
+                <p className="font-semibold text-[#196d8e]">Policy Number</p>
                 <input
                   onChange={(e) => {
                     setpolicyNumber(e.target.value);
@@ -132,7 +132,7 @@ function AddingInsuranceForm({
               </div>
 
               <div className="">
-                <p className="font-semibold text-[#1976D2]">Coverage Type</p>
+                <p className="font-semibold text-[#196d8e]">Coverage Type</p>
                 <select
                   onChange={(e) => {
                     setcoverageType(e.target.value);
@@ -149,7 +149,7 @@ function AddingInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Sum Insured</p>
+                <p className="font-semibold text-[#196d8e]">Sum Insured</p>
                 <input
                   onChange={(e) => {
                     setsuminsured(e.target.value);
@@ -160,7 +160,7 @@ function AddingInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Valid From</p>
+                <p className="font-semibold text-[#196d8e]">Valid From</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -172,7 +172,7 @@ function AddingInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#1976D2]">Valid To</p>
+                <p className="font-semibold text-[#196d8e]">Valid To</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -184,7 +184,7 @@ function AddingInsuranceForm({
               </div>
 
               <div className="">
-                <p className="font-semibold text-[#1976D2]">Status</p>
+                <p className="font-semibold text-[#196d8e]">Status</p>
                 <select
                   onChange={(e) => {
                     setstatus(e.target.value);
@@ -205,7 +205,7 @@ function AddingInsuranceForm({
               onClick={() => {
                 creatingInasurance();
               }}
-              className="bg-[#1976D2] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
             >
               Add Insurance
             </button>

@@ -3,15 +3,18 @@ import LabTechnicianNavbar from "./LabTechnicianNavbar";
 import { FaEdit, FaEye, FaSearch } from "react-icons/fa";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
-import { MdDelete } from "react-icons/md";
+import { MdCurrencyRupee, MdDelete } from "react-icons/md";
 import RenderingTestResults from "./Lab Results Details/RenderingTestResults";
+import { FaPlus, FaRupeeSign, FaRupiahSign } from "react-icons/fa6";
+import AddChargesForm from "./AddChargesForm";
 
 function UploadTestResults() {
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
-  const [capturingLab, setcapturingLab] = useState({}); 
+  const [capturingLab, setcapturingLab] = useState({});
   const [openingTestResults, setopeningTestResults] = useState(false);
+  const [openingChargesForm, setopeningChargesForm] = useState(false);
 
   async function renderingLabOrders() {
     const taskDetails = await getDocs(
@@ -90,6 +93,7 @@ function UploadTestResults() {
                 <th>Appointment Id</th>
                 <th>Consutlation Id</th>
                 <th>Priority</th>
+                <th>Lab Charges</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -111,13 +115,20 @@ function UploadTestResults() {
                     ))}
 
                   <td className="text-center">{lab.testRequested}</td>
-                  <td className="text-center">{lab.appointmentId}</td>
-                  <td className="text-center">{lab.constulationId}</td>
+                  <td className="text-center text-sm">{lab.appointmentId}</td>
+                  <td className="text-center text-sm">{lab.constulationId}</td>
                   {gettingLabOrders
                     .filter((order) => order.id === lab.orderId)
                     .map((order) => (
                       <td className="text-center">{order.priority}</td>
                     ))}
+
+                    <th>
+                      <div className="flex items-center justify-center">
+                        <MdCurrencyRupee/>
+                        <p>{lab.labCharges}/-</p>
+                      </div>
+                    </th>
 
                   {gettingLabOrders
                     .filter((order) => order.id === lab.orderId)
@@ -127,15 +138,28 @@ function UploadTestResults() {
 
                   <td>
                     <div className="flex items-center justify-center space-x-2">
-                      <button 
-                      onClick={()=>{
-                        setcapturingLab(lab);
-                        setopeningTestResults(true);
-                      }}
-                      className="text-[#1976D2] text-sm border border-[#1976D2] hover:bg-[#1976D2] py-1 px-3 rounded hover:text-white">
+                      <button
+                        onClick={() => {
+                          setcapturingLab(lab);
+                          setopeningChargesForm(true);
+                        }}
+                        className="text-[#1976D2] text-sm border border-[#1976D2] hover:bg-[#1976D2] py-1 px-3 rounded hover:text-white"
+                      >
+                        <div className="flex items-center space-x-1">
+                          <FaPlus />
+                          <p>Charges</p>
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setcapturingLab(lab);
+                          setopeningTestResults(true);
+                        }}
+                        className="text-[#1976D2] text-sm border border-[#1976D2] hover:bg-[#1976D2] py-1 px-3 rounded hover:text-white"
+                      >
                         <div className="flex items-center space-x-1">
                           <FaEye />
-                          <p>View Report</p>
+                          <p>Report</p>
                         </div>
                       </button>
                       <button className="text-yellow-500 rounded border-2 p-1 hover:bg-yellow-500 hover:text-white border-yellow-500">
@@ -155,11 +179,15 @@ function UploadTestResults() {
       </div>
 
       {openingTestResults && (
-                    <RenderingTestResults
-                      setopeningTestResults={setopeningTestResults}
-                      capturingLab={capturingLab}
-                    />
-                  )}
+        <RenderingTestResults
+          setopeningTestResults={setopeningTestResults}
+          capturingLab={capturingLab}
+        />
+      )}
+
+      {openingChargesForm && (
+        <AddChargesForm renderingLabResults={renderingLabResults} capturingLab = {capturingLab} setopeningChargesForm={setopeningChargesForm} />
+      )}
     </div>
   );
 }
