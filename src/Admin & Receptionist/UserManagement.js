@@ -3,6 +3,7 @@ import AdminNavbar from "./AdminNavbar";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { IoNotifications } from "react-icons/io5";
+import { FaPhone, FaUser } from "react-icons/fa6";
 
 function UserManagement() {
   const [gettingUser, setgettingUser] = useState([]);
@@ -39,14 +40,22 @@ function UserManagement() {
     alert("Rejected");
   };
 
+  function getInitials(name) {
+    if (!name) return "";
+    const parts = name.trim().split(" ");
+    const first = parts[0]?.[0] || "";
+    const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+    return (first + last).toUpperCase();
+  }
+
   return (
     <div className="bg-gray-50 h-screen">
       <AdminNavbar />
 
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold ">User Management</p>
-          <p className="text-gray-600">
+          <p className="text-2xl font-bold text-[#212a31]">User Management</p>
+          <p className="text-[#748d92]">
             Manage user accounts and permissions across the healthcare system
           </p>
         </div>
@@ -60,16 +69,25 @@ function UserManagement() {
           <button>
             <IoNotifications
               size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
+              className="border border-[#196d8e] p-1 rounded text-[#196d8e]"
             />
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 p-3">
+      <div className="grid grid-cols-3 gap-3 p-3">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-center justify-between">
-              <p className="text-lg text-[#1976D2] font-bold">{user.name}</p>
+            <div className="flex items-center space-x-1">
+                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-[#212a31] text-white font-bold">
+                {getInitials(user.name)}
+              </div>
+             <div>
+               <p className="text-lg text-[#196d8e] font-bold">{user.name}</p>
+            <p className="text-[#748d92] text-sm">{user.email}</p>
+             </div>
+
+            </div>
               {user.status === "approved" ? (
                 <p className="text-green-500 font-semibold p-0.5 px-2 rounded-full bg-green-100  text-sm">
                   Approved
@@ -99,13 +117,12 @@ function UserManagement() {
                 </div>
               )}
             </div>
-            <p className="text-gray-600 text-sm">{user.email}</p>
             <hr className="my-2" />
-            <p>Phone no: +91 {user.phone_no}</p>
-            <p className="capitalize">
-              Role:{" "}
-              {user.role === "lab_technician" ? "Lab Technician" : user.role}
-            </p>
+            <p className="text-[#212a31] flex items-center"><span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5"><FaPhone size=
+            {14}/></span> {user.phone_no}</p>
+           
+             <p className="text-[#212a31] mt-3 flex items-center"><span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5"><FaUser size=
+            {14}/></span> {user.role === "lab_technician" ? "Lab Technician" : user.role}</p>
           </div>
         ))}
       </div>

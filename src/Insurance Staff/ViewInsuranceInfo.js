@@ -44,9 +44,9 @@ function ViewInsuranceInfo() {
       <InsuranceStaffNavbar />
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold">View Insurance Information</p>
-          <p className="text-gray-600">
-            All the <span className="text-[#1976D2] font-semibold">Insurance information</span>{" "}
+          <p className="text-2xl text-[#212a31] font-bold">View Insurance Information</p>
+          <p className="text-[#196d8e]">
+            All the <span className="text-[#212a31] font-semibold">Insurance information</span>{" "}
              will be displayed here.
           </p>
         </div>
@@ -60,7 +60,7 @@ function ViewInsuranceInfo() {
             onClick={() => {
               setopeningAddInsuranceForm(true);
             }}
-            className="bg-[#1976D2] py-1 px-3 rounded shadow text-white"
+            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
           >
             + Add Insurance
           </button>
@@ -76,8 +76,8 @@ function ViewInsuranceInfo() {
 
       <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
         <table className="w-full table-auto">
-          <thead className="border border-gray-300 text-[#1976D2] bg-blue-50">
-            <th className="py-1.5">Patient</th>
+          <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
+            <th className="py-1">Patient</th>
             <th>Provider</th>
             <th>Policy Number</th>
             <th>Coverage Type</th>
@@ -91,7 +91,7 @@ function ViewInsuranceInfo() {
           <tbody className="">
             {gettingInsurances.map((insurance) => (
               <>
-                <tr className="text-gray-500 border-b border-gray-300">
+                <tr className="text-[#196d8e] border-b border-gray-300">
                   <td className="text-center py-1.5">{insurance.patient}</td>
                   <td className="text-center py-1.5">
                     {insurance.providerName}

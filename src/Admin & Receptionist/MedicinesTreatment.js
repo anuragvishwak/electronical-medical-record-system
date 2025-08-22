@@ -14,8 +14,8 @@ function MedicinesTreatment() {
       <AdminNavbar />
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold ">Medicines</p>
-          <p className="text-gray-600">
+          <p className="text-2xl font-bold text-[#212a31]">Medicines</p>
+          <p className="text-[#196d8e]">
             Manage medicines across the healthcare system.
           </p>
         </div>
@@ -33,7 +33,7 @@ function MedicinesTreatment() {
             onClick={() => {
               setopeningMedicineForm(true);
             }}
-            className="bg-[#1976D2] py-1.5 px-3 rounded shadow text-white"
+            className="bg-[#196d8e] py-1.5 px-3 rounded shadow text-white"
           >
             + Create Medicine
           </button>

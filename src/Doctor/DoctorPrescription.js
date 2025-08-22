@@ -60,7 +60,7 @@ function DoctorPrescription() {
         <div>
           <p className="text-2xl font-bold ">Prescriptions</p>
           <p className="text-gray-600">
-            Manage patient's prescriptons across the healthcare system
+            Manage <span className="text-[#1976D2] font-semibold">patient's prescriptions</span> across the healthcare system
           </p>
         </div>
 
@@ -78,9 +78,9 @@ function DoctorPrescription() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-4 m-3 gap-3">
         {gettingPrescriptions.map((prep) => (
-          <div className="bg-white rounded shadow border border-gray-300 m-3">
+          <div className="bg-white rounded shadow border border-gray-300">
             <div className="p-2 bg-[#1976D2] text-white rounded-t">
               {gettingUser
                 .filter((user) => user.email === prep.patient)

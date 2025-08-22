@@ -31,6 +31,8 @@ import PatientConsultation from "./Patients/PatientConsultation";
 import PatientLabReport from "./Patients/PatientLabReport";
 import ViewInsuranceInfo from "./Insurance Staff/ViewInsuranceInfo";
 import InsuranceProvider from "./Insurance Staff/InsuranceProvider";
+import AdminBillingPayment from "./Admin & Receptionist/AdminBillingPayment";
+import InsuranceStaffClaimStatus from "./Insurance Staff/InsuranceStaffClaimStatus";
 
 function App() {
   return (
@@ -67,12 +69,19 @@ function App() {
           <Route path="/DoctorLabReports" element={<DoctorLabReports />} />
           <Route path="/NurseVitals" element={<NurseVitals />} />
           <Route path="/CheckInCheckOut" element={<CheckInCheckOut />} />
-          <Route path="/PatientPrescription" element={<PatientPrescription />} />
-          <Route path="/PatientConsultation" element={<PatientConsultation />} />
+          <Route
+            path="/PatientPrescription"
+            element={<PatientPrescription />}
+          />
+          <Route
+            path="/PatientConsultation"
+            element={<PatientConsultation />}
+          />
           <Route path="/PatientLabReport" element={<PatientLabReport />} />
           <Route path="/ViewInsuranceInfo" element={<ViewInsuranceInfo />} />
           <Route path="/InsuranceProvider" element={<InsuranceProvider />} />
-
+          <Route path="/AdminBillingPayment" element={<AdminBillingPayment />} />
+          <Route path="/InsuranceStaffClaimStatus" element={<InsuranceStaffClaimStatus />} />
 
 
         </Routes>
