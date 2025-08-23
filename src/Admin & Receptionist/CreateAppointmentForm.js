@@ -34,7 +34,6 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
     setpatientData(fitleringPatient);
     setdoctorData(fitleringDoctor);
   }
-
   
 
   function creatingAppointment() {

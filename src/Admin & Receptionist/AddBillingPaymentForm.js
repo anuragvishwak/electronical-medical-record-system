@@ -1,7 +1,7 @@
-import { collection, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
-import { FaIndianRupeeSign } from "react-icons/fa6";
+import { FaBriefcaseMedical, FaIndianRupeeSign, FaUser } from "react-icons/fa6";
 
 function AddBillingPaymentForm({
   setopeningAddBillingPaymentForm,
@@ -14,9 +14,30 @@ function AddBillingPaymentForm({
   const [billDate, setbillDate] = useState("");
   const [subTotal, setsubTotal] = useState(0);
   const [finalAmount, setfinalAmount] = useState("");
-
   const nursingCharges = 2000;
   const serviceCharges = 1000;
+  const [consultationCharges, setconsultationCharges] = useState("");
+  const [labCharges, setlabCharges] = useState("");
+
+  function creatingBill() {
+    try {
+      addDoc(collection(database, "billing_payment_database"), {
+        appointmentId: capturingObject.id,
+        billDate: billDate,
+        consultationCharges: consultationCharges,
+        patient: capturingObject.patient,
+        doctor: capturingObject.doctor,
+        surgeryFee: surgeryFee,
+        labCharges: labCharges,
+        subTotal: subTotal,
+        finalAmount: finalAmount,
+      });
+      setopeningAddBillingPaymentForm(false);
+    } catch (error) {
+      console.error("Error during sign up:", error.message);
+      throw error;
+    }
+  }
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -70,18 +91,20 @@ function AddBillingPaymentForm({
       .filter((lab) => lab.appointmentId === capturingObject.id)
       .reduce((acc, lab) => acc + Number(lab.labCharges || 0), 0);
 
+    setconsultationCharges(consultationTotal);
+    setlabCharges(labTotal);
+
     const nursingTotal = Number(nursingCharges || 0);
     const serviceTotal = Number(serviceCharges || 0);
 
     const surgeryTotal = Number(surgeryFee || 0);
-      
-     const gst = subTotal * 0.18;
-      const cess = subTotal * 0.01;
 
-      const totalAmount = subTotal + gst + cess;
+    const gst = subTotal * 0.18;
+    const cess = subTotal * 0.01;
 
-      setfinalAmount(totalAmount);
+    const totalAmount = subTotal + gst + cess;
 
+    setfinalAmount(totalAmount);
 
     setsubTotal(
       consultationTotal + labTotal + nursingTotal + serviceTotal + surgeryTotal
@@ -90,8 +113,8 @@ function AddBillingPaymentForm({
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-4 rounded">
-        <div className="flex items-center mb-6 justify-between">
+      <div className="bg-white w-5/12 p-4 rounded">
+        <div className="flex items-center mb-4 justify-between">
           <p className="text-[#212a31] text-xl font-bold">
             Create Bill / Invoice
           </p>
@@ -105,43 +128,61 @@ function AddBillingPaymentForm({
           </button>
         </div>
 
-        <div>
-          <p className="text-sm text-gray-500">
-            <span className="font-[500] ">Appointmetn Id:</span>{" "}
-            {capturingObject.id}
-          </p>
-          {gettingUser
-            .filter((user) => user.email === capturingObject.patient)
-            .map((user) => (
-              <p className="font-semibold">
-                <span className="font-[500] text-gray-500">Patient:</span>{" "}
-                {user?.name}
+        <div className="border p-3 rounded border-gray-300">
+          <div className="grid grid-cols-2 mb-3 gap-3">
+            <div>
+              <p className="font-semibold text-[#196d8e]">Appointment ID</p>
+              <p className="w-full border border-gray-300 rounded-md p-2">
+                {capturingObject.id}
               </p>
-            ))}
-
-          {gettingUser
-            .filter((user) => user.email === capturingObject.doctor)
-            .map((user) => (
-              <p className="font-semibold">
-                <span className="font-[500] text-gray-500">Doctor:</span>{" "}
-                {user?.name}
-              </p>
-            ))}
-        </div>
-
-        <div>
-          <div>
-            <p className="font-semibold text-[#196d8e]">Invoice Date</p>
-            <input
-              type="date"
-              onChange={(e) => {
-                setbillDate(e.target.value);
-              }}
-              className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="Star Health Insurance"
-            />
+            </div>
+            <div>
+              <p className="font-semibold text-[#196d8e]">Invoice Date</p>
+              <input
+                type="date"
+                onChange={(e) => {
+                  setbillDate(e.target.value);
+                }}
+                className="w-full border border-gray-300 rounded-md p-2"
+                placeholder="Star Health Insurance"
+              />
+            </div>
           </div>
 
+          <div className="flex items-center space-x-3">
+            {gettingUser
+              .filter((user) => user.email === capturingObject.patient)
+              .map((user) => (
+                <div className="flex items-center w-full p-2 rounded border border-gray-300 space-x-2">
+                  <FaUser
+                    size={30}
+                    className="text-blue-500 bg-blue-50 p-1.5 shadow border rounded-full"
+                  />
+                  <div className="font-semibold">
+                    <p className="font-[500] text-gray-500">Patient:</p>
+                    <p>{user?.name}</p>
+                  </div>
+                </div>
+              ))}
+
+            {gettingUser
+              .filter((user) => user.email === capturingObject.doctor)
+              .map((user) => (
+                <div className="flex items-center w-full p-2 rounded border border-gray-300 space-x-2">
+                  <FaBriefcaseMedical
+                    size={30}
+                    className="text-green-500 bg-green-50 p-1.5 shadow border rounded-full"
+                  />
+                  <div className="font-semibold">
+                    <p className="font-[500] text-gray-500">Doctor:</p>{" "}
+                    <p>{user?.name}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        <div className="border p-3 rounded my-3 border-gray-300">
           <div className="flex items-center space-x-2">
             <input type="checkbox"></input>
             <p>Surgery fee applied ?</p>
@@ -158,73 +199,99 @@ function AddBillingPaymentForm({
           </div>
         </div>
 
-        <hr className="border-gray-400 my-5" />
         <div>
-          <p className="text-xl font-semibold">Breakdown of Charges</p>
+          <p className="text-xl mb-2 font-semibold">Breakdown of Charges</p>
 
           {gettingConsultations
             .filter((consult) => consult.appointmentId === capturingObject.id)
             .map((consult) => (
-              <p className="font-semibold flex items-center">
+              <div className="font-semibold flex justify-between items-center">
                 <span className="font-[500] text-gray-500 mr-1">
                   Consultation Charges:
                 </span>
-                <FaIndianRupeeSign />
-                {consult.consultationCharges}/-
-              </p>
+                <div className="flex items-center space-1">
+                  <FaIndianRupeeSign />
+                  <p>{consult.consultationCharges}/-</p>
+                </div>
+              </div>
             ))}
 
           {gettingLabResults
             .filter((consult) => consult.appointmentId === capturingObject.id)
             .map((consult) => (
-              <p className="font-semibold flex items-center">
+              <div className="font-semibold my-0.5 flex justify-between items-center">
                 <span className="font-[500] text-gray-500 mr-1">
                   lab Charges:
                 </span>
-                <FaIndianRupeeSign />
-                {consult.labCharges}/-
-              </p>
+                <div className="flex items-center justify-between">
+                  <FaIndianRupeeSign />
+                  <p>{consult.labCharges}/-</p>
+                </div>
+              </div>
             ))}
 
-          <p className="font-semibold flex items-center">
+          <div className="font-semibold justify-between flex items-center">
             <span className="font-[500] text-gray-500 mr-1">
               Nursing Charges:
             </span>
-            <FaIndianRupeeSign />
-            {nursingCharges}/-
-          </p>
+            <div className="flex items-center space-x-1">
+              <FaIndianRupeeSign />
+              <p> {nursingCharges}/-</p>
+            </div>
+          </div>
 
-          <p className="font-semibold flex items-center">
+          <div className="font-semibold justify-between my-0.5 flex items-center">
             <span className="font-[500] text-gray-500 mr-1">
               Service Charges:
             </span>
-            <FaIndianRupeeSign />
-            {serviceCharges}/-
-          </p>
+            <div className="flex items-center space-x-1">
+              <FaIndianRupeeSign />
+              <p> {serviceCharges}/-</p>
+            </div>
+          </div>
 
-          <p className="font-semibold flex items-center">
+          <div className="font-semibold flex justify-between items-center">
             <span className="font-[500] text-gray-500 mr-1">
               Surgery Charges:
             </span>
-            <FaIndianRupeeSign />
-            {surgeryFee ? surgeryFee + "/-" : "N/A"}
-          </p>
+            <div className="flex items-center space-x-1">
+              <FaIndianRupeeSign />
+              <p>{surgeryFee ? surgeryFee + "/-" : "N/A"}</p>
+            </div>
+          </div>
 
-          <p className="font-semibold flex items-center">
+          <div className="font-semibold mt-0.5 justify-between flex items-center">
             <span className="font-[500] text-gray-500 mr-1">
               Sub Total Charges:
             </span>
-            <FaIndianRupeeSign />
-            {subTotal}/-
-          </p>
+            <div className="flex items-center space-x-1">
+              <FaIndianRupeeSign />
+              <p>{subTotal}/-</p>
+            </div>
+          </div>
 
-          <p className="font-semibold flex items-center">
-            <span className="font-[500] text-gray-500 mr-1">
-              Final Amount:
+          <hr className="border-gray-300 my-3" />
+
+          <div className="font-semibold bg-[#ddf5ff] text-[#196d8e] justify-between border border-gray-300 p-2 flex items-center">
+            <span className="font-[500] text-[#196d8e] mr-1">
+              Final Amount (including GST(18%) and cess):
             </span>
-            <FaIndianRupeeSign />
-            {subTotal}/-
-          </p>
+            <div className="flex items-center  space-x-1">
+              <FaIndianRupeeSign />
+              <p>{subTotal}/-</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex mt-4 justify-end">
+          <button
+            onClick={() => {
+              creatingBill();
+            }}
+            className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
+          >
+            Add Bill
+          </button>
         </div>
       </div>
     </div>
