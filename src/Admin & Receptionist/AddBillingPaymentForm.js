@@ -113,7 +113,8 @@ function AddBillingPaymentForm({
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white w-5/12 p-4 rounded">
+      <div className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm
+      :w-5/12 p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
           <p className="text-[#212a31] text-xl font-bold">
             Create Bill / Invoice
@@ -129,7 +130,7 @@ function AddBillingPaymentForm({
         </div>
 
         <div className="border p-3 rounded border-gray-300">
-          <div className="grid grid-cols-2 mb-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 mb-3 gap-3">
             <div>
               <p className="font-semibold text-[#196d8e]">Appointment ID</p>
               <p className="w-full border border-gray-300 rounded-md p-2">
@@ -149,7 +150,7 @@ function AddBillingPaymentForm({
             </div>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {gettingUser
               .filter((user) => user.email === capturingObject.patient)
               .map((user) => (
