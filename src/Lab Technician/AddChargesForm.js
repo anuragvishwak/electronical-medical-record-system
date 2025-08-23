@@ -14,7 +14,7 @@ function AddChargesForm({ setopeningChargesForm, capturingLab, renderingLabResul
     try {
       const labDocRef = doc(
         database,
-        "lab_order_results_database",
+        "lab_order_database",
         capturingLab.id
       );
 

@@ -18,6 +18,7 @@ function AdminAppointment() {
   const [openingAddBillingPaymentForm, setopeningAddBillingPaymentForm] =
     useState(false);
   const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
+  const [capturingObject, setcapturingObject] = useState({});
 
   async function renderingAppointments() {
     const taskDetails = await getDocs(
@@ -127,6 +128,7 @@ function AdminAppointment() {
                 <button
                   onClick={() => {
                     setopeningAddBillingPaymentForm(true);
+                    setcapturingObject(appointment);
                   }}
                   className="bg-[#212a31] w-48 text-white py-1 px-3 rounded text-sm"
                 >
@@ -169,6 +171,7 @@ function AdminAppointment() {
 
       {openingAddBillingPaymentForm && (
         <AddBillingPaymentForm
+        capturingObject = {capturingObject}
           setopeningAddBillingPaymentForm={setopeningAddBillingPaymentForm}
         />
       )}
