@@ -12,7 +12,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
 
   return (
     <div>
-      <div className="hidden sm:flex items-center sticky top-0 text-[#212a31] bg-white shadow border-b justify-between p-3">
+      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#212a31] bg-white shadow border-b justify-between p-3">
         <div className="flex items-center space-x-5">
           <button
             onClick={() => {
@@ -63,7 +63,16 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           >
             Billing & Payment
           </button>
-          <button>Insurance Coordination</button>
+          <button
+            onClick={() => {
+              navigate("/AdminInsuranceCoordination");
+            }}
+            className={`${
+              location.pathname === "/AdminInsuranceCoordination"
+                ? "text-[#196d8e]"
+                : ""
+            }`}
+          >Insurance Coordination</button>
           <button
             onClick={() => {
               navigate("/MedicinesTreatment");

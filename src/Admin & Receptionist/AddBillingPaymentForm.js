@@ -1,4 +1,4 @@
-import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { FaBriefcaseMedical, FaIndianRupeeSign, FaUser } from "react-icons/fa6";

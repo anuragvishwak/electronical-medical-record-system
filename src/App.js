@@ -33,6 +33,7 @@ import ViewInsuranceInfo from "./Insurance Staff/ViewInsuranceInfo";
 import InsuranceProvider from "./Insurance Staff/InsuranceProvider";
 import AdminBillingPayment from "./Admin & Receptionist/AdminBillingPayment";
 import InsuranceStaffClaimStatus from "./Insurance Staff/InsuranceStaffClaimStatus";
+import AdminInsuranceCoordination from "./Admin & Receptionist/AdminInsuranceCoordination";
 
 function App() {
   return (
@@ -82,6 +83,8 @@ function App() {
           <Route path="/InsuranceProvider" element={<InsuranceProvider />} />
           <Route path="/AdminBillingPayment" element={<AdminBillingPayment />} />
           <Route path="/InsuranceStaffClaimStatus" element={<InsuranceStaffClaimStatus />} />
+          <Route path="/AdminInsuranceCoordination" element={<AdminInsuranceCoordination />} />
+
 
 
         </Routes>
