@@ -70,8 +70,8 @@ function AddingInsuranceForm({
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-4 rounded">
-        <div className="flex items-center mb-4 justify-between">
+      <div className="bg-white p-3 rounded">
+        <div className="flex items-center mb-3 justify-between">
           <p className="text-[#212a31] text-xl font-bold">Add Insurance</p>
           <button
             className="text-red-500 font-semibold"
@@ -84,7 +84,7 @@ function AddingInsuranceForm({
         </div>
 
         <div>
-          <div>
+          <div className="border border-gray-300 p-3 rounded">
             <p className="text-[#212a31] text-lg font-semibold">Identification</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -110,14 +110,14 @@ function AddingInsuranceForm({
                 >
                   <option>Select provider</option>
                   {gettingInsuranceCompanies.map((user) => (
-                    <option value={user.name}>{user.providerName}</option>
+                    <option value={user.providerName}>{user.providerName}</option>
                   ))}
                 </select>
               </div>
             </div>
           </div>
 
-          <div className="my-3">
+          <div className="border border-gray-300 rounded  p-3 my-3">
             <p className="text-[#212a31] text-lg font-semibold">Policy Details</p>
             <div className="grid grid-cols-3 gap-3">
               <div>

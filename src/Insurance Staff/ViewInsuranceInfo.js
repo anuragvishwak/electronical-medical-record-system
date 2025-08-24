@@ -3,7 +3,7 @@ import InsuranceStaffNavbar from "./InsuranceStaffNavbar";
 import { IoNotifications } from "react-icons/io5";
 import AddingInsuranceForm from "./AddingInsuranceForm";
 import { FaEdit } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa6";
+import { FaIndianRupeeSign, FaTrash } from "react-icons/fa6";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 
@@ -42,21 +42,26 @@ function ViewInsuranceInfo() {
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
-          <p className="text-2xl text-[#212a31] font-bold">View Insurance Information</p>
+      <div className="p-5">
+          <p className="text-3xl text-[#212a31] font-bold">
+            View Insurance Information
+          </p>
           <p className="text-[#196d8e]">
-            All the <span className="text-[#212a31] font-semibold">Insurance information</span>{" "}
-             will be displayed here.
+            All the{" "}
+            <span className="text-[#212a31] font-semibold">
+              Insurance information
+            </span>{" "}
+            will be displayed here.
           </p>
         </div>
+      <div className="mx-5 flex items-end justify-between bg-white p-5 border border-gray-300 shadow rounded">
 
-        <div className="flex items-center space-x-2">
           <input
             placeholder="Search Insurance details..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-6/12 p-1 rounded"
           ></input>
-          <button
+         <div className="flex items-center space-x-5">
+           <button
             onClick={() => {
               setopeningAddInsuranceForm(true);
             }}
@@ -71,53 +76,74 @@ function ViewInsuranceInfo() {
               className="border border-gray-500 p-1 rounded text-gray-500"
             />
           </button>
+         </div>
         </div>
-      </div>
 
-      <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
-        <table className="w-full table-auto">
-          <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
-            <th className="py-1">Patient</th>
-            <th>Provider</th>
-            <th>Policy Number</th>
-            <th>Coverage Type</th>
-            <th>Sum Insured</th>
-            <th>Valid From</th>
-            <th>Valid To</th>
-            <th>Status</th>
-            <th>Action</th>
-          </thead>
+      <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">
+        {gettingInsurances.map((insurance) => (
+          <div className="bg-white p-5 rounded-lg shadow">
+            <div className="flex items-start justify-between">
+              <p className="text-xl font-bold">{insurance.patient}</p>
+              <p className="bg-[#196d8e] rounded-full text-white py-1 text-sm font-semibold px-4">
+                {insurance.status}
+              </p>
+            </div>
+            <p className="">
+              <span className="mr-1">Policy</span>#{insurance.policyNumber}
+            </p>
 
-          <tbody className="">
-            {gettingInsurances.map((insurance) => (
-              <>
-                <tr className="text-[#196d8e] border-b border-gray-300">
-                  <td className="text-center py-1.5">{insurance.patient}</td>
-                  <td className="text-center py-1.5">
-                    {insurance.providerName}
-                  </td>
-                  <td className="text-center">{insurance.policyNumber}</td>
-                  <td className="text-center">{insurance.coverageType}</td>
-                  <td className="text-center">{insurance.sumInsured}/-</td>
-                  <td className="text-center">{insurance.validFrom}</td>
-                  <td className="text-center">{insurance.validTo}</td>
-                  <td className="text-center">{insurance.status}</td>
-                  <td>
-                    <div className="flex items-center space-x-2 justify-center">
-                      <button className="text-green-500">
-                        <FaEdit />
-                      </button>
+            <div className="my-8">
+              <p className="text-[#196d8e]">Provider</p>
+              <p className="text-[#212a31] font-semibold">
+                {insurance.providerName}
+              </p>
+            </div>
 
-                      <button className="text-red-500">
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
+            <div className="flex items-center space-x-8">
+              <div className="">
+                <p className="text-[#196d8e]">Coverage Type</p>
+                <p className="text-[#212a31] font-semibold">
+                  {insurance.coverageType}
+                </p>
+              </div>
+
+              <div className="">
+                <p className="text-[#196d8e]">Sum Insured</p>
+                <div className="text-green-500 flex items-center space-x-1 font-semibold">
+                  <FaIndianRupeeSign />
+                  <p>{insurance.sumInsured}/-</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-14 mt-3">
+              <div className="">
+                <p className="text-[#196d8e]">Valid From</p>
+                <p className="text-[#212a31] font-semibold">
+                  {insurance.validFrom}
+                </p>
+              </div>
+
+              <div className="">
+                <p className="text-[#196d8e]">Valid To</p>
+                <p className="text-[#212a31] font-semibold">
+                  {insurance.validTo}
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-gray-300 my-3" />
+            <div className="flex items-center space-x-2 justify-end">
+              <button className="text-green-500">
+                <FaEdit />
+              </button>
+
+              <button className="text-red-500">
+                <FaTrash />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {openingAddInsuranceForm && (
