@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import InsuranceStaffNavbar from "./InsuranceStaffNavbar";
 import { IoNotifications } from "react-icons/io5";
-import OperationTheatreSchedulling from "../Admin & Receptionist/HRMS/Facility ad Infrastructure/OperationTheatreSchedulling";
 import AddClaimForm from "./AddClaimForm";
 
 function InsuranceStaffClaimStatus() {
@@ -41,7 +40,9 @@ const [openingClaimStatus, setopeningClaimStatus] = useState(false);
           </button>
         </div>
       </div>
-      <div></div>
+      <div>
+        
+      </div>
 
 
 

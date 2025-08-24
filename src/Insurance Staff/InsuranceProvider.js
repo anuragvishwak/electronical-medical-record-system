@@ -6,6 +6,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import { CgDanger } from "react-icons/cg";
+import { GrNotes } from "react-icons/gr";
 
 function InsuranceProvider() {
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
@@ -36,30 +38,27 @@ function InsuranceProvider() {
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
-          <p className="text-2xl text-[#212a31] font-bold">
-            Insurance Provider
-          </p>
-          <p className="text-[#196d8e]">
-            All the{" "}
-            <span className="text-[#212a31] font-semibold">
-              Insurance provider
-            </span>{" "}
-            details will be displayed here.
-          </p>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <input
-            placeholder="Search Insurance provider..."
-            className="border border-gray-400 w-60 p-1 rounded"
-          ></input>
+      <div className="p-5">
+        <p className="text-3xl text-[#212a31] font-bold">Insurance Provider</p>
+        <p className="text-[#196d8e]">
+          All the{" "}
+          <span className="text-[#212a31] font-semibold">
+            Insurance provider
+          </span>{" "}
+          details will be displayed here.
+        </p>
+      </div>
+      <div className="flex items-center justify-between mx-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <input
+          placeholder="Search Insurance provider..."
+          className="border border-gray-400 w-6/12 p-1 rounded"
+        ></input>
+        <div className="flex items-center space-x-5">
           <button
             onClick={() => {
               setopeningAddInsuranceCompany(true);
             }}
-            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
+            className="bg-[#196d8e] py-1 w-56 rounded shadow text-white"
           >
             + Add Insurance Provider
           </button>
@@ -72,65 +71,78 @@ function InsuranceProvider() {
           </button>
         </div>
       </div>
-      <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
-        <table className="w-full table-auto">
-          <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
-            <th className="py-1">Company Code</th>
-            <th>Provider Name</th>
-            <th>Contact Person</th>
-            <th>Phone No</th>
-            <th>Email</th>
-            <th>Policy Type Supported</th>
-            <th>Action</th>
-          </thead>
-
-          <tbody className="">
-            {gettingInsuranceCompanies.map((insurance) => (
-              <>
-                <tr className="text-[#196d8e] border-b border-gray-300">
-                  <td className="text-center py-2">{insurance.companyCode}</td>
-                  <td className="text-center">{insurance.providerName}</td>
-                  <td className="text-center">{insurance.contactPerson}</td>
-                  <td className="text-center">{insurance.phoneNumber}</td>
-                  <td className="text-center">{insurance.email}</td>
-                  <td className="text-center">
+      <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">
+        {gettingInsuranceCompanies.map((insurance) => (
+          <div className="bg-white mb-5 p-5 rounded-lg border border-gray-300 shadow">
+            <div>
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="text-xl text-[#212a31] font-bold">
+                    {insurance.providerName}
+                  </p>
+                  <p className="bg-[#196d8e] rounded-full text-white py-1 text-sm font-semibold px-4">
                     {insurance.policyTypeSupported}
-                  </td>
-                  <td>
-                    <div className="flex items-center space-x-2 justify-between">
-                      <button
-                        onClick={() => {
-                          setopeningAdditionalDetails(true);
-                          setcapturingDataObject(insurance);
-                        }}
-                        className="bg-[#212a31] text-sm text-white px-2 rounded py-0.5"
-                      >
-                        <div className="flex items-center space-x-1">
-                          <FaEye />
-                          <p>Additional Details</p>
-                        </div>
-                      </button>
-                      <button className="text-green-500">
-                        <FaEdit />
-                      </button>
+                  </p>
+                </div>
+                <p className="text-gray-500">
+                  <span>Code:</span> {insurance.companyCode}
+                </p>
+              </div>
+            </div>
 
-                      <button className="text-red-500">
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
+            <div className="my-5">
+              <p className="text-[#196d8e]">Contact Person</p>
+              <p className="text-[#212a31] font-semibold">
+                {insurance.contactPerson}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3">
+              <div>
+                <p className="text-[#196d8e]">Phone No</p>
+                <p className="text-[#212a31] font-semibold">
+                  {insurance.phoneNumber}
+                </p>
+              </div>
+              <div>
+                <p className="text-[#196d8e]">Email</p>
+                <p className="text-[#212a31] font-semibold">
+                  {insurance.email}
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-gray-300 my-3" />
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => {
+                  setopeningAdditionalDetails(true);
+                  setcapturingDataObject(insurance);
+                }}
+                className="bg-[#212a31] text-white px-3 rounded py-1"
+              >
+                <div className="flex items-center space-x-1">
+                  <FaEye />
+                  <p>Additional Details</p>
+                </div>
+              </button>
+              <button className="text-green-500">
+                <FaEdit size={25} />
+              </button>
+
+              <button className="text-red-500">
+                <FaTrash size={20} />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {openingAdditionalDetails && (
         <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-          <div className="bg-white w-5/12 p-4 rounded">
+          <div className="bg-white w-6/12 p-4 rounded">
             <div className="flex items-start mb-5 justify-between">
-              <p className="text-[#1976D2] text-lg font-bold">
+              <p className="text-[#212a31] text-xl font-bold">
                 Additonal Details (Address / Coverage Notes / Limitations)
               </p>
               <button
@@ -145,22 +157,22 @@ function InsuranceProvider() {
 
             <div className="">
               <div>
-                <p className="text-[#1976D2] font-semibold">Address:</p>
-                <p className="text-gray-600 text-justify text-sm w-auto italic">
+                <p className="text-[#212a31] font-semibold">Address:</p>
+                <p className="text-gray-600 text-justify  w-auto italic">
                   {capturingDataObject.address}
                 </p>
               </div>
 
               <div className="my-3">
-                <p className="text-[#1976D2] font-semibold">Coverage Notes:</p>
-                <p className="text-gray-600 text-justify w-auto text-sm italic">
+                <p className="text-[#196d8e] flex items-center font-semibold"><GrNotes className="mr-1"/> Coverage Notes</p>
+                <p className="text-gray-600 shadow p-3 rounded bg-[#e6f3f8] border border-[#196d8e] text-justify w-auto  italic">
                   {capturingDataObject.coverageNotes}
                 </p>
               </div>
 
               <div>
-                <p className="text-[#1976D2] font-semibold">Limitations:</p>
-                <p className="text-gray-600 text-justify w-auto text-sm italic">
+                <p className="text-orange-500 flex items-center space-x-2 font-semibold"><CgDanger size={20} className="mr-1"/> Limitations:</p>
+                <p className="text-gray-600 p-3 rounded shadow bg-orange-50 border border-orange-500 text-justify w-auto  italic">
                   {capturingDataObject.limitations}
                 </p>
               </div>

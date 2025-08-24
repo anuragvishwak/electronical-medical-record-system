@@ -2,7 +2,10 @@ import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 
-function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsuranceCompany }) {
+function AddInsuranceCompanyForm({
+  setopeningAddInsuranceCompany,
+  renderingInsuranceCompany,
+}) {
   const [providerName, setproviderName] = useState("");
   const [companyCode, setcompanyCode] = useState("");
   const [address, setaddress] = useState("");
@@ -12,7 +15,6 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
   const [policyTypeSupported, setpolicyTypeSupported] = useState("");
   const [coverageNotes, setcoverageNotes] = useState("");
   const [limitations, setlimitations] = useState("");
-  
 
   async function handleAddInsuranceProvider() {
     try {
@@ -39,8 +41,8 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-4 rounded">
-        <div className="flex items-center mb-4 justify-between">
+      <div className="bg-white p-3 rounded">
+        <div className="flex items-center mb-3 justify-between">
           <p className="text-[#212a31] text-xl font-bold">
             Add Insurance Provider
           </p>
@@ -55,8 +57,10 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
         </div>
 
         <div>
-          <div>
-            <p className="text-[#212a31] text-lg font-semibold">Basic Information</p>
+          <div className="p-3 rounded border border-gray-300">
+            <p className="text-[#212a31] text-lg font-semibold">
+              Basic Information
+            </p>
             <div className="grid grid-cols-2 my-2 gap-3">
               <div>
                 <p className="font-semibold text-[#196d8e]">Provider Name</p>
@@ -81,20 +85,6 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
                 />
               </div>
             </div>
-            <div>
-              <p className="font-semibold text-[#196d8e]">Address</p>
-              <textarea
-                onChange={(e) => {
-                  setaddress(e.target.value);
-                }}
-                className="w-full h-20 border border-gray-300 rounded-md p-2"
-                placeholder="Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016"
-              />
-            </div>
-          </div>
-
-          <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">Contact Information</p>
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <p className="font-semibold text-[#196d8e]">Contact Person</p>
@@ -128,9 +118,19 @@ function AddInsuranceCompanyForm({ setopeningAddInsuranceCompany, renderingInsur
                 />
               </div>
             </div>
+            <div className="mt-2">
+              <p className="font-semibold text-[#196d8e]">Address</p>
+              <textarea
+                onChange={(e) => {
+                  setaddress(e.target.value);
+                }}
+                className="w-full h-20 border border-gray-300 rounded-md p-2"
+                placeholder="Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016"
+              />
+            </div>
           </div>
 
-          <div>
+          <div className="p-3 rounded border mt-3 border-gray-300">
             <p className="text-[#212a31] text-lg font-semibold">
               Policy & Coverage Information
             </p>
