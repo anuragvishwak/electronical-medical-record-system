@@ -42,10 +42,10 @@ function AdminAppointment() {
         setopeningAdminNavbar={setopeningAdminNavbar}
         openingAdminNavbar={openingAdminNavbar}
       />
-      <div className="m-3 bg-white p-3 shadow border rounded border-gray-300 sm:flex items-end justify-between mt-3">
-        <div>
+
+      <div className="py-3 px-5 sm:p-5">
           <div className="flex items-center justify-between">
-            <p className="text-lg sm:text-2xl font-bold text-[#212a31]">
+            <p className="text-xl sm:text-3xl font-bold text-[#212a31]">
               Appointments
             </p>
             <button
@@ -54,7 +54,7 @@ function AdminAppointment() {
               }}
               className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
             >
-              <FaBars />
+              <FaBars size={15} />
             </button>
           </div>
           <p className="text-[#196d8e] text-sm sm:text-base">
@@ -62,11 +62,13 @@ function AdminAppointment() {
           </p>
         </div>
 
-        <div className="sm:flex items-center sm:space-x-2">
+      <div className="mx-5 bg-white p-5 shadow border rounded border-gray-300 sm:flex items-end justify-between">
+
           <input
             placeholder="Search Appointments..."
-            className="border border-gray-400 my-3 w-60 p-1 rounded"
+            className="border border-gray-400 w-[240px] mb-2 sm:w-5/12 p-1 rounded"
           ></input>
+        <div className="sm:flex items-center sm:space-x-2">
           <div className="flex items-center space-x-2">
             <button
               onClick={() => {
@@ -86,7 +88,7 @@ function AdminAppointment() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 m-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 m-5 gap-5">
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="text-[#196d8e] items-center justify-between">
