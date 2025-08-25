@@ -113,7 +113,7 @@ function AddBillingPaymentForm({
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm
+      <div className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm:w-auto sm
       :w-5/12 p-4 rounded">
         <div className="flex items-center mb-4 justify-between">
           <p className="text-[#212a31] text-xl font-bold">
@@ -200,7 +200,7 @@ function AddBillingPaymentForm({
           </div>
         </div>
 
-        <div>
+        <div className="border border-gray-300 p-3">
           <p className="text-xl mb-2 font-semibold">Breakdown of Charges</p>
 
           {gettingConsultations
