@@ -52,9 +52,7 @@ function UserManagement() {
   return (
     <div className="bg-gray-50 h-screen">
       <AdminNavbar setopeningAdminNavbar={setopeningAdminNavbar} openingAdminNavbar={openingAdminNavbar} />
-
-      <div className="mx-3 mt-3 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
+        <div className="p-5">
           <div className="flex items-center justify-between">
             <p className="text-lg sm:text-2xl font-bold text-[#212a31]">User Management</p>
             <button
@@ -66,15 +64,17 @@ function UserManagement() {
               <FaBars />
             </button>
           </div>
-          <p className="text-[#748d92] sm:text-base text-sm">
+          <p className="text-[#196d8e] sm:text-base text-sm">
             Manage user accounts and permissions across the healthcare system
           </p>
         </div>
 
+      <div className="mx-5 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+
         <div className="flex items-center space-x-2">
           <input
             placeholder="Search Users..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
           ></input>
 
           <button>
@@ -85,7 +85,7 @@ function UserManagement() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-center justify-between">
