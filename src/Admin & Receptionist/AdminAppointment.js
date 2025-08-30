@@ -66,7 +66,7 @@ function AdminAppointment() {
 
           <input
             placeholder="Search Appointments..."
-            className="border border-gray-400 w-[240px] mb-2 sm:w-5/12 p-1 rounded"
+            className="border border-gray-400 w-full mb-2 sm:w-5/12 p-1 rounded"
           ></input>
         <div className="sm:flex items-center sm:space-x-2">
           <div className="flex items-center space-x-2">
@@ -74,7 +74,7 @@ function AdminAppointment() {
               onClick={() => {
                 setopeningCreateAppointmentForm(true);
               }}
-              className="bg-[#196d8e] py-1 sm:px-5 px-7 text-sm sm:text-base rounded shadow text-white"
+              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-0 text-sm sm:text-base rounded shadow text-white"
             >
               + Create Appointment
             </button>
@@ -90,7 +90,7 @@ function AdminAppointment() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 m-5 gap-5">
         {gettingAppointments.map((appointment) => (
-          <div className="bg-white border border-gray-300 shadow p-3 rounded">
+          <div className="bg-white border border-gray-300 shadow p-4 rounded">
             <div className="text-[#196d8e] items-center justify-between">
               <div className="flex items-center">
                 <div className="flex items-center space-x-1">
@@ -114,7 +114,7 @@ function AdminAppointment() {
                 </div>
               </div>
 
-              <div className="flex items-center border-y text-gray-500 border-gray-300  py-2.5 m-2 space-x-2">
+              <div className="flex items-center border-y text-gray-500 border-gray-300 py-3 my-3 space-x-2">
                 <select
                   // onChange={(e) => {
                   //   setstatus(e.target.value);
@@ -152,7 +152,7 @@ function AdminAppointment() {
               </span>
             </p>
 
-            <hr className="my-1.5 border-gray-300" />
+            <hr className="my-4 border-gray-300" />
 
             <p className="text-gray-400">
               Note:{" "}
