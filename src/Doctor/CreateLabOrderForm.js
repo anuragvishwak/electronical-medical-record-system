@@ -5,6 +5,9 @@ import { Toast } from "primereact/toast";
 
 function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
 
+  const date = new Date();
+  console.log("finding time", date);    
+
   const toast = useRef();
   const email = localStorage.getItem("email");
   const [dateTime, setdateTime] = useState("");
