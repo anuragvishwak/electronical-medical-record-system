@@ -8,7 +8,7 @@ function AdminInsuranceCoordination() {
         <AdminNavbar/>
  <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl text-[#212a31] font-bold">Insurance Coordinations</p>
+          <p className="login-2xl text-[#212a31] font-bold">Insurance Coordinations</p>
           <p className="text-[#196d8e]">
             <span className="text-[#212a31] font-semibold">Insurance Coordination</span> 
             Where admin can manage view insurance details.
