@@ -40,8 +40,7 @@ function AdminBillingPayment() {
   return (
     <div className="bg-gray-100 h-screen">
       <AdminNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
+         <div className="p-5">
           <p className="text-2xl text-[#212a31] font-bold">Billing & Payment</p>
           <p className="text-[#196d8e]">
             Admin can add and manage{" "}
@@ -50,6 +49,7 @@ function AdminBillingPayment() {
             history.
           </p>
         </div>
+      <div className="mx-5 flex items-end justify-end bg-white p-3 border border-gray-300 shadow rounded">
 
         <div className="flex items-center space-x-2">
           <input

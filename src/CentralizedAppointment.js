@@ -85,7 +85,7 @@ function CentralizedAppointment({ email }) {
         } m-3 gap-3`}
       >
         {filteredAppointments.map((appointment) => (
-          <div className="bg-white border border-gray-300 shadow p-3 rounded">
+          <div className="bg-white border border-gray-300 shadow p-5 rounded-lg">
             <div className="flex items-start justify-between">
               <div className="text-sm">
                 <div className="flex items-center space-x-1">
@@ -138,7 +138,7 @@ function CentralizedAppointment({ email }) {
               </div>
             </div>
 
-            <hr className="my-1.5 border-gray-300" />
+            <hr className="my-3 border-gray-300" />
 
             <p className="text-gray-400">
               Doctor:{" "}
@@ -153,9 +153,9 @@ function CentralizedAppointment({ email }) {
               </span>
             </p>
 
-            <hr className="my-1.5 border-gray-300" />
+            <hr className="my-5 border-gray-300" />
 
-            <p className="bg-gray-50 rounded border border-gray-300 p-3">
+            <p className="bg-gray-50 h-20 rounded border border-gray-300 p-3">
               <span className="text-gray-400">Note:</span>{" "}
               <span className="text-black">{appointment.additionalNote}</span>
             </p>

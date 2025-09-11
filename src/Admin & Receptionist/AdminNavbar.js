@@ -7,7 +7,9 @@ import { CgClose } from "react-icons/cg";
 
 function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
+
   const location = useLocation();
+  console.log("current location",location.pathname);
   const [openingHRMS, setopeningHRMS] = useState(false);
 
   return (
@@ -53,10 +55,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           </button>
           <button
             onClick={() => {
-              navigate("/AdminBillingPayment ");
+              navigate("/AdminBillingPayment");
             }}
             className={`${
-              location.pathname === "/AdminBillingPayment "
+              location.pathname === "/AdminBillingPayment"
                 ? "text-[#196d8e]"
                 : ""
             }`}

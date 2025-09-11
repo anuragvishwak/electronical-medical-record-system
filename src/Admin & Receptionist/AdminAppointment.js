@@ -74,7 +74,7 @@ function AdminAppointment() {
               onClick={() => {
                 setopeningCreateAppointmentForm(true);
               }}
-              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-0 text-sm sm:text-base rounded shadow text-white"
+              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
             >
               + Create Appointment
             </button>
@@ -88,7 +88,7 @@ function AdminAppointment() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 m-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 m-5 gap-5">
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-4 rounded">
             <div className="text-[#196d8e] items-center justify-between">
