@@ -72,7 +72,7 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-3 rounded">
         <Toast ref={toast} />
-        <div className="flex items-center mb-6 justify-between">
+        <div className="flex items-center mb-4 justify-between">
           <p className="text-[#1976D2] text-xl font-bold">
             Create Prescription
           </p>
@@ -86,7 +86,8 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
           </button>
         </div>
 
-        <p className="text-xl font-bold">Basic Information</p>
+       <div className="p-3 border border-gray-300 rounded-lg">
+         <p className="text-xl font-bold">Basic Information</p>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <p className="font-semibold text-[#1976D2]">Patient Name</p>
@@ -114,8 +115,10 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
             </select>
           </div>
         </div>
+       </div>
 
-        <p className="text-xl mt-5 font-bold">Tests / Investigations</p>
+       <div className="p-3 rounded-lg my-4 border border-gray-300">
+         <p className="text-xl mt-5 font-bold">Tests / Investigations</p>
         <div>
           <div className="mb-1.5">
             <p className="font-semibold text-[#1976D2]">Test Name</p>
@@ -143,8 +146,9 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
             ></textarea>
           </div>
         </div>
+       </div>
 
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-end">
           <button
           onClick={()=>{
             creatingPrescription();

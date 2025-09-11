@@ -69,7 +69,7 @@ function UserManagement() {
           </p>
         </div>
 
-      <div className="mx-5 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="mx-5 sm:flex items-end justify-end bg-white p-3 border border-gray-300 shadow rounded">
 
         <div className="flex items-center space-x-2">
           <input
@@ -85,7 +85,7 @@ function UserManagement() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 gap-5 m-5">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-center justify-between">

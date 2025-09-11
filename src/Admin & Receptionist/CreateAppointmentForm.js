@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
+import { z } from "zod";
 
-function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppointments }) {
+function CreateAppointmentForm({
+  setopeningCreateAppointmentForm,
+  renderingAppointments,
+}) {
   const toast = useRef(null);
   const createdAt = new Date();
   const [patientData, setpatientData] = useState([]);
@@ -12,9 +16,20 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
   const [doctor, setdoctor] = useState("");
   const [patient, setpatient] = useState("");
   const [additionalNote, setadditionalNote] = useState("");
+  const [errors, setErrors] = useState({});
   const [time, settime] = useState("");
   const [status, setstatus] = useState("");
-  
+
+  const appointmentSchema = z.object({
+    doctor: z.string().min(1, "Doctor is required"),
+    patient: z.string().min(1, "Patient is required"),
+    time: z.string().min(1, "Time is required"),
+    status: z.enum(["scheduled", "completed", "cancelled"], {
+      errorMap: () => ({ message: "Please select a valid status" }),
+    }),
+    additionalNote: z.string().min(1, "Additional Note is required"),
+    createdAt: z.date(),
+  });
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -34,18 +49,21 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
     setpatientData(fitleringPatient);
     setdoctorData(fitleringDoctor);
   }
-  
 
   function creatingAppointment() {
+    const appointmentData = {
+      patient: patient,
+      doctor: doctor,
+      time: time,
+      status: status,
+      additionalNote: additionalNote,
+      createdAt: createdAt,
+    };
+
     try {
-      addDoc(collection(database, "appointment_database"), {
-        patient: patient,
-        doctor: doctor,
-        time: time,
-        status: status,
-        additionalNote: additionalNote,
-        createdAt: createdAt,
-      });
+      appointmentSchema.parse(appointmentData);
+
+      addDoc(collection(database, "appointment_database"), appointmentData);
 
       console.log("User document added to Firestore.");
       toast.current.show({
@@ -56,14 +74,21 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
       setopeningCreateAppointmentForm(false);
       renderingAppointments();
     } catch (error) {
-      console.error("Error during sign up:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        console.error("Validation Errors:", fieldErrors);
+      } else {
+        console.error("Error during appointment creation:", error.message);
+      }
     }
   }
 
   useEffect(() => {
     renderingUser();
-    
   }, []);
 
   return (
@@ -95,6 +120,9 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
                   <option value={user.email}>{user.name}</option>
                 ))}
               </select>
+              {errors.doctor && (
+                <p className="text-red-500 text-sm">{errors.doctor}</p>
+              )}
             </div>
 
             <div>
@@ -108,6 +136,9 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
                   <option value={user.email}>{user.name}</option>
                 ))}
               </select>
+              {errors.patient && (
+                <p className="text-red-500 text-sm">{errors.patient}</p>
+              )}
             </div>
 
             <div>
@@ -120,6 +151,9 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
                 placeholder="2:20pm"
                 className="border rounded border-gray-300 w-full p-1.5"
               ></input>
+              {errors.time && (
+                <p className="text-red-500 text-sm">{errors.time}</p>
+              )}
             </div>
 
             <div>
@@ -135,6 +169,9 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
                 <option value={"completed"}>Completed</option>
                 <option value={"cancelled"}>Cancelled</option>
               </select>
+               {errors.status && (
+                <p className="text-red-500 text-sm">{errors.status}</p>
+              )}
             </div>
           </div>
 
@@ -147,6 +184,9 @@ function CreateAppointmentForm({ setopeningCreateAppointmentForm, renderingAppoi
               placeholder="Note for the doctor and patients..."
               className="border rounded border-gray-300 w-full p-2 h-40"
             ></textarea>
+             {errors.additionalNote && (
+                <p className="text-red-500 text-sm">{errors.additionalNote}</p>
+              )}
           </div>
 
           <div className="flex justify-end mt-3 ">
