@@ -164,14 +164,18 @@ function InsuranceProvider() {
               </div>
 
               <div className="my-3">
-                <p className="text-[#196d8e] flex items-center font-semibold"><GrNotes className="mr-1"/> Coverage Notes</p>
+                <p className="text-[#196d8e] flex items-center font-semibold">
+                  <GrNotes className="mr-1" /> Coverage Notes
+                </p>
                 <p className="text-gray-600 shadow p-3 rounded bg-[#e6f3f8] border border-[#196d8e] text-justify w-auto  italic">
                   {capturingDataObject.coverageNotes}
                 </p>
               </div>
 
               <div>
-                <p className="text-orange-500 flex items-center space-x-2 font-semibold"><CgDanger size={20} className="mr-1"/> Limitations:</p>
+                <p className="text-orange-500 flex items-center space-x-2 font-semibold">
+                  <CgDanger size={20} className="mr-1" /> Limitations:
+                </p>
                 <p className="text-gray-600 p-3 rounded shadow bg-orange-50 border border-orange-500 text-justify w-auto  italic">
                   {capturingDataObject.limitations}
                 </p>

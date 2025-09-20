@@ -43,11 +43,17 @@ function AdminAppointment() {
         openingAdminNavbar={openingAdminNavbar}
       />
 
-      <div className="py-3 px-5 sm:p-5">
-          <div className="flex items-center justify-between">
-            <p className="text-xl sm:text-3xl font-bold text-[#212a31]">
+      <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
+        <div className="flex items-center justify-between">
+          <div className="">
+            <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
               Appointments
             </p>
+            <p className="text-[#196d8e] text-sm">
+              Manage appointments across the healthcare system
+            </p>
+          </div>
+          <div>
             <button
               onClick={() => {
                 setopeningAdminNavbar(true);
@@ -56,35 +62,38 @@ function AdminAppointment() {
             >
               <FaBars size={15} />
             </button>
+
+            <div className="rounded border py-3 border-gray-400 px-5">
+              <p className="text-3xl text-center font-bold">{gettingAppointments.length}</p>
+              <p className="text-gray-500">Total Appointment</p>
+            </div>
           </div>
-          <p className="text-[#196d8e] text-sm sm:text-base">
-            Manage appointments across the healthcare system
-          </p>
         </div>
 
-      <div className="mx-5 bg-white p-5 shadow border rounded border-gray-300 sm:flex items-end justify-between">
-
+        <hr className="my-3 border-gray-300" />
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Appointments..."
-            className="border border-gray-400 w-full mb-2 sm:w-5/12 p-1 rounded"
+            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
           ></input>
-        <div className="sm:flex items-center sm:space-x-2">
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => {
-                setopeningCreateAppointmentForm(true);
-              }}
-              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
-            >
-              + Create Appointment
-            </button>
+          <div className="sm:flex items-center sm:space-x-2">
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => {
+                  setopeningCreateAppointmentForm(true);
+                }}
+                className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
+              >
+                + Create Appointment
+              </button>
 
-            <button>
-              <IoNotifications
-                size={31}
-                className="border border-gray-500 p-1 rounded text-gray-500"
-              />
-            </button>
+              <button>
+                <IoNotifications
+                  size={31}
+                  className="border border-gray-500 p-1 rounded text-gray-500"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -173,7 +182,7 @@ function AdminAppointment() {
 
       {openingAddBillingPaymentForm && (
         <AddBillingPaymentForm
-        capturingObject = {capturingObject}
+          capturingObject={capturingObject}
           setopeningAddBillingPaymentForm={setopeningAddBillingPaymentForm}
         />
       )}

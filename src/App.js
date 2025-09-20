@@ -34,6 +34,8 @@ import InsuranceProvider from "./Insurance Staff/InsuranceProvider";
 import AdminBillingPayment from "./Admin & Receptionist/AdminBillingPayment";
 import InsuranceStaffClaimStatus from "./Insurance Staff/InsuranceStaffClaimStatus";
 import AdminInsuranceCoordination from "./Admin & Receptionist/AdminInsuranceCoordination";
+import PatientInsuranceDetails from "./Patients/PatientInsuranceDetails";
+import AdminProfileSetting from "./Admin & Receptionist/AdminProfileSetting";
 
 function App() {
   return (
@@ -81,12 +83,26 @@ function App() {
           <Route path="/PatientLabReport" element={<PatientLabReport />} />
           <Route path="/ViewInsuranceInfo" element={<ViewInsuranceInfo />} />
           <Route path="/InsuranceProvider" element={<InsuranceProvider />} />
-          <Route path="/AdminBillingPayment" element={<AdminBillingPayment />} />
-          <Route path="/InsuranceStaffClaimStatus" element={<InsuranceStaffClaimStatus />} />
-          <Route path="/AdminInsuranceCoordination" element={<AdminInsuranceCoordination />} />
-
-
-
+          <Route
+            path="/AdminBillingPayment"
+            element={<AdminBillingPayment />}
+          />
+          <Route
+            path="/InsuranceStaffClaimStatus"
+            element={<InsuranceStaffClaimStatus />}
+          />
+          <Route
+            path="/AdminInsuranceCoordination"
+            element={<AdminInsuranceCoordination />}
+          />
+          <Route
+            path="/PatientInsuranceDetails"
+            element={<PatientInsuranceDetails />}
+          />
+                <Route
+            path="/AdminProfileSetting"
+            element={<AdminProfileSetting />}
+          />
         </Routes>
       </Router>
     </div>

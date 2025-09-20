@@ -280,7 +280,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
         </div>
 
         <div className="flex justify-end mt-1">
-          <button 
+          <button
             onClick={() => {
               adddingClaimStatus();
             }}

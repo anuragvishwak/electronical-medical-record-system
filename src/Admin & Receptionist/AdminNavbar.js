@@ -9,7 +9,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  console.log("current location",location.pathname);
+  console.log("current location", location.pathname);
   const [openingHRMS, setopeningHRMS] = useState(false);
 
   return (
@@ -74,7 +74,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
                 ? "text-[#196d8e]"
                 : ""
             }`}
-          >Insurance Coordination</button>
+          >
+            Insurance Coordination
+          </button>
           <button
             onClick={() => {
               navigate("/MedicinesTreatment");
@@ -88,7 +90,18 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             Medicines
           </button>
           <button>Staff Management</button>
-          <button>Profile / Setting</button>
+          <button
+            onClick={() => {
+              navigate("/AdminProfileSetting");
+            }}
+            className={`${
+              location.pathname === "/AdminProfileSetting"
+                ? "text-[#196d8e]"
+                : ""
+            }`}
+          >
+            Profile / Setting
+          </button>
         </div>
         <div className="flex items-center space-x-2">
           <button
@@ -114,9 +127,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
       {openingAdminNavbar && (
         <div className="flex flex-col justify-start items-start h-screen fixed sm:hidden text-[#212a31] w-full bg-white shadow border-b p-3">
           <div className="flex">
-            <button onClick={()=>{
-              setopeningAdminNavbar(false);
-            }}>
+            <button
+              onClick={() => {
+                setopeningAdminNavbar(false);
+              }}
+            >
               <CgClose />
             </button>
           </div>
