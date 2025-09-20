@@ -3,7 +3,6 @@ import DoctorNavbar from "./DoctorNavbar";
 import { FaEdit, FaEye, FaSearch } from "react-icons/fa";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
-import { GrNotes } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import AdditionalConsultationDetails from "./AdditionalConsultationDetails";
 import CreateLabOrderForm from "./CreateLabOrderForm";
