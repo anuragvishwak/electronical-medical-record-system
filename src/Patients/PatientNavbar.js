@@ -81,7 +81,14 @@ function PatientNavbar() {
         </button>
         <button>Medical History</button>
         <button>Payment History</button>
-        <button>Insurance Details</button>
+        <button
+        onClick={() => {
+            navigate("/PatientInsuranceDetails");
+          }}
+          className={`${
+            location.pathname === "/PatientInsuranceDetails" ? "text-[#1976D2]" : ""
+          }`}
+        >Insurance Details</button>
         <button>Profile</button>
       </div>
 

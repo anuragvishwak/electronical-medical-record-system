@@ -51,26 +51,80 @@ function UserManagement() {
 
   return (
     <div className="bg-gray-50 h-screen">
-      <AdminNavbar setopeningAdminNavbar={setopeningAdminNavbar} openingAdminNavbar={openingAdminNavbar} />
-        <div className="p-5">
-          <div className="flex items-center justify-between">
-            <p className="text-lg sm:text-2xl font-bold text-[#212a31]">User Management</p>
-            <button
-              onClick={() => {
-                setopeningAdminNavbar(true);
-              }}
-              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
-            >
-              <FaBars />
-            </button>
+      <AdminNavbar
+        setopeningAdminNavbar={setopeningAdminNavbar}
+        openingAdminNavbar={openingAdminNavbar}
+      />
+      <div className="p-5 bg-white m-5 border border-gray-300 shadow">
+        <div className="flex items-center justify-between w-full">
+          <div>
+            <div className="flex items-center justify-between">
+              <p className="text-lg sm:text-2xl font-bold text-[#212a31]">
+                User Management
+              </p>
+              <button
+                onClick={() => {
+                  setopeningAdminNavbar(true);
+                }}
+                className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+              >
+                <FaBars />
+              </button>
+            </div>
+            <p className="text-[#196d8e] sm:text-base text-sm">
+              Manage user accounts and permissions across the healthcare system
+            </p>
           </div>
-          <p className="text-[#196d8e] sm:text-base text-sm">
-            Manage user accounts and permissions across the healthcare system
-          </p>
+
+          <div className="grid grid-cols-6 gap-3">
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {gettingUser.length}
+              </p>
+              <p className="text-gray-500">Users</p>
+            </div>
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {gettingUser.filter((user) => user.role === "patient").length}
+              </p>
+              <p className="text-gray-500">Patients</p>
+            </div>
+
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {gettingUser.filter((user) => user.role === "doctor").length}
+              </p>
+              <p className="text-gray-500">Doctors</p>
+            </div>
+
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {gettingUser.filter((user) => user.role === "nurse").length}
+              </p>
+              <p className="text-gray-500">Nurse</p>
+            </div>
+
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {
+                  gettingUser.filter((user) => user.role === "lab_technician")
+                    .length
+                }
+              </p>
+              <p className="text-gray-500">Lab Technician</p>
+            </div>
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {
+                  gettingUser.filter((user) => user.role === "insurance_dept")
+                    .length
+                }
+              </p>
+              <p className="text-gray-500">Insurance Dept</p>
+            </div>
+          </div>
         </div>
-
-      <div className="mx-5 sm:flex items-end justify-end bg-white p-3 border border-gray-300 shadow rounded">
-
+        <hr className="border-gray-300 my-3" />
         <div className="flex items-center space-x-2">
           <input
             placeholder="Search Users..."
