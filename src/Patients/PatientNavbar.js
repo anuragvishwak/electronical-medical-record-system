@@ -4,7 +4,6 @@ import { LuLogOut } from "react-icons/lu";
 import { database } from "../FirebaseConfiguration";
 import { FaUser } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoNotifications } from "react-icons/io5";
 
 function PatientNavbar() {
   const navigate = useNavigate();
@@ -82,14 +81,29 @@ function PatientNavbar() {
         <button>Medical History</button>
         <button>Payment History</button>
         <button
-        onClick={() => {
+          onClick={() => {
             navigate("/PatientInsuranceDetails");
           }}
           className={`${
-            location.pathname === "/PatientInsuranceDetails" ? "text-[#1976D2]" : ""
+            location.pathname === "/PatientInsuranceDetails"
+              ? "text-[#1976D2]"
+              : ""
           }`}
-        >Insurance Details</button>
-        <button>Profile</button>
+        >
+          Insurance Details
+        </button>
+        <button
+          onClick={() => {
+            navigate("/PatientProfileSetting");
+          }}
+          className={`${
+            location.pathname === "/PatientProfileSetting"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >
+          Profile / Setting
+        </button>
       </div>
 
       <div className="flex items-center space-x-3 relative group">

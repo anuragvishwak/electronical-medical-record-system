@@ -36,6 +36,7 @@ import InsuranceStaffClaimStatus from "./Insurance Staff/InsuranceStaffClaimStat
 import AdminInsuranceCoordination from "./Admin & Receptionist/AdminInsuranceCoordination";
 import PatientInsuranceDetails from "./Patients/PatientInsuranceDetails";
 import AdminProfileSetting from "./Admin & Receptionist/AdminProfileSetting";
+import PatientProfileSetting from "./Patients/PatientProfileSetting";
 
 function App() {
   return (
@@ -102,6 +103,11 @@ function App() {
                 <Route
             path="/AdminProfileSetting"
             element={<AdminProfileSetting />}
+          />
+
+               <Route
+            path="/PatientProfileSetting"
+            element={<PatientProfileSetting />}
           />
         </Routes>
       </Router>
