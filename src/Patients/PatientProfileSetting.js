@@ -61,13 +61,10 @@ function PatientProfileSetting() {
     }));
 
     const filteredConsultation = multipleArray.filter(
-      (consult) => consult.patient === currentUserName
+      (consult) => consult.patient === currentUser
     );
 
-    console.log("finding user name", currentUserName);
-    console.log("finding consult", filteredConsultation);
-
-    setgettingConsultations(multipleArray);
+    setgettingConsultations(filteredConsultation);
   }
 
   function getInitials(name) {
@@ -148,6 +145,7 @@ function PatientProfileSetting() {
                 <button
                   onClick={() => {
                     setopeningPatientProfileUpdateForm(true);
+                    setcurrentUserName(user);
                   }}
                   className="bg-[#212a31] text-white font-semibold px-4 rounded py-1.5"
                 >
@@ -265,7 +263,7 @@ function PatientProfileSetting() {
 
       {openingPatientProfileUpdateForm && (
         <PatientProfileUpdateForm
-          currentUser={currentUser}
+          currentUserName = {currentUserName}
           setopeningPatientProfileUpdateForm={
             setopeningPatientProfileUpdateForm
           }

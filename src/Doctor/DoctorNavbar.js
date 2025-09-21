@@ -29,7 +29,16 @@ function DoctorNavbar() {
         >
           Appointments
         </button>
-        <button>Patients</button>
+        <button
+          onClick={() => {
+            navigate("/DoctorPatients");
+          }}
+          className={`${
+            location.pathname === "/DoctorPatients" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Patients
+        </button>
         <button
           onClick={() => {
             navigate("/DoctorPrescription");
@@ -37,27 +46,54 @@ function DoctorNavbar() {
           className={`${
             location.pathname === "/DoctorPrescription" ? "text-[#1976D2]" : ""
           }`}
-        >Prescriptions</button>
+        >
+          Prescriptions
+        </button>
 
-          <button
+        <button
           onClick={() => {
             navigate("/DoctorConsultation");
           }}
           className={`${
             location.pathname === "/DoctorConsultation" ? "text-[#1976D2]" : ""
           }`}
-        >Consultation</button>
+        >
+          Consultation
+        </button>
         <button
-         onClick={() => {
+          onClick={() => {
             navigate("/DoctorLabReports");
           }}
           className={`${
             location.pathname === "/DoctorLabReports" ? "text-[#1976D2]" : ""
           }`}
-        >Lab Reports</button>
-        <button>Medical Records</button>
-        <button>Billing / Finance</button>
-        <button>Profile / Setting</button>
+        >
+          Lab Reports
+        </button>
+        <button
+          onClick={() => {
+            navigate("/DoctorBillingFinance");
+          }}
+          className={`${
+            location.pathname === "/DoctorBillingFinance"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >
+          Billing / Finance
+        </button>
+        <button
+          onClick={() => {
+            navigate("/DoctorProfileSetting");
+          }}
+          className={`${
+            location.pathname === "/DoctorProfileSetting"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >
+          Profile / Setting
+        </button>
       </div>
       <button
         onClick={() => {

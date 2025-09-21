@@ -1,48 +1,55 @@
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useState } from "react";
 import { database } from "../FirebaseConfiguration";
 
-function PatientProfileUpdateForm({
-  setopeningPatientProfileUpdateForm,
-  currentUserName, gettingConsultations
+function DoctorProfileEditUpdateForm({
+  setopeningDoctorProfileUpdateForm,
+  currentUser,
 }) {
   const [gender, setgender] = useState("");
   const [dateOfBirth, setdateOfBirth] = useState("");
   const [country, setcountry] = useState("");
   const [state, setstate] = useState("");
   const [city, setcity] = useState("");
-  const [patientId, setpatientId] = useState("");
-  const [knownAllegeries, setknownAllergies] = useState("");
-  const [chronicCondition, setchronicCondition] = useState("");
-  const [height, setheight] = useState("");
-  const [weight, setweight] = useState("");
-
+  const [designation, setdesignation] = useState("");
+  const [department, setdepartment] = useState("");
+  const [yearsOfExperience, setyearsOfExperience] = useState("");
+  const [qualification, setqualification] = useState("");
+  const [medicalLicenseNumber, setmedicalLicenseNumber] = useState("");
+  const [workingHours, setworkingHours] = useState("");
+  const [shiftTime, setshiftTime] = useState("");
+  const [leavesHoliday, setleavesHoliday] = useState("");
+  const [achievementsAwards, setachievementsAwards] = useState("");
+  const [doctorId, setdoctorId] = useState("");
 
   async function updatingProfileDetails() {
     try {
-      const claimRef = doc(database, "user_database", currentUserName.id);
+      const claimRef = doc(database, "user_database", currentUser.id);
       await updateDoc(claimRef, {
         gender: gender,
         dateOfBirth: dateOfBirth,
         country: country,
         state: state,
         city: city,
-        patientId: patientId,
-        knownAllegeries: knownAllegeries,
-        chronicCondition: chronicCondition,
-        height: height,
-        weight: weight
+        doctorId: doctorId,
+        qualification: qualification,
+        designation: designation,
+        department: department,
+        yearsOfExperience: yearsOfExperience,
+        medicalLicenseNumber: medicalLicenseNumber,
+        workingHours: workingHours,
+        shiftTime: shiftTime,
+        leavesHoliday: leavesHoliday,
+        achievementsAwards: achievementsAwards,
       });
 
       console.log("Profile Details updated successfully.");
-      setopeningPatientProfileUpdateForm(false);
+      setopeningDoctorProfileUpdateForm(false);
     } catch (error) {
       console.error("Error during update profile details:", error.message);
       throw error;
     }
   }
-
-  
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
@@ -52,7 +59,7 @@ function PatientProfileUpdateForm({
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
-              setopeningPatientProfileUpdateForm(false);
+              setopeningDoctorProfileUpdateForm(false);
             }}
           >
             Close
@@ -69,7 +76,7 @@ function PatientProfileUpdateForm({
                 <p className="font-semibold text-[#196d8e]">Name</p>
                 <input
                   type="text"
-                  value={currentUserName?.name}
+                  value={currentUser.name}
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder=""
                 />
@@ -111,7 +118,7 @@ function PatientProfileUpdateForm({
                 <p className="font-semibold text-[#196d8e]">Email</p>
                 <input
                   type="text"
-                  value={currentUserName?.email}
+                  value={currentUser?.email}
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="user"
                 />
@@ -120,7 +127,7 @@ function PatientProfileUpdateForm({
                 <p className="font-semibold text-[#196d8e]">Phone Number</p>
                 <input
                   type="text"
-                  value={currentUserName?.phone_no}
+                  value={currentUser?.phone_no}
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="₹2,00,000"
                 />
@@ -175,106 +182,179 @@ function PatientProfileUpdateForm({
 
           <div>
             <p className="text-[#212a31] text-lg font-semibold">
-              Medical Information
+              Professional Information
             </p>
+
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Patient ID</p>
+                <p className="font-semibold text-[#196d8e]">Doctor Id</p>
                 <input
                   type="text"
                   onChange={(e) => {
-                    setpatientId(e.target.value);
+                    setdoctorId(e.target.value);
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
-                  placeholder="PT-324"
+                  placeholder="DOC-345"
                 />
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Known Allergies</p>
+                <p className="font-semibold text-[#196d8e]">Designation</p>
                 <input
                   type="text"
                   onChange={(e) => {
-                    setknownAllergies(e.target.value);
+                    setdesignation(e.target.value);
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
-                  placeholder="eg. Asthama"
+                  placeholder="Consultant, Surgeon, etc."
                 />
               </div>
 
+              <div>
+                <p className="font-semibold text-[#196d8e]">Department</p>
+                <select
+                  onChange={(e) => {
+                    setdepartment(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                >
+                  <option value="">Select Department</option>
+                  <option value="cardiology">Cardiology</option>
+                  <option value="neurology">Neurology</option>
+                  <option value="pediatrics">Pediatrics</option>
+                  <option value="orthopedics">Orthopedics</option>
+                  <option value="general">General Medicine</option>
+                </select>
+              </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">
-                  Chronic Condition
+                  Years of Experience
                 </p>
                 <input
                   type="text"
                   onChange={(e) => {
-                    setchronicCondition(e.target.value);
+                    setyearsOfExperience(e.target.value);
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
-                  placeholder="eg. Diabetes and Hypertention"
-                />
-              </div>
-              <div>
-                <p className="font-semibold text-[#196d8e]">Height</p>
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setheight(e.target.value);
-                  }}
-                  className="w-full border border-gray-300 rounded-md p-1.5"
-                  placeholder="187 cm"
+                  placeholder="10 Years"
                 />
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Weight</p>
+                <p className="font-semibold text-[#196d8e]">Qualification</p>
+                <select
+                  onChange={(e) => {
+                    setqualification(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                >
+                  <option value="" disabled>
+                    Select your degree
+                  </option>
+                  <option value="MBBS">MBBS</option>
+                  <option value="MD">MD</option>
+                  <option value="MS">MS</option>
+                  <option value="DM">DM</option>
+                  <option value="MCh">MCh</option>
+                  <option value="PhD">PhD</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <p className="font-semibold text-[#196d8e]">
+                  Medical License Number
+                </p>
                 <input
                   type="text"
                   onChange={(e) => {
-                    setweight(e.target.value);
+                    setmedicalLicenseNumber(e.target.value);
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
-                  placeholder="40 kg"
+                  placeholder="ME0000"
                 />
               </div>
             </div>
-              <div className="my-4">
-                <p className="font-semibold text-[#196d8e]">
-                  Current Medications
-                </p>
-                {gettingConsultations.map((consult) => (
-                  <p className="border p-1.5 rounded mb-2 text-sm border-gray-300">
-                    {consult.medication_procedures}
-                  </p>
-                ))}
+          </div>
+
+          <div className="my-4">
+            <p className="text-[#212a31] text-lg font-semibold">
+              Work Schedule / Availability
+            </p>
+
+            <div className="grid grid-cols-3 gap-5">
+              <div>
+                <p className="font-semibold text-[#196d8e]">Working Days</p>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setworkingHours(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                  placeholder="5 days"
+                />
+              </div>
+
+              <div>
+                <p className="font-semibold text-[#196d8e]">Shift Time</p>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setshiftTime(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                  placeholder="9:00 AM – 5:00 PM"
+                />
               </div>
 
               <div>
                 <p className="font-semibold text-[#196d8e]">
-                  Past Medical History
+                  Leaves / Holidays
                 </p>
-                {gettingConsultations.map((consult) => (
-                  <p className="border p-1.5 rounded mb-2 text-sm border-gray-300">
-                    {consult.pastMedicalHistory}
-                  </p>
-                ))}
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setleavesHoliday(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                  placeholder="10 leaves (in a year)"
+                />
               </div>
+            </div>
           </div>
-        </div>
-        <div className="mt-5 flex justify-end">
-          <button
-            onClick={() => {
-               updatingProfileDetails();
-            }}
-            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
-          >
-            Update Profile Details
-          </button>
+
+          <div>
+            <p className="text-[#212a31] text-lg font-semibold">
+              Other Information
+            </p>
+            <div>
+              <p className="font-semibold text-[#196d8e]">
+                Achievements / Awards
+              </p>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setachievementsAwards(e.target.value);
+                }}
+                className="w-full border border-gray-300 rounded-md p-1.5"
+                placeholder="Best Surgeon 2024"
+              />
+            </div>
+          </div>
+          <div className="mt-5 flex justify-end">
+            <button
+              onClick={() => {
+                updatingProfileDetails();
+              }}
+              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            >
+              Update Profile Details
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default PatientProfileUpdateForm;
+export default DoctorProfileEditUpdateForm;
