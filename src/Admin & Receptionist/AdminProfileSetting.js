@@ -5,9 +5,7 @@ import { database } from "../FirebaseConfiguration";
 import { FaRegEdit } from "react-icons/fa";
 import AdminEditProfileForm from "./AdminEditProfileForm";
 import {
-  FaLocationArrow,
   FaLocationDot,
-  FaLocationPin,
   FaPhone,
 } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";

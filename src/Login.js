@@ -32,6 +32,8 @@ function Login() {
       );
       const user = userCredential.user;
 
+      console.log("finding user", user)
+
       const q = query(
         collection(database, "user_database"),
         where("uid", "==", user.uid)

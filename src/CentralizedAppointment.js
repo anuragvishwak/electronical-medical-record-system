@@ -82,7 +82,7 @@ function CentralizedAppointment({ email }) {
           location.pathname === "/CheckInCheckOut"
             ? "grid-cols-3"
             : "grid-cols-4"
-        } m-3 gap-3`}
+        } m-5 gap-5`}
       >
         {filteredAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-5 rounded-lg">

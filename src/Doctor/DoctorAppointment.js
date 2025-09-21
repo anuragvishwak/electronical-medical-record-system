@@ -11,13 +11,14 @@ function DoctorAppointment() {
   return (
     <div className="bg-gray-50 h-screen">
       <DoctorNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold">Appointments</p>
-          <p className="text-gray-600">Doctor can view their patient's appointments here</p>
+          <p className="text-2xl text-[#212a31] font-bold">Appointments</p>
+          <p className="text-[#196d8e]">Doctor can view their patient's <span className="text-[#212a31] font-semibold">appointments</span> here</p>
         </div>
+          <hr className="my-3 border-gray-300" />
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Appointments..."
             className="border border-gray-400 w-60 p-1 rounded"
