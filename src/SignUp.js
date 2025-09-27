@@ -29,7 +29,6 @@ function SignUp() {
         confirm_password
       );
       const user = userCredential.user;
-      console.log("User created:", user.uid);
 
       await addDoc(collection(database, "user_database"), {
         uid: user.uid,

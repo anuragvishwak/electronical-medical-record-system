@@ -39,10 +39,24 @@ function NurseNavbar() {
         >
           Check In / Out
         </button>
-        <button>Medication Logs</button>
+        <button
+          onClick={() => {
+            navigate("/MedicationLogs");
+          }}
+          className={`${
+            location.pathname === "/MedicationLogs" ? "text-[#1976D2]" : ""
+          }`}
+        >
+          Medication Logs
+        </button>
         <button>Profile / Setting</button>
       </div>
-      <button>
+      <button
+        onClick={() => {
+          navigate("/");
+          localStorage.clear();
+        }}
+      >
         <LuLogOut />
       </button>
     </div>
