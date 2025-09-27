@@ -9,7 +9,6 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  console.log("current location", location.pathname);
   const [openingHRMS, setopeningHRMS] = useState(false);
 
   return (
@@ -89,7 +88,14 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           >
             Medicines
           </button>
-          <button>Staff Management</button>
+          <button
+           onClick={() => {
+              navigate("/StaffManagement");
+            }}
+            className={`${
+              location.pathname === "/StaffManagement" ? "text-[#196d8e]" : ""
+            }`}
+          >Staff Management</button>
           <button
             onClick={() => {
               navigate("/AdminProfileSetting");

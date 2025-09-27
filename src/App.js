@@ -40,6 +40,8 @@ import PatientProfileSetting from "./Patients/PatientProfileSetting";
 import DoctorProfileSetting from "./Doctor/DoctorProfileSetting";
 import DoctorBillingFinance from "./Doctor/DoctorBillingFinance";
 import DoctorPatients from "./Doctor/DoctorPatients";
+import MedicationLogs from "./Nurse/MedicationLogs";
+import StaffManagement from "./Admin & Receptionist/StaffManagement";
 
 function App() {
   return (
@@ -60,6 +62,7 @@ function App() {
             path="/InsuranceStaffDashboard"
             element={<InsuranceStaffDashboard />}
           />
+          <Route path="/MedicationLogs" element={<MedicationLogs />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           {/* Internal Routes */}
           <Route path="/AdminPatient" element={<AdminPatient />} />
@@ -119,7 +122,8 @@ function App() {
             element={<DoctorBillingFinance />}
           />
           <Route path="/DoctorPatients" element={<DoctorPatients />} />
-          DoctorPatient{" "}
+
+          <Route path="/StaffManagement" element={<StaffManagement />} />
         </Routes>
       </Router>
     </div>
