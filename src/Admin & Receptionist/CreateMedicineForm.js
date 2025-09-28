@@ -412,11 +412,10 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               <div>
                 <p className="font-semibold text-[#196d8e]">Expiry Date</p>
                 <input
-                  type="text"
+                  type="date"
                   onChange={(e) => {
                     setexpiry_date(e.target.value);
                   }}
-                  placeholder="2026-01-01"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
                  {errors.expiry_date && (

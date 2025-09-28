@@ -6,6 +6,7 @@ import CreateStaff from "./CreateStaff";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import AddSalaryForm from "./AddSalaryForm";
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 function StaffManagement() {
   const [openingAddStaffForm, setopeningAddStaffForm] = useState(false);
@@ -85,7 +86,7 @@ function StaffManagement() {
           </div>
         </div>
       </div>
-      <div className="grid m-5 grid-cols-4 gap-5">
+      <div className="grid m-5 grid-cols-3 gap-5">
         {filteredUser.map((user) => (
           <div className="bg-white p-5 rounded border border-gray-300 shadow">
             <div className="flex items-start justify-between">
@@ -116,6 +117,56 @@ function StaffManagement() {
                 <p className="text-[#212a31] font-semibold">
                   +91 {user.phone_no}
                 </p>
+              </div>
+            </div>
+
+            <hr className="border-gray-300 my-3" />
+
+            <div>
+              <p className="font-semibold text-[#196d8e] text-lg">
+                Salary Breakdown
+              </p>
+
+              <div className="grid grid-cols-2 gap-5">
+                <div className="p-3 rounded border border-gray-300">
+                  <p className="text-[#196d8e]">Basic Pay:</p>
+                  <p className="text-[#212a31] flex items-center font-semibold">
+                    <FaIndianRupeeSign />
+                    {user.basicPay}/-
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[#196d8e]">HRA (House Rent Allowance):</p>
+                  <p className="text-[#212a31] flex items-center font-semibold">
+                    <FaIndianRupeeSign />
+                    {user.hra}/-
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[#196d8e]">General Allowance:</p>
+                  <p className="text-[#212a31] flex items-center font-semibold">
+                    <FaIndianRupeeSign />
+                    {user.allowance}/-
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[#196d8e]">Deduction:</p>
+                  <p className="text-red-500 flex items-center font-semibold">
+                    <span>-</span> <FaIndianRupeeSign />
+                    {user.deduction}/-
+                  </p>
+                </div>
+
+                 <div>
+                  <p className="text-[#196d8e]">Final Net Salary:</p>
+                  <p className="text-[#212a31] flex items-center font-bold text-lg">
+                    <FaIndianRupeeSign />
+                    {user.allowance}/-
+                  </p>
+                </div>
               </div>
             </div>
           </div>
