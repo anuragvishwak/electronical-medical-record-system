@@ -127,42 +127,52 @@ function StaffManagement() {
                 Salary Breakdown
               </p>
 
-              <div className="grid grid-cols-2 gap-5">
-                <div className="p-3 rounded border border-gray-300">
-                  <p className="text-[#196d8e]">Basic Pay:</p>
-                  <p className="text-[#212a31] flex items-center font-semibold">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-1.5 rounded border border-gray-300">
+                  <p className="text-[#196d8e] bg-gray-100  px-2 py-0.5 border border-gray-300">
+                    Basic Pay:
+                  </p>
+                  <p className="text-[#212a31] flex mt-2 items-center font-semibold">
                     <FaIndianRupeeSign />
                     {user.basicPay}/-
                   </p>
                 </div>
 
-                <div>
-                  <p className="text-[#196d8e]">HRA (House Rent Allowance):</p>
-                  <p className="text-[#212a31] flex items-center font-semibold">
+                <div className="p-1.5 rounded border border-gray-300">
+                  <p className="text-[#196d8e] border bg-gray-100  border-gray-300 py-0.5 px-2 ">
+                    HRA (House Rent Allowance):
+                  </p>
+                  <p className="text-[#212a31] flex mt-2 items-center font-semibold">
                     <FaIndianRupeeSign />
                     {user.hra}/-
                   </p>
                 </div>
 
-                <div>
-                  <p className="text-[#196d8e]">General Allowance:</p>
-                  <p className="text-[#212a31] flex items-center font-semibold">
+                <div className="p-1.5 rounded border border-gray-300">
+                  <p className="text-[#196d8e] border border-gray-300 py-0.5 px-2 bg-gray-100 ">
+                    General Allowance:
+                  </p>
+                  <p className="text-[#212a31] flex mt-2 items-center font-semibold">
                     <FaIndianRupeeSign />
                     {user.allowance}/-
                   </p>
                 </div>
 
-                <div>
-                  <p className="text-[#196d8e]">Deduction:</p>
-                  <p className="text-red-500 flex items-center font-semibold">
+                <div className="p-1.5 rounded border border-gray-300">
+                  <p className="text-[#196d8e] bg-gray-100  border border-gray-300 py-0.5 px-2">
+                    Deduction:
+                  </p>
+                  <p className="text-red-500 flex mt-2 items-center font-semibold">
                     <span>-</span> <FaIndianRupeeSign />
                     {user.deduction}/-
                   </p>
                 </div>
 
-                 <div>
-                  <p className="text-[#196d8e]">Final Net Salary:</p>
-                  <p className="text-[#212a31] flex items-center font-bold text-lg">
+                <div className="p-1.5 rounded border border-gray-300">
+                  <p className="text-[#196d8e] py-0.5 px-2 bg-gray-100  border border-gray-300">
+                    Final Net Salary:
+                  </p>
+                  <p className="text-[#212a31] flex mt-2 items-center font-bold text-lg">
                     <FaIndianRupeeSign />
                     {user.allowance}/-
                   </p>
@@ -181,6 +191,7 @@ function StaffManagement() {
         <AddSalaryForm
           currentStaffId={currentStaffId}
           setopeningSalaryForm={setopeningSalaryForm}
+          renderingUser = {renderingUser}
         />
       )}
     </div>
