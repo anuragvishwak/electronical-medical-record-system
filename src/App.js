@@ -42,6 +42,7 @@ import DoctorBillingFinance from "./Doctor/DoctorBillingFinance";
 import DoctorPatients from "./Doctor/DoctorPatients";
 import MedicationLogs from "./Nurse/MedicationLogs";
 import StaffManagement from "./Admin & Receptionist/StaffManagement";
+import InsuranceDeptProfile from "./Insurance Staff/InsuranceDeptProfile";
 
 function App() {
   return (
@@ -122,7 +123,7 @@ function App() {
             element={<DoctorBillingFinance />}
           />
           <Route path="/DoctorPatients" element={<DoctorPatients />} />
-
+          <Route path="/InsuranceDeptProfile" element={<InsuranceDeptProfile />} />
           <Route path="/StaffManagement" element={<StaffManagement />} />
         </Routes>
       </Router>

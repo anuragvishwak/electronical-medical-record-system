@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { database } from "../FirebaseConfiguration";
 import { doc, updateDoc } from "firebase/firestore";
 
-function AddSalaryForm({ setopeningSalaryForm, currentStaffId }) {
+function AddSalaryForm({
+  setopeningSalaryForm,
+  currentStaffId,
+  renderingUser,
+}) {
   const [basicPay, setbasicPay] = useState(0);
   const [hra, sethra] = useState(0);
   const [allowance, setallowance] = useState(0);
@@ -31,6 +35,7 @@ function AddSalaryForm({ setopeningSalaryForm, currentStaffId }) {
 
       console.log("Salary added successfully!!!");
       setopeningSalaryForm(false);
+      renderingUser();
     } catch (error) {
       console.log("Something went worng while adding saary", error);
     }
@@ -56,7 +61,7 @@ function AddSalaryForm({ setopeningSalaryForm, currentStaffId }) {
             <p className="font-semibold text-[#196d8e]">Basic Pay</p>
             <input
               type="number"
-              onChange={(e) => setbasicPay(e.target.value)}
+               onChange={(e) => setbasicPay(Number(e.target.value) || 0)}
               placeholder="₹ 20,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />

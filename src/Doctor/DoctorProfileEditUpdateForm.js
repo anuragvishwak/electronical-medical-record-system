@@ -55,7 +55,7 @@ function DoctorProfileEditUpdateForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white h-screen w-6/12 my-5 overflow-auto p-5 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Profile Details</p>
+          <p className="text-[#212a31] text-xl font-bold">Profile Update</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {

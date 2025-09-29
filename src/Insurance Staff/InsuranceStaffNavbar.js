@@ -35,7 +35,14 @@ function InsuranceStaffNavbar() {
             location.pathname === "/InsuranceStaffClaimStatus" ? "text-[#196d8e]" : ""
           }`}
         >Claim Status</button>
-        <button>Profile / Setting</button>
+        <button 
+         onClick={() => {
+            navigate("/InsuranceDeptProfile");
+          }}
+          className={`${
+            location.pathname === "/InsuranceDeptProfile" ? "text-[#196d8e]" : ""
+          }`}
+        >Profile / Setting</button>
       </div>
       <button
       onClick={()=>{

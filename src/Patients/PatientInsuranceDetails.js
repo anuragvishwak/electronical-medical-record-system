@@ -3,17 +3,39 @@ import PatientNavbar from "./PatientNavbar";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { IoNotifications } from "react-icons/io5";
+import { BsShield } from "react-icons/bs";
+import { CgDollar } from "react-icons/cg";
+import { FaIndianRupeeSign } from "react-icons/fa6";
+import { TbCheckupList } from "react-icons/tb";
 
 function PatientInsuranceDetails() {
-  const [gatheringInsuranceDetails, setgatheringInsuranceDetails] = useState([]);
+  const [gatheringInsuranceDetails, setgatheringInsuranceDetails] = useState(
+    []
+  );
+  const [gatheringInssuranceProvider, setgatheringInsuranceProvider] = useState(
+    []
+  );
   const [gettingUser, setgettingUser] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+
+  const [gettingClaimStatus, setgettingClaimStatus] = useState([]);
 
   const loggedInEmail = localStorage.getItem("email");
 
   async function renderingInsurances() {
     const taskDetails = await getDocs(
       collection(database, "insurance_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setgatheringInsuranceDetails(multipleArray);
+  }
+
+  async function renderingInsuranceProvider() {
+    const taskDetails = await getDocs(
+      collection(database, "insurance_provider_database")
     );
     let multipleArray = taskDetails.docs.map((doc) => ({
       id: doc.id,
@@ -36,9 +58,22 @@ function PatientInsuranceDetails() {
     }
   }
 
+  async function renderingClaimStatus() {
+    const taskDetails = await getDocs(
+      collection(database, "claim_status_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingClaimStatus(multipleArray);
+  }
+
   useEffect(() => {
     renderingInsurances();
     renderingUser();
+    renderingClaimStatus();
   }, []);
 
   const filteredInsuranceDetails = currentUser
@@ -51,46 +86,199 @@ function PatientInsuranceDetails() {
     <div className="bg-gray-50 h-screen">
       <PatientNavbar />
       <div>
-       <div className="bg-white m-4 p-5 border border-gray-300 shadow rounded">
-         <div className="">
-          <p className="text-2xl text-[#212a31] font-bold">Insurance Details</p>
-          <p className="text-[#196d8e]">
-            All the{" "}
-            <span className="text-[#212a31] text-sm font-semibold">
-              Insurance Details
-            </span>{" "}
-            will be displayed here.
-          </p>
-        </div>
-        <hr className="my-3 border-gray-300"/>
-        <div className="flex items-center justify-between">
-          <input
-            placeholder="Search Insurance provider..."
-            className="border border-gray-400 w-6/12 p-1 rounded"
-          />
-
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
-        </div>
-       </div>
-
-        <div className="mx-5 mt-5 space-y-3">
+        <div className="m-5 space-y-3">
           {filteredInsuranceDetails.length > 0 ? (
             filteredInsuranceDetails.map((insurance) => (
-              <div
-                key={insurance.id}
-                className="bg-white border p-4 rounded shadow-sm"
-              >
-                <p className="font-semibold text-lg">{insurance.providerName}</p>
-                <p className="text-gray-600">Policy No: {insurance.policyNumber}</p>
-                <p className="text-gray-600">Patient: {insurance.patient}</p>
-                <p className="text-gray-600">
-                  Coverage: ₹{insurance.sumInsured}/-
-                </p>
+              <div>
+                <div
+                  key={insurance.id}
+                  className="bg-white border p-4 rounded shadow broder-gray-300"
+                >
+                  <div>
+                    <div className="flex items-center text-[#212a31] space-x-1">
+                      <BsShield size={20} />
+                      <p className="font-bold text-xl">
+                        Basic Policy Information
+                      </p>
+                    </div>
+                    <p className=" text-[#196d8e]">
+                      Core insurance policy details and coverage validity.
+                    </p>
+                  </div>
+
+                  <div className="flex mt-5 items-center gap-10">
+                    <div>
+                      <p className=" text-[#196d8e]">Insurance Provider</p>
+                      <p className="text-[#212a31] font-bold capitalize">
+                        {insurance.providerName}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className=" text-[#196d8e]">Policy Number</p>
+                      <p className="text-[#212a31] font-bold capitalize">
+                        {insurance.policyNumber}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className=" text-[#196d8e]">Coverage Type</p>
+                      <p className="text-[#212a31] font-bold capitalize">
+                        {insurance.coverageType}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className=" text-[#196d8e]">Coverage Amount</p>
+                      <div className="text-[#212a31] flex items-center">
+                        <FaIndianRupeeSign />
+                        <p className="font-bold capitalize">
+                          {insurance.sumInsured}/-
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className=" text-[#196d8e]">Status</p>
+                      <p
+                        className={`font-bold py-0.5 px-3 rounded-full text-sm ${
+                          insurance.status === "pending"
+                            ? "bg-red-500 text-white"
+                            : "bg-green-500 text-white"
+                        }`}
+                      >
+                        {insurance.status}
+                      </p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-300 my-4" />
+                  <div className="flex items-center gap-10">
+                    <div>
+                      <p className="text-[#196d8e]">Valid From</p>
+                      <p className="text-[#212a31] font-bold capitalize">
+                        {insurance.validFrom}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className=" text-[#196d8e]">Valid To</p>
+                      <p className="text-[#212a31] font-bold capitalize">
+                        {insurance.validTo}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white p-5 mt-5 rounded shadow border border-gray-300">
+                  <div>
+                    <div className="flex items-center text-[#212a31] space-x-1">
+                      <TbCheckupList size={20} />
+                      <p className="font-bold text-xl">Claim Details</p>
+                    </div>
+                    <p className=" text-[#196d8e]">
+                      Track submitted claims, approvals, and settlement details.
+                    </p>
+                  </div>
+
+                  {gettingClaimStatus
+                    .filter(
+                      (claim) => claim.providerName === insurance.providerName
+                    )
+                    .map((claim) => (
+                      <div>
+                        <div className="flex items-center mt-5 gap-10">
+                          <div>
+                            <p className=" text-[#196d8e]">
+                              Date of Claim Submittion
+                            </p>
+                            <p className="font-bold capitalize">
+                              {claim.dateOfClaimSubmission}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">Claim Type</p>
+                            <p className="font-bold capitalize">
+                              {claim.claimType}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">
+                              Treatment & Diagnosis
+                            </p>
+                            <p className="font-bold capitalize">
+                              {claim.treatmentAndDiagnosis}
+                            </p>
+                          </div>
+                        </div>
+                        <hr className="border-gray-300 my-4" />
+
+                        <div className="flex items-center mt-5 gap-10">
+                          <div>
+                            <p className=" text-[#196d8e]">
+                              Claim Amount Filed
+                            </p>
+                            <div className="text-[#212a31] flex items-center">
+                              <FaIndianRupeeSign />
+                              <p className="font-bold capitalize">
+                                {claim.claimAmountFiled}/-
+                              </p>
+                            </div>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">
+                              Claim Amount Approved
+                            </p>
+                            <div className="text-[#212a31] flex items-center">
+                              <FaIndianRupeeSign />
+                              <p className="font-bold capitalize">
+                                {claim.claimAmountApproved}/-
+                              </p>
+                            </div>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">Settlement Amount</p>
+                            <div className="text-[#212a31] flex items-center">
+                              <FaIndianRupeeSign />
+                              <p className="font-bold capitalize">
+                                {claim.settlementAmount}/-
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr className="border-gray-300 my-4" />
+
+                        <div className="flex items-center gap-10">
+                          <div>
+                            <p className=" text-[#196d8e]">Date of Payment</p>
+                            <p className="text-[#212a31] font-bold capitalize">
+                              {claim.dateOfPayment}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">Payment Mode</p>
+                            <p className="text-[#212a31] font-bold capitalize">
+                              {claim.paymentMode}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className=" text-[#196d8e]">
+                              Transaction Reference Number
+                            </p>
+                            <p className="text-[#212a31] font-bold capitalize">
+                              #{claim.transactionReferenceNo}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
             ))
           ) : (
