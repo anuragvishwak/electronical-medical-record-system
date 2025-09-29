@@ -61,7 +61,7 @@ function AddSalaryForm({
             <p className="font-semibold text-[#196d8e]">Basic Pay</p>
             <input
               type="number"
-              onChange={(e) => setbasicPay(e.target.value)}
+               onChange={(e) => setbasicPay(Number(e.target.value) || 0)}
               placeholder="₹ 20,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />

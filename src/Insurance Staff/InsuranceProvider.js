@@ -28,7 +28,7 @@ function InsuranceProvider() {
       ...doc.data(),
     }));
 
-    setgettingInsuranceCompanies(multipleArray);
+
   }
 
   useEffect(() => {

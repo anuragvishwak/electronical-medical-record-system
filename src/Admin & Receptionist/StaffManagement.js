@@ -174,7 +174,7 @@ function StaffManagement() {
                   </p>
                   <p className="text-[#212a31] flex mt-2 items-center font-bold text-lg">
                     <FaIndianRupeeSign />
-                    {user.allowance}/-
+                    {user.netSalary}/-
                   </p>
                 </div>
               </div>
