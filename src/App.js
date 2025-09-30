@@ -43,6 +43,8 @@ import DoctorPatients from "./Doctor/DoctorPatients";
 import MedicationLogs from "./Nurse/MedicationLogs";
 import StaffManagement from "./Admin & Receptionist/StaffManagement";
 import InsuranceDeptProfile from "./Insurance Staff/InsuranceDeptProfile";
+import PatientMedicalHistory from "./Patients/PatientMedicalHistory";
+import PatientPaymentHistory from "./Patients/PatientPaymentHistory";
 
 function App() {
   return (
@@ -125,6 +127,10 @@ function App() {
           <Route path="/DoctorPatients" element={<DoctorPatients />} />
           <Route path="/InsuranceDeptProfile" element={<InsuranceDeptProfile />} />
           <Route path="/StaffManagement" element={<StaffManagement />} />
+          <Route path="/PatientMedicalHistory" element={<PatientMedicalHistory />} />
+          <Route path="/PatientPaymentHistory" element={<PatientPaymentHistory />} />
+
+
         </Routes>
       </Router>
     </div>

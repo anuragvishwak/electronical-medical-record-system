@@ -48,7 +48,7 @@ function CentralizedAppointment({ email }) {
     filteredAppointments = gettingAppointments;
   }
 
-  async function updateVisitStatus(appointmentId, status) {
+  async function updateVisitStatus(appointmentId, visitStatus) {
     try {
       const appointmentRef = doc(
         database,
@@ -56,22 +56,22 @@ function CentralizedAppointment({ email }) {
         appointmentId
       );
 
-      let payload = { visitStatus: status };
+      let payload = { visitvisitStatus: visitStatus };
 
-      if (status === "Checked-In") {
+      if (visitStatus === "Checked-In") {
         payload.checkInTime = new Date().toISOString();
       }
 
-      if (status === "Checked-Out") {
+      if (visitStatus === "Checked-Out") {
         payload.checkOutTime = new Date().toISOString();
       }
 
       await updateDoc(appointmentRef, payload);
 
-      console.log("Visit status updated successfully!");
+      console.log("Visit visitStatus updated successfully!");
       renderingAppointments();
     } catch (error) {
-      console.error("Error updating visit status:", error.message);
+      console.error("Error updating visit visitStatus:", error.message);
     }
   }
 

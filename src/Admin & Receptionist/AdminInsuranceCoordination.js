@@ -3,33 +3,20 @@ import AdminNavbar from "./AdminNavbar";
 import { IoNotifications } from "react-icons/io5";
 import { database } from "../FirebaseConfiguration";
 import { collection, getDocs } from "firebase/firestore";
+import InsuranceCoodinationNavbar from "./Insurance Coordination/InsuranceCoodinationNavbar";
+import InsuranceProviderOverview from "./Insurance Coordination/InsuranceProviderOverview";
+import ClaimMonitoring from "./Insurance Coordination/ClaimMonitoring";
+import InsuranceToPatient from "./Insurance Coordination/InsuranceToPatient";
 
 function AdminInsuranceCoordination() {
-
-  const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState([]);
-
-  async function renderingInsuranceCompany() {
-    const taskDetails = await getDocs(
-      collection(database, "insurance_provider_database")
-    );
-    let multipleArray = taskDetails.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
-    setgettingInsuranceCompanies(multipleArray);
-  }
-
-  useEffect(() => {
-    renderingInsuranceCompany();
-  }, []);
+  const [currentTab, setcurrentTab] = useState("insurance-provider-overview");
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen h-full">
       <AdminNavbar />
       <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
-          <p className="login-2xl text-[#212a31] font-bold">
+          <p className="text-2xl text-[#212a31] font-bold">
             Insurance Coordinations
           </p>
           <p className="text-[#196d8e]">
@@ -53,9 +40,21 @@ function AdminInsuranceCoordination() {
           </button>
         </div>
       </div>
-      <div>
-        <p>Overview</p>
-        {gettingInsuranceCompanies.length}
+      <div className="flex">
+        <InsuranceCoodinationNavbar
+          setcurrentTab={setcurrentTab}
+          currentTab={currentTab}
+        />
+
+        <div className="w-full">
+          {currentTab === "insurance-provider-overview" ? (
+            <InsuranceProviderOverview />
+          ) : currentTab === "insurance-to-patient" ? (
+            <InsuranceToPatient />
+          ) : (
+            <ClaimMonitoring />
+          )}
+        </div>
       </div>
     </div>
   );
