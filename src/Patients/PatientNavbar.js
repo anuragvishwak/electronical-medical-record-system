@@ -78,8 +78,26 @@ function PatientNavbar() {
         >
           Lab Reports
         </button>
-        <button>Medical History</button>
-        <button>Payment History</button>
+        <button
+         onClick={() => {
+            navigate("/PatientMedicalHistory");
+          }}
+          className={`${
+            location.pathname === "/PatientMedicalHistory"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >Medical History</button>
+        <button
+         onClick={() => {
+            navigate("/PatientPaymentHistory");
+          }}
+          className={`${
+            location.pathname === "/PatientPaymentHistory"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >Payment History</button>
         <button
           onClick={() => {
             navigate("/PatientInsuranceDetails");
