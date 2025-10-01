@@ -27,7 +27,7 @@ function InsuranceProvider() {
       id: doc.id,
       ...doc.data(),
     }));
-
+setgettingInsuranceCompanies(multipleArray);
 
   }
 

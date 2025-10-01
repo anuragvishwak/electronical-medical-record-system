@@ -13,8 +13,10 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
   const [test, settest] = useState("");
   const [additionalNote, setadditionalNote] = useState("");
 
-  async function renderingMedicines(){
-    const taskDetails = await getDocs(collection(database, "user_database"));
+  async function renderingMedicines() {
+    const taskDetails = await getDocs(
+      collection(database, "medicine_database")
+    );
     let multipleArray = taskDetails.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -22,9 +24,7 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
     setgettingMedicines(multipleArray);
   }
 
-
-  console.log("finding medicines",gettingMedicines);
-  
+  console.log("finding medicines", gettingMedicines);
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
