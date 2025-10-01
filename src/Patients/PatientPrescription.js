@@ -15,6 +15,8 @@ function PatientPrescription() {
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingMedicines, setgettingMedicines] = useState([]);
 
+console.log('finding prescriptions', gettingPrescriptions)
+
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
     let multipleArray = taskDetails.docs.map((doc) => ({
