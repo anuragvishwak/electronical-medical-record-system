@@ -1,6 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { database } from "../FirebaseConfiguration";
+import { z } from "zod";
 
 function DoctorProfileEditUpdateForm({
   setopeningDoctorProfileUpdateForm,
@@ -21,33 +22,66 @@ function DoctorProfileEditUpdateForm({
   const [leavesHoliday, setleavesHoliday] = useState("");
   const [achievementsAwards, setachievementsAwards] = useState("");
   const [doctorId, setdoctorId] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const profileUpdateSchema = z.object({
+    gender: z.string().min(1, "Gender is compulsory."),
+    dateOfBirth: z.string().min(1, "Date of Birth is compulsory."),
+    state: z.string().min(1, "State is compulsory."),
+    city: z.string().min(1, "City is compulsory."),
+    country: z.string().min(1, "Country is compulsory."),
+    designation: z.string().min(1, "Designation is compulsory."),
+    department: z.string().min(1, "Department is compulsory."),
+    yearsOfExperience: z.string().min(1, "Years of Experience is compulsory."),
+    qualification: z.string().min(1, "Qualification is compulsory."),
+    medicalLicenseNumber: z
+      .string()
+      .min(1, "Medical License Number is compulsory."),
+    workingHours: z.string().min(1, "Working Hours is compulsory."),
+    shiftTime: z.string().min(1, "Shift Time is compulsory."),
+    leavesHoliday: z.string().min(1, "Leaves & Holiday is compulsory."),
+    achievementsAwards: z
+      .string()
+      .min(1, "Achievement & Awards is compulsory."),
+    doctorId: z.string().min(1, "Doctor ID is compulsory."),
+  });
 
   async function updatingProfileDetails() {
+    const profileUpdateData = {
+      gender: gender,
+      dateOfBirth: dateOfBirth,
+      country: country,
+      state: state,
+      city: city,
+      doctorId: doctorId,
+      qualification: qualification,
+      designation: designation,
+      department: department,
+      yearsOfExperience: yearsOfExperience,
+      medicalLicenseNumber: medicalLicenseNumber,
+      workingHours: workingHours,
+      shiftTime: shiftTime,
+      leavesHoliday: leavesHoliday,
+      achievementsAwards: achievementsAwards,
+    };
     try {
+      profileUpdateSchema.parse(profileUpdateData);
       const claimRef = doc(database, "user_database", currentUser.id);
-      await updateDoc(claimRef, {
-        gender: gender,
-        dateOfBirth: dateOfBirth,
-        country: country,
-        state: state,
-        city: city,
-        doctorId: doctorId,
-        qualification: qualification,
-        designation: designation,
-        department: department,
-        yearsOfExperience: yearsOfExperience,
-        medicalLicenseNumber: medicalLicenseNumber,
-        workingHours: workingHours,
-        shiftTime: shiftTime,
-        leavesHoliday: leavesHoliday,
-        achievementsAwards: achievementsAwards,
-      });
+      await updateDoc(claimRef, profileUpdateData);
 
       console.log("Profile Details updated successfully.");
       setopeningDoctorProfileUpdateForm(false);
     } catch (error) {
-      console.error("Error during update profile details:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return;
+      } else {
+        console.error("Error while creating prescription:", error.message);
+      }
     }
   }
 
@@ -91,6 +125,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder=""
                 />
+                {errors.dateOfBirth && (
+                  <p className="text-red-500 text-sm">{errors.dateOfBirth}</p>
+                )}
               </div>
 
               <div>
@@ -105,6 +142,9 @@ function DoctorProfileEditUpdateForm({
                   <option>Male</option>
                   <option>Female</option>
                 </select>
+                {errors.gender && (
+                  <p className="text-red-500 text-sm">{errors.gender}</p>
+                )}
               </div>
             </div>
           </div>
@@ -142,6 +182,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="+91 84371950"
                 />
+                {errors.phone_no && (
+                  <p className="text-red-500 text-sm">{errors.phone_no}</p>
+                )}
               </div>
 
               <div>
@@ -154,6 +197,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="India"
                 />
+                {errors.country && (
+                  <p className="text-red-500 text-sm">{errors.country}</p>
+                )}
               </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">State</p>
@@ -165,6 +211,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Maharastra"
                 />
+                {errors.state && (
+                  <p className="text-red-500 text-sm">{errors.state}</p>
+                )}
               </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">City</p>
@@ -176,6 +225,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Mumbai"
                 />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.city}</p>
+                )}
               </div>
             </div>
           </div>
@@ -196,6 +248,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="DOC-345"
                 />
+                {errors.doctorId && (
+                  <p className="text-red-500 text-sm">{errors.doctorId}</p>
+                )}
               </div>
 
               <div>
@@ -208,6 +263,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Consultant, Surgeon, etc."
                 />
+                {errors.designation && (
+                  <p className="text-red-500 text-sm">{errors.designation}</p>
+                )}
               </div>
 
               <div>
@@ -225,6 +283,9 @@ function DoctorProfileEditUpdateForm({
                   <option value="orthopedics">Orthopedics</option>
                   <option value="general">General Medicine</option>
                 </select>
+                {errors.department && (
+                  <p className="text-red-500 text-sm">{errors.department}</p>
+                )}
               </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">
@@ -238,6 +299,11 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="10 Years"
                 />
+                {errors.yearsOfExperience && (
+                  <p className="text-red-500 text-sm">
+                    {errors.yearsOfExperience}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -259,6 +325,9 @@ function DoctorProfileEditUpdateForm({
                   <option value="PhD">PhD</option>
                   <option value="Other">Other</option>
                 </select>
+                {errors.qualification && (
+                  <p className="text-red-500 text-sm">{errors.qualification}</p>
+                )}
               </div>
 
               <div>
@@ -273,6 +342,11 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="ME0000"
                 />
+                {errors.medicalLicenseNumber && (
+                  <p className="text-red-500 text-sm">
+                    {errors.medicalLicenseNumber}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -293,6 +367,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="5 days"
                 />
+                {errors.workingHours && (
+                  <p className="text-red-500 text-sm">{errors.workingHours}</p>
+                )}
               </div>
 
               <div>
@@ -305,6 +382,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="9:00 AM – 5:00 PM"
                 />
+                {errors.shiftTime && (
+                  <p className="text-red-500 text-sm">{errors.shiftTime}</p>
+                )}
               </div>
 
               <div>
@@ -319,6 +399,9 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="10 leaves (in a year)"
                 />
+                {errors.leavesHoliday && (
+                  <p className="text-red-500 text-sm">{errors.leavesHoliday}</p>
+                )}
               </div>
             </div>
           </div>
@@ -339,6 +422,11 @@ function DoctorProfileEditUpdateForm({
                 className="w-full border border-gray-300 rounded-md p-1.5"
                 placeholder="Best Surgeon 2024"
               />
+              {errors.achievementsAwards && (
+                <p className="text-red-500 text-sm">
+                  {errors.achievementsAwards}
+                </p>
+              )}
             </div>
           </div>
           <div className="mt-5 flex justify-end">

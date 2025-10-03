@@ -2,11 +2,10 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
+import { z } from "zod";
 
 function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
-
   const date = new Date();
-  console.log("finding time", date);    
 
   const toast = useRef();
   const email = localStorage.getItem("email");
@@ -16,21 +15,33 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
   const [priority, setpriority] = useState("");
   const [clinicalNotes, setclinicalNotes] = useState("");
   const [orderStatus, setorderStatus] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const labOrderTestSchema = z.object({
+    dateTime: z.string().min(1, "Date and Time is compulsory."),
+    testRequested: z.string().min(1, "Test is compulsory."),
+    specimenType: z.string().min(1, "Specimen Type is compulsory."),
+    priority: z.string().min(1, "Priority is compulsory."),
+    clinicalNotes: z.string().min(1, "Clinical Notes is compulsory."),
+    orderStatus: z.string().min(1, "Order Status is compulsory."),
+  });
 
   async function handleCreateLabOrder() {
+    const labOrderData = {
+      doctor: email,
+      patient: capturingDataObject.patient,
+      appointmentId: capturingDataObject.appointmentId,
+      constulationId: capturingDataObject.id,
+      dateTime: dateTime,
+      testRequested: testRequested,
+      specimenType: specimenType,
+      priority: priority,
+      clinicalNotes: clinicalNotes,
+      orderStatus: orderStatus,
+    };
     try {
-      addDoc(collection(database, "lab_order_database"), {
-        doctor: email,
-        patient: capturingDataObject.patient,
-        appointmentId: capturingDataObject.appointmentId,
-        constulationId: capturingDataObject.id,
-        dateTime: dateTime,
-        testRequested: testRequested,
-        specimenType: specimenType,
-        priority: priority,
-        clinicalNotes: clinicalNotes,
-        orderStatus: orderStatus,
-      });
+      labOrderTestSchema.parse(labOrderData);
+      addDoc(collection(database, "lab_order_database"), labOrderData);
 
       console.log("Lab Order added to Firestore.");
       toast.current.show({
@@ -40,8 +51,16 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
       });
       setopeningLabOrderForm(false);
     } catch (error) {
-      console.error("Error during creating Consultation:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return;
+      } else {
+        console.error("Error while creating prescription:", error.message);
+      }
     }
   }
 
@@ -89,11 +108,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
-                <Toast ref={toast} />
+        <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
-          <p className="text-[#1976D2] text-xl font-bold">
-            Create Consultation
-          </p>
+          <p className="text-[#1976D2] text-xl font-bold">Create Lab Order</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -116,6 +133,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
                 className="w-full border border-gray-300 rounded-md p-2"
                 placeholder="12/6/2023"
               />
+              {errors.dateTime && (
+                <p className="text-red-500 text-sm">{errors.dateTime}</p>
+              )}
             </div>
             <div>
               <p className="font-semibold text-[#1976D2]">Lab Test Requested</p>
@@ -133,6 +153,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
                   </option>
                 ))}
               </select>
+              {errors.testRequested && (
+                <p className="text-red-500 text-sm">{errors.testRequested}</p>
+              )}
             </div>
           </div>
 
@@ -153,6 +176,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
                   </option>
                 ))}
               </select>
+              {errors.specimenType && (
+                <p className="text-red-500 text-sm">{errors.specimenType}</p>
+              )}
             </div>
 
             <div>
@@ -168,6 +194,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
                 <option>Routine</option>
                 <option>Urgent</option>
               </select>
+              {errors.priority && (
+                <p className="text-red-500 text-sm">{errors.priority}</p>
+              )}
             </div>
           </div>
 
@@ -183,6 +212,9 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
               placeholder="Test should be completed within 2 days..."
               className="border rounded border-gray-300 h-40 w-full p-1.5"
             ></textarea>
+            {errors.clinicalNotes && (
+              <p className="text-red-500 text-sm">{errors.clinicalNotes}</p>
+            )}
           </div>
 
           <div className="mt-3">
@@ -202,7 +234,10 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
               <option value="completed">Completed</option>
               <option value="cancelled">Cancelled</option>
               <option value="rejected">Rejected</option>
-            </select> 
+            </select>
+            {errors.orderStatus && (
+              <p className="text-red-500 text-sm">{errors.orderStatus}</p>
+            )}
           </div>
         </div>
 

@@ -85,7 +85,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
       error.issues.forEach((err) => {
         fieldErrors[err.path[0]] = err.message;
       });
-      setErrors(fieldErrors); // show in UI
+      setErrors(fieldErrors); 
       console.error("Validation Errors:", fieldErrors);
     } else {
       console.error("Error while creating medicine:", error.message);

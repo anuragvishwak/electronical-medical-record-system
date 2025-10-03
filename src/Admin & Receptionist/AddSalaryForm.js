@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { database } from "../FirebaseConfiguration";
 import { doc, updateDoc } from "firebase/firestore";
+import { z } from "zod";
 
 function AddSalaryForm({
   setopeningSalaryForm,
@@ -12,6 +13,15 @@ function AddSalaryForm({
   const [allowance, setallowance] = useState(0);
   const [deduction, setdeduction] = useState(0);
   const [netSalary, setnetSalary] = useState(0);
+  const [errors, setErrors] = useState({});
+
+  const salarySchema = {
+    basicPay: z.string().min(1, "Basic Pay is compulsory."),
+    hra: z.string().min(1, "HRA is compulsory."),
+    allowance: z.string().min(1, "Allowance is compulsory."),
+    deduction: z.string().min(1, "Decuction is compulsory."),
+    netSalary: z.string().min(1, "Net Salary is compulsory."),
+  };
 
   useEffect(() => {
     const AddAmount =
@@ -21,22 +31,34 @@ function AddSalaryForm({
   }, [basicPay, hra, allowance, deduction]);
 
   async function AddSalary() {
-    try {
-      const staffRef = doc(database, "user_database", currentStaffId);
+    const SalaryData = {
+      basicPay: parseInt(basicPay || 0),
+      hra: parseInt(hra || 0),
+      allowance: parseInt(allowance || 0),
+      deduction: parseInt(deduction || 0),
+      netSalary: netSalary,
+      lastUpdated: new Date(),
+    };
 
-      await updateDoc(staffRef, {
-        basicPay: parseInt(basicPay || 0),
-        hra: parseInt(hra || 0),
-        allowance: parseInt(allowance || 0),
-        deduction: parseInt(deduction || 0),
-        netSalary: netSalary,
-        lastUpdated: new Date(),
-      });
+    try {
+      salarySchema.parse(SalaryData);
+      const staffRef = doc(database, "user_database", currentStaffId);
+      await updateDoc(staffRef, SalaryData);
 
       console.log("Salary added successfully!!!");
       setopeningSalaryForm(false);
       renderingUser();
     } catch (error) {
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        console.error("Validation Errors:", fieldErrors);
+      } else {
+        console.error("Error while creating medicine:", error.message);
+      }
       console.log("Something went worng while adding saary", error);
     }
   }
@@ -61,10 +83,13 @@ function AddSalaryForm({
             <p className="font-semibold text-[#196d8e]">Basic Pay</p>
             <input
               type="number"
-               onChange={(e) => setbasicPay(Number(e.target.value) || 0)}
+              onChange={(e) => setbasicPay(Number(e.target.value) || 0)}
               placeholder="₹ 20,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
+              {errors.basicPay && (
+                <p className="text-red-500 text-sm">{errors.basicPay}</p>
+              )}
           </div>
 
           <div>
@@ -77,6 +102,9 @@ function AddSalaryForm({
               placeholder="₹ 10,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
+              {errors.hra && (
+                <p className="text-red-500 text-sm">{errors.hra}</p>
+              )}
           </div>
 
           <div>
@@ -87,6 +115,9 @@ function AddSalaryForm({
               placeholder="₹ 5,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
+             {errors.allowance && (
+                <p className="text-red-500 text-sm">{errors.allowance}</p>
+              )}
           </div>
 
           <div>
@@ -97,6 +128,9 @@ function AddSalaryForm({
               placeholder="₹ 3,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
+             {errors.deduction && (
+                <p className="text-red-500 text-sm">{errors.deduction}</p>
+              )}
           </div>
 
           <div>
@@ -107,6 +141,9 @@ function AddSalaryForm({
               readOnly
               className="border rounded border-gray-300 w-full p-1.5 bg-gray-100"
             />
+             {errors.netSalary && (
+                <p className="text-red-500 text-sm">{errors.netSalary}</p>
+              )}
           </div>
         </div>
 

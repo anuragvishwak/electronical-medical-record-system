@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
+import {z} from "zod";
 
 function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
   const toast = useRef(null);
@@ -12,6 +13,14 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
   const [medicine, setmedicine] = useState("");
   const [test, settest] = useState("");
   const [additionalNote, setadditionalNote] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const prescriptionSchema = z.object({
+    patient: z.string().min(1, "Patient is compulsory."),
+    medicine: z.string().min(1, "Medicine is compulsory."),
+    test: z.string().min(1, "Test is compulsory."),
+    additionalNote: z.string().min(1, "Additional Note is compulsory."),
+  });
 
   async function renderingMedicines() {
     const taskDetails = await getDocs(
@@ -47,19 +56,20 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
 
   async function creatingPrescription() {
     const currentDate = new Date();
-
+    const prescriptionData = {
+      createdAt: currentDate,
+      doctor: email,
+      patient: patient,
+      test: test,
+      medicine: medicine,
+      additionalNote: additionalNote,
+      appointmentId: appointment.id,
+    };
     try {
-      addDoc(collection(database, "prescription_database"), {
-        createdAt: currentDate,
-        doctor: email,
-        patient: patient,
-        test: test,
-        medicine: medicine,
-        additionalNote: additionalNote,
-        appointmentId: appointment.id,
-      });
+      prescriptionSchema.parse(prescriptionData);
+      addDoc(collection(database, "prescription_database"), prescriptionData);
 
-      console.log("Prescription added to Firestore.");
+      console.log("Prescription added to Firestore."); 
       toast.current.show({
         severity: "success",
         summary: "Prescription created Successfully!!!",
@@ -67,8 +77,16 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
       });
       setopeningPrescriptionForm(false);
     } catch (error) {
-      console.error("Error during sign up:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return; 
+      } else {
+        console.error("Error while creating prescription:", error.message);
+      }
     }
   }
 
@@ -96,27 +114,39 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
             <div>
               <p className="font-semibold text-[#1976D2]">Patient Name</p>
               <select
+                value={patient}
                 onChange={(e) => setpatient(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
               >
-                <option>Select Patient</option>
+                <option value="">Select Patient</option>
                 {patientData.map((user) => (
-                  <option value={user.email}>{user.name}</option>
+                  <option key={user.id} value={user.email}>
+                    {user.name}
+                  </option>
                 ))}
               </select>
+              {errors.patient && (
+                <p className="text-red-500 text-sm">{errors.patient}</p>
+              )}
             </div>
 
             <div>
               <p className="font-semibold text-[#1976D2]">Medicines</p>
               <select
+                value={medicine}
                 onChange={(e) => setmedicine(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
               >
-                <option>Select Medicines</option>
+                <option value="">Select Medicines</option>
                 {gettingMedicines.map((med) => (
-                  <option value={med.name}>{med.name}</option>
+                  <option key={med.id} value={med.name}>
+                    {med.name}
+                  </option>
                 ))}
               </select>
+              {errors.medicine && (
+                <p className="text-red-500 text-sm">{errors.medicine}</p>
+              )}
             </div>
           </div>
         </div>
@@ -134,6 +164,9 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
                 placeholder="Combiflame"
                 className="border rounded border-gray-300 w-full p-1.5"
               ></input>
+              {errors.test && (
+                <p className="text-red-500 text-sm">{errors.test}</p>
+              )}
             </div>
 
             <div>
@@ -148,6 +181,9 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
                 placeholder="Test should be completed within 2 days..."
                 className="border rounded border-gray-300 h-40 w-full p-1.5"
               ></textarea>
+              {errors.additionalNote && (
+                <p className="text-red-500 text-sm">{errors.additionalNote}</p>
+              )}
             </div>
           </div>
         </div>
