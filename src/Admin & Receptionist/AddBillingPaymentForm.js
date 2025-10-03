@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { FaBriefcaseMedical, FaIndianRupeeSign, FaUser } from "react-icons/fa6";
+import { z } from "zod";
 
 function AddBillingPaymentForm({
   setopeningAddBillingPaymentForm,
@@ -16,24 +17,44 @@ function AddBillingPaymentForm({
   const [finalAmount, setfinalAmount] = useState("");
   const nursingCharges = 2000;
   const serviceCharges = 1000;
+  const [errors, setErrors] = useState({});
   const [consultationCharges, setconsultationCharges] = useState("");
   const [labCharges, setlabCharges] = useState("");
 
-  function creatingBill() {
+  const billSchema = z.object({
+    surgeryFee: z.string().min(1, "surgery fee amount is required."),
+    billDate: z.string().min(1, "Bill Date is required."),
+  });
+
+  async function creatingBill() {
+    const billData = {
+      appointmentId: capturingObject.id,
+      billDate: billDate,
+      consultationCharges: consultationCharges,
+      patient: capturingObject.patient,
+      doctor: capturingObject.doctor,
+      surgeryFee: surgeryFee,
+      labCharges: labCharges,
+      subTotal: subTotal,
+      finalAmount: finalAmount,
+    };
+
     try {
-      addDoc(collection(database, "billing_payment_database"), {
-        appointmentId: capturingObject.id,
-        billDate: billDate,
-        consultationCharges: consultationCharges,
-        patient: capturingObject.patient,
-        doctor: capturingObject.doctor,
-        surgeryFee: surgeryFee,
-        labCharges: labCharges,
-        subTotal: subTotal,
-        finalAmount: finalAmount,
-      });
+      billSchema.parse(billData);
+    await addDoc(collection(database, "billing_payment_database"), billData);
+
       setopeningAddBillingPaymentForm(false);
     } catch (error) {
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        console.error("Validation Errors:", fieldErrors);
+      } else {
+        console.error("Error while creating medicine:", error.message);
+      }
       console.error("Error during sign up:", error.message);
       throw error;
     }
@@ -113,8 +134,10 @@ function AddBillingPaymentForm({
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm:w-auto sm
-      :w-5/12 p-4 rounded">
+      <div
+        className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm:w-auto sm
+      :w-5/12 p-4 rounded"
+      >
         <div className="flex items-center mb-4 justify-between">
           <p className="text-[#212a31] text-xl font-bold">
             Create Bill / Invoice
@@ -147,6 +170,9 @@ function AddBillingPaymentForm({
                 className="w-full border border-gray-300 rounded-md p-2"
                 placeholder="Star Health Insurance"
               />
+              {errors.billData && (
+                <p className="text-red-500 text-sm">{errors.billDate}</p>
+              )}
             </div>
           </div>
 
@@ -197,6 +223,9 @@ function AddBillingPaymentForm({
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="60000/-"
             />
+             {errors.surgeryFee && (
+                <p className="text-red-500 text-sm">{errors.surgeryFee}</p>
+              )}
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CentralizedSymptoms({setsymptoms}) {
+function CentralizedSymptoms({setsymptoms, error }) {
 
 const symptomsList = [
   { id: 1, name: "Fever" },
@@ -38,6 +38,7 @@ const symptomsList = [
           </option>
         ))}
       </select>
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { database } from "../FirebaseConfiguration";
 import CentralizedDiagnosis from "../CentralizedDiagnosis";
 import CentralizedSymptoms from "../CentralizedSymptoms";
 import { Toast } from "primereact/toast";
+import { z } from "zod";
 
 function CreateConsultationForm({
   setopeningCreateConsultationForm,
@@ -25,6 +26,32 @@ function CreateConsultationForm({
   const [patientData, setpatientData] = useState([]);
   const [istreatmentRequired, setistreatmentRequired] = useState(false);
   const [consultationCharges, setconsultationCharges] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const consultationSchema = z.object({
+    patient: z.string().min(1, "Patient is compulsory."),
+    historyofPresentIllness: z
+      .string()
+      .min(1, "History of Present Illness is compulsory."),
+    pastMedicalHistory: z
+      .string()
+      .min(1, "Past Medical History is compulsory."),
+    treatmentType: z.string().min(1, "Treatment Type is compulsory."),
+    dosage: z.string().min(1, "Dosage is compulsory."),
+    duration: z.string().min(1, "Duration is compulsory."),
+    followUpDate: z.string().min(1, "Follow Up Date is compulsory."),
+    symptoms: z.string().min(1, "Symptomns is compulsory."),
+    diafgnosis: z.string().min(1, "Diagnosis is compulsory."),
+    medication_procedures: z
+      .string()
+      .min(1, "Medication Procedures is compulsory."),
+    additionalInstructions: z
+      .string()
+      .min(1, "Additional Instructions is compulsory."),
+    consultationCharges: z
+      .string()
+      .min(1, "Consultation Charges is compulsory."),
+  });
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -41,25 +68,28 @@ function CreateConsultationForm({
   }
 
   async function CreateConsultationForm() {
+    const consultationData = {
+      doctor: email,
+      patient: patient,
+      symptoms: symptoms,
+      historyofPresentIllness: historyofPresentIllness,
+      pastMedicalHistory: pastMedicalHistory,
+      treatmentType: treatmentType,
+      dosage: dosage,
+      duration: duration,
+      diagnosis: diafgnosis,
+      followUpDate: followUpDate,
+      medication_procedures: medication_procedures,
+      additionalInstructions: additionalInstructions,
+      diagnosis: diafgnosis,
+      appointmentId: appointment.id,
+      treatmentPlanRequired: istreatmentRequired,
+      consultationCharges: consultationCharges,
+    };
+
     try {
-      addDoc(collection(database, "consultation_database"), {
-        doctor: email,
-        patient: patient,
-        symptoms: symptoms,
-        historyofPresentIllness: historyofPresentIllness,
-        pastMedicalHistory: pastMedicalHistory,
-        treatmentType: treatmentType,
-        dosage: dosage,
-        duration: duration,
-        diagnosis: diafgnosis,
-        followUpDate: followUpDate,
-        medication_procedures: medication_procedures,
-        additionalInstructions: additionalInstructions,
-        diagnosis: diafgnosis,
-        appointmentId: appointment.id,
-        treatmentPlanRequired: istreatmentRequired,
-        consultationCharges: consultationCharges
-      });
+      consultationSchema.parse(consultationData);
+      addDoc(collection(database, "consultation_database"),  consultationData);
 
       console.log("Consultation added to Firestore.");
       toast.current.show({
@@ -69,8 +99,16 @@ function CreateConsultationForm({
       });
       setopeningCreateConsultationForm(false);
     } catch (error) {
-      console.error("Error during creating Consultation:", error.message);
-      throw error;
+       if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return; 
+      } else {
+        console.error("Error while creating prescription:", error.message);
+      }
     }
   }
 
@@ -110,8 +148,11 @@ function CreateConsultationForm({
                   <option value={user.email}>{user.name}</option>
                 ))}
               </select>
+                {errors.patient && (
+                <p className="text-red-500 text-sm">{errors.patient}</p>
+              )}
             </div>
-            <CentralizedSymptoms setsymptoms={setsymptoms} />
+            <CentralizedSymptoms error={errors.symptoms}  setsymptoms={setsymptoms} />
           </div>
 
           <div className="grid grid-cols-2 my-3 gap-3">
@@ -127,6 +168,9 @@ function CreateConsultationForm({
                 placeholder="Test should be completed within 2 days..."
                 className="border rounded border-gray-300 h-40 w-full p-1.5"
               ></textarea>
+                {errors.historyofPresentIllness && (
+                <p className="text-red-500 text-sm">{errors.historyofPresentIllness}</p>
+              )}
             </div>
 
             <div>
@@ -141,22 +185,28 @@ function CreateConsultationForm({
                 placeholder="Enter past medical history..."
                 rows={3}
               />
+               {errors.pastMedicalHistory && (
+                <p className="text-red-500 text-sm">{errors.pastMedicalHistory}</p>
+              )}
             </div>
           </div>
 
-         <div className="grid grid-cols-2 gap-3">
-           <CentralizedDiagnosis setdiagnosis={setdiagnosis} />
-          <div>
-            <label className="font-semibold text-[#1976D2]">
-              Consultation Charges
-            </label>
-            <input
-              onChange={(e) => setconsultationCharges(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="40000/-"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <CentralizedDiagnosis setdiagnosis={setdiagnosis} />
+            <div>
+              <label className="font-semibold text-[#1976D2]">
+                Consultation Charges
+              </label>
+              <input
+                onChange={(e) => setconsultationCharges(e.target.value)}
+                className="w-full border border-gray-300 rounded-md p-2"
+                placeholder="40000/-"
+              />
+               {errors.consultationCharges && (
+                <p className="text-red-500 text-sm">{errors.consultationCharges}</p>
+              )}
+            </div>
           </div>
-         </div>
 
           <div className="flex items-center mt-4 space-x-1">
             <input
@@ -190,6 +240,9 @@ function CreateConsultationForm({
                   <option value="counseling">Counseling</option>
                   <option value="other">Other</option>
                 </select>
+                 {errors.treatmentType && (
+                <p className="text-red-500 text-sm">{errors.treatmentType}</p>
+              )}
               </div>
 
               <div className="grid grid-cols-3 my-3 gap-3">
@@ -201,6 +254,9 @@ function CreateConsultationForm({
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="e.g. 500mg twice daily"
                   />
+                   {errors.dosage && (
+                <p className="text-red-500 text-sm">{errors.dosage}</p>
+              )}
                 </div>
                 <div>
                   <label className="font-semibold text-[#1976D2]">
@@ -212,6 +268,9 @@ function CreateConsultationForm({
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="e.g. 5 days"
                   />
+                   {errors.duration && (
+                <p className="text-red-500 text-sm">{errors.duration}</p>
+              )}
                 </div>
 
                 <div>
@@ -223,6 +282,9 @@ function CreateConsultationForm({
                     type="date"
                     className="w-full border border-gray-300 rounded-md p-2"
                   />
+                   {errors.followUpDate && (
+                <p className="text-red-500 text-sm">{errors.followUpDate}</p>
+              )}
                 </div>
               </div>
 
@@ -237,6 +299,9 @@ function CreateConsultationForm({
                     placeholder="Enter medication details or procedures..."
                     rows={3}
                   />
+                   {errors.medication_procedures && (
+                <p className="text-red-500 text-sm">{errors.medication_procedures}</p>
+              )}
                 </div>
                 <div>
                   <label className="font-semibold text-[#1976D2]">
@@ -248,6 +313,9 @@ function CreateConsultationForm({
                     placeholder="Enter any special notes or advice..."
                     rows={3}
                   />
+                   {errors.additionalInstructions && (
+                <p className="text-red-500 text-sm">{errors.additionalInstructions}</p>
+              )}
                 </div>
               </div>
             </div>
