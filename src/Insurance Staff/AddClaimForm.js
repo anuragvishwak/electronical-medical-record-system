@@ -1,6 +1,7 @@
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
+import { z } from "zod";
 
 function AddClaimForm({ setopeningClaimStatus }) {
   const [gettingUsers, setgettingUsers] = useState([]);
@@ -17,6 +18,30 @@ function AddClaimForm({ setopeningClaimStatus }) {
   const [transactionReferenceNo, settransactionReferenceNo] = useState("");
   const [providerName, setproviderName] = useState("");
   const [policyNumber, setpolicyNumber] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const claimStatusSchema = z.object({
+    patient: z.string().min(1, "Patient is compulsory."),
+    dateOfClaimSubmission: z
+      .string()
+      .min(1, "Date of Claim Submission is compulsory."),
+    claimAmountFiled: z.string().min(1, "Claim Amount Filed is compulsory."),
+    claimAmountApproved: z
+      .string()
+      .min(1, "Claim Amount Approved is compulsory."),
+    settlementAmount: z
+      .string()
+      .min(1, "Settlement Amount Filed is compulsory."),
+    claimType: z.string().min(1, "Claim Type Filed is compulsory."),
+    treatmentAndDiagnosis: z
+      .string()
+      .min(1, "Treatment and Diagnosis is compulsory."),
+    paymentMode: z.string().min(1, "Payment Mode is compulsory."),
+    transactionReferenceNo: z
+      .string()
+      .min(1, "Transaction Reference No is compulsory."),
+    dateOfPayment: z.string().min(1, "Date of Payment is compulsory."),
+  });
 
   async function renderingUsers() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -45,28 +70,38 @@ function AddClaimForm({ setopeningClaimStatus }) {
   }
 
   async function adddingClaimStatus() {
+    const claimStatusData = {
+      providerName: providerName,
+      patient: patient,
+      policyNumber: policyNumber,
+      dateOfClaimSubmission: dateOfClaimSubmission,
+      claimAmountApproved: claimAmountApproved,
+      claimAmountFiled: claimAmountFiled,
+      claimType: claimType,
+      treatmentAndDiagnosis: treatmentAndDiagnosis,
+      settlementAmount: settlementAmount,
+      dateOfPayment: dateOfPayment,
+      paymentMode: paymentMode,
+      transactionReferenceNo: transactionReferenceNo,
+    };
     try {
-      addDoc(collection(database, "claim_status_database"), {
-        providerName: providerName,
-        patient: patient,
-        policyNumber: policyNumber,
-        dateOfClaimSubmission: dateOfClaimSubmission,
-        claimAmountApproved: claimAmountApproved,
-        claimAmountFiled: claimAmountFiled,
-        claimType: claimType,
-        treatmentAndDiagnosis: treatmentAndDiagnosis,
-        settlementAmount: settlementAmount,
-        dateOfPayment: dateOfPayment,
-        paymentMode: paymentMode,
-        transactionReferenceNo: transactionReferenceNo,
-      });
+      claimStatusSchema.parse(claimStatusData);
+      addDoc(collection(database, "claim_status_database"), claimStatusData);
 
       console.log("New Insurance added to Firestore.");
       setopeningClaimStatus(false);
       // renderingInsurances();
     } catch (error) {
-      console.error("Error during creating Consultation:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return;
+      } else {
+        console.error("Error while creating prescription:", error.message);
+      }
     }
   }
 
@@ -116,6 +151,9 @@ function AddClaimForm({ setopeningClaimStatus }) {
                       <option value={user.name}>{user.name}</option>
                     ))}
                 </select>
+                {errors.patient && (
+                  <p className="text-red-500 text-sm">{errors.patient}</p>
+                )}
               </div>
 
               <div>
@@ -154,6 +192,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="₹5,00,000"
                 />
+                {errors.dateOfClaimSubmission && (
+                  <p className="text-red-500 text-sm">
+                    {errors.dateOfClaimSubmission}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -176,6 +219,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="₹5,00,000"
                 />
+                {errors.claimAmountFiled && (
+                  <p className="text-red-500 text-sm">
+                    {errors.claimAmountFiled}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -190,6 +238,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="₹2,00,000"
                 />
+                {errors.claimAmountApproved && (
+                  <p className="text-red-500 text-sm">
+                    {errors.claimAmountApproved}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -202,6 +255,9 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   <option>Cashless</option>
                   <option>Reimbursement</option>
                 </select>
+                {errors.claimType && (
+                  <p className="text-red-500 text-sm">{errors.claimType}</p>
+                )}
               </div>
 
               <div>
@@ -216,6 +272,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Cancer, Liver Transplant "
                 />
+                {errors.treatmentAndDiagnosis && (
+                  <p className="text-red-500 text-sm">
+                    {errors.treatmentAndDiagnosis}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -237,6 +298,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="₹5,00,000"
                 />
+                {errors.settlementAmount && (
+                  <p className="text-red-500 text-sm">
+                    {errors.settlementAmount}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -248,6 +314,9 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
                 />
+                {errors.dateOfPayment && (
+                  <p className="text-red-500 text-sm">{errors.dateOfPayment}</p>
+                )}
               </div>
 
               <div>
@@ -261,6 +330,9 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   <option>Cheque</option>
                   <option>Cash</option>
                 </select>
+                {errors.paymentMode && (
+                  <p className="text-red-500 text-sm">{errors.paymentMode}</p>
+                )}
               </div>
 
               <div>
@@ -274,6 +346,11 @@ function AddClaimForm({ setopeningClaimStatus }) {
                   placeholder="#213515"
                   className="w-full border border-gray-300 rounded-md p-1.5"
                 />
+                {errors.transactionReferenceNo && (
+                  <p className="text-red-500 text-sm">
+                    {errors.transactionReferenceNo}
+                  </p>
+                )}
               </div>
             </div>
           </div>

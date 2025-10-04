@@ -1,17 +1,15 @@
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { z } from "zod";
 
-function DoctorProfileEditUpdateForm({
-  setopeningDoctorProfileUpdateForm,
-  currentUser,
-}) {
+function NurseProfileUpdateForm({ setopeningNurseProfileForm, currentUser }) {
   const [gender, setgender] = useState("");
   const [dateOfBirth, setdateOfBirth] = useState("");
   const [country, setcountry] = useState("");
   const [state, setstate] = useState("");
   const [city, setcity] = useState("");
+  const [nurseId, setnurseId] = useState("");
   const [designation, setdesignation] = useState("");
   const [department, setdepartment] = useState("");
   const [yearsOfExperience, setyearsOfExperience] = useState("");
@@ -20,8 +18,8 @@ function DoctorProfileEditUpdateForm({
   const [workingHours, setworkingHours] = useState("");
   const [shiftTime, setshiftTime] = useState("");
   const [leavesHoliday, setleavesHoliday] = useState("");
+  const [onCallAvailability, setonCallAvailability] = useState("");
   const [achievementsAwards, setachievementsAwards] = useState("");
-  const [doctorId, setdoctorId] = useState("");
   const [errors, setErrors] = useState({});
 
   const profileUpdateSchema = z.object({
@@ -43,7 +41,10 @@ function DoctorProfileEditUpdateForm({
     achievementsAwards: z
       .string()
       .min(1, "Achievement & Awards is compulsory."),
-    doctorId: z.string().min(1, "Doctor ID is compulsory."),
+    nurseId: z.string().min(1, "Nurse ID is compulsory."),
+    onCallAvailability: z
+      .string()
+      .min(1, "On Call Availability is compulsory."),
   });
 
   async function updatingProfileDetails() {
@@ -53,7 +54,7 @@ function DoctorProfileEditUpdateForm({
       country: country,
       state: state,
       city: city,
-      doctorId: doctorId,
+      nurseId: nurseId,
       qualification: qualification,
       designation: designation,
       department: department,
@@ -63,6 +64,7 @@ function DoctorProfileEditUpdateForm({
       shiftTime: shiftTime,
       leavesHoliday: leavesHoliday,
       achievementsAwards: achievementsAwards,
+      onCallAvailability: onCallAvailability,
     };
     try {
       profileUpdateSchema.parse(profileUpdateData);
@@ -70,7 +72,7 @@ function DoctorProfileEditUpdateForm({
       await updateDoc(claimRef, profileUpdateData);
 
       console.log("Profile Details updated successfully.");
-      setopeningDoctorProfileUpdateForm(false);
+      setopeningNurseProfileForm(false);
     } catch (error) {
       if (error.name === "ZodError") {
         const fieldErrors = {};
@@ -93,13 +95,12 @@ function DoctorProfileEditUpdateForm({
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
-              setopeningDoctorProfileUpdateForm(false);
+              setopeningNurseProfileForm(false);
             }}
           >
             Close
           </button>
         </div>
-
         <div>
           <div>
             <p className="text-[#212a31] text-lg font-semibold">
@@ -239,17 +240,17 @@ function DoctorProfileEditUpdateForm({
 
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Doctor Id</p>
+                <p className="font-semibold text-[#196d8e]">Nurse Id</p>
                 <input
                   type="text"
                   onChange={(e) => {
-                    setdoctorId(e.target.value);
+                    setnurseId(e.target.value);
                   }}
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="DOC-345"
                 />
-                {errors.doctorId && (
-                  <p className="text-red-500 text-sm">{errors.doctorId}</p>
+                {errors.nurseId && (
+                  <p className="text-red-500 text-sm">{errors.nurseId}</p>
                 )}
               </div>
 
@@ -277,11 +278,11 @@ function DoctorProfileEditUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                 >
                   <option value="">Select Department</option>
-                  <option value="cardiology">Cardiology</option>
-                  <option value="neurology">Neurology</option>
+                  <option value="cardiology">ICU</option>
+                  <option value="neurology">Emergency</option>
                   <option value="pediatrics">Pediatrics</option>
-                  <option value="orthopedics">Orthopedics</option>
-                  <option value="general">General Medicine</option>
+                  <option value="orthopedics">Maternity</option>
+                  <option value="general">General</option>
                 </select>
                 {errors.department && (
                   <p className="text-red-500 text-sm">{errors.department}</p>
@@ -317,13 +318,11 @@ function DoctorProfileEditUpdateForm({
                   <option value="" disabled>
                     Select your degree
                   </option>
-                  <option value="MBBS">MBBS</option>
-                  <option value="MD">MD</option>
-                  <option value="MS">MS</option>
-                  <option value="DM">DM</option>
-                  <option value="MCh">MCh</option>
-                  <option value="PhD">PhD</option>
-                  <option value="Other">Other</option>
+                  <option value="MBBS">B.Sc Nursing</option>
+                  <option value="MD">GNM</option>
+                  <option value="MS">M.Sc Nursing</option>
+                  <option value="DM">ANM</option>
+                  <option value="MCh">Diploma</option>
                 </select>
                 {errors.qualification && (
                   <p className="text-red-500 text-sm">{errors.qualification}</p>
@@ -403,6 +402,29 @@ function DoctorProfileEditUpdateForm({
                   <p className="text-red-500 text-sm">{errors.leavesHoliday}</p>
                 )}
               </div>
+
+              <div>
+                <p className="font-semibold text-[#196d8e]">
+                  On-Call Availability
+                </p>
+                <select
+                  onChange={(e) => {
+                    setonCallAvailability(e.target.value);
+                  }}
+                  className="w-full border border-gray-300 rounded-md p-1.5"
+                >
+                  <option value="" disabled>
+                    Select your degree
+                  </option>
+                  <option value="PhD">Yes</option>
+                  <option value="Other">No</option>
+                </select>
+                {errors.onCallAvailability && (
+                  <p className="text-red-500 text-sm">
+                    {errors.onCallAvailability}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -429,20 +451,21 @@ function DoctorProfileEditUpdateForm({
               )}
             </div>
           </div>
-          <div className="mt-5 flex justify-end">
-            <button
-              onClick={() => {
-                updatingProfileDetails();
-              }}
-              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
-            >
-              Update Profile Details
-            </button>
-          </div>
+        </div>
+
+        <div className="mt-5 flex justify-end">
+          <button
+            onClick={() => {
+              updatingProfileDetails();
+            }}
+            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+          >
+            Update Profile Details
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default DoctorProfileEditUpdateForm;
+export default NurseProfileUpdateForm;

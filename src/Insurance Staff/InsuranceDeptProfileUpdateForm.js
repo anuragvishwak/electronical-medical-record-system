@@ -1,6 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { database } from "../FirebaseConfiguration";
+import { z } from "zod";
 
 function InsuranceDeptProfileUpdateForm({
   setopeningInsuranceDeptProfileForm,
@@ -11,23 +12,43 @@ function InsuranceDeptProfileUpdateForm({
   const [country, setcountry] = useState("");
   const [state, setstate] = useState("");
   const [city, setcity] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const insuranceDeptProfileUpdateSchema = z.object({
+    gender: z.string().min(1, "Gender is compulsory."),
+    dateOfBirth: z.string().min(1, "Date of Birth is compulsory."),
+    state: z.string().min(1, "State is compulsory."),
+    city: z.string().min(1, "City is compulsory."),
+    country: z.string().min(1, "Country is compulsory."),
+  });
 
   async function updatingProfileDetails() {
+    const insuranceDeptProfileUpdateData = {
+      gender: gender,
+      dateOfBirth: dateOfBirth,
+      country: country,
+      state: state,
+      city: city,
+    };
+
     try {
+      insuranceDeptProfileUpdateSchema.parse(insuranceDeptProfileUpdateData);
       const claimRef = doc(database, "user_database", storingCurrentUser.id);
-      await updateDoc(claimRef, {
-        gender: gender,
-        dateOfBirth: dateOfBirth,
-        country: country,
-        state: state,
-        city: city,
-      });
+      await updateDoc(claimRef, insuranceDeptProfileUpdateData);
 
       console.log("Profile Details updated successfully.");
       setopeningInsuranceDeptProfileForm(false);
     } catch (error) {
-      console.error("Error during update profile details:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return;
+      } else {
+        console.error("Error while updating Insurance Dept Profile:", error.message);
+      }
     }
   }
 
@@ -71,6 +92,9 @@ function InsuranceDeptProfileUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder=""
                 />
+                {errors.dateOfBirth && (
+                  <p className="text-red-500 text-sm">{errors.dateOfBirth}</p>
+                )}
               </div>
 
               <div>
@@ -85,6 +109,9 @@ function InsuranceDeptProfileUpdateForm({
                   <option>Male</option>
                   <option>Female</option>
                 </select>
+                {errors.gender && (
+                  <p className="text-red-500 text-sm">{errors.gender}</p>
+                )}
               </div>
             </div>
           </div>
@@ -134,6 +161,9 @@ function InsuranceDeptProfileUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="India"
                 />
+                {errors.country && (
+                  <p className="text-red-500 text-sm">{errors.country}</p>
+                )}
               </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">State</p>
@@ -145,6 +175,9 @@ function InsuranceDeptProfileUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Maharastra"
                 />
+                {errors.state && (
+                  <p className="text-red-500 text-sm">{errors.state}</p>
+                )}
               </div>
               <div>
                 <p className="font-semibold text-[#196d8e]">City</p>
@@ -156,21 +189,24 @@ function InsuranceDeptProfileUpdateForm({
                   className="w-full border border-gray-300 rounded-md p-1.5"
                   placeholder="Mumbai"
                 />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.city}</p>
+                )}
               </div>
             </div>
           </div>
         </div>
 
         <div className="mt-5 flex justify-end">
-            <button
-              onClick={() => {
-                updatingProfileDetails();
-              }}
-              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
-            >
-              Update Profile Details
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              updatingProfileDetails();
+            }}
+            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+          >
+            Update Profile Details
+          </button>
+        </div>
       </div>
     </div>
   );
