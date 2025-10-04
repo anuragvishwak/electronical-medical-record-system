@@ -25,6 +25,7 @@ function PatientProfileSetting() {
   const location = useLocation();
   const currentUser = localStorage.getItem("email");
 
+
   async function renderingInsurances() {
     const taskDetails = await getDocs(
       collection(database, "insurance_database")

@@ -2,6 +2,7 @@ import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { Toast } from "primereact/toast";
 import React, { useRef, useState } from "react";
 import { database } from "../FirebaseConfiguration";
+import { z } from "zod";
 
 function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
   const toast = useRef(null);
@@ -12,24 +13,38 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
   const [pulseRate, setPulseRate] = useState("");
   const [respiratoryRate, setRespiratoryRate] = useState("");
   const [oxygenSaturation, setOxygenSaturation] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const vitalSchema = z.object({
+    height: z.string().min(1, "Height is compulsory."),
+    weight: z.string().min(1, "Weight is compulsory."),
+    temperature: z.string().min(1, "Temprature is compulsory."),
+    bloodPressure: z.string().min(1, "Blood Pressure is compulsory."),
+    pulseRate: z.string().min(1, "Pulse Rate is compulsory."),
+    respiratoryRate: z.string().min(1, "Respiratory Rate is compulsory."),
+    oxygenSaturation: z.string().min(1, "Oxygen Saturation is compulsory."),
+  });
 
   async function UpdateVitals() {
+    const vitalData = {
+      height: height,
+      weight: weight,
+      temperature: temperature,
+      bloodPressure: bloodPressure,
+      pulseRate: pulseRate,
+      respiratoryRate: respiratoryRate,
+      oxygenSaturation: oxygenSaturation,
+    };
+
     try {
+      vitalSchema.parse(vitalData);
       const appointmentRef = doc(
         database,
         "appointment_database",
         capturingWholeObject.id
       );
 
-      await updateDoc(appointmentRef, {
-        height: height,
-        weight: weight,
-        temperature: temperature,
-        bloodPressure: bloodPressure,
-        pulseRate: pulseRate,
-        respiratoryRate: respiratoryRate,
-        oxygenSaturation: oxygenSaturation,
-      });
+      await updateDoc(appointmentRef, vitalData);
 
       console.log("Vitals updated successfully.");
       toast.current.show({
@@ -40,8 +55,16 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
 
       setaddVitalsForm(false);
     } catch (error) {
-      console.error("Error updating vitals:", error.message);
-      throw error;
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        return;
+      } else {
+        console.error("Error while adding patient vitals:", error.message);
+      }
     }
   }
 
@@ -72,6 +95,9 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter height..."
             />
+            {errors.height && (
+              <p className="text-red-500 text-sm">{errors.height}</p>
+            )}
           </div>
 
           <div>
@@ -84,18 +110,23 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter weight..."
             />
+            {errors.weight && (
+              <p className="text-red-500 text-sm">{errors.weight}</p>
+            )}
           </div>
 
           <div>
             <p className="font-semibold text-[#1976D2]">Temperature (°C)</p>
             <input
-              type="number"
               onChange={(e) => {
                 setTemperature(e.target.value);
               }}
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter temperature..."
             />
+            {errors.temperature && (
+              <p className="text-red-500 text-sm">{errors.temperature}</p>
+            )}
           </div>
 
           <div>
@@ -110,6 +141,9 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="e.g. 120/80"
             />
+            {errors.bloodPressure && (
+              <p className="text-red-500 text-sm">{errors.bloodPressure}</p>
+            )}
           </div>
 
           <div>
@@ -122,6 +156,9 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter pulse rate..."
             />
+            {errors.pulseRate && (
+              <p className="text-red-500 text-sm">{errors.pulseRate}</p>
+            )}
           </div>
 
           <div>
@@ -136,6 +173,9 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter respiratory rate..."
             />
+            {errors.respiratoryRate && (
+              <p className="text-red-500 text-sm">{errors.respiratoryRate}</p>
+            )}
           </div>
 
           <div>
@@ -150,6 +190,9 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="Enter SpO₂..."
             />
+            {errors.oxygenSaturation && (
+              <p className="text-red-500 text-sm">{errors.oxygenSaturation}</p>
+            )}
           </div>
         </div>
 

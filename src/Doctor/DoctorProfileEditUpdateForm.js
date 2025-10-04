@@ -80,7 +80,7 @@ function DoctorProfileEditUpdateForm({
         setErrors(fieldErrors);
         return;
       } else {
-        console.error("Error while creating prescription:", error.message);
+        console.error("Error while updating Doctor Profile:", error.message);
       }
     }
   }

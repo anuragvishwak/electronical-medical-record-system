@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import { z, ZodError } from "zod";
 
 function AddingInsuranceForm({
   setopeningAddInsuranceForm,
@@ -18,6 +19,18 @@ function AddingInsuranceForm({
   const [validFrom, setvalidFrom] = useState("");
   const [validTo, setvalidTo] = useState("");
   const [status, setstatus] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const viewInsuranceInfoSchema = z.object({
+    providerName: z.string().min(1, "Insurance Provider is compulsory."),
+    patient: z.string().min(1, "Patient is compulsory."),
+    policyNumber: z.string().min(1, "Policy Number is compulsory."),
+    coverageType: z.string().min(1, "Coverage Type is compulsory."),
+    sumInsured: z.string().min(1, "Sum Insured is compulsory."),
+    validFrom: z.string().min(1, "Valid From is compulsory."),
+    validTo: z.string().min(1, "Valid To is compulsory."),
+    status: z.string().min(1, "Status is compulsory."),
+  });
 
   async function renderingUsers() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -41,25 +54,46 @@ function AddingInsuranceForm({
     setgettingInsuranceCompanies(multipleArray);
   }
 
+
   async function creatingInasurance() {
+    setErrors({});
+
+    const viewInsuranceInfoData = {
+      providerName: providerName,
+      patient: patient,
+      policyNumber: policyNumber,
+      coverageType: coverageType,
+      sumInsured: sumInsured,
+      validFrom: validFrom,
+      validTo: validTo,
+      status: status,
+    };
+
     try {
-      addDoc(collection(database, "insurance_database"), {
-        providerName: providerName,
-        patient: patient,
-        policyNumber: policyNumber,
-        coverageType: coverageType,
-        sumInsured: sumInsured,
-        validFrom: validFrom,
-        validTo: validTo,
-        status: status,
-      });
+      viewInsuranceInfoSchema.parse(viewInsuranceInfoData);
+
+      await addDoc(
+        collection(database, "insurance_database"),
+        viewInsuranceInfoData
+      );
 
       console.log("New Insurance added to Firestore.");
       setopeningAddInsuranceForm(false);
       renderingInsurances();
     } catch (error) {
-      console.error("Error during creating Consultation:", error.message);
-      throw error;
+      if (error instanceof ZodError) {
+        const fieldErrors = error.flatten().fieldErrors;
+
+        const newErrors = {};
+        for (const key in fieldErrors) {
+          newErrors[key] = fieldErrors[key][0];
+        }
+
+        setErrors(newErrors);
+        console.error("Validation failed:", newErrors);
+      } else {
+        console.error("Error during creating Insurance:", error);
+      }
     }
   }
 
@@ -85,40 +119,58 @@ function AddingInsuranceForm({
 
         <div>
           <div className="border border-gray-300 p-3 rounded">
-            <p className="text-[#212a31] text-lg font-semibold">Identification</p>
+            <p className="text-[#212a31] text-lg font-semibold">
+              Identification
+            </p>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <p className="font-semibold text-[#196d8e]">Patient Name</p>
                 <select
+                  value={patient}
                   onChange={(e) => setpatient(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
                 >
-                  <option>Select Patient</option>
+                  <option value="">Select Patient</option>
                   {gettingUsers
                     .filter((user) => user.role === "patient")
                     .map((user) => (
-                      <option value={user.name}>{user.name}</option>
+                      <option key={user.id} value={user.name}>
+                        {user.name}
+                      </option>
                     ))}
                 </select>
+
+                {errors.patient && (
+                  <p className="text-red-500 text-sm">{errors.patient}</p>
+                )}
               </div>
 
               <div>
                 <p className="font-semibold text-[#196d8e]">Provider Name</p>
                 <select
+                  value={providerName}
                   onChange={(e) => setproviderName(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
                 >
-                  <option>Select provider</option>
-                  {gettingInsuranceCompanies.map((user) => (
-                    <option value={user.providerName}>{user.providerName}</option>
+                  <option value="">Select Provider</option>
+                  {gettingInsuranceCompanies.map((company) => (
+                    <option key={company.id} value={company.providerName}>
+                      {company.providerName}
+                    </option>
                   ))}
                 </select>
+
+                {errors.providerName && (
+                  <p className="text-red-500 text-sm">{errors.providerName}</p>
+                )}
               </div>
             </div>
           </div>
 
           <div className="border border-gray-300 rounded  p-3 my-3">
-            <p className="text-[#212a31] text-lg font-semibold">Policy Details</p>
+            <p className="text-[#212a31] text-lg font-semibold">
+              Policy Details
+            </p>
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <p className="font-semibold text-[#196d8e]">Policy Number</p>
@@ -129,6 +181,9 @@ function AddingInsuranceForm({
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="A1B2C3D4E5"
                 />
+                {errors.policyNumber && (
+                  <p className="text-red-500 text-sm">{errors.policyNumber}</p>
+                )}
               </div>
 
               <div className="">
@@ -146,6 +201,9 @@ function AddingInsuranceForm({
                   <option value={"corporate"}>Corporate</option>
                   <option value={"general"}>General</option>
                 </select>
+                {errors.coverageType && (
+                  <p className="text-red-500 text-sm">{errors.coverageType}</p>
+                )}
               </div>
 
               <div>
@@ -157,6 +215,9 @@ function AddingInsuranceForm({
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="₹5,00,000"
                 />
+                {errors.sumInsured && (
+                  <p className="text-red-500 text-sm">{errors.sumInsured}</p>
+                )}
               </div>
 
               <div>
@@ -169,6 +230,9 @@ function AddingInsuranceForm({
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="₹5,00,000"
                 />
+                {errors.validFrom && (
+                  <p className="text-red-500 text-sm">{errors.validFrom}</p>
+                )}
               </div>
 
               <div>
@@ -181,6 +245,9 @@ function AddingInsuranceForm({
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="₹5,00,000"
                 />
+                {errors.validTo && (
+                  <p className="text-red-500 text-sm">{errors.validTo}</p>
+                )}
               </div>
 
               <div className="">
@@ -196,6 +263,9 @@ function AddingInsuranceForm({
                   <option value={"verified"}>Verified</option>
                   <option value={"expired"}>Expired</option>
                 </select>
+                {errors.status && (
+                  <p className="text-red-500 text-sm">{errors.status}</p>
+                )}
               </div>
             </div>
           </div>
