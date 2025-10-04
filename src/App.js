@@ -45,6 +45,7 @@ import StaffManagement from "./Admin & Receptionist/StaffManagement";
 import InsuranceDeptProfile from "./Insurance Staff/InsuranceDeptProfile";
 import PatientMedicalHistory from "./Patients/PatientMedicalHistory";
 import PatientPaymentHistory from "./Patients/PatientPaymentHistory";
+import NurseProfileUpdateSetting from "./Nurse/NurseProfileUpdateSetting";
 
 function App() {
   return (
@@ -129,6 +130,7 @@ function App() {
           <Route path="/StaffManagement" element={<StaffManagement />} />
           <Route path="/PatientMedicalHistory" element={<PatientMedicalHistory />} />
           <Route path="/PatientPaymentHistory" element={<PatientPaymentHistory />} />
+          <Route path="/NurseProfileUpdateSetting" element={<NurseProfileUpdateSetting />} />
 
 
         </Routes>

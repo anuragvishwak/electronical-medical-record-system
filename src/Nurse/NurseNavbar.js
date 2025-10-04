@@ -49,7 +49,18 @@ function NurseNavbar() {
         >
           Medication Logs
         </button>
-        <button>Profile / Setting</button>
+        <button
+          onClick={() => {
+            navigate("/NurseProfileUpdateSetting");
+          }}
+          className={`${
+            location.pathname === "/NurseProfileUpdateSetting"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >
+          Profile / Setting
+        </button>
       </div>
       <button
         onClick={() => {
