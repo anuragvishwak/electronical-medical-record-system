@@ -1,35 +1,65 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { database } from "../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 import { z } from "zod";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { database } from "../FirebaseConfiguration";
 
-function CreateAppointmentForm({
-  setopeningCreateAppointmentForm,
-  renderingAppointments,
+function UpdateAppointmentForm({
+  setopeningAppointmentUpdateForm,
+  capturingAppointmentObject,
+  renderingAppointments
 }) {
   const toast = useRef(null);
-  const createdAt = new Date();
-  const [patientData, setpatientData] = useState([]);
-  const [doctorData, setdoctorData] = useState([]);
-  const [doctor, setdoctor] = useState("");
-  const [patient, setpatient] = useState("");
-  const [additionalNote, setadditionalNote] = useState("");
+console.log("finding time",capturingAppointmentObject.time)
+  const [additionalNote, setadditionalNote] = useState(capturingAppointmentObject.additionalNote || '');
   const [errors, setErrors] = useState({});
-  const [time, settime] = useState("");
-  const [status, setstatus] = useState("");
+  const [time, settime] = useState(capturingAppointmentObject.time || '');
+  const [status, setstatus] = useState(capturingAppointmentObject.status || '');
+  const [gettingUser, setgettingUser] = useState([]);
 
   const appointmentSchema = z.object({
-    doctor: z.string().min(1, "Doctor is required"),
-    patient: z.string().min(1, "Patient is required"),
     time: z.string().min(1, "Time is required"),
     status: z.enum(["scheduled", "completed", "cancelled"], {
       errorMap: () => ({ message: "Please select a valid status" }),
     }),
     additionalNote: z.string().min(1, "Additional Note is required"),
-    createdAt: z.date(),
   });
+
+  async function updatingAppointment() {
+  const appointmentData = {
+    time: time,
+    status: status,
+    additionalNote: additionalNote,
+  };
+
+  try {
+    appointmentSchema.parse(appointmentData);
+
+    const appointmentRef = doc(database, "appointment_database", capturingAppointmentObject.id);
+    await updateDoc(appointmentRef, appointmentData);
+
+    toast.current.show({
+      severity: "success",
+      summary: "Appointment updated Successfully!!!",
+      life: 3000,
+    });
+
+    setopeningAppointmentUpdateForm(false);
+    renderingAppointments();
+  } catch (error) {
+    if (error.name === "ZodError") {
+      const fieldErrors = {};
+      error.issues.forEach((err) => {
+        fieldErrors[err.path[0]] = err.message;
+      });
+      setErrors(fieldErrors);
+    } else {
+      console.error("Error updating appointment:", error.message);
+    }
+  }
+}
+
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -38,53 +68,7 @@ function CreateAppointmentForm({
       ...doc.data(),
     }));
 
-    const fitleringDoctor = multipleArray.filter(
-      (user) => user.role === "doctor"
-    );
-
-    const fitleringPatient = multipleArray.filter(
-      (user) => user.role === "patient"
-    );
-
-    setpatientData(fitleringPatient);
-    setdoctorData(fitleringDoctor);
-  }
-
-  function creatingAppointment() {
-    const appointmentData = {
-      patient: patient,
-      doctor: doctor,
-      time: time,
-      status: status,
-      additionalNote: additionalNote,
-      createdAt: createdAt,
-    };
-
-    try {
-      appointmentSchema.parse(appointmentData);
-
-      addDoc(collection(database, "appointment_database"), appointmentData);
-
-      console.log("User document added to Firestore.");
-      toast.current.show({
-        severity: "success",
-        summary: "Appointment created Successfully!!!",
-        life: 3000,
-      });
-      setopeningCreateAppointmentForm(false);
-      renderingAppointments();
-    } catch (error) {
-      if (error.name === "ZodError") {
-        const fieldErrors = {};
-        error.issues.forEach((err) => {
-          fieldErrors[err.path[0]] = err.message;
-        });
-        setErrors(fieldErrors);
-        console.error("Validation Errors:", fieldErrors);
-      } else {
-        console.error("Error during appointment creation:", error.message);
-      }
-    }
+    setgettingUser(multipleArray);
   }
 
   useEffect(() => {
@@ -100,7 +84,7 @@ function CreateAppointmentForm({
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
-              setopeningCreateAppointmentForm(false);
+              setopeningAppointmentUpdateForm(false);
             }}
           >
             Close
@@ -111,40 +95,35 @@ function CreateAppointmentForm({
           <div className="grid grid-cols-2 gap-3">
             <div>
               <p className="font-semibold text-[#196d8e]">Doctor Name</p>
-              <select
-                onChange={(e) => setdoctor(e.target.value)}
-                className="border rounded border-gray-300 w-full p-2"
-              >
-                <option>Select Doctor</option>
-                {doctorData.map((user) => (
-                  <option value={user.email}>{user.name}</option>
+              {gettingUser
+                .filter(
+                  (user) => user.email === capturingAppointmentObject.doctor
+                )
+                .map((user) => (
+                  <p className="border rounded capitalize border-gray-300 w-full p-2">
+                    {user?.name}
+                  </p>
                 ))}
-              </select>
-              {errors.doctor && (
-                <p className="text-red-500 text-sm">{errors.doctor}</p>
-              )}
             </div>
 
             <div>
               <p className="font-semibold text-[#196d8e]">Patient Name</p>
-              <select
-                onChange={(e) => setpatient(e.target.value)}
-                className="border rounded border-gray-300 w-full p-2"
-              >
-                <option>Select Patient</option>
-                {patientData.map((user) => (
-                  <option value={user.email}>{user.name}</option>
+               {gettingUser
+                .filter(
+                  (user) => user.email === capturingAppointmentObject.patient
+                )
+                .map((user) => (
+                  <p className="border rounded capitalize border-gray-300 w-full p-2">
+                    {user?.name}
+                  </p>
                 ))}
-              </select>
-              {errors.patient && (
-                <p className="text-red-500 text-sm">{errors.patient}</p>
-              )}
             </div>
 
             <div>
               <p className="font-semibold text-[#196d8e]">Time</p>
               <input
                 type="text"
+                value={time}
                 onChange={(e) => {
                   settime(e.target.value);
                 }}
@@ -159,6 +138,7 @@ function CreateAppointmentForm({
             <div>
               <p className="font-semibold text-[#196d8e]">Status</p>
               <select
+              value={status}
                 onChange={(e) => {
                   setstatus(e.target.value);
                 }}
@@ -169,7 +149,7 @@ function CreateAppointmentForm({
                 <option value={"completed"}>Completed</option>
                 <option value={"cancelled"}>Cancelled</option>
               </select>
-               {errors.status && (
+              {errors.status && (
                 <p className="text-red-500 text-sm">{errors.status}</p>
               )}
             </div>
@@ -178,25 +158,26 @@ function CreateAppointmentForm({
           <div className="mt-3">
             <p className="font-semibold text-[#196d8e]">Additional Note</p>
             <textarea
+            value={additionalNote}
               onChange={(e) => {
                 setadditionalNote(e.target.value);
               }}
               placeholder="Note for the doctor and patients..."
               className="border rounded border-gray-300 w-full p-2 h-40"
             ></textarea>
-             {errors.additionalNote && (
-                <p className="text-red-500 text-sm">{errors.additionalNote}</p>
-              )}
+            {errors.additionalNote && (
+              <p className="text-red-500 text-sm">{errors.additionalNote}</p>
+            )}
           </div>
 
           <div className="flex justify-end mt-3 ">
             <button
               onClick={() => {
-                creatingAppointment();
+                updatingAppointment();
               }}
               className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
             >
-              + Create Appointment
+              + Update Appointment
             </button>
           </div>
         </div>
@@ -205,4 +186,4 @@ function CreateAppointmentForm({
   );
 }
 
-export default CreateAppointmentForm;
+export default UpdateAppointmentForm;

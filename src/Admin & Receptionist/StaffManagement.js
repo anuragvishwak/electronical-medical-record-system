@@ -6,13 +6,17 @@ import CreateStaff from "./CreateStaff";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import AddSalaryForm from "./AddSalaryForm";
-import { FaIndianRupeeSign } from "react-icons/fa6";
+import { FaIndianRupeeSign, FaPencil } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
+
 
 function StaffManagement() {
   const [openingAddStaffForm, setopeningAddStaffForm] = useState(false);
   const [gettingUser, setgettingUser] = useState([]);
   const [openingSalaryForm, setopeningSalaryForm] = useState(false);
   const [currentStaffId, setcurrentStaffId] = useState("");
+  const [openingUpdateStaffForm, setopeningStaffUpdateForm] = useState(false);
+  const [capturingStaffData, setcapturingStaffData] = useState({});
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -92,15 +96,28 @@ function StaffManagement() {
             <div className="flex items-start justify-between">
               <p className="text-[#212a31] text-lg font-bold">{user.name}</p>
 
+              <div className="flex items-center space-x-1">
               <button
                 onClick={() => {
                   setcurrentStaffId(user.id);
                   setopeningSalaryForm(true);
                 }}
-                className="bg-[#196d8e] text-white py-1 text-sm px-3 rounded"
+                className="bg-[#196d8e] text-white py-1 text-sm px-3 mr-2 rounded"
               >
                 Add Salary
               </button>
+                <button
+                  onClick={() => {
+                   setopeningAddStaffForm(true);
+                  }}
+                  className="text-[#212a31]"
+                >
+                  <FaPencil />
+                </button>
+                <button className="text-[#196d8e]">
+                  <MdDelete size={19} />
+                </button>
+              </div>
             </div>
             <p className="text-sm text-[#196d8e]">{user.email}</p>
 
@@ -191,7 +208,7 @@ function StaffManagement() {
         <AddSalaryForm
           currentStaffId={currentStaffId}
           setopeningSalaryForm={setopeningSalaryForm}
-          renderingUser = {renderingUser}
+          renderingUser={renderingUser}
         />
       )}
     </div>

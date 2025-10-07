@@ -2,13 +2,21 @@ import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import React from "react";
 import { database } from "./FirebaseConfiguration";
 import { useEffect, useState } from "react";
-import { MdDateRange } from "react-icons/md";
+import { MdDateRange, MdDelete } from "react-icons/md";
 import { BsClock } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import CreatingPrescription from "./Doctor/CreatingPrescription";
 import CreateConsultationForm from "./Doctor/CreateConsultationForm";
+import UpdateAppointmentForm from "./Admin & Receptionist/UpdateAppointmentForm";
+import { FaPencil } from "react-icons/fa6";
 
-function CentralizedAppointment({ email }) {
+function CentralizedAppointment({
+  email,
+  capturingAppointmentObject,
+  setcapturingAppointmentObject,
+  setopeningAppointmentUpdateForm,
+  openingAppointmentUpdateForm
+}) {
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [openingPrescriptionForm, setopeningPrescriptionForm] = useState(false);
   const location = useLocation();
@@ -77,13 +85,7 @@ function CentralizedAppointment({ email }) {
 
   return (
     <div>
-      <div
-        className={`grid ${
-          location.pathname === "/CheckInCheckOut"
-            ? "grid-cols-3"
-            : "grid-cols-4"
-        } m-5 gap-5`}
-      >
+      <div className={`grid grid-cols-3 m-5 gap-5`}>
         {filteredAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-5 rounded-lg">
             <div className="flex items-start justify-between">
@@ -120,6 +122,25 @@ function CentralizedAppointment({ email }) {
                   <option value={"completed"}>Completed</option>
                   <option value={"cancelled"}>Cancelled</option>
                 </select>
+
+                {location.pathname !== "/NurseVitals" &&
+                  location.pathname !== "/PatientAppointment" &&
+                  location.pathname !== "/CheckInCheckOut" && (
+                    <div className="flex items-center space-x-1">
+                      <button
+                        onClick={() => {
+                          setopeningAppointmentUpdateForm(true);
+                          setcapturingAppointmentObject(appointment);
+                        }}
+                        className="text-[#212a31]"
+                      >
+                        <FaPencil />
+                      </button>
+                      <button className="text-[#196d8e]">
+                        <MdDelete size={19} />
+                      </button>
+                    </div>
+                  )}
 
                 {location.pathname == "/CheckInCheckOut" && (
                   <select
@@ -202,6 +223,15 @@ function CentralizedAppointment({ email }) {
           appointment={capturingDataObject}
         />
       )}
+
+        {openingAppointmentUpdateForm && (
+        <UpdateAppointmentForm
+          setopeningAppointmentUpdateForm={setopeningAppointmentUpdateForm}
+          capturingAppointmentObject={capturingAppointmentObject}
+          renderingAppointments={renderingAppointments}
+        />
+      )}
+
     </div>
   );
 }

@@ -46,6 +46,7 @@ import InsuranceDeptProfile from "./Insurance Staff/InsuranceDeptProfile";
 import PatientMedicalHistory from "./Patients/PatientMedicalHistory";
 import PatientPaymentHistory from "./Patients/PatientPaymentHistory";
 import NurseProfileUpdateSetting from "./Nurse/NurseProfileUpdateSetting";
+import LabTechnicianProfileUpdateSetting from "./Lab Technician/LabTechnicianProfileUpdateSetting";
 
 function App() {
   return (
@@ -126,13 +127,28 @@ function App() {
             element={<DoctorBillingFinance />}
           />
           <Route path="/DoctorPatients" element={<DoctorPatients />} />
-          <Route path="/InsuranceDeptProfile" element={<InsuranceDeptProfile />} />
+          <Route
+            path="/InsuranceDeptProfile"
+            element={<InsuranceDeptProfile />}
+          />
           <Route path="/StaffManagement" element={<StaffManagement />} />
-          <Route path="/PatientMedicalHistory" element={<PatientMedicalHistory />} />
-          <Route path="/PatientPaymentHistory" element={<PatientPaymentHistory />} />
-          <Route path="/NurseProfileUpdateSetting" element={<NurseProfileUpdateSetting />} />
+          <Route
+            path="/PatientMedicalHistory"
+            element={<PatientMedicalHistory />}
+          />
+          <Route
+            path="/PatientPaymentHistory"
+            element={<PatientPaymentHistory />}
+          />
+          <Route
+            path="/NurseProfileUpdateSetting"
+            element={<NurseProfileUpdateSetting />}
+          />
 
-
+          <Route
+            path="/LabTechnicianProfileUpdateSetting"
+            element={<LabTechnicianProfileUpdateSetting />}
+          />
         </Routes>
       </Router>
     </div>

@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { FiAlertTriangle, FiDelete } from "react-icons/fi";
+import UpdateMedicineForm from "./UpdateMedicineForm";
 
 function RenderingMedicines({ search }) {
   const [gettingMedicines, setgettingMedicines] = useState([]);
   const [openingAdditionalDetails, setOpeningAdditionalDetails] =
     useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
+  const [openingUpdateMedicineForm, setopeningUpdateMedicineForm] =
+    useState(false);
 
   async function renderingMedicines() {
     const taskDetails = await getDocs(
@@ -26,8 +29,7 @@ function RenderingMedicines({ search }) {
     (med) => med.name === search
   );
 
-
-  console.log(filteringMedicines)
+  console.log(filteringMedicines);
 
   useEffect(() => {
     renderingMedicines();
@@ -77,7 +79,13 @@ function RenderingMedicines({ search }) {
                 </td>
                 <td>
                   <div className="flex items-center space-x-3 justify-center">
-                    <button className="text-green-500 bg-green-50 py-0.5 shadow px-2 rounded">
+                    <button
+                      onClick={() => {
+                        setopeningUpdateMedicineForm(true);
+                        setcapturingDataObject(med);
+                      }}
+                      className="text-green-500 bg-green-50 py-0.5 shadow px-2 rounded"
+                    >
                       <div className="flex items-center space-x-1">
                         <FaEdit /> <p>Edit</p>
                       </div>
@@ -117,6 +125,14 @@ function RenderingMedicines({ search }) {
           ))}
         </tbody>
       </table>
+
+      {openingUpdateMedicineForm && (
+        <UpdateMedicineForm
+        renderingMedicines = {renderingMedicines}
+          setopeningUpdateMedicineForm={setopeningUpdateMedicineForm}
+          capturingDataObject={capturingDataObject}
+        />
+      )}
     </div>
   );
 }

@@ -145,8 +145,9 @@ function AssignedLabOrders() {
                   </tr>
                   {openingNote && (
                     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                      <div className="bg-white p-5 rounded shadow-lg w-5/12">
-                        <div className="flex itesm-center justify-between mb-3">
+                      <div className="bg-white p-3.5 rounded shadow-lg w-5/12">
+                        <div className="p-3.5 rounded border border-gray-400">
+                          <div className="flex itesm-center justify-between mb-3">
                           <div className="flex items-center space-x-1">
                             <GrNotes size={18} className="text-[#1976D2]" />
                             <p className="text-[#1976D2] font-semibold text-xl">
@@ -162,6 +163,7 @@ function AssignedLabOrders() {
                           </button>
                         </div>
                         <p className="text-justify">{order.clinicalNotes}</p>
+                        </div>
                       </div>
                     </div>
                   )}
