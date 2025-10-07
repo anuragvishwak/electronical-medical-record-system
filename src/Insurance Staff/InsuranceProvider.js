@@ -8,6 +8,7 @@ import { FaEye, FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { CgDanger } from "react-icons/cg";
 import { GrNotes } from "react-icons/gr";
+import UpdateInsuranceCompanyForm from "./UpdateInsuranceCompanyForm";
 
 function InsuranceProvider() {
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
@@ -18,6 +19,10 @@ function InsuranceProvider() {
   const [capturingDataObject, setcapturingDataObject] = useState({});
   const [openingAdditionalDetails, setopeningAdditionalDetails] =
     useState(false);
+  const [
+    openingUpdateInsuranceCompanyForm,
+    setopeningUpdateInsuranceCompanyForm,
+  ] = useState(false);
 
   async function renderingInsuranceCompany() {
     const taskDetails = await getDocs(
@@ -27,8 +32,7 @@ function InsuranceProvider() {
       id: doc.id,
       ...doc.data(),
     }));
-setgettingInsuranceCompanies(multipleArray);
-
+    setgettingInsuranceCompanies(multipleArray);
   }
 
   useEffect(() => {
@@ -113,7 +117,7 @@ setgettingInsuranceCompanies(multipleArray);
             </div>
 
             <hr className="border-gray-300 my-3" />
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-between">
               <button
                 onClick={() => {
                   setopeningAdditionalDetails(true);
@@ -126,13 +130,21 @@ setgettingInsuranceCompanies(multipleArray);
                   <p>Additional Details</p>
                 </div>
               </button>
-              <button className="text-green-500">
-                <FaEdit size={25} />
-              </button>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    setopeningUpdateInsuranceCompanyForm(true);
+                    setcapturingDataObject(insurance);
+                  }}
+                  className="text-green-500"
+                >
+                  <FaEdit size={25} />
+                </button>
 
-              <button className="text-red-500">
-                <FaTrash size={20} />
-              </button>
+                <button className="text-red-500">
+                  <FaTrash size={20} />
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -188,6 +200,16 @@ setgettingInsuranceCompanies(multipleArray);
       {openingAddInsuranceCompany && (
         <AddInsuranceCompanyForm
           setopeningAddInsuranceCompany={setopeningAddInsuranceCompany}
+          renderingInsuranceCompany={renderingInsuranceCompany}
+        />
+      )}
+
+      {openingUpdateInsuranceCompanyForm && (
+        <UpdateInsuranceCompanyForm
+          setopeningUpdateInsuranceCompanyForm={
+            setopeningUpdateInsuranceCompanyForm
+          }
+          capturingDataObject={capturingDataObject}
           renderingInsuranceCompany={renderingInsuranceCompany}
         />
       )}

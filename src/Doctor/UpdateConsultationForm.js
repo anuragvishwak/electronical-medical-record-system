@@ -1,31 +1,45 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
-import { database } from "../FirebaseConfiguration";
+import React, { useEffect, useState } from "react";
+import { z } from "zod";
 import CentralizedDiagnosis from "../CentralizedDiagnosis";
 import CentralizedSymptoms from "../CentralizedSymptoms";
-import { Toast } from "primereact/toast";
-import { z } from "zod";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { database } from "../FirebaseConfiguration";
 
-function CreateConsultationForm({
-  setopeningCreateConsultationForm,
-  appointment,
+function UpdateConsultationForm({
+  setopeningUpdateConsultationForm,
+  capturingDataObject,
+  renderingConsultation,
 }) {
-  const toast = useRef(null);
-  const email = localStorage.getItem("email");
-  const [patient, setpatient] = useState("");
-  const [historyofPresentIllness, setHistoryofPresentIllness] = useState("");
-  const [pastMedicalHistory, setPastMedicalHistory] = useState("");
-  const [treatmentType, setTreatmentType] = useState("");
-  const [dosage, setDosage] = useState("");
-  const [duration, setDuration] = useState("");
-  const [followUpDate, setFollowUpDate] = useState("");
-  const [symptoms, setsymptoms] = useState("");
-  const [diagnosis, setdiagnosis] = useState("");
-  const [medication_procedures, setmedication_procedures] = useState("");
-  const [additionalInstructions, setAdditionalInstructions] = useState("");
+  const [patient, setpatient] = useState(capturingDataObject.patient || "");
+  const [historyofPresentIllness, setHistoryofPresentIllness] = useState(
+    capturingDataObject.historyofPresentIllness || ""
+  );
+  const [pastMedicalHistory, setPastMedicalHistory] = useState(
+    capturingDataObject.pastMedicalHistory || ""
+  );
+  const [treatmentType, setTreatmentType] = useState(
+    capturingDataObject.treatmentType || ""
+  );
+  const [dosage, setDosage] = useState(capturingDataObject.dosage || "");
+  const [duration, setDuration] = useState(capturingDataObject.duration || "");
+  const [followUpDate, setFollowUpDate] = useState(
+    capturingDataObject.followUpDate || ""
+  );
+  const [symptoms, setsymptoms] = useState(capturingDataObject.symptoms || "");
+  const [diagnosis, setdiagnosis] = useState(
+    capturingDataObject.diagnosis || ""
+  );
+  const [medication_procedures, setmedication_procedures] = useState(
+    capturingDataObject.medication_procedures || ""
+  );
+  const [additionalInstructions, setAdditionalInstructions] = useState(
+    capturingDataObject.additionalInstructions || ""
+  );
+  const [consultationCharges, setconsultationCharges] = useState(
+    capturingDataObject.consultationCharges || ""
+  );
   const [patientData, setpatientData] = useState([]);
   const [istreatmentRequired, setistreatmentRequired] = useState(false);
-  const [consultationCharges, setconsultationCharges] = useState("");
   const [errors, setErrors] = useState({});
 
   const consultationSchema = z.object({
@@ -67,9 +81,8 @@ function CreateConsultationForm({
     setpatientData(fitleringPatient);
   }
 
-  async function CreateConsultationForm() {
+  async function updateConsultationForm() {
     const consultationData = {
-      doctor: email,
       patient: patient,
       symptoms: symptoms,
       historyofPresentIllness: historyofPresentIllness,
@@ -81,45 +94,46 @@ function CreateConsultationForm({
       medication_procedures: medication_procedures,
       additionalInstructions: additionalInstructions,
       diagnosis: diagnosis,
-      appointmentId: appointment.id,
       treatmentPlanRequired: istreatmentRequired,
       consultationCharges: consultationCharges,
     };
 
     try {
       consultationSchema.parse(consultationData);
-      addDoc(collection(database, "consultation_database"),  consultationData);
 
-      console.log("Consultation added to Firestore.");
-      toast.current.show({
-        severity: "success",
-        summary: "Consultation created Successfully!!!",
-        life: 3000,
-      });
-      setopeningCreateConsultationForm(false);
+      const appointmentRef = doc(
+        database,
+        "consultation_database",
+        capturingDataObject.id
+      );
+
+      await updateDoc(appointmentRef, consultationData);
+
+      console.log("Consultation updated successfully");
+      setopeningUpdateConsultationForm(false);
+      renderingConsultation();
     } catch (error) {
-       if (error.name === "ZodError") {
+      if (error instanceof z.ZodError) {
         const fieldErrors = {};
-        error.issues.forEach((err) => {
-          fieldErrors[err.path[0]] = err.message;
+        error.issues.forEach((issue) => {
+          fieldErrors[issue.path[0]] = issue.message;
         });
         setErrors(fieldErrors);
-        return; 
-      } else {
-        console.error("Error while creating prescription:", error.message);
+        console.warn("Validation failed:", fieldErrors);
+        return;
       }
+
+      console.error("Error updating consultation:", error);
     }
   }
 
   useEffect(() => {
     renderingUser();
-    // renderingMedicines();
   }, []);
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white  p-3 my-5 rounded">
-        <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
           <p className="text-[#1976D2] text-xl font-bold">
             Create Consultation
@@ -127,7 +141,7 @@ function CreateConsultationForm({
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
-              setopeningCreateConsultationForm(false);
+              setopeningUpdateConsultationForm(false);
             }}
           >
             Close
@@ -139,6 +153,7 @@ function CreateConsultationForm({
             <div>
               <p className="font-semibold text-[#1976D2]">Patient Name</p>
               <select
+                value={patient}
                 onChange={(e) => setpatient(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
               >
@@ -147,11 +162,14 @@ function CreateConsultationForm({
                   <option value={user.email}>{user.name}</option>
                 ))}
               </select>
-                {errors.patient && (
+              {errors.patient && (
                 <p className="text-red-500 text-sm">{errors.patient}</p>
               )}
             </div>
-            <CentralizedSymptoms error={errors.symptoms}  setsymptoms={setsymptoms} />
+            <CentralizedSymptoms
+              error={errors.symptoms}
+              setsymptoms={setsymptoms}
+            />
           </div>
 
           <div className="grid grid-cols-2 my-3 gap-3">
@@ -161,14 +179,17 @@ function CreateConsultationForm({
               </p>
               <textarea
                 type="text"
+                value={historyofPresentIllness}
                 onChange={(e) => {
                   setHistoryofPresentIllness(e.target.value);
                 }}
                 placeholder="Test should be completed within 2 days..."
                 className="border rounded border-gray-300 h-40 w-full p-1.5"
               ></textarea>
-                {errors.historyofPresentIllness && (
-                <p className="text-red-500 text-sm">{errors.historyofPresentIllness}</p>
+              {errors.historyofPresentIllness && (
+                <p className="text-red-500 text-sm">
+                  {errors.historyofPresentIllness}
+                </p>
               )}
             </div>
 
@@ -177,6 +198,7 @@ function CreateConsultationForm({
                 Past Medical History
               </p>
               <textarea
+                value={pastMedicalHistory}
                 onChange={(e) => {
                   setPastMedicalHistory(e.target.value);
                 }}
@@ -184,25 +206,33 @@ function CreateConsultationForm({
                 placeholder="Enter past medical history..."
                 rows={3}
               />
-               {errors.pastMedicalHistory && (
-                <p className="text-red-500 text-sm">{errors.pastMedicalHistory}</p>
+              {errors.pastMedicalHistory && (
+                <p className="text-red-500 text-sm">
+                  {errors.pastMedicalHistory}
+                </p>
               )}
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <CentralizedDiagnosis setdiagnosis={setdiagnosis} />
+            <CentralizedDiagnosis
+              diagnosis={diagnosis}
+              setdiagnosis={setdiagnosis}
+            />
             <div>
               <label className="font-semibold text-[#1976D2]">
                 Consultation Charges
               </label>
               <input
+                value={consultationCharges}
                 onChange={(e) => setconsultationCharges(e.target.value)}
                 className="w-full border border-gray-300 rounded-md p-2"
                 placeholder="40000/-"
               />
-               {errors.consultationCharges && (
-                <p className="text-red-500 text-sm">{errors.consultationCharges}</p>
+              {errors.consultationCharges && (
+                <p className="text-red-500 text-sm">
+                  {errors.consultationCharges}
+                </p>
               )}
             </div>
           </div>
@@ -228,6 +258,7 @@ function CreateConsultationForm({
                   Treatment Type
                 </label>
                 <select
+                  value={treatmentType}
                   onChange={(e) => setTreatmentType(e.target.value)}
                   className="w-full border border-gray-300 rounded-md p-2"
                 >
@@ -239,9 +270,9 @@ function CreateConsultationForm({
                   <option value="counseling">Counseling</option>
                   <option value="other">Other</option>
                 </select>
-                 {errors.treatmentType && (
-                <p className="text-red-500 text-sm">{errors.treatmentType}</p>
-              )}
+                {errors.treatmentType && (
+                  <p className="text-red-500 text-sm">{errors.treatmentType}</p>
+                )}
               </div>
 
               <div className="grid grid-cols-3 my-3 gap-3">
@@ -249,13 +280,14 @@ function CreateConsultationForm({
                   <label className="font-semibold text-[#1976D2]">Dosage</label>
                   <input
                     type="text"
+                    value={dosage}
                     onChange={(e) => setDosage(e.target.value)}
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="e.g. 500mg twice daily"
                   />
-                   {errors.dosage && (
-                <p className="text-red-500 text-sm">{errors.dosage}</p>
-              )}
+                  {errors.dosage && (
+                    <p className="text-red-500 text-sm">{errors.dosage}</p>
+                  )}
                 </div>
                 <div>
                   <label className="font-semibold text-[#1976D2]">
@@ -263,13 +295,14 @@ function CreateConsultationForm({
                   </label>
                   <input
                     type="text"
+                    value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="e.g. 5 days"
                   />
-                   {errors.duration && (
-                <p className="text-red-500 text-sm">{errors.duration}</p>
-              )}
+                  {errors.duration && (
+                    <p className="text-red-500 text-sm">{errors.duration}</p>
+                  )}
                 </div>
 
                 <div>
@@ -277,13 +310,16 @@ function CreateConsultationForm({
                     Follow-Up Date
                   </label>
                   <input
+                    value={followUpDate}
                     onChange={(e) => setFollowUpDate(e.target.value)}
                     type="date"
                     className="w-full border border-gray-300 rounded-md p-2"
                   />
-                   {errors.followUpDate && (
-                <p className="text-red-500 text-sm">{errors.followUpDate}</p>
-              )}
+                  {errors.followUpDate && (
+                    <p className="text-red-500 text-sm">
+                      {errors.followUpDate}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -293,28 +329,34 @@ function CreateConsultationForm({
                     Medications / Procedures
                   </label>
                   <textarea
+                    value={medication_procedures}
                     onChange={(e) => setmedication_procedures(e.target.value)}
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="Enter medication details or procedures..."
                     rows={3}
                   />
-                   {errors.medication_procedures && (
-                <p className="text-red-500 text-sm">{errors.medication_procedures}</p>
-              )}
+                  {errors.medication_procedures && (
+                    <p className="text-red-500 text-sm">
+                      {errors.medication_procedures}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="font-semibold text-[#1976D2]">
                     Additional Instructions
                   </label>
                   <textarea
+                    value={additionalInstructions}
                     onChange={(e) => setAdditionalInstructions(e.target.value)}
                     className="w-full border border-gray-300 rounded-md p-2"
                     placeholder="Enter any special notes or advice..."
                     rows={3}
                   />
-                   {errors.additionalInstructions && (
-                <p className="text-red-500 text-sm">{errors.additionalInstructions}</p>
-              )}
+                  {errors.additionalInstructions && (
+                    <p className="text-red-500 text-sm">
+                      {errors.additionalInstructions}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -324,11 +366,11 @@ function CreateConsultationForm({
         <div className="flex justify-end">
           <button
             onClick={() => {
-              CreateConsultationForm();
+              updateConsultationForm();
             }}
             className="bg-[#1976D2] hover:border-blue-800 hover:bg-blue-800 border border-[#1976D2] text-white py-1 px-4 rounded"
           >
-            Create Consultation
+            Update Consultation
           </button>
         </div>
       </div>
@@ -336,4 +378,4 @@ function CreateConsultationForm({
   );
 }
 
-export default CreateConsultationForm;
+export default UpdateConsultationForm;

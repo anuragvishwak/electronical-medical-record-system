@@ -6,7 +6,7 @@ import { z } from "zod";
 function CreateStaff({ setopeningAddStaffForm }) {
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
-  const [phoneNo, setphoneNo] = useState("");
+  const [phone_no, setphone_no] = useState("");
   const [designation, setdesignation] = useState("");
     const [errors, setErrors] = useState({});
   
@@ -14,7 +14,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
   const staffSchema = z.object({
     name: z.string().min(1, "Staff name is neccessary."),
     email: z.string().min(1, "Email is compulsory."),
-    phoneNo: z.string().min(1, "Phone no is neccessary."),
+    phone_no: z.string().min(1, "Phone no is neccessary."),
     designation: z.string().min(1, "Designation is compulsory."),
   });
 
@@ -22,7 +22,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
     const staffData = {
       name: name,
       email: email,
-      phone_no: phoneNo,
+      phone_no: phone_no,
       role: "Support Staff",
       designation: designation,
     };
@@ -94,7 +94,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
             <p className="font-semibold text-[#196d8e]">Phone Number</p>
             <input
               onChange={(e) => {
-                setphoneNo(e.target.value);
+                setphone_no(e.target.value);
               }}
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="+91 78345387"

@@ -5,44 +5,50 @@ import { z } from "zod";
 
 function AddSalaryForm({
   setopeningSalaryForm,
-  currentStaffId,
+  capturingStaffData,
   renderingUser,
 }) {
-  const [basicPay, setbasicPay] = useState(0);
-  const [hra, sethra] = useState(0);
-  const [allowance, setallowance] = useState(0);
-  const [deduction, setdeduction] = useState(0);
-  const [netSalary, setnetSalary] = useState(0);
+  const [basicPay, setbasicPay] = useState(capturingStaffData.basicPay || "");
+  const [hra, sethra] = useState(capturingStaffData.hra || "");
+  const [allowance, setallowance] = useState(
+    capturingStaffData.allowance || ""
+  );
+  const [deduction, setdeduction] = useState(
+    capturingStaffData.deduction || ""
+  );
+  const [netSalary, setnetSalary] = useState(
+    capturingStaffData.netSalary || ""
+  );
   const [errors, setErrors] = useState({});
 
-  const salarySchema = {
-    basicPay: z.string().min(1, "Basic Pay is compulsory."),
-    hra: z.string().min(1, "HRA is compulsory."),
-    allowance: z.string().min(1, "Allowance is compulsory."),
-    deduction: z.string().min(1, "Decuction is compulsory."),
-    netSalary: z.string().min(1, "Net Salary is compulsory."),
-  };
+  const salarySchema = z.object({
+    basicPay: z.number().min(1, "Basic Pay is compulsory."),
+    hra: z.number().min(1, "HRA is compulsory."),
+    allowance: z.number().min(1, "Allowance is compulsory."),
+    deduction: z.number().min(1, "Decuction is compulsory."),
+    netSalary: z.number().min(1, "Net Salary is compulsory."),
+  });
 
   useEffect(() => {
     const AddAmount =
-      parseInt(basicPay || 0) + parseInt(hra || 0) + parseInt(allowance || 0);
+      parseInt(basicPay) + parseInt(hra) + parseInt(allowance || 0);
     const finalNetSalary = AddAmount - parseInt(deduction || 0);
     setnetSalary(finalNetSalary);
   }, [basicPay, hra, allowance, deduction]);
 
   async function AddSalary() {
     const SalaryData = {
-      basicPay: parseInt(basicPay || 0),
-      hra: parseInt(hra || 0),
-      allowance: parseInt(allowance || 0),
-      deduction: parseInt(deduction || 0),
+      basicPay: parseInt(basicPay),
+      hra: parseInt(hra),
+      allowance: parseInt(allowance),
+      deduction: parseInt(deduction),
       netSalary: netSalary,
       lastUpdated: new Date(),
     };
 
     try {
       salarySchema.parse(SalaryData);
-      const staffRef = doc(database, "user_database", currentStaffId);
+      const staffRef = doc(database, "user_database", capturingStaffData.id);
       await updateDoc(staffRef, SalaryData);
 
       console.log("Salary added successfully!!!");
@@ -82,14 +88,14 @@ function AddSalaryForm({
           <div>
             <p className="font-semibold text-[#196d8e]">Basic Pay</p>
             <input
-              type="number"
-              onChange={(e) => setbasicPay(Number(e.target.value) || 0)}
+              value={basicPay}
+              onChange={(e) => setbasicPay(Number(e.target.value))}
               placeholder="₹ 20,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
-              {errors.basicPay && (
-                <p className="text-red-500 text-sm">{errors.basicPay}</p>
-              )}
+            {errors.basicPay && (
+              <p className="text-red-500 text-sm">{errors.basicPay}</p>
+            )}
           </div>
 
           <div>
@@ -97,53 +103,50 @@ function AddSalaryForm({
               HRA (House Rent Allowance)
             </p>
             <input
-              type="number"
+              value={hra}
               onChange={(e) => sethra(e.target.value)}
               placeholder="₹ 10,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
-              {errors.hra && (
-                <p className="text-red-500 text-sm">{errors.hra}</p>
-              )}
+            {errors.hra && <p className="text-red-500 text-sm">{errors.hra}</p>}
           </div>
 
           <div>
             <p className="font-semibold text-[#196d8e]">Allowance</p>
             <input
-              type="number"
+              value={allowance}
               onChange={(e) => setallowance(e.target.value)}
               placeholder="₹ 5,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
-             {errors.allowance && (
-                <p className="text-red-500 text-sm">{errors.allowance}</p>
-              )}
+            {errors.allowance && (
+              <p className="text-red-500 text-sm">{errors.allowance}</p>
+            )}
           </div>
 
           <div>
             <p className="font-semibold text-[#196d8e]">Deduction</p>
             <input
-              type="number"
+              value={deduction}
               onChange={(e) => setdeduction(e.target.value)}
               placeholder="₹ 3,000/-"
               className="border rounded border-gray-300 w-full p-1.5"
             />
-             {errors.deduction && (
-                <p className="text-red-500 text-sm">{errors.deduction}</p>
-              )}
+            {errors.deduction && (
+              <p className="text-red-500 text-sm">{errors.deduction}</p>
+            )}
           </div>
 
           <div>
             <p className="font-semibold text-[#196d8e]">Net Salary</p>
             <input
-              type="number"
               value={netSalary}
               readOnly
               className="border rounded border-gray-300 w-full p-1.5 bg-gray-100"
             />
-             {errors.netSalary && (
-                <p className="text-red-500 text-sm">{errors.netSalary}</p>
-              )}
+            {errors.netSalary && (
+              <p className="text-red-500 text-sm">{errors.netSalary}</p>
+            )}
           </div>
         </div>
 

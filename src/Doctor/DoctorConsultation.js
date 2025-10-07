@@ -6,6 +6,7 @@ import { database } from "../FirebaseConfiguration";
 import { MdDelete } from "react-icons/md";
 import AdditionalConsultationDetails from "./AdditionalConsultationDetails";
 import CreateLabOrderForm from "./CreateLabOrderForm";
+import UpdateConsultationForm from "./UpdateConsultationForm";
 
 function DoctorConsultation() {
   const [gettingConsultations, setgettingConsultations] = useState([]);
@@ -14,6 +15,8 @@ function DoctorConsultation() {
     useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
   const [openingLabOrderForm, setopeningLabOrderForm] = useState(false);
+  const [openingUpdateConsultationForm, setopeningUpdateConsultationForm] =
+    useState(false);
 
   async function renderingConsultation() {
     const taskDetails = await getDocs(
@@ -46,7 +49,7 @@ function DoctorConsultation() {
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
 
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Consultation</p>
           <p className="text-gray-600">
@@ -69,9 +72,9 @@ function DoctorConsultation() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-3 m-5 gap-5">
         {gettingConsultations.map((prep) => (
-          <div className="bg-white rounded shadow border border-gray-300 m-3">
+          <div className="bg-white rounded shadow border border-gray-300">
             <div className="p-2 flex items-start justify-between bg-black text-white rounded-t">
               <div>
                 {gettingUser
@@ -129,7 +132,13 @@ function DoctorConsultation() {
                 </div>
               </button>
 
-              <button className="border-2 text-white border-gray-400 py-0.5 px-2 rounded bg-gray-400">
+              <button
+                onClick={() => {
+                  setcapturingDataObject(prep);
+                  setopeningUpdateConsultationForm(true);
+                }}
+                className="border-2 text-white border-gray-400 py-0.5 px-2 rounded bg-gray-400"
+              >
                 <div className="flex items-center space-x-1">
                   <FaEdit />
                   <p>Edit</p>
@@ -151,6 +160,14 @@ function DoctorConsultation() {
         <AdditionalConsultationDetails
           capturingDataObject={capturingDataObject}
           setopeningAdditionalDetails={setopeningAdditionalDetails}
+        />
+      )}
+
+      {openingUpdateConsultationForm && (
+        <UpdateConsultationForm
+          capturingDataObject={capturingDataObject}
+          renderingConsultation={renderingConsultation}
+          setopeningUpdateConsultationForm={setopeningUpdateConsultationForm}
         />
       )}
 

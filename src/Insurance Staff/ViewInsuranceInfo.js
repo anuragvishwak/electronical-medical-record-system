@@ -6,11 +6,14 @@ import { FaEdit } from "react-icons/fa";
 import { FaIndianRupeeSign, FaTrash } from "react-icons/fa6";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
+import UpdateInsuranceForm from "./UpdateInsuranceForm";
 
 function ViewInsuranceInfo() {
   const [openingAddInsuranceForm, setopeningAddInsuranceForm] = useState(false);
   const [gettingInsurances, setgettingInsurances] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
+  const [openingInsuranceUpdateForm, setopeningInsuranceUpdateForm] = useState(false);
+  const [capturingDataObject, setcapturingDataObject] = useState({});
 
   async function renderingInsurances() {
     const taskDetails = await getDocs(
@@ -134,7 +137,12 @@ function ViewInsuranceInfo() {
 
             <hr className="border-gray-300 my-3" />
             <div className="flex items-center space-x-2 justify-end">
-              <button className="text-green-500">
+              <button 
+              onClick={()=>{
+                setopeningInsuranceUpdateForm(true);
+                setcapturingDataObject(insurance);
+              }}
+              className="text-green-500">
                 <FaEdit />
               </button>
 
@@ -152,6 +160,11 @@ function ViewInsuranceInfo() {
           renderingInsurances={renderingInsurances}
         />
       )}
+
+      {openingInsuranceUpdateForm && <UpdateInsuranceForm 
+      capturingDataObject = {capturingDataObject} 
+      renderingInsurances = {renderingInsurances}
+      setopeningInsuranceUpdateForm = {setopeningInsuranceUpdateForm}/>}
     </div>
   );
 }
