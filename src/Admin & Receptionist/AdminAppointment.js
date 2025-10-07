@@ -7,9 +7,10 @@ import { database } from "../FirebaseConfiguration";
 import { CgLock } from "react-icons/cg";
 import { BsClock } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
-import { MdDateRange } from "react-icons/md";
+import { MdDateRange, MdDelete } from "react-icons/md";
 import AddBillingPaymentForm from "./AddBillingPaymentForm";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaPencil } from "react-icons/fa6";
+import UpdateAppointmentForm from "./UpdateAppointmentForm";
 
 function AdminAppointment() {
   const [openingCreateAppointmentForm, setopeningCreateAppointmentForm] =
@@ -19,6 +20,12 @@ function AdminAppointment() {
     useState(false);
   const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
   const [capturingObject, setcapturingObject] = useState({});
+  const [openingAppointmentUpdateForm, setopeningAppointmentUpdateForm] =
+    useState(false);
+  const [capturingAppointmentObject, setcapturingAppointmentObject] = useState(
+    {}
+  );
+  const [gettingUser, setgettingUser] = useState([]);
 
   async function renderingAppointments() {
     const taskDetails = await getDocs(
@@ -31,6 +38,20 @@ function AdminAppointment() {
 
     setgettingAppointments(multipleArray);
   }
+
+  async function renderingUser() {
+    const taskDetails = await getDocs(collection(database, "user_database"));
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingUser(multipleArray);
+  }
+
+  useEffect(() => {
+    renderingUser();
+  }, []);
 
   useEffect(() => {
     renderingAppointments();
@@ -64,7 +85,9 @@ function AdminAppointment() {
             </button>
 
             <div className="rounded border py-3 border-gray-400 px-5">
-              <p className="text-3xl text-center font-bold">{gettingAppointments.length}</p>
+              <p className="text-3xl text-center font-bold">
+                {gettingAppointments.length}
+              </p>
               <p className="text-gray-500">Total Appointment</p>
             </div>
           </div>
@@ -101,25 +124,42 @@ function AdminAppointment() {
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-4 rounded">
             <div className="text-[#196d8e] items-center justify-between">
-              <div className="flex items-center">
-                <div className="flex items-center space-x-1">
-                  <BsClock />
-                  <p>{appointment.time}</p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="flex items-center space-x-1">
+                    <BsClock />
+                    <p>{appointment.time}</p>
+                  </div>
+                  <p className="text-gray-500 px-2">|</p>
+                  <div className="flex items-center space-x-1">
+                    <MdDateRange />
+                    <p>
+                      {appointment.createdAt
+                        ? new Date(
+                            appointment.createdAt.seconds * 1000
+                          ).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : "No Date"}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-gray-500 px-2">|</p>
+
                 <div className="flex items-center space-x-1">
-                  <MdDateRange />
-                  <p>
-                    {appointment.createdAt
-                      ? new Date(
-                          appointment.createdAt.seconds * 1000
-                        ).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })
-                      : "No Date"}
-                  </p>
+                  <button
+                    onClick={() => {
+                      setopeningAppointmentUpdateForm(true);
+                      setcapturingAppointmentObject(appointment);
+                    }}
+                    className="text-[#212a31]"
+                  >
+                    <FaPencil />
+                  </button>
+                  <button className="text-[#196d8e]">
+                    <MdDelete size={19} />
+                  </button>
                 </div>
               </div>
 
@@ -148,18 +188,28 @@ function AdminAppointment() {
               </div>
             </div>
 
-            <p className="text-gray-400">
-              Doctor:{" "}
-              <span className="text-[#212a31] font-semibold">
-                {appointment.doctor}
-              </span>
-            </p>
-            <p className="text-gray-400">
-              Patient:{" "}
-              <span className="text-[#212a31] font-semibold">
-                {appointment.patient}
-              </span>
-            </p>
+             {gettingUser
+              .filter((user) => user.email === appointment.doctor)
+              .map((user) => (
+                <p className="text-gray-400">
+                  Doctor:{" "}
+                  <span className="text-[#212a31] capitalize font-semibold">
+                    {user.name}
+                  </span>
+                </p>
+              ))}
+
+
+            {gettingUser
+              .filter((user) => user.email === appointment.patient)
+              .map((user) => (
+                <p className="text-gray-400">
+                  Patient:{" "}
+                  <span className="text-[#212a31] capitalize font-semibold">
+                    {user.name}
+                  </span>
+                </p>
+              ))}
 
             <hr className="my-4 border-gray-300" />
 
@@ -176,6 +226,14 @@ function AdminAppointment() {
       {openingCreateAppointmentForm && (
         <CreateAppointmentForm
           setopeningCreateAppointmentForm={setopeningCreateAppointmentForm}
+          renderingAppointments={renderingAppointments}
+        />
+      )}
+
+      {openingAppointmentUpdateForm && (
+        <UpdateAppointmentForm
+          setopeningAppointmentUpdateForm={setopeningAppointmentUpdateForm}
+          capturingAppointmentObject={capturingAppointmentObject}
           renderingAppointments={renderingAppointments}
         />
       )}

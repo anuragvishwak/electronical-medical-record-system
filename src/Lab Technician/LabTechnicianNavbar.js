@@ -21,14 +21,27 @@ function LabTechnicianNavbar() {
           Assigned Lab Orders
         </button>
         <button
-         onClick={() => {
+          onClick={() => {
             navigate("/UploadTestResults");
           }}
           className={`${
             location.pathname === "/UploadTestResults" ? "text-[#1976D2]" : ""
           }`}
-        >Upload Test Results</button>
-        <button>Profile / Setting</button>
+        >
+          Upload Test Results
+        </button>
+        <button
+          onClick={() => {
+            navigate("/LabTechnicianProfileUpdateSetting");
+          }}
+          className={`${
+            location.pathname === "/LabTechnicianProfileUpdateSetting"
+              ? "text-[#1976D2]"
+              : ""
+          }`}
+        >
+          Profile / Setting
+        </button>
       </div>
       <div className="flex items-center space-x-2">
         <button>Notify</button>

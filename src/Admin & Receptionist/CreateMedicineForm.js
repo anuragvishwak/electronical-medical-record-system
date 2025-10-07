@@ -10,8 +10,8 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
   const toast = useRef(null);
   const [name, setname] = useState("");
   const [brand, setbrand] = useState("");
-  const [category, setcategory] = useState("");
   const [genericName, setgenericName] = useState("");
+  const [category, setcategory] = useState("");
   const [Form, setform] = useState("");
   const [dosage, setdosage] = useState([]);
   const [dosage_instruction, setdosage_instruction] = useState("");

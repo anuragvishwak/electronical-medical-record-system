@@ -60,7 +60,7 @@ function LiverFunctionTest({
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 border border-gray-300 p-3 rounded gap-3">
         <div>
           <p className="font-semibold text-[#1976D2]">ALT (U/L)</p>
           <input

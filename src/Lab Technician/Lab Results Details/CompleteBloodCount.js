@@ -98,7 +98,7 @@ function CompleteBloodCount({
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid p-3 rounded border border-gray-300 grid-cols-2 gap-3">
         <div>
           <p className="font-semibold text-[#1976D2]">Hemoglobin (g/dL)</p>
           <input
@@ -241,7 +241,7 @@ function CompleteBloodCount({
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-5">
         <button
           onClick={() => {
             SubmittingCompleteBloodCount();

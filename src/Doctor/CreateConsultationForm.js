@@ -221,7 +221,7 @@ function CreateConsultationForm({
           </div>
 
           {istreatmentRequired && (
-            <div className="my-4">
+            <div className="my-4 border border-gray-300 p-3 rounded">
               <p className="text-xl mb-3 font-bold">Treatment Plan</p>
 
               <div>
