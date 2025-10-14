@@ -1,23 +1,32 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { getAdditionalUserInfo } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useRef, useState } from "react";
-import { database } from "../FirebaseConfiguration";
-import { Toast } from "primereact/toast";
 import { z } from "zod";
+import { database } from "../FirebaseConfiguration";
 
-function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
-
-  const toast = useRef();
-  const email = localStorage.getItem("email");
-  const [dateTime, setdateTime] = useState("");
-  const [testRequested, settestRequested] = useState("");
-  const [specimenType, setspecimenType] = useState("");
-  const [priority, setpriority] = useState("");
-  const [clinicalNotes, setclinicalNotes] = useState("");
-  const [orderStatus, setorderStatus] = useState("");
+function UpdateLabOrderForm({
+  setopeningLabOrderUpdateForm,
+  capturingLabOrderObject,
+  renderingLabOrders
+}) {
+  const [testRequested, settestRequested] = useState(
+    capturingLabOrderObject.testRequested || ""
+  );
+  const [specimenType, setspecimenType] = useState(
+    capturingLabOrderObject.specimenType || ""
+  );
+  const [priority, setpriority] = useState(
+    capturingLabOrderObject.priority || ""
+  );
+  const [clinicalNotes, setclinicalNotes] = useState(
+    capturingLabOrderObject.clinicalNotes || ""
+  );
+  const [orderStatus, setorderStatus] = useState(
+    capturingLabOrderObject.orderStatus || ""
+  );
   const [errors, setErrors] = useState({});
 
   const labOrderTestSchema = z.object({
-    dateTime: z.string().min(1, "Date and Time is compulsory."),
     testRequested: z.string().min(1, "Test is compulsory."),
     specimenType: z.string().min(1, "Specimen Type is compulsory."),
     priority: z.string().min(1, "Priority is compulsory."),
@@ -25,13 +34,8 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
     orderStatus: z.string().min(1, "Order Status is compulsory."),
   });
 
-  async function handleCreateLabOrder() {
+  async function updateLabOrder() {
     const labOrderData = {
-      doctor: email,
-      patient: capturingDataObject.patient,
-      appointmentId: capturingDataObject.appointmentId,
-      constulationId: capturingDataObject.id,
-      dateTime: dateTime,
       testRequested: testRequested,
       specimenType: specimenType,
       priority: priority,
@@ -40,15 +44,16 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
     };
     try {
       labOrderTestSchema.parse(labOrderData);
-      addDoc(collection(database, "lab_order_database"), labOrderData);
+      const appointmentRef = doc(
+        database,
+        "lab_order_database",
+        capturingLabOrderObject.id
+      );
+      await updateDoc(appointmentRef, labOrderData);
 
-      console.log("Lab Order added to Firestore.");
-      toast.current.show({
-        severity: "success",
-        summary: "Lab Order created Successfully!!!",
-        life: 3000,
-      });
-      setopeningLabOrderForm(false);
+      console.log("Lab Order updated to Firestore.");
+      setopeningLabOrderUpdateForm(false);
+      renderingLabOrders();
     } catch (error) {
       if (error.name === "ZodError") {
         const fieldErrors = {};
@@ -107,13 +112,12 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
-        <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
           <p className="text-[#1976D2] text-xl font-bold">Create Lab Order</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
-              setopeningLabOrderForm(false);
+              setopeningLabOrderUpdateForm(false);
             }}
           >
             Close
@@ -124,21 +128,14 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <p className="font-semibold text-[#1976D2]">Date and Time</p>
-              <input
-                type="datetime-local"
-                onChange={(e) => {
-                  setdateTime(e.target.value);
-                }}
-                className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="12/6/2023"
-              />
-              {errors.dateTime && (
-                <p className="text-red-500 text-sm">{errors.dateTime}</p>
-              )}
+              <p className="w-full border border-gray-300 rounded-md p-2">
+                {capturingLabOrderObject.dateTime}
+              </p>
             </div>
             <div>
               <p className="font-semibold text-[#1976D2]">Lab Test Requested</p>
               <select
+                value={testRequested}
                 onChange={(e) => {
                   settestRequested(e.target.value);
                 }}
@@ -162,11 +159,11 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
             <div>
               <p className="font-semibold text-[#1976D2]">Specimen Type</p>
               <select
+                value={specimenType}
                 onChange={(e) => {
                   setspecimenType(e.target.value);
                 }}
                 className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="12/6/2023"
               >
                 <option>Select Specimen Type</option>
                 {specimenTypes.map((test) => (
@@ -183,6 +180,7 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
             <div>
               <p className="font-semibold text-[#1976D2]">Priorities</p>
               <select
+                value={priority}
                 onChange={(e) => {
                   setpriority(e.target.value);
                 }}
@@ -204,6 +202,7 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
               Clinical Notes (Additional Notes)
             </p>
             <textarea
+              value={clinicalNotes}
               type="text"
               onChange={(e) => {
                 setclinicalNotes(e.target.value);
@@ -219,6 +218,7 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
           <div className="mt-3">
             <p className="font-semibold text-[#1976D2]">Lab Order Status</p>
             <select
+              value={orderStatus}
               onChange={(e) => {
                 setorderStatus(e.target.value);
               }}
@@ -243,11 +243,11 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
         <div className="flex justify-end">
           <button
             onClick={() => {
-              handleCreateLabOrder();
+              updateLabOrder();
             }}
             className="bg-[#1976D2] text-white py-1.5 px-4 rounded mt-4  hover:bg-blue-800"
           >
-            Create Lab Order
+            Update Lab Order
           </button>
         </div>
       </div>
@@ -255,4 +255,4 @@ function CreateLabOrderForm({ setopeningLabOrderForm, capturingDataObject }) {
   );
 }
 
-export default CreateLabOrderForm;
+export default UpdateLabOrderForm;

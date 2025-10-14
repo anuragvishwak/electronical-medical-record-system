@@ -22,6 +22,28 @@ function AdminBillingPayment() {
     setgettingBills(multipleArray);
   }
 
+  const gettingSurgeryFee = gettingBills.reduce(
+    (total, bill) => total + (Number(bill.surgeryFee) || 0),
+    0
+  );
+
+  const gettingConsultationFee = gettingBills.reduce(
+    (total, bill) => total + (Number(bill.consultationCharges) || 0),
+    0
+  );
+
+  const gettingLabTestFee = gettingBills.reduce(
+    (total, bill) => total + (Number(bill.labCharges) || 0),
+    0
+  );
+
+  const gettingGrandTotal = gettingBills.reduce(
+  (total, bill) => total + (Number(bill.finalAmount) || 0),
+  0
+);
+
+
+
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
     let multipleArray = taskDetails.docs.map((doc) => ({
@@ -40,7 +62,10 @@ function AdminBillingPayment() {
   return (
     <div className="bg-gray-100 h-screen">
       <AdminNavbar />
-         <div className="p-5">
+
+      <div className="bg-white m-5 p-5 border border-gray-300 shadow rounded">
+       <div className="flex items-center justify-between">
+         <div className="">
           <p className="text-2xl text-[#212a31] font-bold">Billing & Payment</p>
           <p className="text-[#196d8e]">
             Admin can add and manage{" "}
@@ -49,9 +74,46 @@ function AdminBillingPayment() {
             history.
           </p>
         </div>
-      <div className="mx-5 flex items-end justify-end bg-white p-3 border border-gray-300 shadow rounded">
 
-        <div className="flex items-center space-x-2">
+       <div className="flex items-center space-x-5">
+         <div className="text-center text-sm">
+              <p className="text-2xl flex items-center text-center font-bold">
+               <FaIndianRupeeSign />
+                {gettingSurgeryFee}/-
+              </p>
+              <p className="text-gray-500">Surgery Fees</p>
+            </div>
+
+             <div className="text-center text-sm">
+              <p className="text-2xl flex items-center text-center font-bold">
+               <FaIndianRupeeSign />
+                {gettingConsultationFee}/-
+              </p>
+              <p className="text-gray-500">Consultation Fees</p>
+            </div>
+
+            <div className="text-center text-sm">
+              <p className="text-2xl flex items-center text-center font-bold">
+               <FaIndianRupeeSign />
+                {gettingLabTestFee}/-
+              </p>
+              <p className="text-gray-500">Lab Charges</p>
+            </div>
+
+
+             <div className="text-center text-sm">
+              <p className="text-2xl flex items-center text-center font-bold">
+               <FaIndianRupeeSign />
+                {gettingGrandTotal}/-
+              </p>
+              <p className="text-gray-500">Total</p>
+            </div>
+       </div>
+       </div>
+
+        <hr className="border-gray-300 my-4" />
+
+        <div className="flex items-center justify-between space-x-2">
           <input
             placeholder="Search Billing & Payment..."
             className="border border-gray-400 w-60 p-1 rounded"
@@ -102,8 +164,8 @@ function AdminBillingPayment() {
                   {gettingUser
                     .filter((user) => user.email === bill.doctor)
                     .map((user) => (
-                     <td>
-                       <div className="flex items-center justify-center">
+                      <td>
+                        <div className="flex items-center justify-center">
                           <div>
                             <p>{user.name}</p>
                             <p className="text-sm text-gray-400">
@@ -111,7 +173,7 @@ function AdminBillingPayment() {
                             </p>
                           </div>
                         </div>
-                     </td>
+                      </td>
                     ))}
                   <td className="text-center">{bill.appointmentId}</td>
                   <td className="text-center">{bill.billDate}</td>

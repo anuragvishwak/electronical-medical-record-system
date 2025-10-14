@@ -1,6 +1,6 @@
 import React from "react";
 
-function CentralizedDiagnosis({setdiagnosis}) {
+function CentralizedDiagnosis({ diagnosis, setdiagnosis }) {
   const diagnosesList = [
     { id: 1, name: "Hypertension" },
     { id: 2, name: "Diabetes Mellitus" },
@@ -27,7 +27,13 @@ function CentralizedDiagnosis({setdiagnosis}) {
   return (
     <div>
       <p className="font-semibold text-[#1976D2]">Diagnosis</p>
-      <select className="border rounded border-gray-300 w-full p-2">
+      <select
+        value={diagnosis}
+        onChange={(e) => {
+          setdiagnosis(e.target.value);
+        }}
+        className="border rounded border-gray-300 w-full p-2"
+      >
         {diagnosesList.map((diagnosis) => (
           <option key={diagnosis.name} value={diagnosis.name}>
             {diagnosis.name}

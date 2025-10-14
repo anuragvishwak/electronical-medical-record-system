@@ -8,13 +8,13 @@ import { database } from "../FirebaseConfiguration";
 import AddSalaryForm from "./AddSalaryForm";
 import { FaIndianRupeeSign, FaPencil } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import UpdateStaffForm from "./UpdateStaffForm";
 
 
 function StaffManagement() {
   const [openingAddStaffForm, setopeningAddStaffForm] = useState(false);
   const [gettingUser, setgettingUser] = useState([]);
   const [openingSalaryForm, setopeningSalaryForm] = useState(false);
-  const [currentStaffId, setcurrentStaffId] = useState("");
   const [openingUpdateStaffForm, setopeningStaffUpdateForm] = useState(false);
   const [capturingStaffData, setcapturingStaffData] = useState({});
 
@@ -99,8 +99,8 @@ function StaffManagement() {
               <div className="flex items-center space-x-1">
               <button
                 onClick={() => {
-                  setcurrentStaffId(user.id);
                   setopeningSalaryForm(true);
+                  setcapturingStaffData(user);
                 }}
                 className="bg-[#196d8e] text-white py-1 text-sm px-3 mr-2 rounded"
               >
@@ -108,7 +108,8 @@ function StaffManagement() {
               </button>
                 <button
                   onClick={() => {
-                   setopeningAddStaffForm(true);
+                   setopeningStaffUpdateForm(true);
+                   setcapturingStaffData(user);
                   }}
                   className="text-[#212a31]"
                 >
@@ -203,10 +204,14 @@ function StaffManagement() {
       {openingAddStaffForm && (
         <CreateStaff setopeningAddStaffForm={setopeningAddStaffForm} />
       )}
+      {openingUpdateStaffForm && <UpdateStaffForm 
+      renderingUser={renderingUser}
+      capturingStaffData = {capturingStaffData}
+      setopeningStaffUpdateForm = {setopeningStaffUpdateForm}/>}
 
       {openingSalaryForm && (
         <AddSalaryForm
-          currentStaffId={currentStaffId}
+      capturingStaffData = {capturingStaffData}
           setopeningSalaryForm={setopeningSalaryForm}
           renderingUser={renderingUser}
         />
