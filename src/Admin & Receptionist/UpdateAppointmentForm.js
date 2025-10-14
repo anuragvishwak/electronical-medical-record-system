@@ -80,7 +80,7 @@ console.log("finding time",capturingAppointmentObject.time)
       <div className="p-4 rounded bg-white">
         <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Create Appointment</p>
+          <p className="text-[#212a31] text-xl font-bold">Update Appointment</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -177,7 +177,7 @@ console.log("finding time",capturingAppointmentObject.time)
               }}
               className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
             >
-              + Update Appointment
+              Update Appointment
             </button>
           </div>
         </div>

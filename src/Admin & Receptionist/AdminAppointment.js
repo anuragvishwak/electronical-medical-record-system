@@ -49,6 +49,7 @@ function AdminAppointment() {
     setgettingUser(multipleArray);
   }
 
+
   useEffect(() => {
     renderingUser();
   }, []);
@@ -84,8 +85,8 @@ function AdminAppointment() {
               <FaBars size={15} />
             </button>
 
-            <div className="rounded border py-3 border-gray-400 px-5">
-              <p className="text-3xl text-center font-bold">
+            <div className="border-gray-400">
+              <p className="text-2xl text-center font-bold">
                 {gettingAppointments.length}
               </p>
               <p className="text-gray-500">Total Appointment</p>
