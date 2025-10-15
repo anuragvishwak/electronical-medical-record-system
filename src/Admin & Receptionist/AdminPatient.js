@@ -33,7 +33,7 @@ function AdminPatient() {
         setopeningAdminNavbar={setopeningAdminNavbar}
         openingAdminNavbar={openingAdminNavbar}
       />
-      <div className="mx-3 bg-white p-3 border border-gray-300 shadow rounded  sm:flex items-end justify-between mt-3">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <div className="flex items-center justify-between">
             <p className="text-lg sm:text-2xl font-bold ">Patient Details</p>
@@ -46,23 +46,25 @@ function AdminPatient() {
               <FaBars />
             </button>
           </div>
-          <p className="text-gray-600 text-sm sm:text-base">
+          <p className="text-[#196d8e] sm:text-base">
             Patient details across the healthcare system
           </p>
         </div>
-
-        <div className="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Patients..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-300 w-96 p-1 rounded"
           ></input>
 
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+          <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Patient</option>
+              {gettingUser
+                .filter((user) => user.role === "patient")
+                .map((user) => (
+                  <option>{user.name}</option>
+                ))}
+            </select>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-5 p-3">

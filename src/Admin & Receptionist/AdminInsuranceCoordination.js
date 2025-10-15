@@ -103,7 +103,7 @@ function AdminInsuranceCoordination() {
 
         <hr className="border-gray-300 my-4" />
 
-        <div className="flex items-center justify-end space-x-2">
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Inusurance Related Queries..."
             className="border border-gray-400 w-96 p-1 rounded"

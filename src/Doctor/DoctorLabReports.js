@@ -7,9 +7,10 @@ import { FaEdit, FaEye } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import UpdateLabOrderForm from "./UpdateLabOrderForm";
+import { FaPencil } from "react-icons/fa6";
 
 function DoctorLabReports() {
-  const currentUser = localStorage.getItem('email');
+  const currentUser = localStorage.getItem("email");
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
@@ -32,6 +33,29 @@ function DoctorLabReports() {
 
     setgettingLabOrders(multipleArray);
   }
+
+  const labTestsList = [
+    { id: 1, name: "Complete Blood Count (CBC)" },
+    { id: 2, name: "Blood Sugar (Fasting)" },
+    { id: 3, name: "Blood Sugar (Postprandial)" },
+    { id: 4, name: "Lipid Profile" },
+    { id: 5, name: "Liver Function Test (LFT)" },
+    { id: 6, name: "Kidney Function Test (KFT)" },
+    { id: 7, name: "Thyroid Stimulating Hormone (TSH)" },
+    { id: 8, name: "Urinalysis" },
+    { id: 9, name: "Electrolyte Panel" },
+    { id: 10, name: "Hemoglobin A1c (HbA1c)" },
+    { id: 11, name: "C-Reactive Protein (CRP)" },
+    { id: 12, name: "Erythrocyte Sedimentation Rate (ESR)" },
+    { id: 13, name: "Prothrombin Time (PT/INR)" },
+    { id: 14, name: "Vitamin D" },
+    { id: 15, name: "Calcium" },
+    { id: 16, name: "Iron Studies" },
+    { id: 17, name: "Pregnancy Test (hCG)" },
+    { id: 18, name: "HIV Test" },
+    { id: 19, name: "Hepatitis B Surface Antigen (HBsAg)" },
+    { id: 20, name: "Chest X-Ray" },
+  ];
 
   async function renderingLabResults() {
     const taskDetails = await getDocs(
@@ -66,56 +90,73 @@ function DoctorLabReports() {
       <DoctorNavbar />
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold">Lab Reports</p>
-          <p className="text-gray-600">
+          <p className="text-2xl font-bold text-[#212a31]">Lab Reports</p>
+          <p className="text-[#196d8e]">
             Doctor can view patient's Lab Reports here
           </p>
         </div>
-<hr className="border-gray-300 my-4"/>
-        <div className="flex items-center justify-end space-x-2">
-          <div className="p-1.5 rounded border flex items-center space-x-2 border-gray-300 bg-gray-200">
-            <button
-              onClick={() => {
-                setcurrentTab("order");
-              }}
-              className={`px-2 ${
-                currentTab === "order" ? "bg-white shadow rounded" : ""
-              }`}
-            >
-              Orders
-            </button>
-            <button
-              onClick={() => {
-                setcurrentTab("report");
-              }}
-              className={`px-2 ${
-                currentTab === "report" ? "bg-white shadow rounded" : ""
-              }`}
-            >
-              Reports
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-between space-x-2">
+          <input
+            placeholder="Search Lab Reports by lab order id or appointment id..."
+            className="border border-gray-400 w-96 p-1.5 rounded"
+          ></input>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter By Patient</option>
+              {gettingUser.filter(user => user.role === "patient").map((user) => (
+                <option value={user.name}>{user.name}</option>
+              ))}
+            </select>
+             <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Tests</option>
+              {labTestsList.map((test) => (
+                <option value={test.name}>{test.name}</option>
+              ))}
+            </select>
+               <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Status</option>
+             <option value="pending">Pending</option>
+            </select>
+            <div className="p-1.5 rounded border flex items-center space-x-2 border-gray-300 bg-gray-200">
+              <button
+                onClick={() => {
+                  setcurrentTab("order");
+                }}
+                className={`px-2 ${
+                  currentTab === "order" ? "bg-white shadow rounded" : ""
+                }`}
+              >
+                Orders
+              </button>
+              <button
+                onClick={() => {
+                  setcurrentTab("report");
+                }}
+                className={`px-2 ${
+                  currentTab === "report" ? "bg-white shadow rounded" : ""
+                }`}
+              >
+                Reports
+              </button>
+            </div>
+
+            <button>
+              <IoNotifications
+                size={31}
+                className="border border-gray-500 p-1 rounded text-gray-500"
+              />
             </button>
           </div>
-          <input
-            placeholder="Search Lab Reports..."
-            className="border border-gray-400 w-60 p-1.5 rounded"
-          ></input>
-
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
         </div>
       </div>
       {currentTab === "order" ? (
         <div>
           <div className="flex justify-center m-3 p-3 bg-white border border-gray-300 shadow rounded">
             <table className="w-full table-auto">
-              <thead className="bg-blue-50 text-[#1976D2]">
+              <thead className="bg-gray-50 border text-[#212a31]">
                 <tr>
-                  <th className="py-1.5">Patient Name</th>
-                  <th>Doctor Name</th>
+                  <th className="py-1">Patient Name</th>
                   <th>Test Requested</th>
                   <th>Priority</th>
                   <th>Order Status</th>
@@ -127,87 +168,86 @@ function DoctorLabReports() {
               </thead>
 
               <tbody>
-                {gettingLabOrders.filter(order => order.doctor === currentUser).map((order) => (
-                  <>
-                    <tr className="text-gray-500 border-b border-gray-300">
-                      {gettingUser
-                        .filter((user) => user.email === order.patient)
-                        .map((user) => (
-                          <td className="text-center">{user.name}</td>
-                        ))}
+                {gettingLabOrders
+                  .filter((order) => order.doctor === currentUser)
+                  .map((order) => (
+                    <>
+                      <tr className="text-[#196d8e] border-b border-gray-300">
+                        {gettingUser
+                          .filter((user) => user.email === order.patient)
+                          .map((user) => (
+                            <td className="text-center">{user.name}</td>
+                          ))}
 
-                      {gettingUser
-                        .filter((user) => user.email === order.doctor)
-                        .map((user) => (
-                          <td className="text-center">{user.name}</td>
-                        ))}
-
-                      <td className="text-center py-3">
-                        {order.testRequested}
-                      </td>
-                      <td className="text-center">{order.priority}</td>
-                      <td className="text-center">{order.orderStatus}</td>
-                      <td className="text-center">{order.specimenType}</td>
-                      <td className="text-center">{order.dateTime}</td>
-                      <td className="flex items-center justify-center">
-                        <button
-                          onClick={() => {
-                            setopeningNote(true);
-                          }}
-                          className="bg-blue-500 text-white px-2 mt-1.5 py-1 rounded"
-                        >
-                          <div className="flex items-center space-x-1">
-                            <GrNotes />
-                            <p>View Note</p>
-                          </div>
-                        </button>
-                      </td>
-                      <td>
-                        <div className="flex items-center justify-center space-x-2">
+                        <td className="text-center py-3">
+                          {order.testRequested}
+                        </td>
+                        <td className="text-center">{order.priority}</td>
+                        <td className="text-center">{order.orderStatus}</td>
+                        <td className="text-center">{order.specimenType}</td>
+                        <td className="text-center">{order.dateTime}</td>
+                        <td className="flex items-center justify-center">
                           <button
                             onClick={() => {
-                              setopeningLabOrderUpdateForm(true);
-                              setcapturingLabOrderObject(order);
+                              setopeningNote(true);
                             }}
-                            className="text-yellow-500 rounded border-2 p-1 hover:bg-yellow-500 hover:text-white border-yellow-500"
+                            className="bg-[#196d8e] text-white px-2 mt-1.5 py-1 rounded"
                           >
-                            <FaEdit size={21} />
-                          </button>
-
-                          <button className="text-red-500 rounded border-2 p-1 hover:bg-red-500 hover:text-white border-red-500">
-                            <MdDelete size={20} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    {openingNote && (
-                      <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white p-3.5 rounded shadow-lg w-5/12">
-                          <div className="p-3.5 rounded border border-gray-400">
-                            <div className="flex itesm-center justify-between mb-3">
-                              <div className="flex items-center space-x-1">
-                                <GrNotes size={18} className="text-[#1976D2]" />
-                                <p className="text-[#1976D2] font-semibold text-xl">
-                                  Cinical Note
-                                </p>
-                              </div>
-
-                              <button
-                                onClick={() => setopeningNote(false)}
-                                className="font-semibold text-red-500"
-                              >
-                                Close
-                              </button>
+                            <div className="flex items-center space-x-1">
+                              <GrNotes />
+                              <p>View Note</p>
                             </div>
-                            <p className="text-justify">
-                              {order.clinicalNotes}
-                            </p>
+                          </button>
+                        </td>
+                        <td>
+                          <div className="flex items-center justify-center space-x-2">
+                            <button
+                              onClick={() => {
+                                setopeningLabOrderUpdateForm(true);
+                                setcapturingLabOrderObject(order);
+                              }}
+                               className="text-[#212a31]"
+                            >
+                              <FaPencil />
+                            </button>
+
+                            <button className="text-[#196d8e]">
+                              <MdDelete size={19} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      {openingNote && (
+                        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+                          <div className="bg-white p-3.5 rounded shadow-lg w-5/12">
+                            <div className="p-3.5 rounded border border-gray-400">
+                              <div className="flex itesm-center justify-between mb-3">
+                                <div className="flex items-center space-x-1">
+                                  <GrNotes
+                                    size={18}
+                                    className="text-[#1976D2]"
+                                  />
+                                  <p className="text-[#1976D2] font-semibold text-xl">
+                                    Cinical Note
+                                  </p>
+                                </div>
+
+                                <button
+                                  onClick={() => setopeningNote(false)}
+                                  className="font-semibold text-red-500"
+                                >
+                                  Close
+                                </button>
+                              </div>
+                              <p className="text-justify">
+                                {order.clinicalNotes}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </>
-                ))}
+                      )}
+                    </>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -331,7 +371,13 @@ function DoctorLabReports() {
         </div>
       )}
 
-      {openingLabOrderUpdateForm && <UpdateLabOrderForm renderingLabOrders = {renderingLabOrders} capturingLabOrderObject = {capturingLabOrderObject} setopeningLabOrderUpdateForm = {setopeningLabOrderUpdateForm}/>}
+      {openingLabOrderUpdateForm && (
+        <UpdateLabOrderForm
+          renderingLabOrders={renderingLabOrders}
+          capturingLabOrderObject={capturingLabOrderObject}
+          setopeningLabOrderUpdateForm={setopeningLabOrderUpdateForm}
+        />
+      )}
     </div>
   );
 }

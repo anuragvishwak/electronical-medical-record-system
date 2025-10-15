@@ -10,7 +10,6 @@ import { FaIndianRupeeSign, FaPencil } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import UpdateStaffForm from "./UpdateStaffForm";
 
-
 function StaffManagement() {
   const [openingAddStaffForm, setopeningAddStaffForm] = useState(false);
   const [gettingUser, setgettingUser] = useState([]);
@@ -64,12 +63,11 @@ function StaffManagement() {
         </div>
 
         <hr className="my-3 border-gray-300" />
-        <div className="flex items-center justify-between">
-          <input
-            placeholder="Search Appointments..."
-            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
-          ></input>
-          <div className="sm:flex items-center sm:space-x-2">
+          <div className="sm:flex items-center justify-between">
+              <input
+                placeholder="Search Staff..."
+                className="border border-gray-400 w-full sm:w-96 p-1 rounded"
+              ></input>
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => {
@@ -88,7 +86,6 @@ function StaffManagement() {
               </button>
             </div>
           </div>
-        </div>
       </div>
       <div className="grid m-5 grid-cols-3 gap-5">
         {filteredUser.map((user) => (
@@ -97,19 +94,19 @@ function StaffManagement() {
               <p className="text-[#212a31] text-lg font-bold">{user.name}</p>
 
               <div className="flex items-center space-x-1">
-              <button
-                onClick={() => {
-                  setopeningSalaryForm(true);
-                  setcapturingStaffData(user);
-                }}
-                className="bg-[#196d8e] text-white py-1 text-sm px-3 mr-2 rounded"
-              >
-                Add Salary
-              </button>
                 <button
                   onClick={() => {
-                   setopeningStaffUpdateForm(true);
-                   setcapturingStaffData(user);
+                    setopeningSalaryForm(true);
+                    setcapturingStaffData(user);
+                  }}
+                  className="bg-[#196d8e] text-white py-1 text-sm px-3 mr-2 rounded"
+                >
+                  Add Salary
+                </button>
+                <button
+                  onClick={() => {
+                    setopeningStaffUpdateForm(true);
+                    setcapturingStaffData(user);
                   }}
                   className="text-[#212a31]"
                 >
@@ -204,14 +201,17 @@ function StaffManagement() {
       {openingAddStaffForm && (
         <CreateStaff setopeningAddStaffForm={setopeningAddStaffForm} />
       )}
-      {openingUpdateStaffForm && <UpdateStaffForm 
-      renderingUser={renderingUser}
-      capturingStaffData = {capturingStaffData}
-      setopeningStaffUpdateForm = {setopeningStaffUpdateForm}/>}
+      {openingUpdateStaffForm && (
+        <UpdateStaffForm
+          renderingUser={renderingUser}
+          capturingStaffData={capturingStaffData}
+          setopeningStaffUpdateForm={setopeningStaffUpdateForm}
+        />
+      )}
 
       {openingSalaryForm && (
         <AddSalaryForm
-      capturingStaffData = {capturingStaffData}
+          capturingStaffData={capturingStaffData}
           setopeningSalaryForm={setopeningSalaryForm}
           renderingUser={renderingUser}
         />

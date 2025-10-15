@@ -49,7 +49,6 @@ function AdminAppointment() {
     setgettingUser(multipleArray);
   }
 
-
   useEffect(() => {
     renderingUser();
   }, []);
@@ -97,27 +96,30 @@ function AdminAppointment() {
         <hr className="my-3 border-gray-300" />
         <div className="flex items-center justify-between">
           <input
-            placeholder="Search Appointments..."
-            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
+            placeholder="Search Appointments by appointment id..."
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
-          <div className="sm:flex items-center sm:space-x-2">
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => {
-                  setopeningCreateAppointmentForm(true);
-                }}
-                className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
-              >
-                + Create Appointment
-              </button>
-
-              <button>
-                <IoNotifications
-                  size={31}
-                  className="border border-gray-500 p-1 rounded text-gray-500"
-                />
-              </button>
-            </div>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Patient</option>
+              {gettingUser
+                .filter((user) => user.role === "patient")
+                .map((user) => (
+                  <option>{user.name}</option>
+                ))}
+            </select>
+            <input
+              type="date"
+              className="border border-gray-300 w-60 p-1 rounded"
+            ></input>
+            <button
+              onClick={() => {
+                setopeningCreateAppointmentForm(true);
+              }}
+              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
+            >
+              + Create Appointment
+            </button>
           </div>
         </div>
       </div>
@@ -189,7 +191,7 @@ function AdminAppointment() {
               </div>
             </div>
 
-             {gettingUser
+            {gettingUser
               .filter((user) => user.email === appointment.doctor)
               .map((user) => (
                 <p className="text-gray-400">
@@ -199,7 +201,6 @@ function AdminAppointment() {
                   </span>
                 </p>
               ))}
-
 
             {gettingUser
               .filter((user) => user.email === appointment.patient)

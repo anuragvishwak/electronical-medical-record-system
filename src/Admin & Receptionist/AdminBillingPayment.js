@@ -69,8 +69,8 @@ function AdminBillingPayment() {
             </p>
             <p className="text-[#196d8e]">
               Admin can add and manage{" "}
-              <span className="text-[#212a31] font-semibold">Billing</span> and{" "}
-              <span className="text-[#212a31] font-semibold">Payment</span>{" "}
+             Billing and{" "}
+             Payment{" "}
               history.
             </p>
           </div>
@@ -114,15 +114,31 @@ function AdminBillingPayment() {
 
         <div className="flex items-center justify-between space-x-2">
           <input
-            placeholder="Search Billing & Payment..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            placeholder="Search by appointment id and Bill Id..."
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+         <div className="flex items-center space-x-3">
+           <select className="border border-gray-300 w-60 p-1.5 rounded">
+            <option>Filter by Patients</option>
+            {gettingUser
+              .filter((user) => user.role === "patient")
+              .map((user) => (
+                <option>{user.name}</option>
+              ))}
+          </select>
+          <select className="border border-gray-300 w-60 p-1.5 rounded">
+            <option>Filter by Doctors</option>
+            {gettingUser
+              .filter((user) => user.role === "doctor")
+              .map((user) => (
+                <option>{user.name}</option>
+              ))}
+          </select>
+          <input
+              type="date"
+              className="border border-gray-300 w-60 p-1 rounded"
+            ></input>
+         </div>
         </div>
       </div>
       <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">

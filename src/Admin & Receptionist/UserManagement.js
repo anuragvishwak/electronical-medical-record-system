@@ -125,18 +125,23 @@ function UserManagement() {
           </div>
         </div>
         <hr className="border-gray-300 my-3" />
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Users..."
-            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-[#196d8e] p-1 rounded text-[#196d8e]"
-            />
-          </button>
+             <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Roles</option>
+            
+                 <option>Select Role</option>
+                 <option value={'patient'}>Patient</option>
+                 <option value={'doctor'}>Doctor</option>
+                 <option value={'nurse'}>Nurse</option>
+                 <option value={'lab_technician'}>Lab Technician</option>
+                 <option value={'insurance_dept'}>Insurance Dept</option>
+
+            </select>
         </div>
       </div>
       
