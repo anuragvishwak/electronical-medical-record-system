@@ -16,9 +16,9 @@ function MedicinesTreatment() {
         setopeningAdminNavbar={setopeningAdminNavbar}
         openingAdminNavbar={openingAdminNavbar}
       />
-      <div className="mx-3 mt-3 sm:flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify">
             <p className="text-2xl font-bold text-[#212a31]">Medicines</p>
             <button
               onClick={() => {
@@ -34,7 +34,9 @@ function MedicinesTreatment() {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4"/>
+
+        <div className="flex items-center justify-end space-x-2">
           <input
             onChange={(e) => {
               setsearch(e.target.value);

@@ -42,22 +42,26 @@ function InsuranceProvider() {
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
-      <div className="p-5">
-        <p className="text-3xl text-[#212a31] font-bold">Insurance Provider</p>
-        <p className="text-[#196d8e]">
-          All the{" "}
-          <span className="text-[#212a31] font-semibold">
-            Insurance provider
-          </span>{" "}
-          details will be displayed here.
-        </p>
-      </div>
-      <div className="flex items-center justify-between mx-5 bg-white p-5 border border-gray-300 shadow rounded">
-        <input
-          placeholder="Search Insurance provider..."
-          className="border border-gray-400 w-6/12 p-1 rounded"
-        ></input>
-        <div className="flex items-center space-x-5">
+
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div>
+          <p className="text-2xl text-[#212a31] font-bold">
+            Insurance Provider
+          </p>
+          <p className="text-[#196d8e]">
+            All the{" "}
+            <span className="text-[#212a31] font-semibold">
+              Insurance provider
+            </span>{" "}
+            details will be displayed here.
+          </p>
+        </div>
+<hr className="border-gray-300 my-4"/>
+        <div className="flex items-center justify-end space-x-2">
+          <input
+            placeholder="Search Insurance provider..."
+            className="border border-gray-400 w-96 p-1 rounded"
+          ></input>
           <button
             onClick={() => {
               setopeningAddInsuranceCompany(true);

@@ -76,39 +76,39 @@ function PatientPaymentHistory() {
               </p>
             </div>
 
-            <div className="flex items-center gap-6">
-              <div className="border p-3 w-56 rounded-xl border-gray-300">
-                <p className="text-[#196d8e]">Total Bill</p>
-                <div className="flex items-center gap-1">
+            <div className="flex items-center space-x-10">
+              <div className="text-center">
+                <div className="flex items-center gap-1 justify-center">
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalFinalAmount()}/-</p>
                 </div>
+                <p className="text-[#196d8e]">Total Bill</p>
               </div>
 
-              <div className="border p-3 w-56 rounded-xl border-gray-300">
-                <p className="text-[#196d8e]">Total Consultation Fees</p>
-                <div className="flex items-center gap-1">
+              <div className="text-center">
+                <div className="flex items-center gap-1 justify-center">
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">
                     {getTotalConsultationFee()}/-
                   </p>
                 </div>
+                <p className="text-[#196d8e]">Total Consultation Fees</p>
               </div>
 
-              <div className="border p-3 w-56 rounded-xl border-gray-300">
-                <p className="text-[#196d8e]">Total Surgery Fees</p>
-                <div className="flex items-center gap-1">
+              <div className="text-center">
+                <div className="flex items-center gap-1 justify-center">
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalSurgeryFee()}/-</p>
                 </div>
+                <p className="text-[#196d8e]">Total Surgery Fees</p>
               </div>
 
-              <div className="border p-3 w-56 rounded-xl border-gray-300">
-                <p className="text-[#196d8e]">Total Lab Test Fees</p>
-                <div className="flex items-center gap-1">
+              <div className="text-center">
+                <div className="flex items-center gap-1 justify-center">
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalLabFee()}/-</p>
                 </div>
+                <p className="text-[#196d8e]">Total Lab Test Fees</p>
               </div>
             </div>
           </div>
@@ -125,13 +125,13 @@ function PatientPaymentHistory() {
         </div>
 
         <hr className="my-3 border-gray-300" />
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-end space-x-3">
           <input
             placeholder="Search Doctors, bills and more..."
-            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
+            className="border border-gray-300 w-full sm:w-5/12 p-1 rounded"
           ></input>
 
-          <select className="border border-gray-400 w-60 p-1.5 rounded">
+          <select className="border border-gray-300 w-60 p-1.5 rounded">
             <option>Filter by Doctor</option>
             {gettingUser.filter(user => user.role === "doctor").map((user) => (
               <option>{user.name}</option>

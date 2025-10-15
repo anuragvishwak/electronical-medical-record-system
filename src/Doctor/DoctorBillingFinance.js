@@ -74,7 +74,7 @@ function DoctorBillingFinance() {
             </button>
 
             <div className="grid grid-cols-3 gap-5">
-              <div className="rounded border py-2 border-gray-400 px-3">
+              <div>
                 <p className="text-xl flex items-center space-x-1 text-center font-bold">
                   <FaIndianRupeeSign />
                   {totalSurgeryFee}/-
@@ -82,14 +82,14 @@ function DoctorBillingFinance() {
                 <p className="text-[#196d8e]">Surgery Fee</p>
               </div>
 
-              <div className="rounded border py-2 border-gray-400 px-3">
+              <div>
                 <p className="text-xl flex items-center space-x-1 text-center font-bold">
                   <FaIndianRupeeSign />
                   {totalConsultationFee}/-
                 </p>
                 <p className="text-[#196d8e]">Consultation Fee</p>
               </div>
-              <div className="rounded border py-2 border-gray-400 px-3">
+              <div>
                 <p className="text-xl flex items-center space-x-1 text-center font-bold">
                   <FaIndianRupeeSign />
                   {finalCostofBill}/-

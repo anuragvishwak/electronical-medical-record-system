@@ -64,15 +64,15 @@ function DoctorLabReports() {
   return (
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold">Lab Reports</p>
           <p className="text-gray-600">
             Doctor can view patient's Lab Reports here
           </p>
         </div>
-
-        <div className="flex items-center space-x-2">
+<hr className="border-gray-300 my-4"/>
+        <div className="flex items-center justify-end space-x-2">
           <div className="p-1.5 rounded border flex items-center space-x-2 border-gray-300 bg-gray-200">
             <button
               onClick={() => {

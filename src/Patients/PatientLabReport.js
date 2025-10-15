@@ -4,8 +4,10 @@ import { IoNotifications } from "react-icons/io5";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { FaEye } from "react-icons/fa6";
+import { email } from "zod";
 
 function PatientLabReport() {
+  const email = localStorage.getItem("email");
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
   const [extendingTable, setextendingTable] = useState(false);
@@ -41,18 +43,29 @@ function PatientLabReport() {
   return (
     <div className="bg-gray-100 h-screen">
       <PatientNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
-          <p className="text-2xl font-bold">Lab Reports</p>
-          <p className="text-gray-600">
-            Doctor can view patient's Lab Reports here
-          </p>
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-2xl font-bold">Lab Reports</p>
+            <p className="text-[#196d8e]">
+              Doctor can view patient's{" "}
+              <span className="text-[#212a31] font-semibold">Lab Reports</span>{" "}
+              here
+            </p>
+          </div>
+          <div className="border-gray-400">
+            <p className="text-2xl text-center font-bold">
+              {gettingLabResults.filter((lab) => lab.patient === email).length}
+            </p>
+            <p className="text-gray-500">Total Lab Reports</p>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <hr className="my-4 border-gray-300"/>
+        <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search Lab Reports..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>
@@ -64,7 +77,7 @@ function PatientLabReport() {
         </div>
       </div>
 
-      <div className="m-3 grid grid-cols-3 gap-3">
+      <div className="m-5 grid grid-cols-3 gap-5">
         {gettingLabResults.map((lab) => (
           <div className="rounded bg-white shadow">
             <div className=" bg-black rounded-t p-3 text-white ">

@@ -71,7 +71,7 @@ function AdminAppointment() {
             <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
               Appointments
             </p>
-            <p className="text-[#196d8e] text-sm">
+            <p className="text-[#196d8e]">
               Manage appointments across the healthcare system
             </p>
           </div>

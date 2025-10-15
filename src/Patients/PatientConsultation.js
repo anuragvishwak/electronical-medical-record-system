@@ -13,7 +13,7 @@ function PatientConsultation() {
     useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
 
-  const email  = localStorage.getItem("email");
+  const email = localStorage.getItem("email");
 
   async function renderingConsultation() {
     const taskDetails = await getDocs(
@@ -45,20 +45,34 @@ function PatientConsultation() {
   return (
     <div className="bg-gray-100 h-screen">
       <PatientNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
-        <div>
-          <p className="text-2xl font-bold ">Consultation</p>
-          <p className="text-gray-600">
-            Patient's can see their{" "}
-            <span className="text-[#1976D2]">Consultations</span> across the
-            healthcare system
-          </p>
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-2xl font-bold text-[#212a31]">Consultation</p>
+            <p className="text-[#196d8e]">
+              Patient's can see their{" "}
+              <span className="text-[#212a31] font-semibold">
+                Consultations
+              </span>{" "}
+              across the healthcare system
+            </p>
+          </div>
+          <div className="border-gray-400">
+            <p className="text-2xl text-center font-bold">
+              {
+                gettingConsultations.filter(
+                  (consult) => consult.patient === email
+                ).length
+              }
+            </p>
+            <p className="text-gray-500">Total Consultation</p>
+          </div>
         </div>
-
-        <div Name="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search Users..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>
@@ -69,39 +83,40 @@ function PatientConsultation() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-4 m-3 gap-3">
-        {gettingConsultations.filter(prep => prep.patient === email).map((prep) => (
-          <div className="bg-white rounded shadow border border-gray-300 ">
-            <div className="m-5">
-              <p className="font-semibold text-[#1976D2] mb-3">
-                History of Present Illness
-              </p>
-              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-blue-500 text-sm text-justify">
-                {prep.historyofPresentIllness}
-              </p>
+      <div className="grid grid-cols-3 m-5 gap-5">
+        {gettingConsultations
+          .filter((prep) => prep.patient === email)
+          .map((prep) => (
+            <div className="bg-white rounded shadow border border-gray-300 ">
+              <div className="m-5">
+                <p className="font-semibold text-[#1976D2] mb-3">
+                  History of Present Illness
+                </p>
+                <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-blue-500 text-sm text-justify">
+                  {prep.historyofPresentIllness}
+                </p>
+              </div>
+
+              <div className="flex justify-end pb-3 pr-3">
+                <button
+                  onClick={() => {
+                    const userName =
+                      gettingUser.find((user) => user.email === prep.patient)
+                        ?.name || "Unknown";
+
+                    setcapturingDataObject(prep);
+                    setopeningAdditionalDetails(true);
+                  }}
+                  className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2 rounded text-white"
+                >
+                  <div className="flex items-center space-x-1">
+                    <FaEye />
+                    <p>View more</p>
+                  </div>
+                </button>
+              </div>
             </div>
-
-
-            <div className="flex justify-end pb-3 pr-3">
-              <button
-                onClick={() => {
-                  const userName =
-                    gettingUser.find((user) => user.email === prep.patient)
-                      ?.name || "Unknown";
-
-                  setcapturingDataObject(prep);
-                  setopeningAdditionalDetails(true);
-                }}
-                className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2 rounded text-white"
-              >
-                <div className="flex items-center space-x-1">
-                  <FaEye />
-                  <p>View more</p>
-                </div>
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {openingAdditionalDetails && (

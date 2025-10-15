@@ -32,7 +32,9 @@ function InsuranceStaffClaimStatus() {
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
-      <div className="p-5">
+      
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div>
         <p className="text-3xl font-bold text-[#212a31]">Claim Status</p>
         <p className="text-[#196d8e]">
           Admin can manage{" "}
@@ -40,12 +42,13 @@ function InsuranceStaffClaimStatus() {
           patients.
         </p>
       </div>
-      <div className="mx-5 flex items-end justify-between bg-white p-5 border border-gray-300 shadow rounded">
+
+      <hr className="border-gray-300 my-4"/>
+        <div className="flex items-center justify-end space-x-2">
         <input
           placeholder="Search Claim Details..."
-          className="border border-gray-400 w-5/12 p-1 rounded"
+          className="border border-gray-400 w-96 p-1 rounded"
         ></input>
-        <div className="flex items-center space-x-2">
           <button
             onClick={() => {
               setopeningClaimStatus(true);
