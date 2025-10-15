@@ -27,12 +27,12 @@ function DoctorAppointment() {
             here
           </p>
         </div>
-        <hr className="my-3 border-gray-300" />
+        <hr className="my-4 border-gray-300" />
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2 justify-end">
           <input
             placeholder="Search Appointments..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>

@@ -12,7 +12,8 @@ function ViewInsuranceInfo() {
   const [openingAddInsuranceForm, setopeningAddInsuranceForm] = useState(false);
   const [gettingInsurances, setgettingInsurances] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
-  const [openingInsuranceUpdateForm, setopeningInsuranceUpdateForm] = useState(false);
+  const [openingInsuranceUpdateForm, setopeningInsuranceUpdateForm] =
+    useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
 
   async function renderingInsurances() {
@@ -45,7 +46,9 @@ function ViewInsuranceInfo() {
   return (
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
-      <div className="p-5">
+
+      <div className="m-5 p-5 bg-white rounded shadow border border-gray-300">
+        <div>
           <p className="text-3xl text-[#212a31] font-bold">
             View Insurance Information
           </p>
@@ -57,14 +60,14 @@ function ViewInsuranceInfo() {
             will be displayed here.
           </p>
         </div>
-      <div className="mx-5 flex items-end justify-between bg-white p-5 border border-gray-300 shadow rounded">
 
+        <hr className="my-4 border-gray-300"/>
+        <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search Insurance details..."
-            className="border border-gray-400 w-6/12 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
-         <div className="flex items-center space-x-5">
-           <button
+          <button
             onClick={() => {
               setopeningAddInsuranceForm(true);
             }}
@@ -79,8 +82,8 @@ function ViewInsuranceInfo() {
               className="border border-gray-500 p-1 rounded text-gray-500"
             />
           </button>
-         </div>
         </div>
+      </div>
 
       <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">
         {gettingInsurances.map((insurance) => (
@@ -137,12 +140,13 @@ function ViewInsuranceInfo() {
 
             <hr className="border-gray-300 my-3" />
             <div className="flex items-center space-x-2 justify-end">
-              <button 
-              onClick={()=>{
-                setopeningInsuranceUpdateForm(true);
-                setcapturingDataObject(insurance);
-              }}
-              className="text-green-500">
+              <button
+                onClick={() => {
+                  setopeningInsuranceUpdateForm(true);
+                  setcapturingDataObject(insurance);
+                }}
+                className="text-green-500"
+              >
                 <FaEdit />
               </button>
 
@@ -161,10 +165,13 @@ function ViewInsuranceInfo() {
         />
       )}
 
-      {openingInsuranceUpdateForm && <UpdateInsuranceForm 
-      capturingDataObject = {capturingDataObject} 
-      renderingInsurances = {renderingInsurances}
-      setopeningInsuranceUpdateForm = {setopeningInsuranceUpdateForm}/>}
+      {openingInsuranceUpdateForm && (
+        <UpdateInsuranceForm
+          capturingDataObject={capturingDataObject}
+          renderingInsurances={renderingInsurances}
+          setopeningInsuranceUpdateForm={setopeningInsuranceUpdateForm}
+        />
+      )}
     </div>
   );
 }

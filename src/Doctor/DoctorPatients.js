@@ -60,20 +60,20 @@ function DoctorPatients() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <DoctorNavbar />
-      <div className="p-5">
-        <div className="bg-white border p-5 rounded border-gray-300 shadow">
+      <div className="">
+        <div className="bg-white border m-5 p-5 rounded border-gray-300 shadow">
           <div>
             <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
               Patients
             </p>
-            <p className="text-[#196d8e] text-sm">
+            <p className="text-[#196d8e]">
               Manage{" "}
               <span className="font-semibold text-[#212a31]">Patients</span>{" "}
               across the healthcare system
             </p>
           </div>
           <hr className="my-3 border-gray-300" />
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-end space-x-2">
             <input
               placeholder="Search Patients..."
               className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
@@ -87,7 +87,7 @@ function DoctorPatients() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-5 w-full gap-5">
+        <div className="grid grid-cols-3 m-5 w-full gap-5">
           {resultedPatients.map((patient) => (
             <div className="bg-white p-5 rounded shadow border border-gray-300">
               <div className="flex items-center gap-2">

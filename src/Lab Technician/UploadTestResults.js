@@ -59,18 +59,18 @@ function UploadTestResults() {
   return (
     <div className="bg-gray-50 h-screen">
       <LabTechnicianNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Upload Test Results</p>
           <p className="text-gray-600">
             Upload and manage test lab results across the healthcare system
           </p>
         </div>
-
-        <div className="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search lab results..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>
@@ -123,12 +123,12 @@ function UploadTestResults() {
                       <td className="text-center">{order.priority}</td>
                     ))}
 
-                    <th>
-                      <div className="flex items-center justify-center">
-                        <MdCurrencyRupee/>
-                        <p>{lab.labCharges}/-</p>
-                      </div>
-                    </th>
+                  <th>
+                    <div className="flex items-center justify-center">
+                      <MdCurrencyRupee />
+                      <p>{lab.labCharges}/-</p>
+                    </div>
+                  </th>
 
                   {gettingLabOrders
                     .filter((order) => order.id === lab.orderId)
@@ -186,7 +186,11 @@ function UploadTestResults() {
       )}
 
       {openingChargesForm && (
-        <AddChargesForm renderingLabResults={renderingLabResults} capturingLab = {capturingLab} setopeningChargesForm={setopeningChargesForm} />
+        <AddChargesForm
+          renderingLabResults={renderingLabResults}
+          capturingLab={capturingLab}
+          setopeningChargesForm={setopeningChargesForm}
+        />
       )}
     </div>
   );

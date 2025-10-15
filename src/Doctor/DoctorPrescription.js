@@ -59,7 +59,7 @@ function DoctorPrescription() {
   return (
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
-      <div className="mx-3 mt-3 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Prescriptions</p>
           <p className="text-gray-600">
@@ -71,10 +71,12 @@ function DoctorPrescription() {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4" />
+
+        <div className="flex items-center justify-end space-x-2">
           <input
-            placeholder="Search Users..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            placeholder="Search Prescriptions..."
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>
@@ -185,7 +187,7 @@ function DoctorPrescription() {
 
       {openingUpdatePrescriptionForm && (
         <UpdatePrescriptionForm
-        renderingPrescriptions = {renderingPrescriptions}
+          renderingPrescriptions={renderingPrescriptions}
           capturingPrescriptionObject={capturingPrescriptionObject}
           setopeningUpdatePrescriptionForm={setopeningUpdatePrescriptionForm}
         />

@@ -49,7 +49,7 @@ function DoctorConsultation() {
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
 
-      <div className="m-5 flex items-end justify-between bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Consultation</p>
           <p className="text-gray-600">
@@ -57,10 +57,12 @@ function DoctorConsultation() {
           </p>
         </div>
 
-        <div Name="flex items-center space-x-2">
+        <hr className="border-gray-300 my-4"/>
+
+        <div className="flex items-center w-full justify-end space-x-2">
           <input
             placeholder="Search Users..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
           <button>

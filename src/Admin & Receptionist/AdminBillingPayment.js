@@ -38,11 +38,9 @@ function AdminBillingPayment() {
   );
 
   const gettingGrandTotal = gettingBills.reduce(
-  (total, bill) => total + (Number(bill.finalAmount) || 0),
-  0
-);
-
-
+    (total, bill) => total + (Number(bill.finalAmount) || 0),
+    0
+  );
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -64,29 +62,31 @@ function AdminBillingPayment() {
       <AdminNavbar />
 
       <div className="bg-white m-5 p-5 border border-gray-300 shadow rounded">
-       <div className="flex items-center justify-between">
-         <div className="">
-          <p className="text-2xl text-[#212a31] font-bold">Billing & Payment</p>
-          <p className="text-[#196d8e]">
-            Admin can add and manage{" "}
-            <span className="text-[#212a31] font-semibold">Billing</span> and{" "}
-            <span className="text-[#212a31] font-semibold">Payment</span>{" "}
-            history.
-          </p>
-        </div>
+        <div className="flex items-center justify-between">
+          <div className="">
+            <p className="text-2xl text-[#212a31] font-bold">
+              Billing & Payment
+            </p>
+            <p className="text-[#196d8e]">
+              Admin can add and manage{" "}
+              <span className="text-[#212a31] font-semibold">Billing</span> and{" "}
+              <span className="text-[#212a31] font-semibold">Payment</span>{" "}
+              history.
+            </p>
+          </div>
 
-       <div className="flex items-center space-x-5">
-         <div className="text-center text-sm">
+          <div className="flex items-center space-x-5">
+            <div className="text-center text-sm">
               <p className="text-2xl flex items-center text-center font-bold">
-               <FaIndianRupeeSign />
+                <FaIndianRupeeSign />
                 {gettingSurgeryFee}/-
               </p>
               <p className="text-gray-500">Surgery Fees</p>
             </div>
 
-             <div className="text-center text-sm">
+            <div className="text-center text-sm">
               <p className="text-2xl flex items-center text-center font-bold">
-               <FaIndianRupeeSign />
+                <FaIndianRupeeSign />
                 {gettingConsultationFee}/-
               </p>
               <p className="text-gray-500">Consultation Fees</p>
@@ -94,22 +94,21 @@ function AdminBillingPayment() {
 
             <div className="text-center text-sm">
               <p className="text-2xl flex items-center text-center font-bold">
-               <FaIndianRupeeSign />
+                <FaIndianRupeeSign />
                 {gettingLabTestFee}/-
               </p>
               <p className="text-gray-500">Lab Charges</p>
             </div>
 
-
-             <div className="text-center text-sm">
+            <div className="text-center text-sm">
               <p className="text-2xl flex items-center text-center font-bold">
-               <FaIndianRupeeSign />
+                <FaIndianRupeeSign />
                 {gettingGrandTotal}/-
               </p>
               <p className="text-gray-500">Total</p>
             </div>
-       </div>
-       </div>
+          </div>
+        </div>
 
         <hr className="border-gray-300 my-4" />
 

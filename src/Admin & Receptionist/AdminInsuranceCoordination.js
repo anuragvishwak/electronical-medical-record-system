@@ -13,9 +13,20 @@ function AdminInsuranceCoordination() {
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
     []
   );
-    const [gettingInsurances, setgettingInsurances] = useState([]);
-  
-console.log("finding insurances",gettingInsurances);
+  const [gettingInsurances, setgettingInsurances] = useState([]);
+  const [gettingClaimStatus, setgettingClaimStatus] = useState([]);
+
+  async function renderingClaimStatus() {
+    const taskDetails = await getDocs(
+      collection(database, "claim_status_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingClaimStatus(multipleArray);
+  }
 
   async function renderingInsuranceCompany() {
     const taskDetails = await getDocs(
@@ -28,21 +39,22 @@ console.log("finding insurances",gettingInsurances);
     setgettingInsuranceCompanies(multipleArray);
   }
 
-   async function renderingInsurances() {
-      const taskDetails = await getDocs(
-        collection(database, "insurance_database")
-      );
-      let multipleArray = taskDetails.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-  
-      setgettingInsurances(multipleArray);
-    }
+  async function renderingInsurances() {
+    const taskDetails = await getDocs(
+      collection(database, "insurance_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingInsurances(multipleArray);
+  }
 
   useEffect(() => {
     renderingInsuranceCompany();
     renderingInsurances();
+    renderingClaimStatus();
   }, []);
 
   return (
@@ -61,7 +73,7 @@ console.log("finding insurances",gettingInsurances);
               Where admin can manage view insurance details.
             </p>
           </div>
-          <div>
+          <div className="flex items-center space-x-5">
             <div className="text-center text-sm">
               <p className="text-2xl text-center font-bold">
                 {gettingInsuranceCompanies.length}
@@ -69,11 +81,22 @@ console.log("finding insurances",gettingInsurances);
               <p className="text-gray-500">Total Insurance Companies</p>
             </div>
 
-             <div className="text-center text-sm">
+            <div className="text-center text-sm">
               <p className="text-2xl text-center font-bold">
                 {gettingInsurances.length}
               </p>
-              <p className="text-gray-500">Total patients enrolled in Insurances</p>
+              <p className="text-gray-500">
+                Total Patients Enrolled
+              </p>
+            </div>
+
+            <div className="text-center text-sm">
+              <p className="text-2xl text-center font-bold">
+                {gettingClaimStatus.length}
+              </p>
+              <p className="text-gray-500">
+                Total Claims Processed
+              </p>
             </div>
           </div>
         </div>
