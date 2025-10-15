@@ -50,33 +50,36 @@ function InsuranceProvider() {
           </p>
           <p className="text-[#196d8e]">
             All the{" "}
-            <span className="text-[#212a31] font-semibold">
               Insurance provider
-            </span>{" "}
             details will be displayed here.
           </p>
         </div>
-<hr className="border-gray-300 my-4"/>
-        <div className="flex items-center justify-end space-x-2">
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-between">
           <input
             placeholder="Search Insurance provider..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
-          <button
-            onClick={() => {
-              setopeningAddInsuranceCompany(true);
-            }}
-            className="bg-[#196d8e] py-1 w-56 rounded shadow text-white"
-          >
-            + Add Insurance Provider
-          </button>
-
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-400 w-60 p-1 rounded">
+              <option>Policy Type</option>
+              <option>Select Poicy Supported</option>
+              <option value={"health"}>Health</option>
+              <option value={"accident"}>Accident</option>
+              <option value={"corporate"}>Corporate (Employer-based)</option>
+              <option value={"travel_spacial"}>
+                Travel / Special Medical Cover
+              </option>
+            </select>
+            <button
+              onClick={() => {
+                setopeningAddInsuranceCompany(true);
+              }}
+              className="bg-[#196d8e] py-1 w-56 rounded shadow text-white"
+            >
+              + Add Insurance Provider
+            </button>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">

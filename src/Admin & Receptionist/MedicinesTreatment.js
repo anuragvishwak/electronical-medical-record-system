@@ -8,7 +8,6 @@ function MedicinesTreatment() {
   const [openingMedicineForm, setopeningMedicineForm] = useState();
   const [search, setsearch] = useState("");
   const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
- 
 
   return (
     <div className="bg-gray-100 h-screen">
@@ -34,17 +33,27 @@ function MedicinesTreatment() {
           </p>
         </div>
 
-        <hr className="border-gray-300 my-4"/>
+        <hr className="border-gray-300 my-4" />
 
-        <div className="flex items-center justify-end space-x-2">
+        <div className="flex items-center justify-between space-x-2">
           <input
             onChange={(e) => {
               setsearch(e.target.value);
             }}
             placeholder="Search Medicines..."
-            className="border border-gray-400 w-60 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-400 w-60 p-1.5 rounded">
+            <option>Filter by Form</option>
+            <option>capsule</option>
+            <option>tablet</option>
+            <option>drops</option>
+            <option>syrup</option>
+            <option>injection</option>
+            <option>ointment</option>
+          </select>
           <button
             onClick={() => {
               setopeningMedicineForm(true);
@@ -53,6 +62,7 @@ function MedicinesTreatment() {
           >
             + Create Medicine
           </button>
+          </div>
         </div>
       </div>
       <div>

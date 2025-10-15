@@ -6,6 +6,7 @@ import { database } from "../FirebaseConfiguration";
 import { GrNotes } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import UpdatePrescriptionForm from "./UpdatePrescriptionForm";
+import { FaPencil } from "react-icons/fa6";
 
 function DoctorPrescription() {
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
@@ -62,35 +63,40 @@ function DoctorPrescription() {
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Prescriptions</p>
-          <p className="text-gray-600">
-            Manage{" "}
-            <span className="text-[#1976D2] font-semibold">
-              patient's prescriptions
-            </span>{" "}
+          <p className="text-[#196d8e]">
+            Manage patient's prescriptions
             across the healthcare system
           </p>
         </div>
 
         <hr className="border-gray-300 my-4" />
 
-        <div className="flex items-center justify-end space-x-2">
+        <div className="flex items-center justify-between space-x-2">
           <input
-            placeholder="Search Prescriptions..."
+            placeholder="Search Prescriptions by appointment id..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
-          <button>
-            <FaSearch
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Patient</option>
+              {gettingUser
+                .filter((user) => user.role === "patient")
+                .map((user) => (
+                  <option>{user.name}</option>
+                ))}
+            </select>
+            <input
+              type="date"
+              className="border border-gray-300 w-60 p-1 rounded"
+            ></input>
+          </div>
         </div>
       </div>
-      <div className="grid grid-cols-4 m-3 gap-3">
+      <div className="grid grid-cols-3 m-5 gap-5">
         {gettingPrescriptions.map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-2 bg-[#1976D2] text-white rounded-t">
+            <div className="p-3 bg-[#196d8e] text-white rounded-t">
               {gettingUser
                 .filter((user) => user.email === prep.patient)
                 .map((user) => (
@@ -104,7 +110,7 @@ function DoctorPrescription() {
               </p>
             </div>
 
-            <div className="p-3">
+            <div className="p-5">
               {gettingUser
                 .filter((user) => user.email === prep.doctor)
                 .map((user) => (
@@ -113,7 +119,7 @@ function DoctorPrescription() {
                   </p>
                 ))}
 
-              <div className="my-4">
+              <div className="my-3">
                 <p className="font-semibold text-gray-400">Medicines</p>
                 <table className="w-full text-sm border border-gray-300 border-collapse">
                   <thead className="bg-gray-100 border border-gray-300">
@@ -151,34 +157,29 @@ function DoctorPrescription() {
 
               <div>
                 <div className="flex items-center space-x-1 mt-2">
-                  <GrNotes className="text-blue-400" />
-                  <p className="text-blue-400">Notes:</p>
+                  <GrNotes className="text-[#196d8e]" />
+                  <p className="text-[#196d8e]">Notes:</p>
                 </div>
-                <p className="bg-blue-50 text-[#1976D2] text-sm p-2 rounded">
+                <p className="bg-[#e4f7ff] text-[#196d8e] text-sm p-2 rounded">
                   {prep.additionalNote}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center justify-end space-x-2 p-3">
+            <div className="flex items-center justify-end p-3">
               <button
                 onClick={() => {
                   setopeningUpdatePrescriptionForm(true);
                   setcapturingPrescriptionObject(prep);
                 }}
-                className="border-2 border-gray-400 py-0.5 px-2 rounded text-gray-400"
               >
-                <div className="flex items-center space-x-1">
-                  <FaEdit />
-                  <p>Edit</p>
+                <div className="flex items-center text-[#212a31] space-x-1">
+                  <FaPencil />
                 </div>
               </button>
 
-              <button className="border-2 bg-red-500 border-red-500 py-0.5 px-2 rounded text-white">
-                <div className="flex items-center space-x-1">
-                  <MdDelete />
-                  <p>Delete</p>
-                </div>
+              <button className="text-[#196d8e]">
+                <MdDelete size={19} />
               </button>
             </div>
           </div>

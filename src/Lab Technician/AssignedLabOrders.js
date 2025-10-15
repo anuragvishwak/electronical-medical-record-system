@@ -7,6 +7,7 @@ import { FaClosedCaptioning, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { GrNote, GrNotes } from "react-icons/gr";
 import CreateLabResultForm from "./CreateLabResultForm";
+import { FaPencil } from "react-icons/fa6";
 
 function AssignedLabOrders() {
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
@@ -15,6 +16,29 @@ function AssignedLabOrders() {
   const [capturingLabOrderObject, setcapturingLabOrderObject] = useState({});
   const [openingCreateLabResultsForm, setopeningCreateLabResultsForm] =
     useState(false);
+
+  const labTestsList = [
+    { id: 1, name: "Complete Blood Count (CBC)" },
+    { id: 2, name: "Blood Sugar (Fasting)" },
+    { id: 3, name: "Blood Sugar (Postprandial)" },
+    { id: 4, name: "Lipid Profile" },
+    { id: 5, name: "Liver Function Test (LFT)" },
+    { id: 6, name: "Kidney Function Test (KFT)" },
+    { id: 7, name: "Thyroid Stimulating Hormone (TSH)" },
+    { id: 8, name: "Urinalysis" },
+    { id: 9, name: "Electrolyte Panel" },
+    { id: 10, name: "Hemoglobin A1c (HbA1c)" },
+    { id: 11, name: "C-Reactive Protein (CRP)" },
+    { id: 12, name: "Erythrocyte Sedimentation Rate (ESR)" },
+    { id: 13, name: "Prothrombin Time (PT/INR)" },
+    { id: 14, name: "Vitamin D" },
+    { id: 15, name: "Calcium" },
+    { id: 16, name: "Iron Studies" },
+    { id: 17, name: "Pregnancy Test (hCG)" },
+    { id: 18, name: "HIV Test" },
+    { id: 19, name: "Hepatitis B Surface Antigen (HBsAg)" },
+    { id: 20, name: "Chest X-Ray" },
+  ];
 
   async function renderingLabOrders() {
     const taskDetails = await getDocs(
@@ -49,30 +73,51 @@ function AssignedLabOrders() {
       <div>
         <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
           <div>
-            <p className="text-2xl font-bold">Assigned Lab Orders</p>
-            <p className="text-gray-600">
+            <p className="text-2xl text-[#212a31] font-bold">
+              Assigned Lab Orders
+            </p>
+            <p className="text-[#196d8e]">
               Lab Technicians can view and manage lab orders.
             </p>
           </div>
           <hr className="border-gray-300 my-4" />
-          <div className="flex items-center justify-end space-x-2">
+          <div className="flex items-center justify-between ">
             <input
-              placeholder="Search Lab Orders..."
-              className="border border-gray-400 w-60 p-1 rounded"
+              placeholder="Search Lab Orders by order id or appointment id..."
+              className="border border-gray-400 w-96 p-1 rounded"
             ></input>
 
-            <button>
-              <IoNotifications
-                size={31}
-                className="border border-gray-500 p-1 rounded text-gray-500"
-              />
-            </button>
+            <div className="flex items-center space-x-3">
+              <select className="border border-gray-300 w-60 p-1.5 rounded">
+                <option>Patient</option>
+                {gettingUser
+                  .filter((user) => user.role === "patient")
+                  .map((user) => (
+                    <option>{user.name}</option>
+                  ))}
+              </select>
+
+              <select className="border border-gray-300 w-60 p-1.5 rounded">
+                <option>Doctor</option>
+                {gettingUser
+                  .filter((user) => user.role === "doctor")
+                  .map((user) => (
+                    <option>{user.name}</option>
+                  ))}
+              </select>
+              <select className="border border-gray-300 w-60 p-1.5 rounded">
+                <option>Tests</option>
+                {labTestsList.map((test) => (
+                  <option value={test.name}>{test.name}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
         <div className="flex justify-center m-3 p-3 bg-white border border-gray-300 shadow rounded">
           <table className="w-full table-auto">
-            <thead className="bg-blue-50 text-[#1976D2]">
+            <thead className="bg-gray-50 border text-[#212a31]">
               <tr>
                 <th className="py-1.5">Patient Name</th>
                 <th>Doctor Name</th>
@@ -89,7 +134,7 @@ function AssignedLabOrders() {
             <tbody>
               {gettingLabOrders.map((order) => (
                 <>
-                  <tr className="text-gray-500 border-b border-gray-300">
+                  <tr className="text-[#196d8e] border-b border-gray-300">
                     {gettingUser
                       .filter((user) => user.email === order.patient)
                       .map((user) => (
@@ -112,7 +157,7 @@ function AssignedLabOrders() {
                         onClick={() => {
                           setopeningNote(true);
                         }}
-                        className="bg-blue-500 text-white px-2 mt-1.5 py-1 rounded"
+                        className="bg-[#196d8e] text-white px-2 mt-1.5 py-1 rounded"
                       >
                         <div className="flex items-center space-x-1">
                           <GrNotes />
@@ -127,17 +172,17 @@ function AssignedLabOrders() {
                             setcapturingLabOrderObject(order);
                             setopeningCreateLabResultsForm(true);
                           }}
-                          className="text-[#1976D2] border border-[#1976D2] hover:bg-[#1976D2] py-1 px-3 rounded hover:text-white"
+                          className="text-[#196d8e] border border-[#196d8e] hover:bg-[#196d8e] py-1 px-3 rounded hover:text-white"
                         >
                           + Upload Results
                         </button>
 
-                        <button className="text-yellow-500 rounded border-2 p-1 hover:bg-yellow-500 hover:text-white border-yellow-500">
-                          <FaEdit size={21} />
+                        <button className="text-[#212a31]">
+                          <FaPencil />
                         </button>
 
-                        <button className="text-red-500 rounded border-2 p-1 hover:bg-red-500 hover:text-white border-red-500">
-                          <MdDelete size={20} />
+                        <button className="text-[#196d8e]">
+                          <MdDelete size={19} />
                         </button>
                       </div>
                     </td>
@@ -148,8 +193,8 @@ function AssignedLabOrders() {
                         <div className="p-3.5 rounded border border-gray-400">
                           <div className="flex itesm-center justify-between mb-3">
                             <div className="flex items-center space-x-1">
-                              <GrNotes size={18} className="text-[#1976D2]" />
-                              <p className="text-[#1976D2] font-semibold text-xl">
+                              <GrNotes size={18} className="text-[#196d8e]" />
+                              <p className="text-[#196d8e] font-semibold text-xl">
                                 Cinical Note
                               </p>
                             </div>

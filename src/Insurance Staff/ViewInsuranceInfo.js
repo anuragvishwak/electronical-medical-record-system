@@ -12,6 +12,9 @@ function ViewInsuranceInfo() {
   const [openingAddInsuranceForm, setopeningAddInsuranceForm] = useState(false);
   const [gettingInsurances, setgettingInsurances] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
+  const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
+    []
+  );
   const [openingInsuranceUpdateForm, setopeningInsuranceUpdateForm] =
     useState(false);
   const [capturingDataObject, setcapturingDataObject] = useState({});
@@ -38,9 +41,21 @@ function ViewInsuranceInfo() {
     setgettingUser(multipleArray);
   }
 
+  async function renderingInsuranceCompany() {
+    const taskDetails = await getDocs(
+      collection(database, "insurance_provider_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setgettingInsuranceCompanies(multipleArray);
+  }
+
   useEffect(() => {
     renderingInsurances();
     renderingUser();
+    renderingInsuranceCompany();
   }, []);
 
   return (
@@ -53,35 +68,40 @@ function ViewInsuranceInfo() {
             View Insurance Information
           </p>
           <p className="text-[#196d8e]">
-            All the{" "}
-            <span className="text-[#212a31] font-semibold">
-              Insurance information
-            </span>{" "}
-            will be displayed here.
+            All the Insurance information will be displayed here.
           </p>
         </div>
 
-        <hr className="my-4 border-gray-300"/>
-        <div className="flex items-center justify-end space-x-2">
+        <hr className="my-4 border-gray-300" />
+        <div className="flex items-center justify-between ">
           <input
-            placeholder="Search Insurance details..."
+            placeholder="Search Insurance details by policy number..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
-          <button
-            onClick={() => {
-              setopeningAddInsuranceForm(true);
-            }}
-            className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
-          >
-            + Add Insurance
-          </button>
-
-          <button>
-            <IoNotifications
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+          <div className="flex items-center space-x-3">
+            <select className="p-1.5 rounded w-60 border border-gray-300">
+              <option>Insurance Company</option>
+              {gettingInsuranceCompanies.map((company) => (
+                <option value={company.providerName}>{company.providerName}</option>
+              ))}
+            </select>
+            <select className="p-1.5 w-60 rounded border border-gray-300">
+              <option>Coverage Type</option>
+               <option value={"inpatient"}>Inpatient</option>
+                  <option value={"outpatient"}>Outpatient</option>
+                  <option value={"surgery"}>Surgery</option>
+                  <option value={"corporate"}>Corporate</option>
+                  <option value={"general"}>General</option>
+            </select>
+            <button
+              onClick={() => {
+                setopeningAddInsuranceForm(true);
+              }}
+              className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
+            >
+              + Add Insurance
+            </button>
+          </div>
         </div>
       </div>
 

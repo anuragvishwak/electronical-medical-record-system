@@ -104,15 +104,21 @@ function DoctorBillingFinance() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search Bills..."
-            className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
+            className="border border-gray-300 w-full sm:w-5/12 p-1 rounded"
           ></input>
-          <div className="sm:flex items-center sm:space-x-2">
-            <button>
-              <IoNotifications
-                size={31}
-                className="border border-gray-500 p-1 rounded text-gray-500"
-              />
-            </button>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Patient</option>
+              {gettingUser
+                .filter((user) => user.role === "patient")
+                .map((user) => (
+                  <option>{user.name}</option>
+                ))}
+            </select>
+            <input
+              type="date"
+              className="border border-gray-300 w-60 p-1 rounded"
+            ></input>
           </div>
         </div>
       </div>

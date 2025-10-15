@@ -7,14 +7,14 @@ function DoctorNavbar() {
   const location = useLocation();
 
   return (
-    <div className="flex bg-white shadow items-center border-b justify-between p-3">
+    <div className="flex bg-white text-[#212a31] font-semibold shadow items-center border-b justify-between p-3">
       <div className="flex items-center space-x-5">
         <button
           onClick={() => {
             navigate("/DoctorDashboard");
           }}
           className={`${
-            location.pathname === "/DoctorDashboard" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorDashboard" ? "text-[#196d8e]" : ""
           }`}
         >
           Home
@@ -24,7 +24,7 @@ function DoctorNavbar() {
             navigate("/DoctorAppointment");
           }}
           className={`${
-            location.pathname === "/DoctorAppointment" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorAppointment" ? "text-[#196d8e]" : ""
           }`}
         >
           Appointments
@@ -34,7 +34,7 @@ function DoctorNavbar() {
             navigate("/DoctorPatients");
           }}
           className={`${
-            location.pathname === "/DoctorPatients" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorPatients" ? "text-[#196d8e]" : ""
           }`}
         >
           Patients
@@ -44,7 +44,7 @@ function DoctorNavbar() {
             navigate("/DoctorPrescription");
           }}
           className={`${
-            location.pathname === "/DoctorPrescription" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorPrescription" ? "text-[#196d8e]" : ""
           }`}
         >
           Prescriptions
@@ -55,7 +55,7 @@ function DoctorNavbar() {
             navigate("/DoctorConsultation");
           }}
           className={`${
-            location.pathname === "/DoctorConsultation" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorConsultation" ? "text-[#196d8e]" : ""
           }`}
         >
           Consultation
@@ -65,7 +65,7 @@ function DoctorNavbar() {
             navigate("/DoctorLabReports");
           }}
           className={`${
-            location.pathname === "/DoctorLabReports" ? "text-[#1976D2]" : ""
+            location.pathname === "/DoctorLabReports" ? "text-[#196d8e]" : ""
           }`}
         >
           Lab Reports
@@ -76,7 +76,7 @@ function DoctorNavbar() {
           }}
           className={`${
             location.pathname === "/DoctorBillingFinance"
-              ? "text-[#1976D2]"
+              ? "text-[#196d8e]"
               : ""
           }`}
         >
@@ -88,7 +88,7 @@ function DoctorNavbar() {
           }}
           className={`${
             location.pathname === "/DoctorProfileSetting"
-              ? "text-[#1976D2]"
+              ? "text-[#196d8e]"
               : ""
           }`}
         >

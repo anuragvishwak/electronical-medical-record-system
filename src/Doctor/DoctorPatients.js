@@ -67,16 +67,14 @@ function DoctorPatients() {
               Patients
             </p>
             <p className="text-[#196d8e]">
-              Manage{" "}
-              <span className="font-semibold text-[#212a31]">Patients</span>{" "}
-              across the healthcare system
+              Manage Patients across the healthcare system
             </p>
           </div>
           <hr className="my-3 border-gray-300" />
-          <div className="flex items-center justify-end space-x-2">
+          <div className="flex items-center justify-between space-x-2">
             <input
               placeholder="Search Patients..."
-              className="border border-gray-400 w-full sm:w-5/12 p-1 rounded"
+              className="border border-gray-400 w-96 p-1 rounded"
             ></input>
             <button>
               <IoNotifications
@@ -109,19 +107,19 @@ function DoctorPatients() {
               </div>
               <div className="my-5">
                 <p className="text-lg font-bold mb-1.5">Contact Information</p>
-                  <div>
-                    <p className="text-[#212a31] font-semibold">
-                      +91 {patient.phone_no}
-                    </p>
-                    <p className="text-[#196d8e]">Phone Number</p>
-                  </div>
+                <div>
+                  <p className="text-[#212a31] font-semibold">
+                    +91 {patient.phone_no}
+                  </p>
+                  <p className="text-[#196d8e]">Phone Number</p>
+                </div>
 
-                  <div>
-                    <p className="text-[#212a31] font-semibold">
-                      {patient.email}
-                    </p>
-                    <p className="text-[#196d8e]">Email</p>
-                  </div>
+                <div>
+                  <p className="text-[#212a31] font-semibold">
+                    {patient.email}
+                  </p>
+                  <p className="text-[#196d8e]">Email</p>
+                </div>
 
                 <div>
                   <p className="text-[#212a31] font-semibold">
@@ -132,7 +130,9 @@ function DoctorPatients() {
               </div>
 
               <div className="flex justify-end">
-                <button className="bg-[#196d8e] text-white py-1.5 px-4 rounded   hover:bg-blue-800">View More</button>
+                <button className="bg-[#196d8e] text-white py-1.5 px-4 rounded   hover:bg-blue-800">
+                  View More
+                </button>
               </div>
             </div>
           ))}

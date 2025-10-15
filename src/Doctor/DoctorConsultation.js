@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import AdditionalConsultationDetails from "./AdditionalConsultationDetails";
 import CreateLabOrderForm from "./CreateLabOrderForm";
 import UpdateConsultationForm from "./UpdateConsultationForm";
+import { FaPencil } from "react-icons/fa6";
 
 function DoctorConsultation() {
   const [gettingConsultations, setgettingConsultations] = useState([]);
@@ -51,33 +52,41 @@ function DoctorConsultation() {
 
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold ">Consultation</p>
-          <p className="text-gray-600">
+          <p className="text-2xl font-bold text-[#212a31]">Consultation</p>
+          <p className="text-[#196d8e]">
             Manage patient's Consultations across the healthcare system
           </p>
         </div>
 
-        <hr className="border-gray-300 my-4"/>
+        <hr className="border-gray-300 my-4" />
 
-        <div className="flex items-center w-full justify-end space-x-2">
+        <div className="flex items-center w-full justify-between space-x-2">
           <input
-            placeholder="Search Users..."
+            placeholder="Search Consultations by appointment id..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
-          <button>
-            <FaSearch
-              size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
-            />
-          </button>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Patient</option>
+              {gettingUser
+                .filter((user) => user.role === "patient")
+                .map((user) => (
+                  <option>{user.name}</option>
+                ))}
+            </select>
+            <input
+              type="date"
+              className="border border-gray-300 w-60 p-1 rounded"
+            ></input>
+          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-3 m-5 gap-5">
         {gettingConsultations.map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-2 flex items-start justify-between bg-black text-white rounded-t">
+            <div className="p-3 flex items-start justify-between bg-[#196d8e] text-white rounded-t">
               <div>
                 {gettingUser
                   .filter((user) => user.email === prep.patient)
@@ -106,10 +115,10 @@ function DoctorConsultation() {
             </div>
 
             <div className="m-5">
-              <p className="font-semibold text-[#1976D2] mb-1">
+              <p className="font-semibold text-[#212a31] mb-1">
                 History of Present Illness
               </p>
-              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-blue-500 text-sm text-justify">
+              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-[#212a31] text-sm text-justify">
                 {prep.historyofPresentIllness}
               </p>
             </div>
@@ -126,12 +135,9 @@ function DoctorConsultation() {
                   setcapturingDataObject(prep);
                   setopeningAdditionalDetails(true);
                 }}
-                className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2 rounded text-white"
+                className="text-[#212a31]"
               >
-                <div className="flex items-center space-x-1">
-                  <FaEye />
-                  <p>View more</p>
-                </div>
+                  <FaEye size={21} />
               </button>
 
               <button
@@ -139,19 +145,13 @@ function DoctorConsultation() {
                   setcapturingDataObject(prep);
                   setopeningUpdateConsultationForm(true);
                 }}
-                className="border-2 text-white border-gray-400 py-0.5 px-2 rounded bg-gray-400"
+                className="text-[#212a31]"
               >
-                <div className="flex items-center space-x-1">
-                  <FaEdit />
-                  <p>Edit</p>
-                </div>
+                <FaPencil />
               </button>
 
-              <button className="border-2 bg-red-500 border-red-500 py-0.5 px-2 rounded text-white">
-                <div className="flex items-center space-x-1">
-                  <MdDelete />
-                  <p>Delete</p>
-                </div>
+              <button className="text-[#196d8e]">
+                <MdDelete size={19}/>
               </button>
             </div>
           </div>
