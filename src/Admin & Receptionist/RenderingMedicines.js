@@ -4,6 +4,8 @@ import { database } from "../FirebaseConfiguration";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { FiAlertTriangle, FiDelete } from "react-icons/fi";
 import UpdateMedicineForm from "./UpdateMedicineForm";
+import { FaPencil } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 
 function RenderingMedicines({ search }) {
   const [gettingMedicines, setgettingMedicines] = useState([]);
@@ -36,9 +38,9 @@ function RenderingMedicines({ search }) {
   }, [search]);
 
   return (
-    <div className="flex bg-white w-auto overflow-x-auto shadow m-3 border border-gray-300 rounded p-3 justify-center">
+    <div className="flex bg-white w-auto overflow-x-auto shadow m-5 border border-gray-300 rounded p-5 justify-center">
       <table className="table-auto w-full">
-        <thead className="border border-gray-300 text-[#1976D2] bg-blue-50">
+        <thead className="border border-gray-300 text-[#212a31] bg-gray-50 ">
           <th className="py-1">Name</th>
           <th>Brand</th>
           <th>Category</th>
@@ -52,7 +54,7 @@ function RenderingMedicines({ search }) {
         <tbody>
           {gettingMedicines.map((med) => (
             <>
-              <tr className="text-gray-500 border-b">
+              <tr className="text-[#196d8e] border-b">
                 <td className="text-center py-2">{med.name}</td>
                 <td className="text-center">{med.brand}</td>
                 <td className="text-center">{med.category}</td>
@@ -71,31 +73,26 @@ function RenderingMedicines({ search }) {
                         setcapturingDataObject(med);
                         setOpeningAdditionalDetails(!openingAdditionalDetails);
                       }}
-                      className="border border-[#1976D2] text-[#1976D2] hover:bg-[#1976D2] hover:text-white py-0.5 px-2 rounded"
+                      className="border border-[#196d8e] text-[#196d8e] hover:bg-[#196d8e] hover:text-white py-0.5 px-2 rounded"
                     >
                       View Details
                     </button>
                   </div>
                 </td>
                 <td>
-                  <div className="flex items-center space-x-3 justify-center">
+                  <div className="flex items-center space-x-1 justify-center">
                     <button
                       onClick={() => {
                         setopeningUpdateMedicineForm(true);
                         setcapturingDataObject(med);
                       }}
-                      className="text-green-500 bg-green-50 py-0.5 shadow px-2 rounded"
+                      className="text-[#212a31]"
                     >
-                      <div className="flex items-center space-x-1">
-                        <FaEdit /> <p>Edit</p>
-                      </div>
+                        <FaPencil />
                     </button>
 
-                    <button className="text-red-500 bg-red-50 py-0.5 shadow px-2 rounded">
-                      <div className="flex items-center space-x-1">
-                        <FaTrash />
-                        <p>Delete</p>
-                      </div>
+                    <button className="text-[#196d8e]">
+                        <MdDelete size={19} />
                     </button>
                   </div>
                 </td>

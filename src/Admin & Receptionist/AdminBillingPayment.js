@@ -145,10 +145,10 @@ function AdminBillingPayment() {
         <table className="w-full table-auto">
           <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
             <tr>
-              <th className="py-1">Patient</th>
-              <th>Doctor</th>
-              <th>Appointment Id</th>
-              <th>BillDate</th>
+              <th className="py-1 text-start">Patient</th>
+              <th className="text-start">Doctor</th>
+              <th className="text-start">Appointment Id</th>
+              <th className="text-start">BillDate</th>
               <th>SurgeryFee</th>
               <th>Consultation Fee</th>
               <th>Lab Tests Fee</th>

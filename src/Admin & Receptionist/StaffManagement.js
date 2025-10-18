@@ -68,7 +68,18 @@ function StaffManagement() {
                 placeholder="Search Staff..."
                 className="border border-gray-400 w-full sm:w-96 p-1 rounded"
               ></input>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
+               <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <option>Filter by Roles</option>
+            
+                 <option>Select Role</option>
+                 <option value={'patient'}>Patient</option>
+                 <option value={'doctor'}>Doctor</option>
+                 <option value={'nurse'}>Nurse</option>
+                 <option value={'lab_technician'}>Lab Technician</option>
+                 <option value={'insurance_dept'}>Insurance Dept</option>
+
+            </select>
               <button
                 onClick={() => {
                   setopeningAddStaffForm(true);
@@ -76,13 +87,6 @@ function StaffManagement() {
                 className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
               >
                 + Create Staff
-              </button>
-
-              <button>
-                <IoNotifications
-                  size={31}
-                  className="border border-gray-500 p-1 rounded text-gray-500"
-                />
               </button>
             </div>
           </div>

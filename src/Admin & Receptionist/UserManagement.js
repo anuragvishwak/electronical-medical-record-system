@@ -8,6 +8,9 @@ import { FaBars, FaPhone, FaUser } from "react-icons/fa6";
 function UserManagement() {
   const [gettingUser, setgettingUser] = useState([]);
   const [openingAdminNavbar, setopeningAdminNavbar] = useState(false);
+  const [filterByRole, setFilterByRole] = useState("");
+  const [filterByUserName, setfilterByUserName] = useState("");
+
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -16,12 +19,15 @@ function UserManagement() {
       ...doc.data(),
     }));
 
-    setgettingUser(multipleArray);
+    const filteredUsers = filterByRole
+      ? multipleArray.filter((user) => user.role === filterByRole)
+      : multipleArray;
+    setgettingUser(filteredUsers);
   }
 
   useEffect(() => {
     renderingUser();
-  }, []);
+  }, [filterByRole]);
 
   const handleApprove = async (userId) => {
     const userRef = doc(database, "user_database", userId);
@@ -127,24 +133,29 @@ function UserManagement() {
         <hr className="border-gray-300 my-3" />
         <div className="flex items-center justify-between">
           <input
+          onChange={(event)=>{
+            setfilterByUserName(event.target.value);
+          }}
             placeholder="Search Users..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
 
-             <select className="border border-gray-300 w-60 p-1.5 rounded">
-              <option>Filter by Roles</option>
-            
-                 <option>Select Role</option>
-                 <option value={'patient'}>Patient</option>
-                 <option value={'doctor'}>Doctor</option>
-                 <option value={'nurse'}>Nurse</option>
-                 <option value={'lab_technician'}>Lab Technician</option>
-                 <option value={'insurance_dept'}>Insurance Dept</option>
-
-            </select>
+          <select
+            onChange={(event) => {
+              setFilterByRole(event.target.value);
+            }}
+            className="border border-gray-300 w-60 p-1.5 rounded"
+          >
+            <option>Filter by Roles</option>
+            <option value={"patient"}>Patient</option>
+            <option value={"doctor"}>Doctor</option>
+            <option value={"nurse"}>Nurse</option>
+            <option value={"lab_technician"}>Lab Technician</option>
+            <option value={"insurance_dept"}>Insurance Dept</option>
+          </select>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 gap-5 m-5">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">

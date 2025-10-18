@@ -26,17 +26,39 @@ function AdminAppointment() {
     {}
   );
   const [gettingUser, setgettingUser] = useState([]);
+  const [filterByAppointmentId, setfilterByAppointmentId] = useState("");
+  const [filterByPatient, setfilterByPatient] = useState("");
+  const [filterByDate, setfilterByDate] = useState("");
 
   async function renderingAppointments() {
-    const taskDetails = await getDocs(
+    const snapshot = await getDocs(
       collection(database, "appointment_database")
     );
-    let multipleArray = taskDetails.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const patients = gettingUser.filter((u) => u.role === "patient");
 
-    setgettingAppointments(multipleArray);
+    const filtered = snapshot.docs
+      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .filter(({ id, patient, createdAt }) => {
+        const matchId =
+          !filterByAppointmentId ||
+          id.toLowerCase().includes(filterByAppointmentId.toLowerCase());
+        const matchPatient =
+          !filterByPatient ||
+          patients.some(
+            (u) =>
+              u.name.toLowerCase() === filterByPatient.toLowerCase() &&
+              u.email === patient
+          );
+        const matchDate =
+          !filterByDate ||
+          (createdAt &&
+            new Date(createdAt.seconds * 1000)
+              .toISOString()
+              .startsWith(filterByDate));
+        return matchId && matchPatient && matchDate;
+      });
+
+    setgettingAppointments(filtered);
   }
 
   async function renderingUser() {
@@ -55,7 +77,7 @@ function AdminAppointment() {
 
   useEffect(() => {
     renderingAppointments();
-  }, []);
+  }, [filterByAppointmentId, filterByPatient, filterByDate]);
 
   return (
     <div className="bg-gray-50 h-screen">
@@ -96,11 +118,19 @@ function AdminAppointment() {
         <hr className="my-3 border-gray-300" />
         <div className="flex items-center justify-between">
           <input
+            onChange={(event) => {
+              setfilterByAppointmentId(event.target.value);
+            }}
             placeholder="Search Appointments by appointment id..."
             className="border border-gray-400 w-96 p-1 rounded"
           ></input>
           <div className="flex items-center space-x-3">
-            <select className="border border-gray-300 w-60 p-1.5 rounded">
+            <select
+              onChange={(event) => {
+                setfilterByPatient(event.target.value);
+              }}
+              className="border border-gray-300 w-60 p-1.5 rounded"
+            >
               <option>Filter by Patient</option>
               {gettingUser
                 .filter((user) => user.role === "patient")
@@ -110,6 +140,9 @@ function AdminAppointment() {
             </select>
             <input
               type="date"
+              onChange={(event) => {
+                setfilterByDate(event.target.value);
+              }}
               className="border border-gray-300 w-60 p-1 rounded"
             ></input>
             <button
