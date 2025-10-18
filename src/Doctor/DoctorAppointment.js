@@ -9,7 +9,6 @@ import { database } from "../FirebaseConfiguration";
 function DoctorAppointment() {
   const email = localStorage.getItem("email");
   const navigate = useNavigate();
-  const [capturingObject, setcapturingObject] = useState({});
   const [gettingUser, setgettingUser] = useState([]);
   const [openingAppointmentUpdateForm, setopeningAppointmentUpdateForm] =
     useState(false);
@@ -34,7 +33,7 @@ function DoctorAppointment() {
   return (
     <div className="bg-gray-50 h-screen">
       <DoctorNavbar />
-      <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl text-[#212a31] font-bold">Appointments</p>
           <p className="text-[#196d8e]">

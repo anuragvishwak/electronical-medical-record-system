@@ -24,16 +24,6 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           </button>
           <button
             onClick={() => {
-              navigate("/AdminPatient");
-            }}
-            className={`${
-              location.pathname === "/AdminPatient" ? "text-[#196d8e]" : ""
-            }`}
-          >
-            Patient
-          </button>
-          <button
-            onClick={() => {
               navigate("/AdminAppointment");
             }}
             className={`${

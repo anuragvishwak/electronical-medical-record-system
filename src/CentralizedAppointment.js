@@ -15,7 +15,7 @@ function CentralizedAppointment({
   capturingAppointmentObject,
   setcapturingAppointmentObject,
   setopeningAppointmentUpdateForm,
-  openingAppointmentUpdateForm
+  openingAppointmentUpdateForm,
 }) {
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [openingPrescriptionForm, setopeningPrescriptionForm] = useState(false);
@@ -23,6 +23,7 @@ function CentralizedAppointment({
   const [capturingDataObject, setcapturingDataObject] = useState({});
   const [openingCreateConsultationForm, setopeningCreateConsultationForm] =
     useState(false);
+  const [gettingUser, setgettingUser] = useState([]);
 
   async function renderingAppointments() {
     const taskDetails = await getDocs(
@@ -36,8 +37,19 @@ function CentralizedAppointment({
     setgettingAppointments(multipleArray);
   }
 
+  async function renderingUser() {
+    const taskDetails = await getDocs(collection(database, "user_database"));
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingUser(multipleArray);
+  }
+
   useEffect(() => {
     renderingAppointments();
+    renderingUser();
   }, []);
 
   let filteredAppointments = [];
@@ -160,19 +172,14 @@ function CentralizedAppointment({
             </div>
 
             <hr className="my-3 border-gray-300" />
-
-            <p className="text-gray-400">
-              Doctor:{" "}
-              <span className="text-[#1976D2] font-semibold">
-                {appointment.doctor}
-              </span>
-            </p>
-            <p className="text-gray-400">
-              Patient:{" "}
-              <span className="text-[#1976D2] font-semibold">
-                {appointment.patient}
-              </span>
-            </p>
+            {gettingUser
+              .filter((user) => user.email === appointment.doctor)
+              .map((user) => (
+                <p className="text-xl font-bold">
+                  <span className="font-[300] text-sm">Patient:</span>{" "}
+                  {user?.name}
+                </p>
+              ))}
 
             <hr className="my-5 border-gray-300" />
 
@@ -224,14 +231,13 @@ function CentralizedAppointment({
         />
       )}
 
-        {openingAppointmentUpdateForm && (
+      {openingAppointmentUpdateForm && (
         <UpdateAppointmentForm
           setopeningAppointmentUpdateForm={setopeningAppointmentUpdateForm}
           capturingAppointmentObject={capturingAppointmentObject}
           renderingAppointments={renderingAppointments}
         />
       )}
-
     </div>
   );
 }
