@@ -152,7 +152,7 @@ function DoctorLabReports() {
       </div>
       {currentTab === "order" ? (
         <div>
-          <div className="flex justify-center m-3 p-3 bg-white border border-gray-300 shadow rounded">
+          <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
             <table className="w-full table-auto">
               <thead className="bg-gray-50 border text-[#212a31]">
                 <tr>

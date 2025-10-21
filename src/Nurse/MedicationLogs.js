@@ -65,6 +65,46 @@ function MedicationLogs() {
   return (
     <div className="bg-gray-50 min-h-screen h-full">
       <NurseNavbar />
+
+      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div>
+          <p className="text-2xl font-bold text-[#212a31]">
+            Medication Logs
+          </p>
+          <p className="text-[#196d8e]">
+            Upload and manage Medication Logs across the healthcare system
+          </p>
+        </div>
+        <hr className="border-gray-300 my-4" />
+        <div className="flex items-center justify-between">
+          <input
+            placeholder="Search patients..."
+            className="border border-gray-400 w-96 p-1 rounded"
+          ></input>
+
+          <div>
+            <div className="flex items-center space-x-3">
+              <select className="border border-gray-300 w-60 p-1.5 rounded">
+                <option>Patient</option>
+                {gettingUser
+                  .filter((user) => user.role === "patient")
+                  .map((user) => (
+                    <option>{user.name}</option>
+                  ))}
+              </select>
+
+              <select className="border border-gray-300 w-60 p-1.5 rounded">
+                <option>Doctor</option>
+                {gettingUser
+                  .filter((user) => user.role === "doctor")
+                  .map((user) => (
+                    <option>{user.name}</option>
+                  ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="m-5">
         <div className="grid grid-cols-3 gap-5">
           {gettingAppointments.map((appointment) => (

@@ -80,15 +80,15 @@ function PatientLabReport() {
       <div className="m-5 grid grid-cols-3 gap-5">
         {gettingLabResults.map((lab) => (
           <div className="rounded bg-white shadow">
-            <div className=" bg-black rounded-t p-3 text-white ">
+            <div className=" bg-[#196d8e] rounded-t p-3 text-white ">
               <div className="flex text-sm items-center space-x-1">
                 <p>
-                  <span className="text-gray-400">Appointment Id:</span>{" "}
+                  <span className="text-gray-300">Appointment Id:</span>{" "}
                   {lab.appointmentId}
                 </p>
               </div>
               <p>
-                <span className="text-gray-400">Consultation Id:</span>{" "}
+                <span className="text-gray-300">Consultation Id:</span>{" "}
                 {lab.constulationId}
               </p>
             </div>
@@ -127,7 +127,7 @@ function PatientLabReport() {
                   setcapturingResultId(lab.id);
                   setextendingTable(!extendingTable);
                 }}
-                className="bg-[#1976D2] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
+                className="bg-[#212a31] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
               >
                 <div className="flex items-center space-x-1">
                   <FaEye />
@@ -138,9 +138,9 @@ function PatientLabReport() {
 
             {extendingTable && capturingResultId === lab.id && (
               <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-                <div className="bg-white p-3 rounded">
+                <div className="bg-white p-5 w-6/12 rounded">
                   <div className="flex items-center justify-between mb-2">
-                    <p className="text-[#1976D2] text-xl font-semibold">
+                    <p className="text-[#196d8e] text-xl font-bold">
                       Lab Results
                     </p>
                     <button
@@ -152,11 +152,11 @@ function PatientLabReport() {
                       Close
                     </button>
                   </div>
-                  <div className="border p-3 border-gray-300 rounded text-sm">
+                  <div className="w-full">
                     <table className="table-auto w-full">
-                      <thead className="bg-gray-100">
+                      <thead className="bg-gray-100 border border-gray-300">
                         <tr>
-                          <th className="py-1">Parameter</th>
+                          <th className="py-1.5">Parameter</th>
                           <th>Value</th>
                           <th>Unit</th>
                           <th>Reference Value</th>
@@ -177,7 +177,7 @@ function PatientLabReport() {
                                   className="text-gray-500 border-b border-gray-300"
                                   key={key}
                                 >
-                                  <td className="text-center py-1">{key}</td>
+                                  <td className="text-center py-2">{key}</td>
                                   <td className="text-center">{value.value}</td>
                                   <td className="text-center">{value.unit}</td>
                                   <td className="">

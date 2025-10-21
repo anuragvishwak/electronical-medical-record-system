@@ -8,13 +8,13 @@ function NurseNavbar() {
 
   return (
     <div className="flex bg-white shadow  items-center border-b justify-between p-3">
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center text-[#212a31] font-semibold space-x-5">
         <button
           onClick={() => {
             navigate("/NurseDashboard");
           }}
           className={`${
-            location.pathname === "/NurseDashboard" ? "text-[#1976D2]" : ""
+            location.pathname === "/NurseDashboard" ? "text-[#196d8e]" : ""
           }`}
         >
           Home
@@ -24,7 +24,7 @@ function NurseNavbar() {
             navigate("/NurseVitals");
           }}
           className={`${
-            location.pathname === "/NurseVitals" ? "text-[#1976D2]" : ""
+            location.pathname === "/NurseVitals" ? "text-[#196d8e]" : ""
           }`}
         >
           Patient Vitals
@@ -34,7 +34,7 @@ function NurseNavbar() {
             navigate("/CheckInCheckOut");
           }}
           className={`${
-            location.pathname === "/CheckInCheckOut" ? "text-[#1976D2]" : ""
+            location.pathname === "/CheckInCheckOut" ? "text-[#196d8e]" : ""
           }`}
         >
           Check In / Out
@@ -44,7 +44,7 @@ function NurseNavbar() {
             navigate("/MedicationLogs");
           }}
           className={`${
-            location.pathname === "/MedicationLogs" ? "text-[#1976D2]" : ""
+            location.pathname === "/MedicationLogs" ? "text-[#196d8e]" : ""
           }`}
         >
           Medication Logs
@@ -55,7 +55,7 @@ function NurseNavbar() {
           }}
           className={`${
             location.pathname === "/NurseProfileUpdateSetting"
-              ? "text-[#1976D2]"
+              ? "text-[#196d8e]"
               : ""
           }`}
         >

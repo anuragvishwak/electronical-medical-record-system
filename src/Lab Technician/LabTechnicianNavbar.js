@@ -8,14 +8,14 @@ function LabTechnicianNavbar() {
 
   return (
     <div className="flex bg-white shadow items-center border-b justify-between p-3">
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center [#212a31] font-semibold space-x-5">
         <button>Home</button>
         <button
           onClick={() => {
             navigate("/AssignedLabOrders");
           }}
           className={`${
-            location.pathname === "/AssignedLabOrders" ? "text-[#1976D2]" : ""
+            location.pathname === "/AssignedLabOrders" ? "text-[#196d8e]" : ""
           }`}
         >
           Assigned Lab Orders
@@ -25,7 +25,7 @@ function LabTechnicianNavbar() {
             navigate("/UploadTestResults");
           }}
           className={`${
-            location.pathname === "/UploadTestResults" ? "text-[#1976D2]" : ""
+            location.pathname === "/UploadTestResults" ? "text-[#196d8e]" : ""
           }`}
         >
           Upload Test Results
@@ -36,7 +36,7 @@ function LabTechnicianNavbar() {
           }}
           className={`${
             location.pathname === "/LabTechnicianProfileUpdateSetting"
-              ? "text-[#1976D2]"
+              ? "text-[#196d8e]"
               : ""
           }`}
         >
