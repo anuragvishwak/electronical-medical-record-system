@@ -175,7 +175,7 @@ function CentralizedAppointment({
             {gettingUser
               .filter((user) => user.email === appointment.doctor)
               .map((user) => (
-                <p className="text-xl font-bold">
+                <p className="font-semibold text-[#196d8e]">
                   <span className="font-[300] text-sm">Patient:</span>{" "}
                   {user?.name}
                 </p>
@@ -197,7 +197,7 @@ function CentralizedAppointment({
                       setcapturingDataObject(appointment);
                       setopeningPrescriptionForm(true);
                     }}
-                    className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+                    className="bg-[#212a31] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
                   >
                     + Create Prescription
                   </button>
@@ -207,7 +207,7 @@ function CentralizedAppointment({
                       setcapturingDataObject(appointment);
                       setopeningCreateConsultationForm(true);
                     }}
-                    className="bg-[#1976D2] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
+                    className="bg-[#196d8e] text-sm text-white py-1.5 w-full shadow rounded hover:bg-blue-800 "
                   >
                     + Create Consultation
                   </button>

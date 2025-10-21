@@ -141,11 +141,11 @@ function PatientPaymentHistory() {
       </div>
 
       <div>
-        <div className="flex bg-white shadow m-5 border border-gray-300 rounded p-3 justify-center">
+        <div className="flex bg-white shadow m-5 border border-gray-300 rounded p-5 justify-center">
           <table className="w-full table-auto">
             <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
               <tr>
-                <th>Doctor</th>
+                <th className="py-1">Doctor</th>
                 <th>Appointment Id</th>
                 <th>BillDate</th>
                 <th>SurgeryFee</th>
@@ -163,7 +163,7 @@ function PatientPaymentHistory() {
                     {gettingUser
                       .filter((user) => user.email === bill.doctor)
                       .map((user) => (
-                        <td>
+                        <td className="py-2">
                           <div className="flex items-center justify-center">
                             <div>
                               <p>{user.name}</p>
