@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { LuLogOut } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 import HRMS from "./HRMS/HRMS";
-import { FaBars } from "react-icons/fa6";
 import { CgClose } from "react-icons/cg";
 
 function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
@@ -19,6 +18,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminDashboard");
             }}
+             className={`${
+              location.pathname === "/AdminDashboard" ? "text-[#196d8e]" : ""
+            }`}
           >
             Home
           </button>
