@@ -79,7 +79,7 @@ function PatientLabReport() {
 
       <div className="m-5 grid grid-cols-3 gap-5">
         {gettingLabResults.map((lab) => (
-          <div className="rounded bg-white shadow">
+          <div className="rounded bg-white border border-gray-300 shadow">
             <div className=" bg-[#196d8e] rounded-t p-3 text-white ">
               <div className="flex text-sm items-center space-x-1">
                 <p>

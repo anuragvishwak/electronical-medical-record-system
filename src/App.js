@@ -46,6 +46,7 @@ import PatientMedicalHistory from "./Patients/PatientMedicalHistory";
 import PatientPaymentHistory from "./Patients/PatientPaymentHistory";
 import NurseProfileUpdateSetting from "./Nurse/NurseProfileUpdateSetting";
 import LabTechnicianProfileUpdateSetting from "./Lab Technician/LabTechnicianProfileUpdateSetting";
+import InsuranceDeptDashboard from "./Insurance Staff/InsuranceDeptDashboard";
 
 function App() {
   return (
@@ -81,6 +82,8 @@ function App() {
           <Route path="/DoctorLabReports" element={<DoctorLabReports />} />
           <Route path="/NurseVitals" element={<NurseVitals />} />
           <Route path="/CheckInCheckOut" element={<CheckInCheckOut />} />
+          <Route path="/InsuranceDeptDashboard" element={<InsuranceDeptDashboard />} />
+
           <Route
             path="/PatientPrescription"
             element={<PatientPrescription />}
