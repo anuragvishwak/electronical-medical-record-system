@@ -9,9 +9,11 @@ import { GoDiscussionClosed, GoDotFill } from "react-icons/go";
 import { MdTimer } from "react-icons/md";
 import { RiTestTubeLine } from "react-icons/ri";
 import { RxCounterClockwiseClock } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 function DoctorDashboard() {
   const email = localStorage.getItem("email");
+  const navigation = useNavigate();
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
@@ -294,7 +296,12 @@ function DoctorDashboard() {
                   </p>
                 </div>
                 <p className="text-[#196d8e] text-sm">Begin patient session.</p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button
+                  onClick={() => {
+                    navigation("/DoctorConsultation");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
                   Start Consultation
                 </button>
               </div>
@@ -306,14 +313,19 @@ function DoctorDashboard() {
                     className="text-[#212a31] border p-1 rounded border-gray-300"
                   />
                   <p className="text-[#212a31] text-lg font-semibold">
-                    Create Prescription
+                    View Prescription
                   </p>
                 </div>
                 <p className="text-[#196d8e] text-sm">
-                  Add or update medicines in prescriptions”.
+                  View medicines in prescriptions”.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
-                  Create Prescription
+                <button
+                  onClick={() => {
+                    navigation("/DoctorPrescription");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
+                  View Prescription
                 </button>
               </div>
 
@@ -328,7 +340,11 @@ function DoctorDashboard() {
                   </p>
                 </div>
                 <p className="text-[#196d8e] text-sm">Review latest results.</p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button 
+                onClick={() => {
+                    navigation("/DoctorLabReports");
+                  }}
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
                   View Reports
                 </button>
               </div>

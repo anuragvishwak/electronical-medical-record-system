@@ -88,7 +88,7 @@ function CentralizedAppointment({
 
       await updateDoc(appointmentRef, payload);
 
-      console.log("Visit visitStatus updated successfully!");
+      console.log("Visit status updated successfully!");
       renderingAppointments();
     } catch (error) {
       console.error("Error updating visit visitStatus:", error.message);

@@ -6,11 +6,12 @@ import { database } from "../FirebaseConfiguration";
 import { CgDanger } from "react-icons/cg";
 import { FaCalendarAlt, FaRegCheckCircle } from "react-icons/fa";
 import { RxCounterClockwiseClock } from "react-icons/rx";
-import { GiMedicines } from "react-icons/gi";
 import { PiEyedropperSampleBold } from "react-icons/pi";
 import { MdTimer } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 function LabTechnicianDashboard() {
+  const navigation = useNavigate();
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
 
   async function renderingLabOrders() {
@@ -150,6 +151,26 @@ function LabTechnicianDashboard() {
             <div className="grid grid-cols-2  gap-5">
               <div className="border p-3 rounded border-gray-300">
                 <div className="flex items-center space-x-1">
+                  <PiEyedropperSampleBold
+                    size={25}
+                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                  />
+                  <p className="text-[#212a31] text-lg font-semibold">
+                    View Lab Orders
+                  </p>
+                </div>
+                <p className="text-[#196d8e] text-sm">Views orders quickly.</p>
+                <button
+                  onClick={() => {
+                    navigation("/AssignedLabOrders");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
+                  View Orders
+                </button>
+              </div>
+              <div className="border p-3 rounded border-gray-300">
+                <div className="flex items-center space-x-1">
                   <RiTestTubeLine
                     size={25}
                     className="text-[#212a31] border p-1 rounded border-gray-300"
@@ -161,7 +182,12 @@ function LabTechnicianDashboard() {
                 <p className="text-[#196d8e] text-sm">
                   Upload test report for patient.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button
+                  onClick={() => {
+                    navigation("/UploadTestResults");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
                   Add Results
                 </button>
               </div>
@@ -179,7 +205,12 @@ function LabTechnicianDashboard() {
                 <p className="text-[#196d8e] text-sm">
                   Mark patient sample collected.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button
+                  onClick={() => {
+                    navigation("/UploadTestResults");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
                   Mark Status
                 </button>
               </div>
