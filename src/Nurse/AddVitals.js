@@ -27,6 +27,7 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
 
   async function UpdateVitals() {
     const vitalData = {
+      appointmentId: capturingWholeObject.id,
       height: height,
       weight: weight,
       temperature: temperature,
@@ -38,18 +39,18 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
 
     try {
       vitalSchema.parse(vitalData);
-      const appointmentRef = doc(
+
+      const vitalsCollectionRef = collection(
         database,
-        "appointment_database",
-        capturingWholeObject.id
+        "patient_vitals_database"
       );
 
-      await updateDoc(appointmentRef, vitalData);
+      await addDoc(vitalsCollectionRef, vitalData);
 
-      console.log("Vitals updated successfully.");
+      console.log("Vitals added successfully.");
       toast.current.show({
         severity: "success",
-        summary: "Vitals updated successfully!",
+        summary: "Vitals added successfully!",
         life: 3000,
       });
 
@@ -64,6 +65,12 @@ function AddVitals({ setaddVitalsForm, capturingWholeObject }) {
         return;
       } else {
         console.error("Error while adding patient vitals:", error.message);
+        toast.current.show({
+          severity: "error",
+          summary: "Error adding vitals",
+          detail: error.message,
+          life: 3000,
+        });
       }
     }
   }

@@ -8,11 +8,12 @@ import { RxCounterClockwiseClock } from "react-icons/rx";
 import { MdOutlineInsertChartOutlined, MdTimer } from "react-icons/md";
 import { FaIndianRupeeSign, FaRubleSign } from "react-icons/fa6";
 import { GiMedicines } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
+  const navigation = useNavigate();
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
-
   const [gettingBills, setgettingBills] = useState([]);
 
   async function renderingUser() {
@@ -216,7 +217,12 @@ function AdminDashboard() {
                 <p className="text-[#196d8e] text-sm">
                   Record a payment or issue a refund.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button
+                  onClick={() => {
+                    navigation("/AdminBillingPayment");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
                   Process Payment
                 </button>
               </div>
@@ -234,7 +240,11 @@ function AdminDashboard() {
                 <p className="text-[#196d8e] text-sm">
                   Create a new appointment for a patient.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button 
+                onClick={()=>{
+                    navigation('/AdminAppointment');
+                  }}
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
                   + Create Appointment
                 </button>
               </div>
@@ -252,8 +262,34 @@ function AdminDashboard() {
                 <p className="text-[#196d8e] text-sm">
                   Add or update medicine and their stock.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
-                  + Update Medicine
+                <button 
+                onClick={()=>{
+                    navigation('/MedicinesTreatment');
+                  }}
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                  Update Medicine
+                </button>
+              </div>
+
+              <div className="border p-3 rounded border-gray-300">
+                <div className="flex items-center space-x-1">
+                  <FaUser
+                    size={25}
+                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                  />
+                  <p className="text-[#212a31] text-lg font-semibold">
+                    Manage Staff
+                  </p>
+                </div>
+                <p className="text-[#196d8e] text-sm">
+                  Add or Manage Staff and their stock.
+                </p>
+                <button 
+                onClick={()=>{
+                    navigation('/StaffManagement');
+                  }}
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                   Manage Staff
                 </button>
               </div>
             </div>

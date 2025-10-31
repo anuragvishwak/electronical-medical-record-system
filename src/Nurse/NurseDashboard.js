@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import NurseNavbar from "./NurseNavbar";
 import { collection, getDoc, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
-import { BsClock } from "react-icons/bs";
-import { MdDateRange } from "react-icons/md";
+import { BsBuildingFillCheck, BsClock } from "react-icons/bs";
+import { MdDateRange, MdTimer } from "react-icons/md";
 import AddVitals from "./AddVitals";
-import { FaUser } from "react-icons/fa";
+import { FaCalendarAlt, FaHeartbeat, FaUser } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
+import { RxCounterClockwiseClock } from "react-icons/rx";
+import { FaIndianRupeeSign } from "react-icons/fa6";
+import { GoDotFill } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 function NurseDashboard() {
+  const navigation = useNavigate();
   const [addVitalsForm, setaddVitalsForm] = useState(false);
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [capturingWholeObject, setcapturingWholeObject] = useState({});
@@ -16,6 +21,7 @@ function NurseDashboard() {
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
   const [gettingConsultations, setgettingConsultations] = useState([]);
   const [totalMedications, setTotalMedications] = useState(0);
+  const [gettingVitals, setgettingVitals] = useState([]);
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -63,17 +69,24 @@ function NurseDashboard() {
     setgettingPrescriptions(multipleArray);
   }
 
-  const findingTotalValue = gettingConsultations.map(
-    (consult) => consult.medication_procedures.length
-  );
+  async function renderingVitals() {
+    const taskDetails = await getDocs(
+      collection(database, "patient_vitals_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-  console.log("investigating medications", findingTotalValue);
+    setgettingVitals(multipleArray);
+  }
 
   useEffect(() => {
     renderingAppointments();
     renderingUser();
     renderingConsultation();
     renderingPrescriptions();
+    renderingVitals();
   }, []);
 
   useEffect(() => {
@@ -105,7 +118,7 @@ function NurseDashboard() {
       <NurseNavbar />
 
       <div>
-        <div>
+        <div className="grid grid-cols-4 gap-5 m-5">
           <div className="bg-white p-6 rounded border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaUser
@@ -131,90 +144,226 @@ function NurseDashboard() {
                 <p className="text-[#196d8e] font-semibold">Medication Logs</p>
                 <p className="text-center text-3xl font-bold text-[#212a31]">
                   {totalMedications}
-                  {console.log("finding medications results",totalMedications)}
+                  {console.log("finding medications results", totalMedications)}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded border border-gray-300">
+            <div className="flex items-center justify-center space-x-5">
+              <FaHeartbeat
+                size={45}
+                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+              />
+              <div>
+                <p className="text-[#196d8e] font-semibold">
+                  Total Vitals Recorded
+                </p>
+                <p className="text-center text-3xl font-bold text-[#212a31]">
+                  {gettingVitals.length}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded border border-gray-300">
+            <div className="flex items-center justify-center space-x-5">
+              <BsBuildingFillCheck
+                size={45}
+                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+              />
+              <div>
+                <p className="text-[#196d8e] font-semibold">Total Checked In</p>
+                <p className="text-center text-3xl font-bold text-[#212a31]">
+                  {
+                    gettingAppointments.filter(
+                      (appoint) => appoint.visitvisitStatus === "Checked-In"
+                    ).length
+                  }
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex items-center">
-          <div className="bg-white h-[660px] shadow-inner border border-gray-300 overflow-auto m-3 p-3">
-            <p className="mb-3 text-lg text-[#1976D2] font-semibold">
-              Patient's Appointments
-            </p>
-            <div>
-              {gettingAppointments.map((appointment) => (
-                <div className="bg-white border mb-3 border-gray-300 shadow p-3 rounded">
-                  <div className="flex items-start justify-between">
-                    <div className="text-sm">
-                      <div className="flex items-center space-x-1">
-                        <BsClock />
-                        <p>{appointment.time}</p>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <MdDateRange />
-                        <p>
-                          {appointment.createdAt
-                            ? new Date(
-                                appointment.createdAt.seconds * 1000
-                              ).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              })
-                            : "No Date"}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-1">
-                      <select
-                        // onChange={(e) => {
-                        //   setstatus(e.target.value);
-                        // }}
-                        className="border text-sm rounded border-gray-300 w- p-1"
-                      >
-                        <option>Select Status</option>
-                        <option value={"scheduled"}>Scheduled</option>
-                        <option value={"completed"}>Completed</option>
-                        <option value={"cancelled"}>Cancelled</option>
-                      </select>
-                      <button
-                        onClick={() => {
-                          setaddVitalsForm(true);
-                          setcapturingWholeObject(appointment);
-                        }}
-                        className="bg-[#1976D2] text-sm py-1 px-3 rounded text-white"
-                      >
-                        + Add Vitals
-                      </button>
-                    </div>
+        <div className="flex items-start m-5 gap-5">
+          <div className="bg-white p-5 w-[550px] overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+              <FaCalendarAlt />
+              <p className="text-xl font-bold">Recent Appointments</p>
+            </div>
+            {gettingAppointments.map((appointment) => (
+              <div className="flex p-3 rounded border border-gray-300 mb-3 justify-between items-start">
+                <div>
+                  {gettingUser
+                    .filter((user) => user.email === appointment.patient)
+                    .map((user) => (
+                      <p className="text-xl text-[#212a31] font-bold">
+                        {user?.name}
+                      </p>
+                    ))}
+                  <div className="flex text-sm text-[#196d8e] items-center space-x-1">
+                    {gettingUser
+                      .filter((user) => user.email === appointment.doctor)
+                      .map((user) => (
+                        <p>{user?.name}</p>
+                      ))}
+                    <span>
+                      <GoDotFill />
+                    </span>
+                    <p>{appointment.time}</p>
                   </div>
-
-                  <hr className="my-1.5 border-gray-300" />
-
-                  <p className="text-gray-400">
-                    Doctor:{" "}
-                    <span className="text-[#1976D2] font-semibold">
-                      {appointment.doctor}
-                    </span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <p className="border px-3 text-sm font-semibold py-1 text-[#212a31] rounded-full border-gray-300">
+                    {appointment.status}
                   </p>
-                  <p className="text-gray-400">
-                    Patient:{" "}
-                    <span className="text-[#1976D2] font-semibold">
-                      {appointment.patient}
-                    </span>
-                  </p>
+                  <button
+                    onClick={() => {
+                      setaddVitalsForm(true);
+                      setcapturingWholeObject(appointment);
+                    }}
+                    className="bg-[#196d8e] text-sm py-1 px-3 rounded text-white"
+                  >
+                    + Add Vitals
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
 
-                  <hr className="my-1.5 border-gray-300" />
-                  <p className="bg-gray-50 rounded border border-gray-300 p-3">
-                    <span className="text-gray-400">Note:</span>{" "}
-                    <span className="text-black">
-                      {appointment.additionalNote}
-                    </span>
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-[400px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+              <RxCounterClockwiseClock size={20} />
+              <p className="text-xl font-bold">Recent Activities</p>
+            </div>
+
+            <div className="border rounded my-3 border-gray-300 p-2.5">
+              <p className="text-lg font-semibold text-[#212a31]">
+                Vitals Recorded
+              </p>
+              <p className="text-[#196d8e] text-sm">
+                Patient vitals recorded for{" "}
+                <span className="font-semibold">Rahul Verma</span>.
+              </p>
+            </div>
+
+            <div className="border rounded my-3 border-gray-300 p-2.5">
+              <p className="text-lg font-semibold text-[#212a31]">
+                Patient Checked In
+              </p>
+              <p className="text-[#196d8e] text-sm">
+                Appointment for{" "}
+                <span className="font-semibold">Anita Sharma</span> marked as
+                Checked In.
+              </p>
+            </div>
+
+            <div className="border rounded my-3 border-gray-300 p-2.5">
+              <p className="text-lg font-semibold text-[#212a31]">
+                Medication Logged
+              </p>
+              <p className="text-[#196d8e] text-sm">
+                Medication log updated for{" "}
+                <span className="font-semibold">Dr. Mehta’s</span> patient{" "}
+                <span className="font-semibold">Vivek Raj</span>.
+              </p>
+            </div>
+
+            <div className="border rounded my-3 border-gray-300 p-2.5">
+              <p className="text-lg font-semibold text-[#212a31]">
+                Appointment Completed
+              </p>
+              <p className="text-[#196d8e] text-sm">
+                Appointment with{" "}
+                <span className="font-semibold">Dr. Sharma</span> marked as
+                completed.
+              </p>
+            </div>
+
+            <div className="border rounded my-3 border-gray-300 p-2.5">
+              <p className="text-lg font-semibold text-[#212a31]">Note Added</p>
+              <p className="text-[#196d8e] text-sm">
+                Additional note added for patient{" "}
+                <span className="font-semibold">Sneha Kapoor</span>.
+              </p>
+            </div>
+          </div>
+          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-auto border-gray-300 p-5 rounded">
+            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+              <MdTimer size={20} />
+              <p className="text-xl font-bold">Quick Actions</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-5">
+              <div className="border p-3 rounded border-gray-300">
+                <div className="flex items-center space-x-1">
+                  <FaHeartbeat
+                    size={25}
+                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                  />
+                  <p className="text-[#212a31] text-lg font-semibold">
+                    View Patient Vitals
                   </p>
                 </div>
-              ))}
+                <p className="text-[#196d8e] text-sm">
+                  View new vitals in seconds.
+                </p>
+                <button
+                  onClick={() => {
+                    navigation("/NurseVitals");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
+                  View Vitals
+                </button>
+              </div>
+
+              <div className="border p-3 rounded border-gray-300">
+                <div className="flex items-center space-x-1">
+                  <FaCalendarAlt
+                    size={25}
+                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                  />
+                  <p className="text-[#212a31] text-lg font-semibold">
+                    View Checked-In Patients
+                  </p>
+                </div>
+                <p className="text-[#196d8e] text-sm">
+                  Monitor today’s active patients.
+                </p>
+                <button
+                  onClick={() => {
+                    navigation("/CheckInCheckOut");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
+                  View Today's Patients
+                </button>
+              </div>
+
+              <div className="border p-3 rounded border-gray-300">
+                <div className="flex items-center space-x-1">
+                  <GiMedicines
+                    size={25}
+                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                  />
+                  <p className="text-[#212a31] text-lg font-semibold">
+                    View Medication Logs
+                  </p>
+                </div>
+                <p className="text-[#196d8e] text-sm">
+                  Quick access to medication logs and records.
+                </p>
+                <button
+                  onClick={() => {
+                    navigation("/MedicationLogs");
+                  }}
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                >
+                  View Logs
+                </button>
+              </div>
             </div>
           </div>
         </div>

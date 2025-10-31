@@ -8,9 +8,12 @@ import { GiMedicinePills } from "react-icons/gi";
 import { GrMoney, GrTest } from "react-icons/gr";
 import { MdTimer } from "react-icons/md";
 import { RxCounterClockwiseClock } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
+import { negative } from "zod";
 
 function PatientDashboard() {
   const email = localStorage.getItem("email");
+  const navigation = useNavigate();
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingAppointments, setgettingAppointments] = useState([]);
 
@@ -147,12 +150,12 @@ function PatientDashboard() {
                       className="border rounded border-gray-300 p-1"
                     />
                     <p className="text-lg font-semibold text-[#212a31]">
-                      Book Appointment
+                      Request Appointment
                     </p>
                   </div>
-                  <p className="text-[#196d8e]">Schedule your next visit.</p>
+                  <p className="text-[#196d8e]">Request your next visit.</p>
                   <button className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
-                    Schedule Appointment
+                    Request Appointment
                   </button>
                 </div>
 
@@ -167,7 +170,11 @@ function PatientDashboard() {
                     </p>
                   </div>
                   <p className="text-[#196d8e]">See your doctor’s advice.</p>
-                  <button className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
+                  <button 
+                  onClick={()=>{
+                    navigation('/PatientPrescription');
+                  }}
+                  className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
                     View Prescriptions
                   </button>
                 </div>
@@ -183,7 +190,11 @@ function PatientDashboard() {
                     </p>
                   </div>
                   <p className="text-[#196d8e]">Access your medical tests.</p>
-                  <button className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
+                  <button 
+                  onClick={()=>{
+                    navigation('/PatientLabReport');
+                  }}
+                  className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
                     View Reports
                   </button>
                 </div>
@@ -199,7 +210,11 @@ function PatientDashboard() {
                     </p>
                   </div>
                   <p className="text-[#196d8e]">Track your past payments.</p>
-                  <button className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
+                  <button 
+                  onClick={()=>{
+                    navigation('/PatientPaymentHistory');
+                  }}
+                  className="bg-[#212a31] text-white py-1 px-3 text-sm rounded">
                     View History
                   </button>
                 </div>

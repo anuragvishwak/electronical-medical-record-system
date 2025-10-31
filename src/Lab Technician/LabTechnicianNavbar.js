@@ -9,7 +9,14 @@ function LabTechnicianNavbar() {
   return (
     <div className="flex bg-white shadow items-center border-b justify-between p-3">
       <div className="flex items-center [#212a31] font-semibold space-x-5">
-        <button>Home</button>
+        <button
+        onClick={() => {
+            navigate("/LabTechnicianDashboard");
+          }}
+          className={`${
+            location.pathname === "/LabTechnicianDashboard" ? "text-[#196d8e]" : ""
+          }`}
+        >Home</button>
         <button
           onClick={() => {
             navigate("/AssignedLabOrders");
