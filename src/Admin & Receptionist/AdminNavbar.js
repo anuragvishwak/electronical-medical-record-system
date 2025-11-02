@@ -3,12 +3,73 @@ import { LuLogOut } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 import HRMS from "./HRMS/HRMS";
 import { CgClose } from "react-icons/cg";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import { getDocs, collection } from "firebase/firestore";
+import { database } from "../FirebaseConfiguration";
+import { GiCloudDownload } from "react-icons/gi";
 
 function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
 
   const location = useLocation();
   const [openingHRMS, setopeningHRMS] = useState(false);
+
+  async function downloadAllData() {
+    const collections = [
+      "user_database",
+      "appointment_database",
+      "consultation_database",
+      "prescription_database",
+      "patient_vitals_database",
+      "billing_payment_database",
+      "insurance_database",
+      "insurance_provider_database",
+      "claim_status_database",
+      "lab_order_database",
+      "lab_order_results_database",
+      "medicine_database",
+    ];
+
+    const workbook = XLSX.utils.book_new();
+
+    for (const col of collections) {
+      const snapshot = await getDocs(collection(database, col));
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      if (data.length === 0) {
+        console.log(`⚠️ No data found in ${col}`);
+        continue;
+      }
+
+      console.log(`✅ ${data.length} records fetched from ${col}`);
+
+      const worksheet = XLSX.utils.json_to_sheet(data);
+
+      const cols = Object.keys(data[0] || {}).map((key) => ({
+        wch: key.length + 10,
+      }));
+      worksheet["!cols"] = cols;
+
+      XLSX.utils.book_append_sheet(workbook, worksheet, col);
+    }
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    saveAs(blob, `hospital_data_${new Date().toLocaleDateString()}.xlsx`);
+
+    alert("Data downloaded! Each collection is in a separate Excel sheet.");
+  }
 
   return (
     <div>
@@ -18,7 +79,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminDashboard");
             }}
-             className={`${
+            className={`${
               location.pathname === "/AdminDashboard" ? "text-[#196d8e]" : ""
             }`}
           >
@@ -81,13 +142,15 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             Medicines
           </button>
           <button
-           onClick={() => {
+            onClick={() => {
               navigate("/StaffManagement");
             }}
             className={`${
               location.pathname === "/StaffManagement" ? "text-[#196d8e]" : ""
             }`}
-          >Staff Management</button>
+          >
+            Staff Management
+          </button>
           <button
             onClick={() => {
               navigate("/AdminProfileSetting");
@@ -102,6 +165,16 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           </button>
         </div>
         <div className="flex items-center space-x-2">
+          <button
+            onClick={downloadAllData}
+            className="bg-[#212a31] text-white py-1 px-2.5 rounded hover:bg-[#196d8e]"
+          >
+            <div className="flex items-center space-x-1">
+              <GiCloudDownload />
+              <p>Download Data</p>
+            </div>
+          </button>
+
           <button
             onClick={() => {
               setopeningHRMS(true);
