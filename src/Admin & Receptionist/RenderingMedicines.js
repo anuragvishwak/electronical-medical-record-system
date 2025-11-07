@@ -40,7 +40,7 @@ function RenderingMedicines({ search }) {
   return (
     <div className="flex bg-white w-auto overflow-x-auto shadow m-5 border border-gray-300 rounded p-5 justify-center">
       <table className="table-auto w-full">
-        <thead className="border border-gray-300 text-[#212a31] bg-gray-50 ">
+        <thead className="border border-gray-300 text-[#003441] bg-gray-50 ">
           <th className="py-1">Name</th>
           <th>Brand</th>
           <th>Category</th>
@@ -54,7 +54,7 @@ function RenderingMedicines({ search }) {
         <tbody>
           {gettingMedicines.map((med) => (
             <>
-              <tr className="text-[#196d8e] border-b">
+              <tr className="text-[#01B49C] border-b">
                 <td className="text-center py-2">{med.name}</td>
                 <td className="text-center">{med.brand}</td>
                 <td className="text-center">{med.category}</td>
@@ -73,7 +73,7 @@ function RenderingMedicines({ search }) {
                         setcapturingDataObject(med);
                         setOpeningAdditionalDetails(!openingAdditionalDetails);
                       }}
-                      className="border border-[#196d8e] text-[#196d8e] hover:bg-[#196d8e] hover:text-white py-0.5 px-2 rounded"
+                      className="border border-[#01B49C] text-[#01B49C] hover:bg-[#01B49C] hover:text-white py-0.5 px-2 rounded"
                     >
                       View Details
                     </button>
@@ -86,12 +86,12 @@ function RenderingMedicines({ search }) {
                         setopeningUpdateMedicineForm(true);
                         setcapturingDataObject(med);
                       }}
-                      className="text-[#212a31]"
+                      className="text-[#003441]"
                     >
                         <FaPencil />
                     </button>
 
-                    <button className="text-[#196d8e]">
+                    <button className="text-[#01B49C]">
                         <MdDelete size={19} />
                     </button>
                   </div>

@@ -65,19 +65,19 @@ function UserManagement() {
         <div className="flex items-center justify-between w-full">
           <div>
             <div className="flex items-center justify-between">
-              <p className="text-lg sm:text-2xl font-bold text-[#212a31]">
+              <p className="text-lg sm:text-2xl font-bold text-[#003441]">
                 User Management
               </p>
               <button
                 onClick={() => {
                   setopeningAdminNavbar(true);
                 }}
-                className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+                className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
               >
                 <FaBars />
               </button>
             </div>
-            <p className="text-[#196d8e] sm:text-base text-sm">
+            <p className="text-[#01B49C] sm:text-base text-sm">
               Manage user accounts and permissions across the healthcare system
             </p>
           </div>
@@ -156,16 +156,16 @@ function UserManagement() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 gap-5 m-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 gap-5 m-5">
         {gettingUser.map((user) => (
           <div className="bg-white border border-gray-300 shadow p-3 rounded">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-1">
-                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-[#212a31] text-white font-bold">
+                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-[#003441] text-white font-bold">
                   {getInitials(user.name)}
                 </div>
                 <div>
-                  <p className="sm:text-lg text-[#196d8e] font-bold">
+                  <p className="sm:text-lg text-[#01B49C] font-bold">
                     {user.name}
                   </p>
                   <p className="text-[#748d92] text-sm">{user.email}</p>
@@ -201,14 +201,14 @@ function UserManagement() {
               )}
             </div>
             <hr className="my-2" />
-            <p className="text-[#212a31] flex items-center">
+            <p className="text-[#003441] flex items-center">
               <span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5">
                 <FaPhone size={14} />
               </span>{" "}
               {user.phone_no}
             </p>
 
-            <p className="text-[#212a31] mt-3 flex items-center">
+            <p className="text-[#003441] mt-3 flex items-center">
               <span className="text-[#748d92] p-1.5 rounded-full bg-gray-200 mr-1.5">
                 <FaUser size={14} />
               </span>{" "}

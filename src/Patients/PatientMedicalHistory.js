@@ -75,8 +75,8 @@ function PatientMedicalHistory() {
       <PatientNavbar />
 
       <div className="flex space-x-5 m-5">
-        <div className="bg-white border overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[550px] w-full p-4 border-gray-300 shadow">
-          <div className="flex items-center mb-4 text-[#196d8e] space-x-3">
+        <div className="bg-white border overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full p-4 border-gray-300 shadow">
+          <div className="flex items-center mb-4 text-[#01B49C] space-x-3">
             <FaRegCalendarAlt size={20} />
             <p className="text-xl font-bold capitalize">Past Consultations</p>
           </div>
@@ -85,8 +85,8 @@ function PatientMedicalHistory() {
               <div className="flex items-center space-x-3">
                 <FaRegCalendarAlt size={25} />
                 <div>
-                  <p className=" text-[#196d8e]">Follow Up Date</p>
-                  <p className="text-[#212a31] font-bold capitalize">
+                  <p className=" text-[#01B49C]">Follow Up Date</p>
+                  <p className="text-[#003441] font-bold capitalize">
                     {consult.followUpDate}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ function PatientMedicalHistory() {
               </div>
 
               <div>
-                <p className="text-lg text-[#196d8e] font-semibold">
+                <p className="text-lg text-[#01B49C] font-semibold">
                   Present Illness
                 </p>
 
@@ -126,8 +126,8 @@ function PatientMedicalHistory() {
           ))}
         </div>
 
-        <div className="p-5 rounded overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[550px] w-full shadow border border-gray-300 bg-white">
-          <div className="flex items-center mb-4 text-[#196d8e] space-x-3">
+        <div className="p-5 rounded overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full shadow border border-gray-300 bg-white">
+          <div className="flex items-center mb-4 text-[#01B49C] space-x-3">
             <FaStethoscope size={20} />
             <p className="text-xl font-bold capitalize">Past Prescriptions</p>
           </div>
@@ -187,7 +187,7 @@ function PatientMedicalHistory() {
              </div>
 
               <div>
-                <p className="text-lg text-[#196d8e] font-semibold">Note</p>
+                <p className="text-lg text-[#01B49C] font-semibold">Note</p>
 
                 <p className="text-sm">{consult.additionalNote}</p>
               </div>

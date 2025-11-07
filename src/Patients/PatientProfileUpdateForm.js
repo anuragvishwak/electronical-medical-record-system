@@ -71,7 +71,7 @@ function PatientProfileUpdateForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white h-screen w-6/12 my-5 overflow-auto p-5 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Profile Details</p>
+          <p className="text-[#003441] text-xl font-bold">Profile Details</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -84,12 +84,12 @@ function PatientProfileUpdateForm({
 
         <div>
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Personal Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Name</p>
+                <p className="font-semibold text-[#01B49C]">Name</p>
                 <input
                   type="text"
                   value={currentUserName?.name}
@@ -101,7 +101,7 @@ function PatientProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Date of Birth</p>
+                <p className="font-semibold text-[#01B49C]">Date of Birth</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -116,7 +116,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Gender</p>
+                <p className="font-semibold text-[#01B49C]">Gender</p>
                 <select
                   onChange={(e) => {
                     setgender(e.target.value);
@@ -135,12 +135,12 @@ function PatientProfileUpdateForm({
           </div>
 
           <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Contact Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Email</p>
+                <p className="font-semibold text-[#01B49C]">Email</p>
                 <input
                   type="text"
                   value={currentUserName?.email}
@@ -152,7 +152,7 @@ function PatientProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Phone Number</p>
+                <p className="font-semibold text-[#01B49C]">Phone Number</p>
                 <input
                   type="text"
                   value={currentUserName?.phone_no}
@@ -165,7 +165,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Emergency Contact Number
                 </p>
                 <input
@@ -176,7 +176,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Country</p>
+                <p className="font-semibold text-[#01B49C]">Country</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -190,7 +190,7 @@ function PatientProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">State</p>
+                <p className="font-semibold text-[#01B49C]">State</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -204,7 +204,7 @@ function PatientProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">City</p>
+                <p className="font-semibold text-[#01B49C]">City</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -221,12 +221,12 @@ function PatientProfileUpdateForm({
           </div>
 
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Medical Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Patient ID</p>
+                <p className="font-semibold text-[#01B49C]">Patient ID</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -241,7 +241,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Known Allergies</p>
+                <p className="font-semibold text-[#01B49C]">Known Allergies</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -258,7 +258,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Chronic Condition
                 </p>
                 <input
@@ -276,7 +276,7 @@ function PatientProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Height</p>
+                <p className="font-semibold text-[#01B49C]">Height</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -291,7 +291,7 @@ function PatientProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Weight</p>
+                <p className="font-semibold text-[#01B49C]">Weight</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -306,7 +306,7 @@ function PatientProfileUpdateForm({
               </div>
             </div>
             <div className="my-4">
-              <p className="font-semibold text-[#196d8e]">
+              <p className="font-semibold text-[#01B49C]">
                 Current Medications
               </p>
               {gettingConsultations.map((consult) => (
@@ -317,7 +317,7 @@ function PatientProfileUpdateForm({
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">
+              <p className="font-semibold text-[#01B49C]">
                 Past Medical History
               </p>
               {gettingConsultations.map((consult) => (
@@ -333,7 +333,7 @@ function PatientProfileUpdateForm({
             onClick={() => {
               updatingProfileDetails();
             }}
-            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Update Profile Details
           </button>

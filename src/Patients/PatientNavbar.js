@@ -26,14 +26,14 @@ function PatientNavbar() {
   }, []);
 
   return (
-    <div className="flex items-center text-[#212a31]   bg-white shadow border-b justify-between p-3">
+    <div className="flex items-center text-[#003441] bg-white shadow border-b justify-between p-3">
       <div className="flex font-semibold items-center space-x-5">
         <button
           onClick={() => {
             navigate("/PatientDashboard");
           }}
           className={`${
-            location.pathname === "/PatientDashboard" ? "text-[#196d8e]" : ""
+            location.pathname === "/PatientDashboard" ? "text-[#01B49C]" : ""
           }`}
         >
           Home
@@ -43,7 +43,7 @@ function PatientNavbar() {
             navigate("/PatientAppointment");
           }}
           className={`${
-            location.pathname === "/PatientAppointment" ? "text-[#196d8e]" : ""
+            location.pathname === "/PatientAppointment" ? "text-[#01B49C]" : ""
           }`}
         >
           Appointments
@@ -53,7 +53,7 @@ function PatientNavbar() {
             navigate("/PatientPrescription");
           }}
           className={`${
-            location.pathname === "/PatientPrescription" ? "text-[#196d8e]" : ""
+            location.pathname === "/PatientPrescription" ? "text-[#01B49C]" : ""
           }`}
         >
           Prescription
@@ -63,7 +63,7 @@ function PatientNavbar() {
             navigate("/PatientConsultation");
           }}
           className={`${
-            location.pathname === "/PatientConsultation" ? "text-[#196d8e]" : ""
+            location.pathname === "/PatientConsultation" ? "text-[#01B49C]" : ""
           }`}
         >
           Consultation
@@ -73,7 +73,7 @@ function PatientNavbar() {
             navigate("/PatientLabReport");
           }}
           className={`${
-            location.pathname === "/PatientLabReport" ? "text-[#196d8e]" : ""
+            location.pathname === "/PatientLabReport" ? "text-[#01B49C]" : ""
           }`}
         >
           Lab Reports
@@ -84,7 +84,7 @@ function PatientNavbar() {
           }}
           className={`${
             location.pathname === "/PatientMedicalHistory"
-              ? "text-[#196d8e]"
+              ? "text-[#01B49C]"
               : ""
           }`}
         >Medical History</button>
@@ -94,7 +94,7 @@ function PatientNavbar() {
           }}
           className={`${
             location.pathname === "/PatientPaymentHistory"
-              ? "text-[#196d8e]"
+              ? "text-[#01B49C]"
               : ""
           }`}
         >Payment History</button>
@@ -104,7 +104,7 @@ function PatientNavbar() {
           }}
           className={`${
             location.pathname === "/PatientInsuranceDetails"
-              ? "text-[#196d8e]"
+              ? "text-[#01B49C]"
               : ""
           }`}
         >
@@ -116,7 +116,7 @@ function PatientNavbar() {
           }}
           className={`${
             location.pathname === "/PatientProfileSetting"
-              ? "text-[#196d8e]"
+              ? "text-[#01B49C]"
               : ""
           }`}
         >

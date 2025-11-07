@@ -63,10 +63,10 @@ function DoctorPatients() {
       <div className="">
         <div className="bg-white border m-5 p-5 rounded border-gray-300 shadow">
           <div>
-            <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
+            <p className="text-xl sm:text-2xl font-bold text-[#003441]">
               Patients
             </p>
-            <p className="text-[#196d8e]">
+            <p className="text-[#01B49C]">
               Manage Patients across the healthcare system
             </p>
           </div>
@@ -90,7 +90,7 @@ function DoctorPatients() {
             <div className="bg-white p-5 rounded shadow border border-gray-300">
               <div className="flex items-center gap-2">
                 <div>
-                  <p className="bg-[#bae6f7] text-[#196d8e]  rounded-full p-1.5">
+                  <p className="bg-[#bae6f7] text-[#01B49C]  rounded-full p-1.5">
                     <LuCircleUser size={40} />
                   </p>
                 </div>
@@ -108,29 +108,29 @@ function DoctorPatients() {
               <div className="my-5">
                 <p className="text-lg font-bold mb-1.5">Contact Information</p>
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     +91 {patient.phone_no}
                   </p>
-                  <p className="text-[#196d8e]">Phone Number</p>
+                  <p className="text-[#01B49C]">Phone Number</p>
                 </div>
 
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {patient.email}
                   </p>
-                  <p className="text-[#196d8e]">Email</p>
+                  <p className="text-[#01B49C]">Email</p>
                 </div>
 
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {patient.city}, {patient.state}, {patient.country}
                   </p>
-                  <p className="text-[#196d8e]">Address</p>
+                  <p className="text-[#01B49C]">Address</p>
                 </div>
               </div>
 
               <div className="flex justify-end">
-                <button className="bg-[#196d8e] text-white py-1.5 px-4 rounded   hover:bg-blue-800">
+                <button className="bg-[#01B49C] text-white py-1.5 px-4 rounded   hover:bg-blue-800">
                   View More
                 </button>
               </div>

@@ -8,13 +8,13 @@ function LabTechnicianNavbar() {
 
   return (
     <div className="flex bg-white shadow items-center border-b justify-between p-3">
-      <div className="flex items-center [#212a31] font-semibold space-x-5">
+      <div className="flex items-center [#003441] font-semibold space-x-5">
         <button
         onClick={() => {
             navigate("/LabTechnicianDashboard");
           }}
           className={`${
-            location.pathname === "/LabTechnicianDashboard" ? "text-[#196d8e]" : ""
+            location.pathname === "/LabTechnicianDashboard" ? "text-[#01B49C]" : ""
           }`}
         >Home</button>
         <button
@@ -22,7 +22,7 @@ function LabTechnicianNavbar() {
             navigate("/AssignedLabOrders");
           }}
           className={`${
-            location.pathname === "/AssignedLabOrders" ? "text-[#196d8e]" : ""
+            location.pathname === "/AssignedLabOrders" ? "text-[#01B49C]" : ""
           }`}
         >
           Assigned Lab Orders
@@ -32,7 +32,7 @@ function LabTechnicianNavbar() {
             navigate("/UploadTestResults");
           }}
           className={`${
-            location.pathname === "/UploadTestResults" ? "text-[#196d8e]" : ""
+            location.pathname === "/UploadTestResults" ? "text-[#01B49C]" : ""
           }`}
         >
           Upload Test Results
@@ -43,7 +43,7 @@ function LabTechnicianNavbar() {
           }}
           className={`${
             location.pathname === "/LabTechnicianProfileUpdateSetting"
-              ? "text-[#196d8e]"
+              ? "text-[#01B49C]"
               : ""
           }`}
         >

@@ -139,7 +139,7 @@ function AddBillingPaymentForm({
       :w-5/12 p-4 rounded"
       >
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">
+          <p className="text-[#003441] text-xl font-bold">
             Create Bill / Invoice
           </p>
           <button
@@ -155,13 +155,13 @@ function AddBillingPaymentForm({
         <div className="border p-3 rounded border-gray-300">
           <div className="grid grid-cols-1 sm:grid-cols-2 mb-3 gap-3">
             <div>
-              <p className="font-semibold text-[#196d8e]">Appointment ID</p>
+              <p className="font-semibold text-[#01B49C]">Appointment ID</p>
               <p className="w-full border border-gray-300 rounded-md p-2">
                 {capturingObject.id}
               </p>
             </div>
             <div>
-              <p className="font-semibold text-[#196d8e]">Invoice Date</p>
+              <p className="font-semibold text-[#01B49C]">Invoice Date</p>
               <input
                 type="date"
                 onChange={(e) => {
@@ -215,7 +215,7 @@ function AddBillingPaymentForm({
             <p>Surgery fee applied ?</p>
           </div>
           <div>
-            <p className="font-semibold text-[#196d8e]">Surgery Fee</p>
+            <p className="font-semibold text-[#01B49C]">Surgery Fee</p>
             <input
               onChange={(e) => {
                 setsurgeryFee(e.target.value);
@@ -302,8 +302,8 @@ function AddBillingPaymentForm({
 
           <hr className="border-gray-300 my-3" />
 
-          <div className="font-semibold bg-[#ddf5ff] text-[#196d8e] justify-between border border-gray-300 p-2 flex items-center">
-            <span className="font-[500] text-[#196d8e] mr-1">
+          <div className="font-semibold bg-[#ddf5ff] text-[#01B49C] justify-between border border-gray-300 p-2 flex items-center">
+            <span className="font-[500] text-[#01B49C] mr-1">
               Final Amount (including GST(18%) and cess):
             </span>
             <div className="flex items-center  space-x-1">
@@ -318,7 +318,7 @@ function AddBillingPaymentForm({
             onClick={() => {
               creatingBill();
             }}
-            className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
+            className="bg-[#003441] hover:bg-blue-800 py-1 px-3 rounded text-white"
           >
             Add Bill
           </button>

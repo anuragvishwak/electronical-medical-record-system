@@ -40,13 +40,13 @@ function LabTechnicianDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <RiTestTubeLine
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Test Requested
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {gettingLabOrders.length}
                 </p>
               </div>
@@ -78,13 +78,13 @@ function LabTechnicianDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <RiProgress6Line
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Tests in Progress
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {
                     gettingLabOrders.filter(
                       (lab) => lab.orderStatus === "pending"
@@ -118,33 +118,33 @@ function LabTechnicianDashboard() {
         </div>
 
         <div className="flex items-start gap-5 mx-5">
-          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <RxCounterClockwiseClock size={20} />
               <p className="text-xl font-bold">Recent Activities</p>
             </div>
 
             <div className="border rounded border-gray-300 p-2.5">
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 Blood test result uploaded for Patient #P102.
               </p>
             </div>
 
             <div className="border rounded my-3 border-gray-300 p-2.5">
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 Urine sample received from Patient #P111.
               </p>
             </div>
 
             <div className="border rounded border-gray-300 p-2.5">
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 X-Ray request assigned to Patient #P109.
               </p>
             </div>
           </div>
 
           <div className="bg-white p-5 rounded border border-gray-300 shadow w-full">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>
             </div>
@@ -153,18 +153,18 @@ function LabTechnicianDashboard() {
                 <div className="flex items-center space-x-1">
                   <PiEyedropperSampleBold
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     View Lab Orders
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">Views orders quickly.</p>
+                <p className="text-[#01B49C] text-sm">Views orders quickly.</p>
                 <button
                   onClick={() => {
                     navigation("/AssignedLabOrders");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   View Orders
                 </button>
@@ -173,20 +173,20 @@ function LabTechnicianDashboard() {
                 <div className="flex items-center space-x-1">
                   <RiTestTubeLine
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Add Test Result
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Upload test report for patient.
                 </p>
                 <button
                   onClick={() => {
                     navigation("/UploadTestResults");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   Add Results
                 </button>
@@ -196,20 +196,20 @@ function LabTechnicianDashboard() {
                 <div className="flex items-center space-x-1">
                   <PiEyedropperSampleBold
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Sample Received
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Mark patient sample collected.
                 </p>
                 <button
                   onClick={() => {
                     navigation("/UploadTestResults");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   Mark Status
                 </button>

@@ -108,7 +108,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
       <div className="p-4 rounded bg-white">
         <Toast ref={toast} />
         <div className="flex items-start mb-5 justify-between">
-          <p className="text-[#212a31] text-2xl font-bold">Create Medicine</p>
+          <p className="text-[#003441] text-2xl font-bold">Create Medicine</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -121,12 +121,12 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
 
         <div>
           <div>
-            <p className="text-[#212a31] text-lg  font-bold">
+            <p className="text-[#003441] text-lg  font-bold">
               Basic Information
             </p>
             <div className="grid grid-cols-5 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Name</p>
+                <p className="font-semibold text-[#01B49C]">Name</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -141,7 +141,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Brand</p>
+                <p className="font-semibold text-[#01B49C]">Brand</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -156,7 +156,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Category</p>
+                <p className="font-semibold text-[#01B49C]">Category</p>
                 <select
                   onChange={(e) => setcategory(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -172,7 +172,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Generic Name</p>
+                <p className="font-semibold text-[#01B49C]">Generic Name</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -187,7 +187,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Form</p>
+                <p className="font-semibold text-[#01B49C]">Form</p>
                 <select
                   onChange={(e) => setform(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -206,10 +206,10 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
           </div>
 
           <div className="my-5">
-            <p className="text-[#212a31] text-lg font-bold">Dosage Details</p>
+            <p className="text-[#003441] text-lg font-bold">Dosage Details</p>
             <div className="grid grid-cols-6 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Available Dosages
                 </p>
                 <div className="flex items-center justify-between">
@@ -232,7 +232,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div className="">
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Dosage Instruction
                 </p>
                 <input
@@ -249,7 +249,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Max Daily Dose</p>
+                <p className="font-semibold text-[#01B49C]">Max Daily Dose</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -264,7 +264,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Age Group Restrictions
                 </p>
                 <input
@@ -281,7 +281,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Timing</p>
+                <p className="font-semibold text-[#01B49C]">Timing</p>
                 <select
                   onChange={(e) => {
                     settiming(e.target.value);
@@ -299,7 +299,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Frequency</p>
+                <p className="font-semibold text-[#01B49C]">Frequency</p>
                 <select
                   onChange={(e) => {
                     setfrequency(e.target.value);
@@ -321,12 +321,12 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
 
         <div>
           <div>
-            <p className="text-[#212a31] text-lg font-bold">
+            <p className="text-[#003441] text-lg font-bold">
               Warnings & Instructions
             </p>
             <div className="grid grid-cols-4 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Precautions</p>
+                <p className="font-semibold text-[#01B49C]">Precautions</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -341,7 +341,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Side Effects</p>
+                <p className="font-semibold text-[#01B49C]">Side Effects</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -356,7 +356,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Contraindications
                 </p>
                 <input
@@ -373,7 +373,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Storage Instructions
                 </p>
                 <input
@@ -392,10 +392,10 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
           </div>
 
           <div className="mt-5">
-            <p className="text-[#212a31] text-lg font-bold">Inventory Info</p>
+            <p className="text-[#003441] text-lg font-bold">Inventory Info</p>
             <div className="grid grid-cols-2  gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Stock Available</p>
+                <p className="font-semibold text-[#01B49C]">Stock Available</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -410,7 +410,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Expiry Date</p>
+                <p className="font-semibold text-[#01B49C]">Expiry Date</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -430,7 +430,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
             onClick={() => {
               creatingMedicine();
             }}
-            className="bg-[#196d8e] border hover:text-white hover:bg-[#196d8e] border-[#196d8e] text-white py-1 px-4 rounded"
+            className="bg-[#01B49C] border hover:text-white hover:bg-[#01B49C] border-[#01B49C] text-white py-1 px-4 rounded"
           >
             Create Medicine
           </button>

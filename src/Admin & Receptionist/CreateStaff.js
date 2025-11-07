@@ -63,7 +63,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
 
         <div className="grid grid-cols-3 gap-5">
           <div>
-            <p className="font-semibold text-[#196d8e]">Name</p>
+            <p className="font-semibold text-[#01B49C]">Name</p>
             <input
               onChange={(e) => {
                 setname(e.target.value);
@@ -77,7 +77,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Email</p>
+            <p className="font-semibold text-[#01B49C]">Email</p>
             <input
               onChange={(e) => {
                 setemail(e.target.value);
@@ -91,7 +91,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Phone Number</p>
+            <p className="font-semibold text-[#01B49C]">Phone Number</p>
             <input
               onChange={(e) => {
                 setphone_no(e.target.value);
@@ -105,14 +105,14 @@ function CreateStaff({ setopeningAddStaffForm }) {
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Role</p>
+            <p className="font-semibold text-[#01B49C]">Role</p>
             <p className="w-full border border-gray-300 rounded-md p-2">
               Support Staff
             </p>
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Designation</p>
+            <p className="font-semibold text-[#01B49C]">Designation</p>
             <input
               onChange={(e) => {
                 setdesignation(e.target.value);
@@ -131,7 +131,7 @@ function CreateStaff({ setopeningAddStaffForm }) {
             onClick={() => {
               addStaff();
             }}
-            className="bg-[#196d8e] border hover:text-white hover:bg-[#196d8e] border-[#196d8e] text-white py-1 px-4 rounded"
+            className="bg-[#01B49C] border hover:text-white hover:bg-[#01B49C] border-[#01B49C] text-white py-1 px-4 rounded"
           >
             Create Staff
           </button>

@@ -47,9 +47,9 @@ function PatientLabReport() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-2xl font-bold">Lab Reports</p>
-            <p className="text-[#196d8e]">
+            <p className="text-[#01B49C]">
               Doctor can view patient's{" "}
-              <span className="text-[#212a31] font-semibold">Lab Reports</span>{" "}
+              <span className="text-[#003441] font-semibold">Lab Reports</span>{" "}
               here
             </p>
           </div>
@@ -80,7 +80,7 @@ function PatientLabReport() {
       <div className="m-5 grid grid-cols-3 gap-5">
         {gettingLabResults.map((lab) => (
           <div className="rounded bg-white border border-gray-300 shadow">
-            <div className=" bg-[#196d8e] rounded-t p-3 text-white ">
+            <div className=" bg-[#01B49C] rounded-t p-3 text-white ">
               <div className="flex text-sm items-center space-x-1">
                 <p>
                   <span className="text-gray-300">Appointment Id:</span>{" "}
@@ -127,7 +127,7 @@ function PatientLabReport() {
                   setcapturingResultId(lab.id);
                   setextendingTable(!extendingTable);
                 }}
-                className="bg-[#212a31] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
+                className="bg-[#003441] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
               >
                 <div className="flex items-center space-x-1">
                   <FaEye />
@@ -140,7 +140,7 @@ function PatientLabReport() {
               <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
                 <div className="bg-white p-5 w-6/12 rounded">
                   <div className="flex items-center justify-between mb-2">
-                    <p className="text-[#196d8e] text-xl font-bold">
+                    <p className="text-[#01B49C] text-xl font-bold">
                       Lab Results
                     </p>
                     <button

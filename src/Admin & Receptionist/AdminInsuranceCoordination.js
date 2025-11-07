@@ -63,11 +63,11 @@ function AdminInsuranceCoordination() {
       <div className="p-5 bg-white mt-5 mx-5 border border-gray-300 shadow rounded">
         <div className="flex items-center justify-between w-full">
           <div>
-            <p className="text-2xl text-[#212a31] font-bold">
+            <p className="text-2xl text-[#003441] font-bold">
               Insurance Coordinations
             </p>
-            <p className="text-[#196d8e]">
-              <span className="text-[#212a31] mr-1 font-semibold">
+            <p className="text-[#01B49C]">
+              <span className="text-[#003441] mr-1 font-semibold">
                 Insurance Coordination
               </span>
               Where admin can manage view insurance details.

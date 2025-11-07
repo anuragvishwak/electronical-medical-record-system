@@ -27,8 +27,8 @@ function CheckInCheckOut() {
       <NurseNavbar />
       <div className="m-5 bg-white p-3 border rounded border-gray-300">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Check In Check Out</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl font-bold text-[#003441]">Check In Check Out</p>
+          <p className="text-[#01B49C]">
             Track every patient’s journey — from arrival to checkout — with
             real-time status updates.
           </p>

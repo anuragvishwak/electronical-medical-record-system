@@ -90,8 +90,8 @@ function DoctorLabReports() {
       <DoctorNavbar />
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Lab Reports</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl font-bold text-[#003441]">Lab Reports</p>
+          <p className="text-[#01B49C]">
             Doctor can view patient's Lab Reports here
           </p>
         </div>
@@ -154,7 +154,7 @@ function DoctorLabReports() {
         <div>
           <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
             <table className="w-full table-auto">
-              <thead className="bg-gray-50 border text-[#212a31]">
+              <thead className="bg-gray-50 border text-[#003441]">
                 <tr>
                   <th className="py-1">Patient Name</th>
                   <th>Test Requested</th>
@@ -172,7 +172,7 @@ function DoctorLabReports() {
                   .filter((order) => order.doctor === currentUser)
                   .map((order) => (
                     <>
-                      <tr className="text-[#196d8e] border-b border-gray-300">
+                      <tr className="text-[#01B49C] border-b border-gray-300">
                         {gettingUser
                           .filter((user) => user.email === order.patient)
                           .map((user) => (
@@ -191,7 +191,7 @@ function DoctorLabReports() {
                             onClick={() => {
                               setopeningNote(true);
                             }}
-                            className="bg-[#196d8e] text-white px-2 mt-1.5 py-1 rounded"
+                            className="bg-[#01B49C] text-white px-2 mt-1.5 py-1 rounded"
                           >
                             <div className="flex items-center space-x-1">
                               <GrNotes />
@@ -206,12 +206,12 @@ function DoctorLabReports() {
                                 setopeningLabOrderUpdateForm(true);
                                 setcapturingLabOrderObject(order);
                               }}
-                               className="text-[#212a31]"
+                               className="text-[#003441]"
                             >
                               <FaPencil />
                             </button>
 
-                            <button className="text-[#196d8e]">
+                            <button className="text-[#01B49C]">
                               <MdDelete size={19} />
                             </button>
                           </div>

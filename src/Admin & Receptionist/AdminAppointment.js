@@ -89,10 +89,10 @@ function AdminAppointment() {
       <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
         <div className="flex items-center justify-between">
           <div className="">
-            <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
+            <p className="text-xl sm:text-2xl font-bold text-[#003441]">
               Appointments
             </p>
-            <p className="text-[#196d8e]">
+            <p className="text-[#01B49C]">
               Manage appointments across the healthcare system
             </p>
           </div>
@@ -101,7 +101,7 @@ function AdminAppointment() {
               onClick={() => {
                 setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -149,17 +149,17 @@ function AdminAppointment() {
               onClick={() => {
                 setopeningCreateAppointmentForm(true);
               }}
-              className="bg-[#196d8e] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
+              className="bg-[#01B49C] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
             >
               + Create Appointment
             </button>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 m-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 m-5 gap-5">
         {gettingAppointments.map((appointment) => (
           <div className="bg-white border border-gray-300 shadow p-4 rounded">
-            <div className="text-[#196d8e] items-center justify-between">
+            <div className="text-[#01B49C] items-center justify-between">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex items-center space-x-1">
@@ -189,11 +189,11 @@ function AdminAppointment() {
                       setopeningAppointmentUpdateForm(true);
                       setcapturingAppointmentObject(appointment);
                     }}
-                    className="text-[#212a31]"
+                    className="text-[#003441]"
                   >
                     <FaPencil />
                   </button>
-                  <button className="text-[#196d8e]">
+                  <button className="text-[#01B49C]">
                     <MdDelete size={19} />
                   </button>
                 </div>
@@ -217,7 +217,7 @@ function AdminAppointment() {
                     setopeningAddBillingPaymentForm(true);
                     setcapturingObject(appointment);
                   }}
-                  className="bg-[#212a31] w-48 text-white py-1 px-3 rounded text-sm"
+                  className="bg-[#003441] w-48 text-white py-1 px-3 rounded text-sm"
                 >
                   + Add Bill
                 </button>
@@ -229,7 +229,7 @@ function AdminAppointment() {
               .map((user) => (
                 <p className="text-gray-400">
                   Doctor:{" "}
-                  <span className="text-[#212a31] capitalize font-semibold">
+                  <span className="text-[#003441] capitalize font-semibold">
                     {user.name}
                   </span>
                 </p>
@@ -240,7 +240,7 @@ function AdminAppointment() {
               .map((user) => (
                 <p className="text-gray-400">
                   Patient:{" "}
-                  <span className="text-[#212a31] capitalize font-semibold">
+                  <span className="text-[#003441] capitalize font-semibold">
                     {user.name}
                   </span>
                 </p>
@@ -250,7 +250,7 @@ function AdminAppointment() {
 
             <p className="text-gray-400">
               Note:{" "}
-              <span className="text-[#196d8e]">
+              <span className="text-[#01B49C]">
                 {appointment.additionalNote}
               </span>
             </p>

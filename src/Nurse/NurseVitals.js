@@ -54,8 +54,8 @@ function NurseVitals() {
       <NurseNavbar />
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Patient Vitals</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl font-bold text-[#003441]">Patient Vitals</p>
+          <p className="text-[#01B49C]">
             Manage Patient Vitals across the healthcare system.
           </p>
         </div>
@@ -88,7 +88,7 @@ function NurseVitals() {
 
       <div className="bg-white p-3 m-3 shadow rounded border border-gray-300">
         <table className="w-full table-auto">
-          <thead className="text-[#212a31] bg-gray-100 border border-gray-300">
+          <thead className="text-[#003441] bg-gray-100 border border-gray-300">
             <tr>
               <th>Patient</th>
               <th>Doctor</th>
@@ -125,7 +125,7 @@ function NurseVitals() {
                 return (
                   <tr
                     key={vital.id}
-                    className="border-b text-[#196d8e] border-gray-400"
+                    className="border-b text-[#01B49C] border-gray-400"
                   >
                     <td className="pl-5">
                       <div className="">

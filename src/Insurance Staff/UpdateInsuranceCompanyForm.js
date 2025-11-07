@@ -79,7 +79,7 @@ function UpdateInsuranceCompanyForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-3 rounded">
         <div className="flex items-center mb-3 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">
+          <p className="text-[#003441] text-xl font-bold">
             Update Insurance Provider
           </p>
           <button
@@ -94,18 +94,18 @@ function UpdateInsuranceCompanyForm({
 
         <div>
           <div className="p-3 rounded border border-gray-300">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Basic Information
             </p>
             <div className="grid grid-cols-2 my-2 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Provider Name</p>
+                <p className="font-semibold text-[#01B49C]">Provider Name</p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
                   {capturingDataObject.providerName}
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Company Code / Short Name
                 </p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
@@ -115,7 +115,7 @@ function UpdateInsuranceCompanyForm({
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Contact Person</p>
+                <p className="font-semibold text-[#01B49C]">Contact Person</p>
                 <input
                   value={contactPerson}
                   onChange={(e) => {
@@ -129,7 +129,7 @@ function UpdateInsuranceCompanyForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Phone Number</p>
+                <p className="font-semibold text-[#01B49C]">Phone Number</p>
                 <input
                   value={phoneNumber}
                   onChange={(e) => {
@@ -144,7 +144,7 @@ function UpdateInsuranceCompanyForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Email</p>
+                <p className="font-semibold text-[#01B49C]">Email</p>
                 <input
                   value={email}
                   onChange={(e) => {
@@ -159,7 +159,7 @@ function UpdateInsuranceCompanyForm({
               </div>
             </div>
             <div className="mt-2">
-              <p className="font-semibold text-[#196d8e]">Address</p>
+              <p className="font-semibold text-[#01B49C]">Address</p>
               <textarea
                 value={address}
                 onChange={(e) => {
@@ -175,11 +175,11 @@ function UpdateInsuranceCompanyForm({
           </div>
 
           <div className="p-3 rounded border mt-3 border-gray-300">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Policy & Coverage Information
             </p>
             <div className="my-2">
-              <p className="font-semibold text-[#196d8e]">
+              <p className="font-semibold text-[#01B49C]">
                 Policy Type Supported
               </p>
               <select
@@ -205,7 +205,7 @@ function UpdateInsuranceCompanyForm({
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="">
-                <p className="font-semibold text-[#196d8e]">Coverage Notes</p>
+                <p className="font-semibold text-[#01B49C]">Coverage Notes</p>
                 <textarea
                   value={coverageNotes}
                   onChange={(e) => {
@@ -220,7 +220,7 @@ function UpdateInsuranceCompanyForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Limitations</p>
+                <p className="font-semibold text-[#01B49C]">Limitations</p>
                 <textarea
                   value={limitations}
                   onChange={(e) => {
@@ -242,7 +242,7 @@ function UpdateInsuranceCompanyForm({
             onClick={() => {
               updateInsuranceProvider();
             }}
-            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Update Provider Details
           </button>

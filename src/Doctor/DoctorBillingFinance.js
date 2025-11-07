@@ -56,10 +56,10 @@ function DoctorBillingFinance() {
       <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
         <div className="flex items-center justify-between">
           <div className="">
-            <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
+            <p className="text-xl sm:text-2xl font-bold text-[#003441]">
               Billing & Finance
             </p>
-            <p className="text-[#196d8e] text-sm">
+            <p className="text-[#01B49C] text-sm">
               Manage appointments across the healthcare system
             </p>
           </div>
@@ -68,7 +68,7 @@ function DoctorBillingFinance() {
               onClick={() => {
                 //   setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -79,7 +79,7 @@ function DoctorBillingFinance() {
                   <FaIndianRupeeSign />
                   {totalSurgeryFee}/-
                 </p>
-                <p className="text-[#196d8e]">Surgery Fee</p>
+                <p className="text-[#01B49C]">Surgery Fee</p>
               </div>
 
               <div>
@@ -87,14 +87,14 @@ function DoctorBillingFinance() {
                   <FaIndianRupeeSign />
                   {totalConsultationFee}/-
                 </p>
-                <p className="text-[#196d8e]">Consultation Fee</p>
+                <p className="text-[#01B49C]">Consultation Fee</p>
               </div>
               <div>
                 <p className="text-xl flex items-center space-x-1 text-center font-bold">
                   <FaIndianRupeeSign />
                   {finalCostofBill}/-
                 </p>
-                <p className="text-[#196d8e]">Total Amount</p>
+                <p className="text-[#01B49C]">Total Amount</p>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@ function DoctorBillingFinance() {
       <div>
         <div className="flex bg-white shadow m-5 border border-gray-300 rounded p-5 justify-center">
           <table className="w-full table-auto">
-            <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
+            <thead className="border border-gray-300 text-[#003441] bg-gray-50">
               <tr>
                 <th className="py-1">Patient</th>
                 <th>Appointment Id</th>
@@ -141,7 +141,7 @@ function DoctorBillingFinance() {
             <tbody className="">
               {gettingBills.map((bill) => (
                 <>
-                  <tr className="text-[#196d8e] border-b border-gray-300">
+                  <tr className="text-[#01B49C] border-b border-gray-300">
                     {gettingUser
                       .filter((user) => user.email === bill.patient)
                       .map((user) => (

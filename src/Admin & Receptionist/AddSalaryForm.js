@@ -86,7 +86,7 @@ function AddSalaryForm({
 
         <div className="grid grid-cols-3 gap-5">
           <div>
-            <p className="font-semibold text-[#196d8e]">Basic Pay</p>
+            <p className="font-semibold text-[#01B49C]">Basic Pay</p>
             <input
               value={basicPay}
               onChange={(e) => setbasicPay(Number(e.target.value))}
@@ -99,7 +99,7 @@ function AddSalaryForm({
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">
+            <p className="font-semibold text-[#01B49C]">
               HRA (House Rent Allowance)
             </p>
             <input
@@ -112,7 +112,7 @@ function AddSalaryForm({
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Allowance</p>
+            <p className="font-semibold text-[#01B49C]">Allowance</p>
             <input
               value={allowance}
               onChange={(e) => setallowance(e.target.value)}
@@ -125,7 +125,7 @@ function AddSalaryForm({
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Deduction</p>
+            <p className="font-semibold text-[#01B49C]">Deduction</p>
             <input
               value={deduction}
               onChange={(e) => setdeduction(e.target.value)}
@@ -138,7 +138,7 @@ function AddSalaryForm({
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Net Salary</p>
+            <p className="font-semibold text-[#01B49C]">Net Salary</p>
             <input
               value={netSalary}
               readOnly
@@ -155,7 +155,7 @@ function AddSalaryForm({
             onClick={() => {
               AddSalary();
             }}
-            className="bg-[#196d8e] border hover:text-white hover:bg-[#196d8e] border-[#196d8e] text-white py-1 px-4 rounded"
+            className="bg-[#01B49C] border hover:text-white hover:bg-[#01B49C] border-[#01B49C] text-white py-1 px-4 rounded"
           >
             Add Salary
           </button>

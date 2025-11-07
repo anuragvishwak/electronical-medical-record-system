@@ -96,7 +96,7 @@ function CreateAppointmentForm({
       <div className="p-4 rounded bg-white">
         <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Create Appointment</p>
+          <p className="text-[#003441] text-xl font-bold">Create Appointment</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -110,7 +110,7 @@ function CreateAppointmentForm({
         <div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <p className="font-semibold text-[#196d8e]">Doctor Name</p>
+              <p className="font-semibold text-[#01B49C]">Doctor Name</p>
               <select
                 onChange={(e) => setdoctor(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
@@ -126,7 +126,7 @@ function CreateAppointmentForm({
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Patient Name</p>
+              <p className="font-semibold text-[#01B49C]">Patient Name</p>
               <select
                 onChange={(e) => setpatient(e.target.value)}
                 className="border rounded border-gray-300 w-full p-2"
@@ -142,7 +142,7 @@ function CreateAppointmentForm({
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Time</p>
+              <p className="font-semibold text-[#01B49C]">Time</p>
               <input
                 type="text"
                 onChange={(e) => {
@@ -157,7 +157,7 @@ function CreateAppointmentForm({
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Status</p>
+              <p className="font-semibold text-[#01B49C]">Status</p>
               <select
                 onChange={(e) => {
                   setstatus(e.target.value);
@@ -176,7 +176,7 @@ function CreateAppointmentForm({
           </div>
 
           <div className="mt-3">
-            <p className="font-semibold text-[#196d8e]">Additional Note</p>
+            <p className="font-semibold text-[#01B49C]">Additional Note</p>
             <textarea
               onChange={(e) => {
                 setadditionalNote(e.target.value);
@@ -194,7 +194,7 @@ function CreateAppointmentForm({
               onClick={() => {
                 creatingAppointment();
               }}
-              className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
+              className="bg-[#003441] hover:bg-blue-800 py-1 px-3 rounded text-white"
             >
               + Create Appointment
             </button>

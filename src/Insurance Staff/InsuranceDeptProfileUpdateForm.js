@@ -56,7 +56,7 @@ function InsuranceDeptProfileUpdateForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white w-6/12 overflow-auto p-5 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Profile Update</p>
+          <p className="text-[#003441] text-xl font-bold">Profile Update</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -69,12 +69,12 @@ function InsuranceDeptProfileUpdateForm({
 
         <div>
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Personal Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Name</p>
+                <p className="font-semibold text-[#01B49C]">Name</p>
                 <input
                   type="text"
                   value={storingCurrentUser.name}
@@ -83,7 +83,7 @@ function InsuranceDeptProfileUpdateForm({
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Date of Birth</p>
+                <p className="font-semibold text-[#01B49C]">Date of Birth</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -98,7 +98,7 @@ function InsuranceDeptProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Gender</p>
+                <p className="font-semibold text-[#01B49C]">Gender</p>
                 <select
                   onChange={(e) => {
                     setgender(e.target.value);
@@ -117,12 +117,12 @@ function InsuranceDeptProfileUpdateForm({
           </div>
 
           <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Contact Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Email</p>
+                <p className="font-semibold text-[#01B49C]">Email</p>
                 <input
                   type="text"
                   value={storingCurrentUser?.email}
@@ -131,7 +131,7 @@ function InsuranceDeptProfileUpdateForm({
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Phone Number</p>
+                <p className="font-semibold text-[#01B49C]">Phone Number</p>
                 <input
                   type="text"
                   value={storingCurrentUser?.phone_no}
@@ -141,7 +141,7 @@ function InsuranceDeptProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Emergency Contact Number
                 </p>
                 <input
@@ -152,7 +152,7 @@ function InsuranceDeptProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Country</p>
+                <p className="font-semibold text-[#01B49C]">Country</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -166,7 +166,7 @@ function InsuranceDeptProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">State</p>
+                <p className="font-semibold text-[#01B49C]">State</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -180,7 +180,7 @@ function InsuranceDeptProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">City</p>
+                <p className="font-semibold text-[#01B49C]">City</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -202,7 +202,7 @@ function InsuranceDeptProfileUpdateForm({
             onClick={() => {
               updatingProfileDetails();
             }}
-            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Update Profile Details
           </button>

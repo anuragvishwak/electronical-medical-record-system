@@ -65,11 +65,11 @@ function PatientPaymentHistory() {
         <div className="flex items-center justify-between">
           <div className="flex item-start justify-between w-full">
             <div className="">
-              <p className="text-xl sm:text-2xl font-bold text-[#212a31]">
+              <p className="text-xl sm:text-2xl font-bold text-[#003441]">
                 Payment History
               </p>
-              <p className="text-[#196d8e] text-sm">
-                <span className="font-semibold text-[#212a31]">
+              <p className="text-[#01B49C] text-sm">
+                <span className="font-semibold text-[#003441]">
                   Payment History
                 </span>{" "}
                 of patients are displayed in healthcare system
@@ -82,7 +82,7 @@ function PatientPaymentHistory() {
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalFinalAmount()}/-</p>
                 </div>
-                <p className="text-[#196d8e]">Total Bill</p>
+                <p className="text-[#01B49C]">Total Bill</p>
               </div>
 
               <div className="text-center">
@@ -92,7 +92,7 @@ function PatientPaymentHistory() {
                     {getTotalConsultationFee()}/-
                   </p>
                 </div>
-                <p className="text-[#196d8e]">Total Consultation Fees</p>
+                <p className="text-[#01B49C]">Total Consultation Fees</p>
               </div>
 
               <div className="text-center">
@@ -100,7 +100,7 @@ function PatientPaymentHistory() {
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalSurgeryFee()}/-</p>
                 </div>
-                <p className="text-[#196d8e]">Total Surgery Fees</p>
+                <p className="text-[#01B49C]">Total Surgery Fees</p>
               </div>
 
               <div className="text-center">
@@ -108,7 +108,7 @@ function PatientPaymentHistory() {
                   <FaIndianRupeeSign />
                   <p className="font-bold text-xl">{getTotalLabFee()}/-</p>
                 </div>
-                <p className="text-[#196d8e]">Total Lab Test Fees</p>
+                <p className="text-[#01B49C]">Total Lab Test Fees</p>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ function PatientPaymentHistory() {
               onClick={() => {
                 //   setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -143,7 +143,7 @@ function PatientPaymentHistory() {
       <div>
         <div className="flex bg-white shadow m-5 border border-gray-300 rounded p-5 justify-center">
           <table className="w-full table-auto">
-            <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
+            <thead className="border border-gray-300 text-[#003441] bg-gray-50">
               <tr>
                 <th className="py-1">Doctor</th>
                 <th>Appointment Id</th>
@@ -159,7 +159,7 @@ function PatientPaymentHistory() {
             <tbody className="">
               {gettingBills.map((bill) => (
                 <>
-                  <tr className="text-[#196d8e] border-b border-gray-300">
+                  <tr className="text-[#01B49C] border-b border-gray-300">
                     {gettingUser
                       .filter((user) => user.email === bill.doctor)
                       .map((user) => (

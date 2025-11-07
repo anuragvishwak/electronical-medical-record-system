@@ -64,21 +64,21 @@ function UpdateStaffForm({
 
         <div className="grid grid-cols-3 gap-5">
           <div>
-            <p className="font-semibold text-[#196d8e]">Name</p>
+            <p className="font-semibold text-[#01B49C]">Name</p>
             <p className="w-full border border-gray-300 rounded-md p-2">
               {capturingStaffData.name}
             </p>
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Email</p>
+            <p className="font-semibold text-[#01B49C]">Email</p>
             <p className="w-full border border-gray-300 rounded-md p-2">
               {capturingStaffData.email}
             </p>
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Phone Number</p>
+            <p className="font-semibold text-[#01B49C]">Phone Number</p>
             <input
               value={phone_no}
               onChange={(e) => {
@@ -93,14 +93,14 @@ function UpdateStaffForm({
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Role</p>
+            <p className="font-semibold text-[#01B49C]">Role</p>
             <p className="w-full border border-gray-300 rounded-md p-2">
               Support Staff
             </p>
           </div>
 
           <div>
-            <p className="font-semibold text-[#196d8e]">Designation</p>
+            <p className="font-semibold text-[#01B49C]">Designation</p>
             <input
               value={designation}
               onChange={(e) => {
@@ -120,7 +120,7 @@ function UpdateStaffForm({
             onClick={() => {
               updateStaff();
             }}
-            className="bg-[#196d8e] border hover:text-white hover:bg-[#196d8e] border-[#196d8e] text-white py-1 px-4 rounded"
+            className="bg-[#01B49C] border hover:text-white hover:bg-[#01B49C] border-[#01B49C] text-white py-1 px-4 rounded"
           >
             Create Staff
           </button>

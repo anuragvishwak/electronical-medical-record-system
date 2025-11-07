@@ -121,7 +121,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
         <div className="flex items-center mb-2 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Add Claim</p>
+          <p className="text-[#003441] text-xl font-bold">Add Claim</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -134,12 +134,12 @@ function AddClaimForm({ setopeningClaimStatus }) {
 
         <div>
           <div className="border border-gray-300 p-3 rounded">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Basic Information
             </p>
             <div className="grid grid-cols-4 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Patient </p>
+                <p className="font-semibold text-[#01B49C]">Patient </p>
                 <select
                   onChange={(e) => setpatient(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -157,7 +157,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Provider </p>
+                <p className="font-semibold text-[#01B49C]">Provider </p>
 
                 {gettingInsurance
                   .filter((user) => user.patient === patient)
@@ -169,7 +169,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Policy No </p>
+                <p className="font-semibold text-[#01B49C]">Policy No </p>
 
                 {gettingInsurance
                   .filter((user) => user.patient === patient)
@@ -181,7 +181,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Date of Claim Submission
                 </p>
                 <input
@@ -202,13 +202,13 @@ function AddClaimForm({ setopeningClaimStatus }) {
           </div>
 
           <div className="border p-3 my-3 rounded border-gray-300">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Claim Details
             </p>
 
             <div className="grid grid-cols-4 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Claim Amount Filed
                 </p>
                 <input
@@ -227,7 +227,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Claim Amount Approved
                 </p>
                 <input
@@ -246,7 +246,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Claim Type</p>
+                <p className="font-semibold text-[#01B49C]">Claim Type</p>
                 <select
                   onChange={(e) => setclaimType(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -261,7 +261,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Treatment / Diagnosis
                 </p>
                 <input
@@ -282,12 +282,12 @@ function AddClaimForm({ setopeningClaimStatus }) {
           </div>
 
           <div className="border border-gray-300 p-3 rounded">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Payment Details
             </p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Settlement Amount
                 </p>
                 <input
@@ -306,7 +306,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Date of Payment</p>
+                <p className="font-semibold text-[#01B49C]">Date of Payment</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -320,7 +320,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Payment Mode</p>
+                <p className="font-semibold text-[#01B49C]">Payment Mode</p>
                 <select
                   onChange={(e) => setpaymentMode(e.target.value)}
                   className="border rounded border-gray-300 w-full p-2"
@@ -336,7 +336,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Transaction No /Reference No
                 </p>
                 <input
@@ -361,7 +361,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
             onClick={() => {
               adddingClaimStatus();
             }}
-            className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Add Claim Status
           </button>
