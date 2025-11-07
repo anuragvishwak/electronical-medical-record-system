@@ -80,7 +80,7 @@ console.log("finding time",capturingAppointmentObject.time)
       <div className="p-4 rounded bg-white">
         <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Update Appointment</p>
+          <p className="text-[#003441] text-xl font-bold">Update Appointment</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -94,7 +94,7 @@ console.log("finding time",capturingAppointmentObject.time)
         <div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <p className="font-semibold text-[#196d8e]">Doctor Name</p>
+              <p className="font-semibold text-[#01B49C]">Doctor Name</p>
               {gettingUser
                 .filter(
                   (user) => user.email === capturingAppointmentObject.doctor
@@ -107,7 +107,7 @@ console.log("finding time",capturingAppointmentObject.time)
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Patient Name</p>
+              <p className="font-semibold text-[#01B49C]">Patient Name</p>
                {gettingUser
                 .filter(
                   (user) => user.email === capturingAppointmentObject.patient
@@ -120,7 +120,7 @@ console.log("finding time",capturingAppointmentObject.time)
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Time</p>
+              <p className="font-semibold text-[#01B49C]">Time</p>
               <input
                 type="text"
                 value={time}
@@ -136,7 +136,7 @@ console.log("finding time",capturingAppointmentObject.time)
             </div>
 
             <div>
-              <p className="font-semibold text-[#196d8e]">Status</p>
+              <p className="font-semibold text-[#01B49C]">Status</p>
               <select
               value={status}
                 onChange={(e) => {
@@ -156,7 +156,7 @@ console.log("finding time",capturingAppointmentObject.time)
           </div>
 
           <div className="mt-3">
-            <p className="font-semibold text-[#196d8e]">Additional Note</p>
+            <p className="font-semibold text-[#01B49C]">Additional Note</p>
             <textarea
             value={additionalNote}
               onChange={(e) => {
@@ -175,7 +175,7 @@ console.log("finding time",capturingAppointmentObject.time)
               onClick={() => {
                 updatingAppointment();
               }}
-              className="bg-[#212a31] hover:bg-blue-800 py-1 px-3 rounded text-white"
+              className="bg-[#003441] hover:bg-blue-800 py-1 px-3 rounded text-white"
             >
               Update Appointment
             </button>

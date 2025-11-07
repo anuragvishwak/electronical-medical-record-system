@@ -52,21 +52,21 @@ function AdminProfileSetting() {
             <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5">
-                  <p className="bg-[#212a31] py-10 px-12 text-5xl font-bold rounded-full text-white">
+                  <p className="bg-[#003441] py-10 px-12 text-5xl font-bold rounded-full text-white">
                     {getInitials(user.name)}
                   </p>
                   <div>
                     <div>
-                      <p className="text-3xl text-[#212a31] font-bold">
+                      <p className="text-3xl text-[#003441] font-bold">
                         {user.name}
                       </p>
                       <div className="flex items-center space-x-2">
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <MdEmail />
                           {user.email}
                         </p>
                         <span className="font-semibold">|</span>
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <FaPhone />
                           +91 {user.phone_no}
                         </p>
@@ -74,14 +74,14 @@ function AdminProfileSetting() {
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                      <p className="text-[#003441] font-semibold flex items-center gap-1">
                         <BsShield />
                         {user.designation}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                      <p className="text-[#003441] font-semibold flex items-center gap-1">
                         <FaLocationDot />
                         {user.city}, {user.state}, {user.country}
                       </p>
@@ -93,7 +93,7 @@ function AdminProfileSetting() {
                     setopeningAdminProfileForm(true);
                     setcurrentUser(user);
                   }}
-                  className="bg-[#212a31] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -114,31 +114,31 @@ function AdminProfileSetting() {
                   </p>
                   <div className="flex items-center gap-5">
                     <div>
-                      <p className="text-[#212a31] font-semibold">
+                      <p className="text-[#003441] font-semibold">
                         {user.adminId}
                       </p>
-                      <p className="text-[#196d8e]">Admin Id</p>
+                      <p className="text-[#01B49C]">Admin Id</p>
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold">
+                      <p className="text-[#003441] font-semibold">
                         {user.designation}
                       </p>
-                      <p className="text-[#196d8e]">Designation</p>
+                      <p className="text-[#01B49C]">Designation</p>
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold">
+                      <p className="text-[#003441] font-semibold">
                         {user.accessLevel}
                       </p>
-                      <p className="text-[#196d8e]">Access Level</p>
+                      <p className="text-[#01B49C]">Access Level</p>
                     </div>
                   </div>
                   <div className="mt-2">
-                    <p className="text-[#212a31] font-semibold">
+                    <p className="text-[#003441] font-semibold">
                       {user.city}, {user.state}, {user.country}
                     </p>
-                    <p className="text-[#196d8e]">Address</p>
+                    <p className="text-[#01B49C]">Address</p>
                   </div>
                 </div>
 
@@ -146,10 +146,10 @@ function AdminProfileSetting() {
                   <p className="text-xl font-semibold mb-2">System Details</p>
                   <div className="flex items-center mb-2 gap-5">
                     <div>
-                      <p className="text-[#212a31] font-semibold">
+                      <p className="text-[#003441] font-semibold">
                         {user.lastLoginDateAndTime}
                       </p>
-                      <p className="text-[#196d8e]">Last Login Date & Time</p>
+                      <p className="text-[#01B49C]">Last Login Date & Time</p>
                     </div>
 
                     <div>
@@ -162,14 +162,14 @@ function AdminProfileSetting() {
                       >
                         {user.status}
                       </p>
-                      <p className="text-[#196d8e]">Status</p>
+                      <p className="text-[#01B49C]">Status</p>
                     </div>
                   </div>
                   <div>
-                    <p className="text-[#212a31]  font-semibold">
+                    <p className="text-[#003441]  font-semibold">
                       {user.moduleAssigned}
                     </p>
-                    <p className="text-[#196d8e]">Module Assigned</p>
+                    <p className="text-[#01B49C]">Module Assigned</p>
                   </div>
                 </div>
               </div>
@@ -180,24 +180,24 @@ function AdminProfileSetting() {
                 </p>
                 <div className="flex items-center gap-5">
                   <div>
-                    <p className="text-[#212a31] font-semibold">
+                    <p className="text-[#003441] font-semibold">
                       {user.employeeId}
                     </p>
-                    <p className="text-[#196d8e]">Employee ID</p>
+                    <p className="text-[#01B49C]">Employee ID</p>
                   </div>
 
                   <div>
-                    <p className="text-[#212a31] font-semibold">
+                    <p className="text-[#003441] font-semibold">
                       {user.dateOfJoining}
                     </p>
-                    <p className="text-[#196d8e]">Date of Joining</p>
+                    <p className="text-[#01B49C]">Date of Joining</p>
                   </div>
 
                   <div>
-                    <p className="text-[#212a31] font-semibold">
+                    <p className="text-[#003441] font-semibold">
                       {user.shiftHours} Hours
                     </p>
-                    <p className="text-[#196d8e]">Shift / Work Hours</p>
+                    <p className="text-[#01B49C]">Shift / Work Hours</p>
                   </div>
                 </div>
               </div>

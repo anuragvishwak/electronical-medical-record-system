@@ -73,14 +73,14 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
 
   return (
     <div>
-      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#212a31] bg-white shadow border-b justify-between p-3">
+      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#003441] bg-white shadow border-b justify-between p-3">
         <div className="flex items-center space-x-5">
           <button
             onClick={() => {
               navigate("/AdminDashboard");
             }}
             className={`${
-              location.pathname === "/AdminDashboard" ? "text-[#196d8e]" : ""
+              location.pathname === "/AdminDashboard" ? "text-[#01B49C]" : ""
             }`}
           >
             Home
@@ -90,7 +90,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               navigate("/AdminAppointment");
             }}
             className={`${
-              location.pathname === "/AdminAppointment" ? "text-[#196d8e]" : ""
+              location.pathname === "/AdminAppointment" ? "text-[#01B49C]" : ""
             }`}
           >
             Appointment
@@ -100,7 +100,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               navigate("/UserManagement");
             }}
             className={`${
-              location.pathname === "/UserManagement" ? "text-[#196d8e]" : ""
+              location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
             }`}
           >
             User Management
@@ -111,7 +111,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             }}
             className={`${
               location.pathname === "/AdminBillingPayment"
-                ? "text-[#196d8e]"
+                ? "text-[#01B49C]"
                 : ""
             }`}
           >
@@ -123,7 +123,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             }}
             className={`${
               location.pathname === "/AdminInsuranceCoordination"
-                ? "text-[#196d8e]"
+                ? "text-[#01B49C]"
                 : ""
             }`}
           >
@@ -135,7 +135,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             }}
             className={`${
               location.pathname === "/MedicinesTreatment"
-                ? "text-[#196d8e]"
+                ? "text-[#01B49C]"
                 : ""
             }`}
           >
@@ -146,7 +146,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               navigate("/StaffManagement");
             }}
             className={`${
-              location.pathname === "/StaffManagement" ? "text-[#196d8e]" : ""
+              location.pathname === "/StaffManagement" ? "text-[#01B49C]" : ""
             }`}
           >
             Staff Management
@@ -157,7 +157,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             }}
             className={`${
               location.pathname === "/AdminProfileSetting"
-                ? "text-[#196d8e]"
+                ? "text-[#01B49C]"
                 : ""
             }`}
           >
@@ -167,7 +167,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
         <div className="flex items-center space-x-2">
           <button
             onClick={downloadAllData}
-            className="bg-[#212a31] text-white py-1 px-2.5 rounded hover:bg-[#196d8e]"
+            className="bg-[#003441] text-white py-1 px-2.5 rounded hover:bg-[#01B49C]"
           >
             <div className="flex items-center space-x-1">
               <GiCloudDownload />
@@ -179,7 +179,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               setopeningHRMS(true);
             }}
-            className="bg-[#196d8e] hover:border-blue-800 hover:bg-blue-800 border border-[#196d8e] text-white py-0.5 px-2.5 rounded"
+            className="bg-[#01B49C] hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-0.5 px-2.5 rounded"
           >
             HRMS
           </button>
@@ -196,7 +196,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
       </div>
 
       {openingAdminNavbar && (
-        <div className="flex flex-col justify-start items-start h-screen fixed sm:hidden text-[#212a31] w-full bg-white shadow border-b p-3">
+        <div className="flex flex-col justify-start items-start h-screen fixed sm:hidden text-[#003441] w-full bg-white shadow border-b p-3">
           <div className="flex">
             <button
               onClick={() => {
@@ -219,7 +219,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
                 navigate("/AdminPatient");
               }}
               className={`${
-                location.pathname === "/AdminPatient" ? "text-[#196d8e]" : ""
+                location.pathname === "/AdminPatient" ? "text-[#01B49C]" : ""
               }`}
             >
               Patient
@@ -230,7 +230,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               }}
               className={`${
                 location.pathname === "/AdminAppointment"
-                  ? "text-[#196d8e]"
+                  ? "text-[#01B49C]"
                   : ""
               }`}
             >
@@ -241,7 +241,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
                 navigate("/UserManagement");
               }}
               className={`${
-                location.pathname === "/UserManagement" ? "text-[#196d8e]" : ""
+                location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
               }`}
             >
               User Management
@@ -252,7 +252,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               }}
               className={`${
                 location.pathname === "/AdminBillingPayment "
-                  ? "text-[#196d8e]"
+                  ? "text-[#01B49C]"
                   : ""
               }`}
             >
@@ -265,7 +265,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               }}
               className={`${
                 location.pathname === "/MedicinesTreatment"
-                  ? "text-[#196d8e]"
+                  ? "text-[#01B49C]"
                   : ""
               }`}
             >
@@ -279,7 +279,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 setopeningHRMS(true);
               }}
-              className="bg-[#196d8e] hover:border-blue-800 hover:bg-blue-800 border border-[#196d8e] text-white py-0.5 px-2.5 rounded"
+              className="bg-[#01B49C] hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-0.5 px-2.5 rounded"
             >
               HRMS
             </button>

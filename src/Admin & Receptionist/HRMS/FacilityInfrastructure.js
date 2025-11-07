@@ -9,14 +9,14 @@ function FacilityInfrastructure() {
 
   return (
     <div className="">
-      <div className="mt-4 border shadow-inner px-4 py-1.5 bg-gray-200 flex items-center text-[#212a31] space-x-2 rounded-full">
+      <div className="mt-4 border shadow-inner px-4 py-1.5 bg-gray-200 flex items-center text-[#003441] space-x-2 rounded-full">
         <button
           onClick={() => {
             setcurrentTab("bed_room_management");
           }}
           className={`${
             currentTab === "bed_room_management"
-              ? "bg-white py-1 px-3 rounded-full shadow text-[#196d8e]"
+              ? "bg-white py-1 px-3 rounded-full shadow text-[#01B49C]"
               : ""
           }`}
         >
@@ -28,7 +28,7 @@ function FacilityInfrastructure() {
           }}
           className={`${
             currentTab === "operation_theatre_scheduling"
-              ? "bg-white py-1 px-3 rounded-full shadow text-[#196d8e]"
+              ? "bg-white py-1 px-3 rounded-full shadow text-[#01B49C]"
               : ""
           }`}
         >
@@ -40,7 +40,7 @@ function FacilityInfrastructure() {
           }}
           className={`${
             currentTab === "housekeeping_maintenance"
-              ? "bg-white py-1 px-3 rounded-full shadow text-[#196d8e]"
+              ? "bg-white py-1 px-3 rounded-full shadow text-[#01B49C]"
               : ""
           }`}
         >
@@ -52,7 +52,7 @@ function FacilityInfrastructure() {
           }}
           className={`${
             currentTab === "analytics_report"
-              ? "bg-white py-1 px-3 rounded-full shadow text-[#196d8e]"
+              ? "bg-white py-1 px-3 rounded-full shadow text-[#01B49C]"
               : ""
           }`}
         >

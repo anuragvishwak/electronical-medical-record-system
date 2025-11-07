@@ -68,7 +68,7 @@ function UpdateInsuranceForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-3 rounded">
         <div className="flex items-center mb-3 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Add Insurance</p>
+          <p className="text-[#003441] text-xl font-bold">Add Insurance</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -81,19 +81,19 @@ function UpdateInsuranceForm({
 
         <div>
           <div className="border border-gray-300 p-3 rounded">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Identification
             </p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Patient Name</p>
+                <p className="font-semibold text-[#01B49C]">Patient Name</p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
                   {capturingDataObject.patient}
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Provider Name</p>
+                <p className="font-semibold text-[#01B49C]">Provider Name</p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
                   {capturingDataObject.providerName}
                 </p>
@@ -102,19 +102,19 @@ function UpdateInsuranceForm({
           </div>
 
           <div className="border border-gray-300 rounded  p-3 my-3">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Policy Details
             </p>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <p className="font-semibold text-[#196d8e]">Policy Number</p>
+                <p className="font-semibold text-[#01B49C]">Policy Number</p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
                   {capturingDataObject.policyNumber}
                 </p>
               </div>
 
               <div className="">
-                <p className="font-semibold text-[#196d8e]">Coverage Type</p>
+                <p className="font-semibold text-[#01B49C]">Coverage Type</p>
                 <select
                   value={coverageType}
                   onChange={(e) => {
@@ -135,7 +135,7 @@ function UpdateInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Sum Insured</p>
+                <p className="font-semibold text-[#01B49C]">Sum Insured</p>
                 <input
                   value={sumInsured}
                   onChange={(e) => {
@@ -150,14 +150,14 @@ function UpdateInsuranceForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Valid From</p>
+                <p className="font-semibold text-[#01B49C]">Valid From</p>
                 <p className="w-full border border-gray-300 rounded-md p-2">
                   {capturingDataObject.validFrom}
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Valid To</p>
+                <p className="font-semibold text-[#01B49C]">Valid To</p>
                 <input
                   type="date"
                   value={validTo}
@@ -173,7 +173,7 @@ function UpdateInsuranceForm({
               </div>
 
               <div className="">
-                <p className="font-semibold text-[#196d8e]">Status</p>
+                <p className="font-semibold text-[#01B49C]">Status</p>
                 <select
                   value={status}
                   onChange={(e) => {
@@ -198,7 +198,7 @@ function UpdateInsuranceForm({
               onClick={() => {
                 updatingInsurances();
               }}
-              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+              className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
             >
               Update Insurance
             </button>

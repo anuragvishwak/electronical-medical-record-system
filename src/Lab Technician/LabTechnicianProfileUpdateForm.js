@@ -147,7 +147,7 @@ function LabTechnicianProfileUpdateForm({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white h-screen w-6/12 my-5 overflow-auto p-5 rounded">
         <div className="flex items-center mb-4 justify-between">
-          <p className="text-[#212a31] text-xl font-bold">Profile Update</p>
+          <p className="text-[#003441] text-xl font-bold">Profile Update</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -160,12 +160,12 @@ function LabTechnicianProfileUpdateForm({
 
         <div>
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Personal Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Name</p>
+                <p className="font-semibold text-[#01B49C]">Name</p>
                 <input
                   type="text"
                   value={currentUser.name}
@@ -174,7 +174,7 @@ function LabTechnicianProfileUpdateForm({
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Date of Birth</p>
+                <p className="font-semibold text-[#01B49C]">Date of Birth</p>
                 <input
                   type="date"
                   onChange={(e) => {
@@ -189,7 +189,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Gender</p>
+                <p className="font-semibold text-[#01B49C]">Gender</p>
                 <select
                   onChange={(e) => {
                     setgender(e.target.value);
@@ -208,12 +208,12 @@ function LabTechnicianProfileUpdateForm({
           </div>
 
           <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Contact Information
             </p>
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Email</p>
+                <p className="font-semibold text-[#01B49C]">Email</p>
                 <input
                   type="text"
                   value={currentUser?.email}
@@ -222,7 +222,7 @@ function LabTechnicianProfileUpdateForm({
                 />
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">Phone Number</p>
+                <p className="font-semibold text-[#01B49C]">Phone Number</p>
                 <input
                   type="text"
                   value={currentUser?.phone_no}
@@ -232,7 +232,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Emergency Contact Number
                 </p>
                 <input
@@ -246,7 +246,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Country</p>
+                <p className="font-semibold text-[#01B49C]">Country</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -260,7 +260,7 @@ function LabTechnicianProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">State</p>
+                <p className="font-semibold text-[#01B49C]">State</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -274,7 +274,7 @@ function LabTechnicianProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">City</p>
+                <p className="font-semibold text-[#01B49C]">City</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -291,13 +291,13 @@ function LabTechnicianProfileUpdateForm({
           </div>
 
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Professional Information
             </p>
 
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Lab Technician Id
                 </p>
                 <input
@@ -316,7 +316,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Designation</p>
+                <p className="font-semibold text-[#01B49C]">Designation</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -331,7 +331,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Department</p>
+                <p className="font-semibold text-[#01B49C]">Department</p>
                 <select
                   onChange={(e) => {
                     setdepartment(e.target.value);
@@ -347,7 +347,7 @@ function LabTechnicianProfileUpdateForm({
                 )}
               </div>
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Years of Experience
                 </p>
                 <input
@@ -366,7 +366,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Qualification</p>
+                <p className="font-semibold text-[#01B49C]">Qualification</p>
                 <select
                   onChange={(e) => {
                     setqualification(e.target.value);
@@ -386,7 +386,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Medical License Number
                 </p>
                 <input
@@ -407,13 +407,13 @@ function LabTechnicianProfileUpdateForm({
           </div>
 
           <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Work Schedule / Availability
             </p>
 
             <div className="grid grid-cols-3 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e]">Working Days</p>
+                <p className="font-semibold text-[#01B49C]">Working Days</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -428,7 +428,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">Shift Time</p>
+                <p className="font-semibold text-[#01B49C]">Shift Time</p>
                 <input
                   type="text"
                   onChange={(e) => {
@@ -443,7 +443,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e]">
+                <p className="font-semibold text-[#01B49C]">
                   Leaves / Holidays
                 </p>
                 <input
@@ -462,13 +462,13 @@ function LabTechnicianProfileUpdateForm({
           </div>
 
           <div className="my-4">
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Profession Specific Information
             </p>
 
             <div className="grid grid-cols-2 gap-5">
               <div>
-                <p className="font-semibold text-[#196d8e] mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                   Equipment Handled
                 </p>
 
@@ -491,7 +491,7 @@ function LabTechnicianProfileUpdateForm({
                             );
                           }
                         }}
-                        className="accent-[#196d8e]"
+                        className="accent-[#01B49C]"
                       />
                       <span>{item}</span>
                     </label>
@@ -506,7 +506,7 @@ function LabTechnicianProfileUpdateForm({
               </div>
 
               <div>
-                <p className="font-semibold text-[#196d8e] mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                   Tests Authorized to Perform
                 </p>
 
@@ -529,7 +529,7 @@ function LabTechnicianProfileUpdateForm({
                             );
                           }
                         }}
-                        className="accent-[#196d8e]"
+                        className="accent-[#01B49C]"
                       />
                       <span>{item}</span>
                     </label>
@@ -546,11 +546,11 @@ function LabTechnicianProfileUpdateForm({
           </div>
 
           <div>
-            <p className="text-[#212a31] text-lg font-semibold">
+            <p className="text-[#003441] text-lg font-semibold">
               Other Information
             </p>
             <div>
-              <p className="font-semibold text-[#196d8e]">
+              <p className="font-semibold text-[#01B49C]">
                 Achievements / Awards
               </p>
               <input
@@ -573,7 +573,7 @@ function LabTechnicianProfileUpdateForm({
               onClick={() => {
                 updatingProfileDetails();
               }}
-              className="bg-[#196d8e] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+              className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
             >
               Update Profile Details
             </button>

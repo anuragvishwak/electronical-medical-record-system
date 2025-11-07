@@ -32,10 +32,10 @@ function PatientAppointment() {
       <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
        <div className="flex items-center justify-between">
          <div>
-          <p className="text-2xl text-[#212a31] font-bold">Appointments</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl text-[#003441] font-bold">Appointments</p>
+          <p className="text-[#01B49C]">
             Patient can their{" "}
-            <span className="font-semibold text-[#212a31]">appointments</span>{" "}
+            <span className="font-semibold text-[#003441]">appointments</span>{" "}
             here
           </p>
         </div>

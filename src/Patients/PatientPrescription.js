@@ -58,10 +58,10 @@ function PatientPrescription() {
       <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-2xl font-bold text-[#212a31]">Prescriptions</p>
-            <p className="text-[#196d8e]">
+            <p className="text-2xl font-bold text-[#003441]">Prescriptions</p>
+            <p className="text-[#01B49C]">
               Patient's can see their{" "}
-              <span className="text-[#212a31] font-semibold">
+              <span className="text-[#003441] font-semibold">
                 Prescriptions
               </span>{" "}
               across the healthcare system

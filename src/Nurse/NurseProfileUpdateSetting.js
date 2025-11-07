@@ -48,38 +48,38 @@ function NurseProfileUpdateSetting() {
           {gettingUser.map((user) => (
             <div className="grid grid-cols-5 gap-5">
               <div className="border border-gray-300 p-5 rounded-lg bg-white shadow">
-                <p className="text-[#212a31] text-2xl capitalize font-bold">
+                <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.yearsOfExperience}
                 </p>
-                <p className="text-[#196d8e]">Years of Experience</p>
+                <p className="text-[#01B49C]">Years of Experience</p>
               </div>
 
               <div className="border  border-gray-300 p-5 rounded-lg bg-white shadow">
-                <p className="text-[#212a31] text-2xl capitalize font-bold">
+                <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.workingHours}
                 </p>
-                <p className="text-[#196d8e]">Working Hours</p>
+                <p className="text-[#01B49C]">Working Hours</p>
               </div>
 
               <div className="border  border-gray-300 p-5 rounded-lg bg-white shadow">
-                <p className="text-[#212a31] text-2xl capitalize font-bold">
+                <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.leavesHoliday}
                 </p>
-                <p className="text-[#196d8e]">Leaves / Holidays</p>
+                <p className="text-[#01B49C]">Leaves / Holidays</p>
               </div>
 
               <div className="border border-gray-300  p-5 rounded-lg bg-white shadow">
-                <p className="text-[#212a31] text-2xl capitalize font-bold">
+                <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.shiftTime}
                 </p>
-                <p className="text-[#196d8e]">Shift Time</p>
+                <p className="text-[#01B49C]">Shift Time</p>
               </div>
 
               <div className="border border-gray-300  p-5 rounded-lg bg-white shadow">
-                <p className="text-[#212a31] text-2xl capitalize font-bold">
+                <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.department}
                 </p>
-                <p className="text-[#196d8e]">Department</p>
+                <p className="text-[#01B49C]">Department</p>
               </div>
             </div>
           ))}
@@ -90,21 +90,21 @@ function NurseProfileUpdateSetting() {
             <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5">
-                  <p className="bg-[#212a31] py-10 px-12 text-5xl font-bold rounded-full text-white">
+                  <p className="bg-[#003441] py-10 px-12 text-5xl font-bold rounded-full text-white">
                     {getInitials(user.name)}
                   </p>
                   <div>
                     <div>
-                      <p className="text-3xl text-[#212a31] font-bold">
+                      <p className="text-3xl text-[#003441] font-bold">
                         {user.name}
                       </p>
                       <div className="flex items-center space-x-2">
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <MdEmail />
                           {user.email}
                         </p>
                         <span className="font-semibold">|</span>
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <FaPhone />
                           +91 {user.phone_no}
                         </p>
@@ -112,14 +112,14 @@ function NurseProfileUpdateSetting() {
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                      <p className="text-[#003441] font-semibold flex items-center gap-1">
                         <BsShield />
                         {user.designation}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                      <p className="text-[#003441] font-semibold flex items-center gap-1">
                         <FaLocationDot />
                         {user.city}, {user.state}, {user.country}
                       </p>
@@ -131,7 +131,7 @@ function NurseProfileUpdateSetting() {
                     setopeningNurseProfileForm(true);
                     setcurrentUser(user);
                   }}
-                  className="bg-[#212a31] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -149,24 +149,24 @@ function NurseProfileUpdateSetting() {
             {gettingUser.map((user) => (
               <div className="grid grid-cols-5 gap-5">
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {user.nurseId}
                   </p>
-                  <p className="text-[#196d8e]">Nurse ID</p>
+                  <p className="text-[#01B49C]">Nurse ID</p>
                 </div>
 
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {user.qualification}
                   </p>
-                  <p className="text-[#196d8e]">Qualification</p>
+                  <p className="text-[#01B49C]">Qualification</p>
                 </div>
 
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {user.medicalLicenseNumber}
                   </p>
-                  <p className="text-[#196d8e]">Medical License Number</p>
+                  <p className="text-[#01B49C]">Medical License Number</p>
                 </div>
               </div>
             ))}
@@ -176,8 +176,8 @@ function NurseProfileUpdateSetting() {
             {gettingUser.map((user) => (
               <div className="bg-white p-5 rounded border border-gray-300 shadow">
                 <div className="w-full text-center">
-                  <p className="text-[#196d8e]">Acheievements / Awards</p>
-                  <p className="text-[#212a31] mt-2 flex items-center justify-center space-x-2 text-xl font-semibold">
+                  <p className="text-[#01B49C]">Acheievements / Awards</p>
+                  <p className="text-[#003441] mt-2 flex items-center justify-center space-x-2 text-xl font-semibold">
                     <LiaAwardSolid size={30} />
                     {user.achievementsAwards}
                   </p>

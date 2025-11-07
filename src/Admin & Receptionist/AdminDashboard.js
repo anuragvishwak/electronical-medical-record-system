@@ -65,13 +65,13 @@ function AdminDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <FaCalendarAlt
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Appointments
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {gettingAppointments.length}
                 </p>
               </div>
@@ -82,11 +82,11 @@ function AdminDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">Total Patients</p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-[#01B49C] font-semibold">Total Patients</p>
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {gettingUser.filter((user) => user.role === "patient").length}
                 </p>
               </div>
@@ -97,11 +97,11 @@ function AdminDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">Total Revenue</p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-[#01B49C] font-semibold">Total Revenue</p>
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   ₹
                   {gettingBills.reduce(
                     (total, bill) => total + (bill.finalAmount || 0),
@@ -117,11 +117,11 @@ function AdminDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">Total Staff</p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-[#01B49C] font-semibold">Total Staff</p>
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {gettingUser.filter((user) => user.role !== "patient").length}
                 </p>
               </div>
@@ -130,8 +130,8 @@ function AdminDashboard() {
         </div>
 
         <div className="mx-5 flex items-start gap-5">
-          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <FaCalendarAlt />
               <p className="text-xl font-bold">Recent Appointments</p>
             </div>
@@ -141,11 +141,11 @@ function AdminDashboard() {
                   {gettingUser
                     .filter((user) => user.email === appointment.patient)
                     .map((user) => (
-                      <p className="text-xl text-[#212a31] font-bold">
+                      <p className="text-xl text-[#003441] font-bold">
                         {user?.name}
                       </p>
                     ))}
-                  <div className="flex text-sm text-[#196d8e] items-center space-x-1">
+                  <div className="flex text-sm text-[#01B49C] items-center space-x-1">
                     {gettingUser
                       .filter((user) => user.email === appointment.doctor)
                       .map((user) => (
@@ -157,48 +157,48 @@ function AdminDashboard() {
                     <p>{appointment.time}</p>
                   </div>
                 </div>
-                <p className="border px-3 text-sm font-semibold py-1 text-[#212a31] rounded-full border-gray-300">
+                <p className="border px-3 text-sm font-semibold py-1 text-[#003441] rounded-full border-gray-300">
                   {appointment.status}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <RxCounterClockwiseClock size={20} />
               <p className="text-xl font-bold">Recent Activities</p>
             </div>
 
             <div className="border rounded border-gray-300 p-2.5">
-              <p className="text-lg font-semibold text-[#212a31]">
+              <p className="text-lg font-semibold text-[#003441]">
                 Appointment Update
               </p>
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 New appointment created for Patient Rohit Sharma.
               </p>
             </div>
 
             <div className="border rounded my-3 border-gray-300 p-2.5">
-              <p className="text-lg font-semibold text-[#212a31]">
+              <p className="text-lg font-semibold text-[#003441]">
                 Consultation added
               </p>
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 Consultation added for Patient Ananya Singh.
               </p>
             </div>
 
             <div className="border rounded border-gray-300 p-2.5">
-              <p className="text-lg font-semibold text-[#212a31]">
+              <p className="text-lg font-semibold text-[#003441]">
                 Appointment Update
               </p>
-              <p className="text-[#196d8e] text-sm">
+              <p className="text-[#01B49C] text-sm">
                 New appointment created for Patient Rohit Sharma.
               </p>
             </div>
           </div>
-          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-full border-gray-300 p-5 rounded">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-full border-gray-300 p-5 rounded">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>
             </div>
@@ -208,20 +208,20 @@ function AdminDashboard() {
                 <div className="flex items-center space-x-1">
                   <FaIndianRupeeSign
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Process Payment
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Record a payment or issue a refund.
                 </p>
                 <button
                   onClick={() => {
                     navigation("/AdminBillingPayment");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   Process Payment
                 </button>
@@ -231,20 +231,20 @@ function AdminDashboard() {
                 <div className="flex items-center space-x-1">
                   <FaCalendarAlt
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Schedule Appointment
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Create a new appointment for a patient.
                 </p>
                 <button 
                 onClick={()=>{
                     navigation('/AdminAppointment');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
                   + Create Appointment
                 </button>
               </div>
@@ -253,20 +253,20 @@ function AdminDashboard() {
                 <div className="flex items-center space-x-1">
                   <GiMedicines
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Update Medicine
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Add or update medicine and their stock.
                 </p>
                 <button 
                 onClick={()=>{
                     navigation('/MedicinesTreatment');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
                   Update Medicine
                 </button>
               </div>
@@ -275,20 +275,20 @@ function AdminDashboard() {
                 <div className="flex items-center space-x-1">
                   <FaUser
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Manage Staff
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Add or Manage Staff and their stock.
                 </p>
                 <button 
                 onClick={()=>{
                     navigation('/StaffManagement');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
                    Manage Staff
                 </button>
               </div>

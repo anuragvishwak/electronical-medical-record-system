@@ -64,10 +64,10 @@ function AdminBillingPayment() {
       <div className="bg-white m-5 p-5 border border-gray-300 shadow rounded">
         <div className="flex items-center justify-between">
           <div className="">
-            <p className="text-2xl text-[#212a31] font-bold">
+            <p className="text-2xl text-[#003441] font-bold">
               Billing & Payment
             </p>
-            <p className="text-[#196d8e]">
+            <p className="text-[#01B49C]">
               Admin can add and manage{" "}
              Billing and{" "}
              Payment{" "}
@@ -143,7 +143,7 @@ function AdminBillingPayment() {
       </div>
       <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
         <table className="w-full table-auto">
-          <thead className="border border-gray-300 text-[#212a31] bg-gray-50">
+          <thead className="border border-gray-300 text-[#003441] bg-gray-50">
             <tr>
               <th className="py-1 text-start">Patient</th>
               <th className="text-start">Doctor</th>
@@ -161,7 +161,7 @@ function AdminBillingPayment() {
           <tbody className="">
             {gettingBills.map((bill) => (
               <>
-                <tr className="text-[#196d8e] border-b border-gray-300">
+                <tr className="text-[#01B49C] border-b border-gray-300">
                   {gettingUser
                     .filter((user) => user.email === bill.patient)
                     .map((user) => (

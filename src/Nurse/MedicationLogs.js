@@ -68,10 +68,10 @@ function MedicationLogs() {
 
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">
+          <p className="text-2xl font-bold text-[#003441]">
             Medication Logs
           </p>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             Upload and manage Medication Logs across the healthcare system
           </p>
         </div>
@@ -114,17 +114,17 @@ function MedicationLogs() {
                   {gettingUser
                     .filter((user) => user.email === appointment.patient)
                     .map((user) => (
-                      <p className="text-lg text-[#212a31] capitalize font-semibold ">
+                      <p className="text-lg text-[#003441] capitalize font-semibold ">
                         {user?.name}
                       </p>
                     ))}
                   <span>|</span>
-                  <p className="font-sm font-semibold text-[#196d8e]">
+                  <p className="font-sm font-semibold text-[#01B49C]">
                     <span className="font-normal mr-1">Appointment:</span>
                     {appointment.id}
                   </p>
                 </div>
-                <div className="flex items-center text-[#212a31] space-x-2">
+                <div className="flex items-center text-[#003441] space-x-2">
                   <p>Doctor:</p>
                   {gettingUser
                     .filter((user) => user.email === appointment.doctor)
@@ -136,12 +136,12 @@ function MedicationLogs() {
 
               <hr className="border-gray-400 my-4" />
               <div>
-                <p className="text-lg text-[#212a31] font-semibold">Medication Logs</p>
+                <p className="text-lg text-[#003441] font-semibold">Medication Logs</p>
 
                 <div className="border-y border-gray-300 my-2 py-2">
-                  <p className="text-[#196d8e]">Prescription Medication</p>
+                  <p className="text-[#01B49C]">Prescription Medication</p>
 
-                  <div className="text-[#212a31]">
+                  <div className="text-[#003441]">
                     {gettingPrescription &&
                       (() => {
                         const filteredConsults = gettingPrescription.filter(
@@ -172,9 +172,9 @@ function MedicationLogs() {
                 </div>
 
                 <div>
-                  <p className="text-[#196d8e]">Consultation Medication</p>
+                  <p className="text-[#01B49C]">Consultation Medication</p>
 
-                  <div className="text-sm text-[#212a31]">
+                  <div className="text-sm text-[#003441]">
                     {gettingConsultation &&
                       (() => {
                         const filteredConsults = gettingConsultation.filter(

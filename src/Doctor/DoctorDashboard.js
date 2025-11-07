@@ -82,13 +82,13 @@ function DoctorDashboard() {
           .map((user) => (
             <div className="flex justify-between p-5 rounded border border-gray-300 shadow m-5 bg-white">
               <div>
-                <p className="text-[#212a31] text-2xl font-bold">{user.name}</p>
-                <p className="text-[#196d8e]">{user.email}</p>
+                <p className="text-[#003441] text-2xl font-bold">{user.name}</p>
+                <p className="text-[#01B49C]">{user.email}</p>
               </div>
 
               <div>
-                <p className="text-[#212a31] font-bold">Doctor Id</p>
-                <p className="text-[#196d8e] text-end">{user.doctorId}</p>
+                <p className="text-[#003441] font-bold">Doctor Id</p>
+                <p className="text-[#01B49C] text-end">{user.doctorId}</p>
               </div>
             </div>
           ))}
@@ -98,11 +98,11 @@ function DoctorDashboard() {
             <div className="flex items-center  justify-center space-x-5">
               <CgUser
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">Total Patients</p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-[#01B49C] font-semibold">Total Patients</p>
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {
                     gettingAppointments.filter((user) => user.doctor === email)
                       .length
@@ -116,13 +116,13 @@ function DoctorDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <FaRegCalendarAlt
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Appointments
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {
                     gettingAppointments.filter((user) => user.doctor === email)
                       .length
@@ -136,13 +136,13 @@ function DoctorDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <GiMedicinePills
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Prescriptions
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {
                     gettingPrescriptions.filter((user) => user.doctor === email)
                       .length
@@ -156,13 +156,13 @@ function DoctorDashboard() {
             <div className="flex items-center justify-center space-x-5">
               <GoDiscussionClosed
                 size={45}
-                className="text-[#196d8e] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
               />
               <div>
-                <p className="text-[#196d8e] font-semibold">
+                <p className="text-[#01B49C] font-semibold">
                   Total Consultations
                 </p>
-                <p className="text-center text-3xl font-bold text-[#212a31]">
+                <p className="text-center text-3xl font-bold text-[#003441]">
                   {
                     gettingConsultations.filter((user) => user.doctor === email)
                       .length
@@ -174,8 +174,8 @@ function DoctorDashboard() {
         </div>
 
         <div className="flex items-start gap-5 m-5">
-          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <FaCalendarAlt />
               <p className="text-xl font-bold">Upcoming Appointments</p>
             </div>
@@ -185,11 +185,11 @@ function DoctorDashboard() {
                   {gettingUser
                     .filter((user) => user.email === appointment.patient)
                     .map((user) => (
-                      <p className="text-xl text-[#212a31] font-bold">
+                      <p className="text-xl text-[#003441] font-bold">
                         {user?.name}
                       </p>
                     ))}
-                  <div className="flex text-sm text-[#196d8e] items-center space-x-1">
+                  <div className="flex text-sm text-[#01B49C] items-center space-x-1">
                     {gettingUser
                       .filter((user) => user.email === appointment.doctor)
                       .map((user) => (
@@ -201,75 +201,75 @@ function DoctorDashboard() {
                     <p>{appointment.time}</p>
                   </div>
                 </div>
-                <p className="border px-3 text-sm font-semibold py-1 text-[#212a31] rounded-full border-gray-300">
+                <p className="border px-3 text-sm font-semibold py-1 text-[#003441] rounded-full border-gray-300">
                   {appointment.status}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <RxCounterClockwiseClock size={20} />
               <p className="text-xl font-bold">Recent Activities</p>
             </div>
 
             <div className="space-y-3">
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Consultation Completed
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Consultation completed for Patient{" "}
                   <span className="font-medium">Rahul Mehta</span>.
                 </p>
               </div>
 
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Prescription Added
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   New prescription created for Patient{" "}
                   <span className="font-medium">Priya Sharma</span>.
                 </p>
               </div>
 
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Lab Report Reviewed
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Reviewed blood test report for Patient{" "}
                   <span className="font-medium">Amit Nair</span>.
                 </p>
               </div>
 
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Follow-up Scheduled
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Follow-up appointment scheduled for Patient{" "}
                   <span className="font-medium">Sunita Rao</span> on 4 Nov 2025.
                 </p>
               </div>
 
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Lab Test Requested
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   MRI Scan requested for Patient{" "}
                   <span className="font-medium">Arjun Patel</span>.
                 </p>
               </div>
 
               <div className="border rounded border-gray-300 p-2.5">
-                <p className="text-lg font-semibold text-[#212a31]">
+                <p className="text-lg font-semibold text-[#003441]">
                   Appointment Cancelled
                 </p>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Appointment for Patient{" "}
                   <span className="font-medium">Deepak Rao</span> cancelled due
                   to no-show.
@@ -279,7 +279,7 @@ function DoctorDashboard() {
           </div>
 
           <div className="bg-white p-5 w-full rounded border border-gray-300 shadow">
-            <div className="flex mb-2 text-[#196d8e] items-center space-x-2">
+            <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>
             </div>
@@ -289,18 +289,18 @@ function DoctorDashboard() {
                 <div className="flex items-center space-x-1">
                   <GoDiscussionClosed
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Start Consultation
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">Begin patient session.</p>
+                <p className="text-[#01B49C] text-sm">Begin patient session.</p>
                 <button
                   onClick={() => {
                     navigation("/DoctorConsultation");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   Start Consultation
                 </button>
@@ -310,20 +310,20 @@ function DoctorDashboard() {
                 <div className="flex items-center space-x-1">
                   <GiMedicinePills
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     View Prescription
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   View medicines in prescriptions”.
                 </p>
                 <button
                   onClick={() => {
                     navigation("/DoctorPrescription");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]"
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
                 >
                   View Prescription
                 </button>
@@ -333,18 +333,18 @@ function DoctorDashboard() {
                 <div className="flex items-center space-x-1">
                   <RiTestTubeLine
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     View Lab Reports
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">Review latest results.</p>
+                <p className="text-[#01B49C] text-sm">Review latest results.</p>
                 <button 
                 onClick={() => {
                     navigation("/DoctorLabReports");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
                   View Reports
                 </button>
               </div>
@@ -353,16 +353,16 @@ function DoctorDashboard() {
                 <div className="flex items-center space-x-1">
                   <FaCalendarAlt
                     size={25}
-                    className="text-[#212a31] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 rounded border-gray-300"
                   />
-                  <p className="text-[#212a31] text-lg font-semibold">
+                  <p className="text-[#003441] text-lg font-semibold">
                     Schedule Appointment
                   </p>
                 </div>
-                <p className="text-[#196d8e] text-sm">
+                <p className="text-[#01B49C] text-sm">
                   Create a new appointment for a patient.
                 </p>
-                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#212a31]">
+                <button className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
                   + Create Appointment
                 </button>
               </div>

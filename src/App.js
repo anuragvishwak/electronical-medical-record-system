@@ -47,6 +47,7 @@ import PatientPaymentHistory from "./Patients/PatientPaymentHistory";
 import NurseProfileUpdateSetting from "./Nurse/NurseProfileUpdateSetting";
 import LabTechnicianProfileUpdateSetting from "./Lab Technician/LabTechnicianProfileUpdateSetting";
 import InsuranceDeptDashboard from "./Insurance Staff/InsuranceDeptDashboard";
+import MainLandingPage from "./MainLandingPage";
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
       <Router>
         <Routes>
           {/* Only dashboard routes */}
-          <Route path="/" element={<Login />} />
+          <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/PatientDashboard" element={<PatientDashboard />} />
           <Route path="/DoctorDashboard" element={<DoctorDashboard />} />
@@ -92,6 +93,12 @@ function App() {
             path="/PatientConsultation"
             element={<PatientConsultation />}
           />
+
+           <Route
+            path="/"
+            element={<MainLandingPage />}
+          />
+          
           <Route path="/PatientLabReport" element={<PatientLabReport />} />
           <Route path="/ViewInsuranceInfo" element={<ViewInsuranceInfo />} />
           <Route path="/InsuranceProvider" element={<InsuranceProvider />} />

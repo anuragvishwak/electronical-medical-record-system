@@ -52,8 +52,8 @@ function DoctorConsultation() {
 
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">Consultation</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl font-bold text-[#003441]">Consultation</p>
+          <p className="text-[#01B49C]">
             Manage patient's Consultations across the healthcare system
           </p>
         </div>
@@ -86,7 +86,7 @@ function DoctorConsultation() {
       <div className="grid grid-cols-3 m-5 gap-5">
         {gettingConsultations.map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-3 flex items-start justify-between bg-[#196d8e] text-white rounded-t">
+            <div className="p-3 flex items-start justify-between bg-[#01B49C] text-white rounded-t">
               <div>
                 {gettingUser
                   .filter((user) => user.email === prep.patient)
@@ -115,10 +115,10 @@ function DoctorConsultation() {
             </div>
 
             <div className="m-5">
-              <p className="font-semibold text-[#212a31] mb-1">
+              <p className="font-semibold text-[#003441] mb-1">
                 History of Present Illness
               </p>
-              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-[#212a31] text-sm text-justify">
+              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-[#003441] text-sm text-justify">
                 {prep.historyofPresentIllness}
               </p>
             </div>
@@ -135,7 +135,7 @@ function DoctorConsultation() {
                   setcapturingDataObject(prep);
                   setopeningAdditionalDetails(true);
                 }}
-                className="text-[#212a31]"
+                className="text-[#003441]"
               >
                   <FaEye size={21} />
               </button>
@@ -145,12 +145,12 @@ function DoctorConsultation() {
                   setcapturingDataObject(prep);
                   setopeningUpdateConsultationForm(true);
                 }}
-                className="text-[#212a31]"
+                className="text-[#003441]"
               >
                 <FaPencil />
               </button>
 
-              <button className="text-[#196d8e]">
+              <button className="text-[#01B49C]">
                 <MdDelete size={19}/>
               </button>
             </div>

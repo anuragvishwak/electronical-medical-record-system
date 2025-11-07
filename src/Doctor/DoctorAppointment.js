@@ -35,8 +35,8 @@ function DoctorAppointment() {
       <DoctorNavbar />
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl text-[#212a31] font-bold">Appointments</p>
-          <p className="text-[#196d8e]">
+          <p className="text-2xl text-[#003441] font-bold">Appointments</p>
+          <p className="text-[#01B49C]">
             Doctor can view their patient's{" "}
             appointments
             here

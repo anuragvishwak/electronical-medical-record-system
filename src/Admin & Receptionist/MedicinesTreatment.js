@@ -18,17 +18,17 @@ function MedicinesTreatment() {
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <div className="flex items-center justify">
-            <p className="text-2xl font-bold text-[#212a31]">Medicines</p>
+            <p className="text-2xl font-bold text-[#003441]">Medicines</p>
             <button
               onClick={() => {
                 setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#212a31] text-[#212a31] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
             >
               <FaBars />
             </button>
           </div>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             Manage medicines across the healthcare system.
           </p>
         </div>
@@ -58,7 +58,7 @@ function MedicinesTreatment() {
             onClick={() => {
               setopeningMedicineForm(true);
             }}
-            className="bg-[#196d8e] py-1.5 px-3 rounded shadow text-white"
+            className="bg-[#01B49C] py-1.5 px-3 rounded shadow text-white"
           >
             + Create Medicine
           </button>

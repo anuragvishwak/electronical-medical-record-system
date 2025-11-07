@@ -27,7 +27,7 @@ function InsuranceToPatient() {
     <div>
       <div className="bg-white p-3 border border-gray-300 shadow rounded m-5">
         <table className="table-auto w-full">
-          <thead className="bg-gray-50 text-[#212a31] border border-gray-300">
+          <thead className="bg-gray-50 text-[#003441] border border-gray-300">
             <th className="text-start px-3 py-2">Patient Name</th>
             <th className="text-start px-3 py-2">Provider Name</th>
             <th className="text-start">Policy Number</th>
@@ -37,7 +37,7 @@ function InsuranceToPatient() {
           </thead>
           <tbody>
             {gettingInsurances.map((provider) => (
-              <tr key={provider.id} className="border-b text-[#196d8e]">
+              <tr key={provider.id} className="border-b text-[#01B49C]">
                 <td className="px-2 py-2">{provider.patient}</td>
                 <td className="px-2 py-2">{provider.providerName}</td>
                 <td className="px-2 py-1">{provider.policyNumber}</td>

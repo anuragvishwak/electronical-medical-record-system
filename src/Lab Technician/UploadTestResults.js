@@ -84,10 +84,10 @@ function UploadTestResults() {
       <LabTechnicianNavbar />
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl font-bold text-[#212a31]">
+          <p className="text-2xl font-bold text-[#003441]">
             Upload Test Results
           </p>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             Upload and manage test lab results across the healthcare system
           </p>
         </div>
@@ -131,7 +131,7 @@ function UploadTestResults() {
       <div>
         <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
           <table className="w-full table-auto">
-            <thead className="bg-gray-50 text-[#212a31] border border-gray-300">
+            <thead className="bg-gray-50 text-[#003441] border border-gray-300">
               <tr>
                 <th className="py-1.5">Patient Name</th>
                 <th>Doctor Name</th>
@@ -147,7 +147,7 @@ function UploadTestResults() {
 
             <tbody>
               {gettingLabResults.map((lab) => (
-                <tr className="text-[#196d8e] border-b border-gray-300">
+                <tr className="text-[#01B49C] border-b border-gray-300">
                   {gettingUser
                     .filter((user) => user.email === lab.patient)
                     .map((user) => (
@@ -189,7 +189,7 @@ function UploadTestResults() {
                           setcapturingLab(lab);
                           setopeningChargesForm(true);
                         }}
-                        className="text-[#196d8e] text-sm border border-[#196d8e] hover:bg-[#196d8e] py-1 px-3 rounded hover:text-white"
+                        className="text-[#01B49C] text-sm border border-[#01B49C] hover:bg-[#01B49C] py-1 px-3 rounded hover:text-white"
                       >
                         <div className="flex items-center space-x-1">
                           <FaPlus />
@@ -201,15 +201,15 @@ function UploadTestResults() {
                           setcapturingLab(lab);
                           setopeningTestResults(true);
                         }}
-                        className="text-[#212a31]"
+                        className="text-[#003441]"
                       >
                         <FaEye />
                       </button>
-                      <button className="text-[#212a31]">
+                      <button className="text-[#003441]">
                         <FaPencil />
                       </button>
 
-                      <button className="text-[#196d8e]">
+                      <button className="text-[#01B49C]">
                         <MdDelete size={19} />
                       </button>
                     </div>

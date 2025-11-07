@@ -64,10 +64,10 @@ function ViewInsuranceInfo() {
 
       <div className="m-5 p-5 bg-white rounded shadow border border-gray-300">
         <div>
-          <p className="text-3xl text-[#212a31] font-bold">
+          <p className="text-3xl text-[#003441] font-bold">
             View Insurance Information
           </p>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             All the Insurance information will be displayed here.
           </p>
         </div>
@@ -97,7 +97,7 @@ function ViewInsuranceInfo() {
               onClick={() => {
                 setopeningAddInsuranceForm(true);
               }}
-              className="bg-[#196d8e] py-1 px-3 rounded shadow text-white"
+              className="bg-[#01B49C] py-1 px-3 rounded shadow text-white"
             >
               + Add Insurance
             </button>
@@ -105,12 +105,12 @@ function ViewInsuranceInfo() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">
+      <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
         {gettingInsurances.map((insurance) => (
           <div className="bg-white p-5 rounded-lg shadow">
             <div className="flex items-start justify-between">
               <p className="text-xl font-bold">{insurance.patient}</p>
-              <p className="bg-[#196d8e] rounded-full text-white py-1 text-sm font-semibold px-4">
+              <p className="bg-[#01B49C] rounded-full text-white py-1 text-sm font-semibold px-4">
                 {insurance.status}
               </p>
             </div>
@@ -119,22 +119,22 @@ function ViewInsuranceInfo() {
             </p>
 
             <div className="my-8">
-              <p className="text-[#196d8e]">Provider</p>
-              <p className="text-[#212a31] font-semibold">
+              <p className="text-[#01B49C]">Provider</p>
+              <p className="text-[#003441] font-semibold">
                 {insurance.providerName}
               </p>
             </div>
 
             <div className="flex items-center space-x-8">
               <div className="">
-                <p className="text-[#196d8e]">Coverage Type</p>
-                <p className="text-[#212a31] font-semibold">
+                <p className="text-[#01B49C]">Coverage Type</p>
+                <p className="text-[#003441] font-semibold">
                   {insurance.coverageType}
                 </p>
               </div>
 
               <div className="">
-                <p className="text-[#196d8e]">Sum Insured</p>
+                <p className="text-[#01B49C]">Sum Insured</p>
                 <div className="text-green-500 flex items-center space-x-1 font-semibold">
                   <FaIndianRupeeSign />
                   <p>{insurance.sumInsured}/-</p>
@@ -144,15 +144,15 @@ function ViewInsuranceInfo() {
 
             <div className="flex items-center space-x-14 mt-3">
               <div className="">
-                <p className="text-[#196d8e]">Valid From</p>
-                <p className="text-[#212a31] font-semibold">
+                <p className="text-[#01B49C]">Valid From</p>
+                <p className="text-[#003441] font-semibold">
                   {insurance.validFrom}
                 </p>
               </div>
 
               <div className="">
-                <p className="text-[#196d8e]">Valid To</p>
-                <p className="text-[#212a31] font-semibold">
+                <p className="text-[#01B49C]">Valid To</p>
+                <p className="text-[#003441] font-semibold">
                   {insurance.validTo}
                 </p>
               </div>

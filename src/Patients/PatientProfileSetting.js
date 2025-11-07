@@ -91,21 +91,21 @@ function PatientProfileSetting() {
             <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-5">
-                  <p className="bg-[#212a31] py-14 px-12 text-5xl font-bold rounded-full text-white">
+                  <p className="bg-[#003441] py-14 px-12 text-5xl font-bold rounded-full text-white">
                     {getInitials(user.name)}
                   </p>
                   <div>
                     <div>
-                      <p className="text-3xl text-[#212a31] font-bold">
+                      <p className="text-3xl text-[#003441] font-bold">
                         {user.name}
                       </p>
                       <div className="flex items-center space-x-2">
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <MdEmail />
                           {user.email}
                         </p>
                         <span className="font-semibold">|</span>
-                        <p className="text-[#196d8e] flex items-center gap-1">
+                        <p className="text-[#01B49C] flex items-center gap-1">
                           <FaPhone />
                           +91 {user.phone_no}
                         </p>
@@ -114,7 +114,7 @@ function PatientProfileSetting() {
 
                     {location.pathname === "PatientProfileSetting" ? (
                       <div>
-                        <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                        <p className="text-[#003441] font-semibold flex items-center gap-1">
                           <BsShield />
                           {user.designation}
                         </p>
@@ -124,7 +124,7 @@ function PatientProfileSetting() {
                     )}
 
                     <div>
-                      <p className="text-[#212a31] font-semibold flex items-center gap-1">
+                      <p className="text-[#003441] font-semibold flex items-center gap-1">
                         <FaLocationDot />
                         {user.city}, {user.state}, {user.country}
                       </p>
@@ -132,12 +132,12 @@ function PatientProfileSetting() {
 
                     <div className="flex items-center gap-3">
                       <div className="flex items-center space-x-1">
-                        <p className="text-[#196d8e]">DOB:</p>
-                        <p className="text-[#212a31] font-semibold">
+                        <p className="text-[#01B49C]">DOB:</p>
+                        <p className="text-[#003441] font-semibold">
                           {user.dateOfBirth}
                         </p>
                       </div>
-                      <p className="text-white px-4 py-0.5 rounded-full text-sm bg-[#196d8e]">
+                      <p className="text-white px-4 py-0.5 rounded-full text-sm bg-[#01B49C]">
                         {user.status}
                       </p>
                     </div>
@@ -148,7 +148,7 @@ function PatientProfileSetting() {
                     setopeningPatientProfileUpdateForm(true);
                     setcurrentUserName(user);
                   }}
-                  className="bg-[#212a31] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -167,33 +167,33 @@ function PatientProfileSetting() {
 
               <div className="flex items-center gap-5">
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {user.knownAllegeries}
                   </p>
-                  <p className="text-[#196d8e]">Known Allergies</p>
+                  <p className="text-[#01B49C]">Known Allergies</p>
                 </div>
 
                 <div>
-                  <p className="text-[#212a31] font-semibold">
+                  <p className="text-[#003441] font-semibold">
                     {user.chronicCondition}
                   </p>
-                  <p className="text-[#196d8e]">Chronic Condition</p>
+                  <p className="text-[#01B49C]">Chronic Condition</p>
                 </div>
               </div>
 
               <div className="p-3 my-3 rounded border border-gray-300">
-                <p className="text-[#196d8e] font-bold">Current Medications</p>
+                <p className="text-[#01B49C] font-bold">Current Medications</p>
                 {gettingConsultations.map((consult) => (
-                  <p className="text-[#212a31] font-semibold text-sm text-justify">
+                  <p className="text-[#003441] font-semibold text-sm text-justify">
                     {consult.medication_procedures}
                   </p>
                 ))}
               </div>
 
               <div className="p-3 rounded border border-gray-300">
-                <p className="text-[#196d8e] font-bold ">Medical History</p>
+                <p className="text-[#01B49C] font-bold ">Medical History</p>
                 {gettingConsultations.map((consult) => (
-                  <p className="text-[#212a31] font-semibold text-sm text-justify">
+                  <p className="text-[#003441] font-semibold text-sm text-justify">
                     {consult.pastMedicalHistory}
                   </p>
                 ))}
@@ -210,47 +210,47 @@ function PatientProfileSetting() {
                       <div>
                         <div className="flex items-center gap-10">
                           <div>
-                            <p className="text-[#212a31] font-semibold">
+                            <p className="text-[#003441] font-semibold">
                               {insurance.providerName}
                             </p>
-                            <p className="text-[#196d8e]">Provider Name</p>
+                            <p className="text-[#01B49C]">Provider Name</p>
                           </div>
 
                           <div>
-                            <p className="text-[#212a31] flex items-center space-x-2 font-semibold">
+                            <p className="text-[#003441] flex items-center space-x-2 font-semibold">
                               <FaIndianRupeeSign />
                               {insurance.sumInsured}/-
                             </p>
-                            <p className="text-[#196d8e]">Sum Insured</p>
+                            <p className="text-[#01B49C]">Sum Insured</p>
                           </div>
 
                           <div>
-                            <p className="text-[#212a31] font-semibold">
+                            <p className="text-[#003441] font-semibold">
                               {insurance.policyNumber}
                             </p>
-                            <p className="text-[#196d8e]">Policy Number</p>
+                            <p className="text-[#01B49C]">Policy Number</p>
                           </div>
 
                           <div>
-                            <p className="text-[#212a31] font-semibold">
+                            <p className="text-[#003441] font-semibold">
                               {insurance.coverageType}
                             </p>
-                            <p className="text-[#196d8e]">Coverage Type</p>
+                            <p className="text-[#01B49C]">Coverage Type</p>
                           </div>
                         </div>
                         <div className="flex items-center mt-3 space-x-3">
                           <div>
-                            <p className="text-[#212a31] font-semibold">
+                            <p className="text-[#003441] font-semibold">
                               {insurance.validFrom}
                             </p>
-                            <p className="text-[#196d8e]">Valid From</p>
+                            <p className="text-[#01B49C]">Valid From</p>
                           </div>
                           <span className="text-3xl">|</span>
                           <div>
-                            <p className="text-[#212a31] font-semibold">
+                            <p className="text-[#003441] font-semibold">
                               {insurance.validTo}
                             </p>
-                            <p className="text-[#196d8e]">Valid To</p>
+                            <p className="text-[#01B49C]">Valid To</p>
                           </div>
                         </div>
                       </div>

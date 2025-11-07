@@ -45,10 +45,10 @@ function InsuranceProvider() {
 
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
-          <p className="text-2xl text-[#212a31] font-bold">
+          <p className="text-2xl text-[#003441] font-bold">
             Insurance Provider
           </p>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             All the{" "}
               Insurance provider
             details will be displayed here.
@@ -75,23 +75,23 @@ function InsuranceProvider() {
               onClick={() => {
                 setopeningAddInsuranceCompany(true);
               }}
-              className="bg-[#196d8e] py-1 w-56 rounded shadow text-white"
+              className="bg-[#01B49C] py-1 w-56 rounded shadow text-white"
             >
               + Add Insurance Provider
             </button>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#196d8e] scrollbar-track-gray-200">
+      <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
         {gettingInsuranceCompanies.map((insurance) => (
           <div className="bg-white mb-5 p-5 rounded-lg border border-gray-300 shadow">
             <div>
               <div>
                 <div className="flex items-center justify-between">
-                  <p className="text-xl text-[#212a31] font-bold">
+                  <p className="text-xl text-[#003441] font-bold">
                     {insurance.providerName}
                   </p>
-                  <p className="bg-[#196d8e] rounded-full text-white py-1 text-sm font-semibold px-4">
+                  <p className="bg-[#01B49C] rounded-full text-white py-1 text-sm font-semibold px-4">
                     {insurance.policyTypeSupported}
                   </p>
                 </div>
@@ -102,22 +102,22 @@ function InsuranceProvider() {
             </div>
 
             <div className="my-5">
-              <p className="text-[#196d8e]">Contact Person</p>
-              <p className="text-[#212a31] font-semibold">
+              <p className="text-[#01B49C]">Contact Person</p>
+              <p className="text-[#003441] font-semibold">
                 {insurance.contactPerson}
               </p>
             </div>
 
             <div className="grid grid-cols-3">
               <div>
-                <p className="text-[#196d8e]">Phone No</p>
-                <p className="text-[#212a31] font-semibold">
+                <p className="text-[#01B49C]">Phone No</p>
+                <p className="text-[#003441] font-semibold">
                   {insurance.phoneNumber}
                 </p>
               </div>
               <div>
-                <p className="text-[#196d8e]">Email</p>
-                <p className="text-[#212a31] font-semibold">
+                <p className="text-[#01B49C]">Email</p>
+                <p className="text-[#003441] font-semibold">
                   {insurance.email}
                 </p>
               </div>
@@ -130,7 +130,7 @@ function InsuranceProvider() {
                   setopeningAdditionalDetails(true);
                   setcapturingDataObject(insurance);
                 }}
-                className="bg-[#212a31] text-white px-3 rounded py-1"
+                className="bg-[#003441] text-white px-3 rounded py-1"
               >
                 <div className="flex items-center space-x-1">
                   <FaEye />
@@ -161,7 +161,7 @@ function InsuranceProvider() {
         <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
           <div className="bg-white w-6/12 p-4 rounded">
             <div className="flex items-start mb-5 justify-between">
-              <p className="text-[#212a31] text-xl font-bold">
+              <p className="text-[#003441] text-xl font-bold">
                 Additonal Details (Address / Coverage Notes / Limitations)
               </p>
               <button
@@ -176,17 +176,17 @@ function InsuranceProvider() {
 
             <div className="">
               <div>
-                <p className="text-[#212a31] font-semibold">Address:</p>
+                <p className="text-[#003441] font-semibold">Address:</p>
                 <p className="text-gray-600 text-justify  w-auto italic">
                   {capturingDataObject.address}
                 </p>
               </div>
 
               <div className="my-3">
-                <p className="text-[#196d8e] flex items-center font-semibold">
+                <p className="text-[#01B49C] flex items-center font-semibold">
                   <GrNotes className="mr-1" /> Coverage Notes
                 </p>
-                <p className="text-gray-600 shadow p-3 rounded bg-[#e6f3f8] border border-[#196d8e] text-justify w-auto  italic">
+                <p className="text-gray-600 shadow p-3 rounded bg-[#e6f3f8] border border-[#01B49C] text-justify w-auto  italic">
                   {capturingDataObject.coverageNotes}
                 </p>
               </div>

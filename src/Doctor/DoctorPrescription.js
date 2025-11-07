@@ -63,7 +63,7 @@ function DoctorPrescription() {
       <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
         <div>
           <p className="text-2xl font-bold ">Prescriptions</p>
-          <p className="text-[#196d8e]">
+          <p className="text-[#01B49C]">
             Manage patient's prescriptions
             across the healthcare system
           </p>
@@ -96,7 +96,7 @@ function DoctorPrescription() {
       <div className="grid grid-cols-3 m-5 gap-5">
         {gettingPrescriptions.map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-3 bg-[#196d8e] text-white rounded-t">
+            <div className="p-3 bg-[#01B49C] text-white rounded-t">
               {gettingUser
                 .filter((user) => user.email === prep.patient)
                 .map((user) => (
@@ -157,10 +157,10 @@ function DoctorPrescription() {
 
               <div>
                 <div className="flex items-center space-x-1 mt-2">
-                  <GrNotes className="text-[#196d8e]" />
-                  <p className="text-[#196d8e]">Notes:</p>
+                  <GrNotes className="text-[#01B49C]" />
+                  <p className="text-[#01B49C]">Notes:</p>
                 </div>
-                <p className="bg-[#e4f7ff] text-[#196d8e] text-sm p-2 rounded">
+                <p className="bg-[#e4f7ff] text-[#01B49C] text-sm p-2 rounded">
                   {prep.additionalNote}
                 </p>
               </div>
@@ -173,12 +173,12 @@ function DoctorPrescription() {
                   setcapturingPrescriptionObject(prep);
                 }}
               >
-                <div className="flex items-center text-[#212a31] space-x-1">
+                <div className="flex items-center text-[#003441] space-x-1">
                   <FaPencil />
                 </div>
               </button>
 
-              <button className="text-[#196d8e]">
+              <button className="text-[#01B49C]">
                 <MdDelete size={19} />
               </button>
             </div>

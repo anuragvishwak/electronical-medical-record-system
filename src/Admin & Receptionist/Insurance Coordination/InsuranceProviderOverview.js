@@ -27,7 +27,7 @@ function InsuranceProviderOverview() {
   return (
     <div className="bg-white p-3 border border-gray-300 shadow rounded m-5">
          <table className="table-auto w-full">
-        <thead className="bg-gray-50 text-[#212a31] border border-gray-300">
+        <thead className="bg-gray-50 text-[#003441] border border-gray-300">
             <th className="text-center px-3 py-2">Provider Name</th>
             <th className="text-center">Provider Code</th>
             <th className="text-center">Policy Type Supported</th>
@@ -37,7 +37,7 @@ function InsuranceProviderOverview() {
         </thead>
         <tbody>
             {gettingInsuranceCompanies.map((provider) => (
-            <tr key={provider.id} className="border-b text-center text-[#196d8e] border-gray-300">
+            <tr key={provider.id} className="border-b text-center text-[#01B49C] border-gray-300">
               <td className="px-2 py-2">{provider.providerName}</td>
               <td className="px-2 py-1">{provider.companyCode}</td>
               <td className="px-2 py-1">{provider.policyTypeSupported}</td>

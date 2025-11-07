@@ -95,42 +95,42 @@ function PatientInsuranceDetails() {
                   className="bg-white border p-4 rounded shadow broder-gray-300"
                 >
                   <div>
-                    <div className="flex items-center text-[#212a31] space-x-1">
+                    <div className="flex items-center text-[#003441] space-x-1">
                       <BsShield size={20} />
                       <p className="font-bold text-xl">
                         Basic Policy Information
                       </p>
                     </div>
-                    <p className=" text-[#196d8e]">
+                    <p className=" text-[#01B49C]">
                       Core insurance policy details and coverage validity.
                     </p>
                   </div>
 
                   <div className="flex mt-5 items-center gap-10">
                     <div>
-                      <p className=" text-[#196d8e]">Insurance Provider</p>
-                      <p className="text-[#212a31] font-bold capitalize">
+                      <p className=" text-[#01B49C]">Insurance Provider</p>
+                      <p className="text-[#003441] font-bold capitalize">
                         {insurance.providerName}
                       </p>
                     </div>
 
                     <div>
-                      <p className=" text-[#196d8e]">Policy Number</p>
-                      <p className="text-[#212a31] font-bold capitalize">
+                      <p className=" text-[#01B49C]">Policy Number</p>
+                      <p className="text-[#003441] font-bold capitalize">
                         {insurance.policyNumber}
                       </p>
                     </div>
 
                     <div>
-                      <p className=" text-[#196d8e]">Coverage Type</p>
-                      <p className="text-[#212a31] font-bold capitalize">
+                      <p className=" text-[#01B49C]">Coverage Type</p>
+                      <p className="text-[#003441] font-bold capitalize">
                         {insurance.coverageType}
                       </p>
                     </div>
 
                     <div>
-                      <p className=" text-[#196d8e]">Coverage Amount</p>
-                      <div className="text-[#212a31] flex items-center">
+                      <p className=" text-[#01B49C]">Coverage Amount</p>
+                      <div className="text-[#003441] flex items-center">
                         <FaIndianRupeeSign />
                         <p className="font-bold capitalize">
                           {insurance.sumInsured}/-
@@ -139,7 +139,7 @@ function PatientInsuranceDetails() {
                     </div>
 
                     <div>
-                      <p className=" text-[#196d8e]">Status</p>
+                      <p className=" text-[#01B49C]">Status</p>
                       <p
                         className={`font-bold py-0.5 px-3 rounded-full text-sm ${
                           insurance.status === "pending"
@@ -154,15 +154,15 @@ function PatientInsuranceDetails() {
                   <hr className="border-gray-300 my-4" />
                   <div className="flex items-center gap-10">
                     <div>
-                      <p className="text-[#196d8e]">Valid From</p>
-                      <p className="text-[#212a31] font-bold capitalize">
+                      <p className="text-[#01B49C]">Valid From</p>
+                      <p className="text-[#003441] font-bold capitalize">
                         {insurance.validFrom}
                       </p>
                     </div>
 
                     <div>
-                      <p className=" text-[#196d8e]">Valid To</p>
-                      <p className="text-[#212a31] font-bold capitalize">
+                      <p className=" text-[#01B49C]">Valid To</p>
+                      <p className="text-[#003441] font-bold capitalize">
                         {insurance.validTo}
                       </p>
                     </div>
@@ -171,11 +171,11 @@ function PatientInsuranceDetails() {
 
                 <div className="bg-white p-5 mt-5 rounded shadow border border-gray-300">
                   <div>
-                    <div className="flex items-center text-[#212a31] space-x-1">
+                    <div className="flex items-center text-[#003441] space-x-1">
                       <TbCheckupList size={20} />
                       <p className="font-bold text-xl">Claim Details</p>
                     </div>
-                    <p className=" text-[#196d8e]">
+                    <p className=" text-[#01B49C]">
                       Track submitted claims, approvals, and settlement details.
                     </p>
                   </div>
@@ -188,7 +188,7 @@ function PatientInsuranceDetails() {
                       <div>
                         <div className="flex items-center mt-5 gap-10">
                           <div>
-                            <p className=" text-[#196d8e]">
+                            <p className=" text-[#01B49C]">
                               Date of Claim Submittion
                             </p>
                             <p className="font-bold capitalize">
@@ -197,14 +197,14 @@ function PatientInsuranceDetails() {
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">Claim Type</p>
+                            <p className=" text-[#01B49C]">Claim Type</p>
                             <p className="font-bold capitalize">
                               {claim.claimType}
                             </p>
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">
+                            <p className=" text-[#01B49C]">
                               Treatment & Diagnosis
                             </p>
                             <p className="font-bold capitalize">
@@ -216,10 +216,10 @@ function PatientInsuranceDetails() {
 
                         <div className="flex items-center mt-5 gap-10">
                           <div>
-                            <p className=" text-[#196d8e]">
+                            <p className=" text-[#01B49C]">
                               Claim Amount Filed
                             </p>
-                            <div className="text-[#212a31] flex items-center">
+                            <div className="text-[#003441] flex items-center">
                               <FaIndianRupeeSign />
                               <p className="font-bold capitalize">
                                 {claim.claimAmountFiled}/-
@@ -228,10 +228,10 @@ function PatientInsuranceDetails() {
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">
+                            <p className=" text-[#01B49C]">
                               Claim Amount Approved
                             </p>
-                            <div className="text-[#212a31] flex items-center">
+                            <div className="text-[#003441] flex items-center">
                               <FaIndianRupeeSign />
                               <p className="font-bold capitalize">
                                 {claim.claimAmountApproved}/-
@@ -240,8 +240,8 @@ function PatientInsuranceDetails() {
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">Settlement Amount</p>
-                            <div className="text-[#212a31] flex items-center">
+                            <p className=" text-[#01B49C]">Settlement Amount</p>
+                            <div className="text-[#003441] flex items-center">
                               <FaIndianRupeeSign />
                               <p className="font-bold capitalize">
                                 {claim.settlementAmount}/-
@@ -254,24 +254,24 @@ function PatientInsuranceDetails() {
 
                         <div className="flex items-center gap-10">
                           <div>
-                            <p className=" text-[#196d8e]">Date of Payment</p>
-                            <p className="text-[#212a31] font-bold capitalize">
+                            <p className=" text-[#01B49C]">Date of Payment</p>
+                            <p className="text-[#003441] font-bold capitalize">
                               {claim.dateOfPayment}
                             </p>
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">Payment Mode</p>
-                            <p className="text-[#212a31] font-bold capitalize">
+                            <p className=" text-[#01B49C]">Payment Mode</p>
+                            <p className="text-[#003441] font-bold capitalize">
                               {claim.paymentMode}
                             </p>
                           </div>
 
                           <div>
-                            <p className=" text-[#196d8e]">
+                            <p className=" text-[#01B49C]">
                               Transaction Reference Number
                             </p>
-                            <p className="text-[#212a31] font-bold capitalize">
+                            <p className="text-[#003441] font-bold capitalize">
                               #{claim.transactionReferenceNo}
                             </p>
                           </div>
