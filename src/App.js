@@ -48,6 +48,7 @@ import NurseProfileUpdateSetting from "./Nurse/NurseProfileUpdateSetting";
 import LabTechnicianProfileUpdateSetting from "./Lab Technician/LabTechnicianProfileUpdateSetting";
 import InsuranceDeptDashboard from "./Insurance Staff/InsuranceDeptDashboard";
 import MainLandingPage from "./MainLandingPage";
+import Resource from "./Resource";
 
 function App() {
   return (
@@ -67,6 +68,10 @@ function App() {
           <Route
             path="/InsuranceStaffDashboard"
             element={<InsuranceStaffDashboard />}
+          />
+           <Route
+            path="/Resource"
+            element={<Resource />}
           />
           <Route path="/MedicationLogs" element={<MedicationLogs />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
