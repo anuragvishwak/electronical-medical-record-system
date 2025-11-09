@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
+import RegisterHospital from "./RegisterHospital";
 
 function Login() {
   const toast = useRef(null);
@@ -12,6 +13,7 @@ function Login() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [gettingUsers, setgettingUsers] = useState([]);
+  const [openingRegisterHospital, setopeningRegisterHospital] = useState(false);
 
   async function renderingUser() {
     const taskDetails = await getDocs(collection(database, "user_database"));
@@ -32,7 +34,7 @@ function Login() {
       );
       const user = userCredential.user;
 
-      console.log("finding user", user)
+      console.log("finding user", user);
 
       const q = query(
         collection(database, "user_database"),
@@ -184,12 +186,25 @@ function Login() {
           </div>
 
           <div className="flex text-[#1976D2] items-center mt-5 justify-center">
-            <button className="">Technical Support</button>
+            <button
+              onClick={() => {
+                setopeningRegisterHospital(true);
+              }}
+              className=""
+            >
+              Register Hospital
+            </button>
             <p className="text-gray-500 mx-3">|</p>
             <button>Privacy Policy</button>
           </div>
         </div>
       </div>
+
+      {openingRegisterHospital && (
+        <RegisterHospital
+          setopeningRegisterHospital={setopeningRegisterHospital}
+        />
+      )}
     </div>
   );
 }
