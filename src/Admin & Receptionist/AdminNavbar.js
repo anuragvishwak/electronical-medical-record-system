@@ -79,9 +79,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminDashboard");
             }}
-            className={`${
-              location.pathname === "/AdminDashboard" ? "text-[#01B49C]" : ""
-            }`}
+            className={`${location.pathname === "/AdminDashboard" ? "text-[#01B49C]" : ""
+              }`}
           >
             Home
           </button>
@@ -89,9 +88,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminAppointment");
             }}
-            className={`${
-              location.pathname === "/AdminAppointment" ? "text-[#01B49C]" : ""
-            }`}
+            className={`${location.pathname === "/AdminAppointment" ? "text-[#01B49C]" : ""
+              }`}
           >
             Appointment
           </button>
@@ -99,9 +97,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/UserManagement");
             }}
-            className={`${
-              location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
-            }`}
+            className={`${location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
+              }`}
           >
             User Management
           </button>
@@ -109,11 +106,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminBillingPayment");
             }}
-            className={`${
-              location.pathname === "/AdminBillingPayment"
-                ? "text-[#01B49C]"
-                : ""
-            }`}
+            className={`${location.pathname === "/AdminBillingPayment"
+              ? "text-[#01B49C]"
+              : ""
+              }`}
           >
             Billing & Payment
           </button>
@@ -121,11 +117,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminInsuranceCoordination");
             }}
-            className={`${
-              location.pathname === "/AdminInsuranceCoordination"
-                ? "text-[#01B49C]"
-                : ""
-            }`}
+            className={`${location.pathname === "/AdminInsuranceCoordination"
+              ? "text-[#01B49C]"
+              : ""
+              }`}
           >
             Insurance Coordination
           </button>
@@ -133,11 +128,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/MedicinesTreatment");
             }}
-            className={`${
-              location.pathname === "/MedicinesTreatment"
-                ? "text-[#01B49C]"
-                : ""
-            }`}
+            className={`${location.pathname === "/MedicinesTreatment"
+              ? "text-[#01B49C]"
+              : ""
+              }`}
           >
             Medicines
           </button>
@@ -145,9 +139,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/StaffManagement");
             }}
-            className={`${
-              location.pathname === "/StaffManagement" ? "text-[#01B49C]" : ""
-            }`}
+            className={`${location.pathname === "/StaffManagement" ? "text-[#01B49C]" : ""
+              }`}
           >
             Staff Management
           </button>
@@ -155,11 +148,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminProfileSetting");
             }}
-            className={`${
-              location.pathname === "/AdminProfileSetting"
-                ? "text-[#01B49C]"
-                : ""
-            }`}
+            className={`${location.pathname === "/AdminProfileSetting"
+              ? "text-[#01B49C]"
+              : ""
+              }`}
           >
             Profile / Setting
           </button>
@@ -186,7 +178,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
           <button>Notify</button>
           <button
             onClick={() => {
-              navigate("/");
+              navigate("/Login");
               localStorage.clear();
             }}
           >
@@ -218,9 +210,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminPatient");
               }}
-              className={`${
-                location.pathname === "/AdminPatient" ? "text-[#01B49C]" : ""
-              }`}
+              className={`${location.pathname === "/AdminPatient" ? "text-[#01B49C]" : ""
+                }`}
             >
               Patient
             </button>
@@ -228,11 +219,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminAppointment");
               }}
-              className={`${
-                location.pathname === "/AdminAppointment"
-                  ? "text-[#01B49C]"
-                  : ""
-              }`}
+              className={`${location.pathname === "/AdminAppointment"
+                ? "text-[#01B49C]"
+                : ""
+                }`}
             >
               Appointment
             </button>
@@ -240,9 +230,8 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/UserManagement");
               }}
-              className={`${
-                location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
-              }`}
+              className={`${location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
+                }`}
             >
               User Management
             </button>
@@ -250,11 +239,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminBillingPayment ");
               }}
-              className={`${
-                location.pathname === "/AdminBillingPayment "
-                  ? "text-[#01B49C]"
-                  : ""
-              }`}
+              className={`${location.pathname === "/AdminBillingPayment "
+                ? "text-[#01B49C]"
+                : ""
+                }`}
             >
               Billing & Payment
             </button>
@@ -263,11 +251,10 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/MedicinesTreatment");
               }}
-              className={`${
-                location.pathname === "/MedicinesTreatment"
-                  ? "text-[#01B49C]"
-                  : ""
-              }`}
+              className={`${location.pathname === "/MedicinesTreatment"
+                ? "text-[#01B49C]"
+                : ""
+                }`}
             >
               Medicines
             </button>
@@ -286,7 +273,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             <button>Notify</button>
             <button
               onClick={() => {
-                navigate("/");
+                navigate("/Login");
                 localStorage.clear();
               }}
             >

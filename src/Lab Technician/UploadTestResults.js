@@ -9,6 +9,7 @@ import { FaPencil, FaPlus, FaRupeeSign, FaRupiahSign } from "react-icons/fa6";
 import AddChargesForm from "./AddChargesForm";
 
 function UploadTestResults() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
@@ -146,7 +147,7 @@ function UploadTestResults() {
             </thead>
 
             <tbody>
-              {gettingLabResults.map((lab) => (
+              {gettingLabResults.filter(lab => lab.hospitalName === hospitalName).map((lab) => (
                 <tr className="text-[#01B49C] border-b border-gray-300">
                   {gettingUser
                     .filter((user) => user.email === lab.patient)
