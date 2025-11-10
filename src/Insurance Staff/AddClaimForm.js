@@ -4,6 +4,7 @@ import { database } from "../FirebaseConfiguration";
 import { z } from "zod";
 
 function AddClaimForm({ setopeningClaimStatus }) {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUsers, setgettingUsers] = useState([]);
   const [gettingInsurance, setgettingInsurance] = useState([]);
   const [patient, setpatient] = useState("");
@@ -83,6 +84,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
       dateOfPayment: dateOfPayment,
       paymentMode: paymentMode,
       transactionReferenceNo: transactionReferenceNo,
+      hospitalName: hospitalName
     };
     try {
       claimStatusSchema.parse(claimStatusData);

@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
 function InsuranceToPatient() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingInsurances, setgettingInsurances] = useState([]);
 
   async function renderingInsurances() {
@@ -36,7 +37,7 @@ function InsuranceToPatient() {
             <th className="text-start">Sum Insured</th>
           </thead>
           <tbody>
-            {gettingInsurances.map((provider) => (
+            {gettingInsurances.filter(provider => provider.hospitalName === hospitalName).map((provider) => (
               <tr key={provider.id} className="border-b text-[#01B49C]">
                 <td className="px-2 py-2">{provider.patient}</td>
                 <td className="px-2 py-2">{provider.providerName}</td>

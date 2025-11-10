@@ -9,6 +9,7 @@ import { database } from "../FirebaseConfiguration";
 import UpdateInsuranceForm from "./UpdateInsuranceForm";
 
 function ViewInsuranceInfo() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [openingAddInsuranceForm, setopeningAddInsuranceForm] = useState(false);
   const [gettingInsurances, setgettingInsurances] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
@@ -106,7 +107,7 @@ function ViewInsuranceInfo() {
       </div>
 
       <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
-        {gettingInsurances.map((insurance) => (
+        {gettingInsurances.filter(insurance => insurance.hospitalName === hospitalName).map((insurance) => (
           <div className="bg-white p-5 rounded-lg shadow">
             <div className="flex items-start justify-between">
               <p className="text-xl font-bold">{insurance.patient}</p>

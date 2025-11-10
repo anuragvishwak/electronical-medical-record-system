@@ -8,6 +8,7 @@ function AddBillingPaymentForm({
   setopeningAddBillingPaymentForm,
   capturingObject,
 }) {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingConsultations, setgettingConsultations] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
@@ -37,6 +38,7 @@ function AddBillingPaymentForm({
       labCharges: labCharges,
       subTotal: subTotal,
       finalAmount: finalAmount,
+      hospitalName: hospitalName
     };
 
     try {
