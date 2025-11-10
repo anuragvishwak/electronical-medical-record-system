@@ -10,6 +10,7 @@ import { CgCreditCard } from "react-icons/cg";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
 function InsuranceStaffClaimStatus() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [openingClaimStatus, setopeningClaimStatus] = useState(false);
   const [gettingClaimStatus, setgettingClaimStatus] = useState([]);
 
@@ -71,7 +72,7 @@ function InsuranceStaffClaimStatus() {
         </div>
       </div>
       <div className="grid m-5 grid-cols-2 gap-5">
-        {gettingClaimStatus.map((claim) => (
+        {gettingClaimStatus.filter(claim => claim.hospitalName === hospitalName).map((claim) => (
           <div className="bg-white rounded-lg shadow">
             <div>
               <div className="bg-[#01B49C] p-5 rounded-t-lg">

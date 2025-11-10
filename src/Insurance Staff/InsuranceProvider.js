@@ -11,6 +11,7 @@ import { GrNotes } from "react-icons/gr";
 import UpdateInsuranceCompanyForm from "./UpdateInsuranceCompanyForm";
 
 function InsuranceProvider() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
     useState(false);
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
@@ -50,7 +51,7 @@ function InsuranceProvider() {
           </p>
           <p className="text-[#01B49C]">
             All the{" "}
-              Insurance provider
+            Insurance provider
             details will be displayed here.
           </p>
         </div>
@@ -83,7 +84,7 @@ function InsuranceProvider() {
         </div>
       </div>
       <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
-        {gettingInsuranceCompanies.map((insurance) => (
+        {gettingInsuranceCompanies.filter(insurance => insurance.hospitalName === hospitalName).map((insurance) => (
           <div className="bg-white mb-5 p-5 rounded-lg border border-gray-300 shadow">
             <div>
               <div>

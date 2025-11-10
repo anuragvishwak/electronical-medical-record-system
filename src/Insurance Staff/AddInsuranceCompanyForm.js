@@ -7,6 +7,7 @@ function AddInsuranceCompanyForm({
   setopeningAddInsuranceCompany,
   renderingInsuranceCompany,
 }) {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [providerName, setproviderName] = useState("");
   const [companyCode, setcompanyCode] = useState("");
   const [address, setaddress] = useState("");
@@ -43,6 +44,7 @@ function AddInsuranceCompanyForm({
       policyTypeSupported: policyTypeSupported,
       coverageNotes: coverageNotes,
       limitations: limitations,
+      hospitalName: hospitalName
     };
     try {
       insuranceProviderSchema.parse(insuranceProviderData);

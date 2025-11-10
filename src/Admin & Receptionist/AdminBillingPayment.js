@@ -7,6 +7,7 @@ import { FaIndianRupeeSign, FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 
 function AdminBillingPayment() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingBills, setgettingBills] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
 
@@ -159,7 +160,7 @@ function AdminBillingPayment() {
           </thead>
 
           <tbody className="">
-            {gettingBills.map((bill) => (
+            {gettingBills.filter(bill => bill.hospitalName === hospitalName).map((bill) => (
               <>
                 <tr className="text-[#01B49C] border-b border-gray-300">
                   {gettingUser

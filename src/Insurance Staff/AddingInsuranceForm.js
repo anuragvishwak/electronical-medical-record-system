@@ -10,6 +10,7 @@ function AddingInsuranceForm({
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
     []
   );
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUsers, setgettingUsers] = useState([]);
   const [providerName, setproviderName] = useState("");
   const [patient, setpatient] = useState("");
@@ -67,6 +68,7 @@ function AddingInsuranceForm({
       validFrom: validFrom,
       validTo: validTo,
       status: status,
+      hospitalName: hospitalName
     };
 
     try {
