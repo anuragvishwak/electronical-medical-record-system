@@ -31,34 +31,20 @@ function AdminAppointment() {
   const [filterByDate, setfilterByDate] = useState("");
 
   async function renderingAppointments() {
-    const snapshot = await getDocs(
+    const hospitalName = localStorage.getItem("hospitalName");
+    const taskDetails = await getDocs(
       collection(database, "appointment_database")
     );
-    const patients = gettingUser.filter((u) => u.role === "patient");
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-    const filtered = snapshot.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter(({ id, patient, createdAt }) => {
-        const matchId =
-          !filterByAppointmentId ||
-          id.toLowerCase().includes(filterByAppointmentId.toLowerCase());
-        const matchPatient =
-          !filterByPatient ||
-          patients.some(
-            (u) =>
-              u.name.toLowerCase() === filterByPatient.toLowerCase() &&
-              u.email === patient
-          );
-        const matchDate =
-          !filterByDate ||
-          (createdAt &&
-            new Date(createdAt.seconds * 1000)
-              .toISOString()
-              .startsWith(filterByDate));
-        return matchId && matchPatient && matchDate;
-      });
+    const filterByHospital = multipleArray.filter(
+      (appointment) => appointment.hospitalName == hospitalName
+    );
 
-    setgettingAppointments(filtered);
+    setgettingAppointments(filterByHospital);
   }
 
   async function renderingUser() {

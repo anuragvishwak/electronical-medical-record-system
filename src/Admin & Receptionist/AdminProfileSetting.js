@@ -155,7 +155,7 @@ function AdminProfileSetting() {
                     <div>
                       <p
                         className={`font-semibold ${
-                          user.status == "Active"
+                          user.status === "Active"
                             ? "text-green-500"
                             : "text-red-500"
                         }`}

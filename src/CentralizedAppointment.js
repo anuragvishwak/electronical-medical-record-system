@@ -154,7 +154,7 @@ function CentralizedAppointment({
                     </div>
                   )}
 
-                {location.pathname == "/CheckInCheckOut" && (
+                {location.pathname === "/CheckInCheckOut" && (
                   <select
                     value={appointment.visitStatus || "Not Arrived"}
                     onChange={(e) =>

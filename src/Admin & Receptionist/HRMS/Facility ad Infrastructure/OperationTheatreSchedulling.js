@@ -166,7 +166,7 @@ function OperationTheatreSchedulling() {
             </div>
 
             <div>
-              <label className="block font-medium">Anaesthesia Type</label>
+              <label className="block font-medium">Anaesthesia Type</label>l
               <select
                 onChange={(e) => {
                   setanaesthesiaType(e.target.value);

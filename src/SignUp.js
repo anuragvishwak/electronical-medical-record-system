@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, database } from "./FirebaseConfiguration";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -11,6 +11,8 @@ function SignUp() {
   const [phone_no, setphone_no] = useState("");
   const [role, setrole] = useState("");
   const [confirm_password, setconfirm_password] = useState("");
+  const [Hospital_name, setHospital_name] = useState("");
+  const [gettingHospitals, setgettingHospitals] = useState([]);
 
   const roles = [
     { label: "Admin", value: "admin" },
@@ -21,10 +23,26 @@ function SignUp() {
     { label: "Patient", value: "patient" },
   ];
 
+  async function renderingHospitals() {
+    const taskDetails = await getDocs(
+      collection(database, "hospital_database")
+    );
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setgettingHospitals(multipleArray);
+    console.log('finding hospitals',multipleArray);
+  }
+
+  useEffect(() => {
+    renderingHospitals();
+  }, []);
+
   const signUpWithEmail = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
-      auth,
+        auth,
         email,
         confirm_password
       );
@@ -37,10 +55,11 @@ function SignUp() {
         phone_no: phone_no,
         role: role,
         password: confirm_password,
+        Hospital_name: Hospital_name,
       });
 
       console.log("User document added to Firestore.");
-      navigate("/");
+      navigate("/Login");
     } catch (error) {
       console.error("Error during sign up:", error.message);
       throw error;
@@ -59,6 +78,23 @@ function SignUp() {
               </p>
             </div>
 
+            <div className="mb-3">
+              <p className="font-semibold text-[#1976D2]">Hospital</p>
+              <select
+                value={role}
+                onChange={(e) => setHospital_name(e.target.value)}
+                className="border rounded border-gray-300 w-full p-2"
+              >
+                <option value="" disabled selected>
+                  Select Hospital
+                </option>
+                {gettingHospitals.map((role, index) => (
+                  <option key={index} value={role.hospitalName}>
+                    {role.hospitalName}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div>
               <p className="font-semibold text-[#1976D2]">Full Name</p>
               <input
@@ -150,7 +186,7 @@ function SignUp() {
               <p className="text-gray-600">Don't have an account</p>
               <button
                 onClick={() => {
-                  navigate("/");
+                  navigate("/Login");
                 }}
                 className="text-[#1976D2] font-semibold"
               >

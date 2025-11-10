@@ -19,9 +19,17 @@ function UserManagement() {
       ...doc.data(),
     }));
 
+    const hospitalName = localStorage.getItem("hospitalName");
+
+    const filterByHospital = multipleArray.filter(
+      (user) => user.Hospital_name === hospitalName
+    );
+
+
+
     const filteredUsers = filterByRole
-      ? multipleArray.filter((user) => user.role === filterByRole)
-      : multipleArray;
+      ? filterByHospital.filter((user) => user.role === filterByRole)
+      : filterByHospital;
     setgettingUser(filteredUsers);
   }
 
