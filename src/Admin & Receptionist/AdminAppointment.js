@@ -41,7 +41,7 @@ function AdminAppointment() {
     }));
 
     const filterByHospital = multipleArray.filter(
-      (appointment) => appointment.hospitalName === hospitalName
+      (appointment) => appointment.hospitalName == hospitalName
     );
 
     setgettingAppointments(filterByHospital);
