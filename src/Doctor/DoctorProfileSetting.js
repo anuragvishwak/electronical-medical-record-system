@@ -87,7 +87,7 @@ function DoctorProfileSetting() {
         </div>
 
         <div className="flex mt-5 justify-center">
-          {gettingUser.map((user) => (
+          {gettingUser?.map((user) => (
             <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5">

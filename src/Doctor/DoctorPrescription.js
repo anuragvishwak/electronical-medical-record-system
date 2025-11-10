@@ -9,6 +9,7 @@ import UpdatePrescriptionForm from "./UpdatePrescriptionForm";
 import { FaPencil } from "react-icons/fa6";
 
 function DoctorPrescription() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingMedicines, setgettingMedicines] = useState([]);
@@ -94,7 +95,7 @@ function DoctorPrescription() {
         </div>
       </div>
       <div className="grid grid-cols-3 m-5 gap-5">
-        {gettingPrescriptions.map((prep) => (
+        {gettingPrescriptions.filter(prep => prep.hospitalName === hospitalName).map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
             <div className="p-3 bg-[#01B49C] text-white rounded-t">
               {gettingUser

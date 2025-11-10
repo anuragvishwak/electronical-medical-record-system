@@ -10,6 +10,7 @@ import CreateLabResultForm from "./CreateLabResultForm";
 import { FaPencil } from "react-icons/fa6";
 
 function AssignedLabOrders() {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
   const [openingNote, setopeningNote] = useState(false);
@@ -132,7 +133,7 @@ function AssignedLabOrders() {
             </thead>
 
             <tbody>
-              {gettingLabOrders.map((order) => (
+              {gettingLabOrders.filter(order => order.hospitalName === hospitalName).map((order) => (
                 <>
                   <tr className="text-[#01B49C] border-b border-gray-300">
                     {gettingUser

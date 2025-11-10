@@ -10,6 +10,7 @@ import UpdateConsultationForm from "./UpdateConsultationForm";
 import { FaPencil } from "react-icons/fa6";
 
 function DoctorConsultation() {
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingConsultations, setgettingConsultations] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
   const [openingAdditionalDetails, setopeningAdditionalDetails] =
@@ -84,7 +85,7 @@ function DoctorConsultation() {
       </div>
 
       <div className="grid grid-cols-3 m-5 gap-5">
-        {gettingConsultations.map((prep) => (
+        {gettingConsultations.filter(consult => consult.hospitalName === hospitalName).map((prep) => (
           <div className="bg-white rounded shadow border border-gray-300">
             <div className="p-3 flex items-start justify-between bg-[#01B49C] text-white rounded-t">
               <div>

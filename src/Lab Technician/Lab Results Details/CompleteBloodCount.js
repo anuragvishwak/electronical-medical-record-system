@@ -2,12 +2,15 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { database } from "../../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
+import { GiEgyptianTemple } from "react-icons/gi";
 
 function CompleteBloodCount({
   capturingLabOrderObject,
   email,
   setopeningCreateLabResultsForm,
 }) {
+
+  const hospitalName = localStorage.getItem('hospitalName');
   const [hemoglobin, setHemoglobin] = useState({
     value: "",
     unit: "g/dL",
@@ -65,6 +68,7 @@ function CompleteBloodCount({
   async function SubmittingCompleteBloodCount() {
     try {
       addDoc(collection(database, "lab_order_results_database"), {
+        hospitalName: hospitalName,
         lab_technician: email,
         patient: capturingLabOrderObject.patient,
         doctor: capturingLabOrderObject.doctor,
