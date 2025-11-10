@@ -50,6 +50,7 @@ function Login() {
       const userData = querySnapshot.docs[0].data();
       const role = userData.role;
       const status = userData.status;
+      const hospitalName = userData.Hospital_name;
 
       if (status === "approved") {
         toast.current.show({
@@ -59,6 +60,7 @@ function Login() {
           life: 3000,
         });
         localStorage.setItem("email", email);
+        localStorage.setItem("hospitalName", hospitalName);
         setTimeout(() => {
           switch (role) {
             case "admin":

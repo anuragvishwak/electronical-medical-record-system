@@ -11,6 +11,7 @@ function CreateAppointmentForm({
 }) {
   const toast = useRef(null);
   const createdAt = new Date();
+  const hospital = localStorage.getItem("hospitalName");
   const [patientData, setpatientData] = useState([]);
   const [doctorData, setdoctorData] = useState([]);
   const [doctor, setdoctor] = useState("");
@@ -58,6 +59,7 @@ function CreateAppointmentForm({
       status: status,
       additionalNote: additionalNote,
       createdAt: createdAt,
+      hospitalName: hospital,
     };
 
     try {
