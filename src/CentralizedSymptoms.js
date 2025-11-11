@@ -25,7 +25,6 @@ const symptomsList = [
   { id: 20, name: "Fatigue" }
 ];
 
-
   return (
     <div>
       <p className='font-semibold text-[#1976D2]'>Chief Complaint (Symptoms)</p>

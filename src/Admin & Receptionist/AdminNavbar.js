@@ -73,7 +73,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
 
   return (
     <div>
-      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#003441] bg-white shadow border-b justify-between p-3">
+      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#003441] bg-white  border-b border-gray-300 justify-between p-3">
         <div className="flex items-center space-x-5">
           <button
             onClick={() => {
@@ -159,7 +159,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
         <div className="flex items-center space-x-2">
           <button
             onClick={downloadAllData}
-            className="bg-[#003441] text-white py-1 px-2.5 rounded hover:bg-[#01B49C]"
+            className="bg-[#003441] text-white py-1 px-2.5 hover:bg-[#01B49C]"
           >
             <div className="flex items-center space-x-1">
               <GiCloudDownload />
@@ -171,7 +171,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               setopeningHRMS(true);
             }}
-            className="bg-[#01B49C] hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-0.5 px-2.5 rounded"
+            className="bg-[#01B49C] hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-0.5 px-2.5"
           >
             HRMS
           </button>

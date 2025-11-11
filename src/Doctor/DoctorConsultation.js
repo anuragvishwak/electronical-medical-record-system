@@ -51,7 +51,7 @@ function DoctorConsultation() {
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
 
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">Consultation</p>
           <p className="text-[#01B49C]">
@@ -86,8 +86,8 @@ function DoctorConsultation() {
 
       <div className="grid grid-cols-3 m-5 gap-5">
         {gettingConsultations.filter(consult => consult.hospitalName === hospitalName).map((prep) => (
-          <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-3 flex items-start justify-between bg-[#01B49C] text-white rounded-t">
+          <div className="bg-white border border-gray-300">
+            <div className="p-3 flex items-start justify-between bg-[#01B49C] text-white">
               <div>
                 {gettingUser
                   .filter((user) => user.email === prep.patient)
@@ -108,7 +108,7 @@ function DoctorConsultation() {
                     setcapturingDataObject(prep);
                     setopeningLabOrderForm(true);
                   }}
-                  className="bg-white py-0.5 text-black shadow px-3 rounded"
+                  className="bg-white py-0.5 text-black px-3"
                 >
                   Order Lab Tests
                 </button>
@@ -119,7 +119,7 @@ function DoctorConsultation() {
               <p className="font-semibold text-[#003441] mb-1">
                 History of Present Illness
               </p>
-              <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-[#003441] text-sm text-justify">
+              <p className="text-gray-600 p-2 bg-gray-50 border-l-8 border-[#003441] text-sm text-justify">
                 {prep.historyofPresentIllness}
               </p>
             </div>

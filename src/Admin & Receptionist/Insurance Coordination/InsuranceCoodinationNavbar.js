@@ -2,7 +2,7 @@ import React from "react";
 
 function InsuranceCoodinationNavbar({ setcurrentTab, currentTab }) {
   return (
-    <div className="border h-[540px] rounded mt-5 ml-5 bg-[#01B49C] text-white py-12 w-80 p-4">
+    <div className="border border-gray-300 h-[540px] mt-5 ml-5 bg-[#01B49C] text-white py-12 w-80 p-4">
       <button 
       onClick={() => {
           setcurrentTab("insurance-provider-overview");

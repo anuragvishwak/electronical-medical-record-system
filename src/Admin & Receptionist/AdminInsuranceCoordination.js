@@ -60,7 +60,7 @@ function AdminInsuranceCoordination() {
   return (
     <div className="bg-gray-50 min-h-screen h-full">
       <AdminNavbar />
-      <div className="p-5 bg-white mt-5 mx-5 border border-gray-300 shadow rounded">
+      <div className="p-5 bg-white mt-5 mx-5 border border-gray-300">
         <div className="flex items-center justify-between w-full">
           <div>
             <p className="text-2xl text-[#003441] font-bold">
@@ -85,18 +85,14 @@ function AdminInsuranceCoordination() {
               <p className="text-2xl text-center font-bold">
                 {gettingInsurances.length}
               </p>
-              <p className="text-gray-500">
-                Total Patients Enrolled
-              </p>
+              <p className="text-gray-500">Total Patients Enrolled</p>
             </div>
 
             <div className="text-center text-sm">
               <p className="text-2xl text-center font-bold">
                 {gettingClaimStatus.length}
               </p>
-              <p className="text-gray-500">
-                Total Claims Processed
-              </p>
+              <p className="text-gray-500">Total Claims Processed</p>
             </div>
           </div>
         </div>

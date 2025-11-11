@@ -61,7 +61,7 @@ function DoctorPatients() {
     <div className="bg-gray-50 min-h-screen">
       <DoctorNavbar />
       <div className="">
-        <div className="bg-white border m-5 p-5 rounded border-gray-300 shadow">
+        <div className="bg-white border border-gray-300 m-5 p-5">
           <div>
             <p className="text-xl sm:text-2xl font-bold text-[#003441]">
               Patients
@@ -87,7 +87,7 @@ function DoctorPatients() {
 
         <div className="grid grid-cols-3 m-5 w-full gap-5">
           {resultedPatients.map((patient) => (
-            <div className="bg-white p-5 rounded shadow border border-gray-300">
+            <div className="bg-white p-5 border border-gray-300">
               <div className="flex items-center gap-2">
                 <div>
                   <p className="bg-[#bae6f7] text-[#01B49C]  rounded-full p-1.5">

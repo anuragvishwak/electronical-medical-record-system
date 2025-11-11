@@ -11,6 +11,7 @@ import { MdDelete } from "react-icons/md";
 import UpdateStaffForm from "./UpdateStaffForm";
 
 function StaffManagement() {
+  const hospitalName = localStorage.getItem("hospitalName");
   const [openingAddStaffForm, setopeningAddStaffForm] = useState(false);
   const [gettingUser, setgettingUser] = useState([]);
   const [openingSalaryForm, setopeningSalaryForm] = useState(false);
@@ -36,7 +37,7 @@ function StaffManagement() {
   return (
     <div className="bg-gray-50 min-h-screen h-full">
       <AdminNavbar />
-      <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
+      <div className="bg-white border border-gray-300 m-5 p-5">
         <div className="flex items-center justify-between">
           <div className="">
             <p className="text-xl sm:text-2xl font-bold text-[#003441]">
@@ -55,7 +56,7 @@ function StaffManagement() {
               onClick={() => {
                 // setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -63,37 +64,36 @@ function StaffManagement() {
         </div>
 
         <hr className="my-3 border-gray-300" />
-          <div className="sm:flex items-center justify-between">
-              <input
-                placeholder="Search Staff..."
-                className="border border-gray-400 w-full sm:w-96 p-1 rounded"
-              ></input>
-            <div className="flex items-center space-x-3">
-               <select className="border border-gray-300 w-60 p-1.5 rounded">
+        <div className="sm:flex items-center justify-between">
+          <input
+            placeholder="Search Staff..."
+            className="border border-gray-400 w-full sm:w-96 p-1"
+          ></input>
+          <div className="flex items-center space-x-3">
+            <select className="border border-gray-300 w-60 p-1.5">
               <option>Filter by Roles</option>
-            
-                 <option>Select Role</option>
-                 <option value={'patient'}>Patient</option>
-                 <option value={'doctor'}>Doctor</option>
-                 <option value={'nurse'}>Nurse</option>
-                 <option value={'lab_technician'}>Lab Technician</option>
-                 <option value={'insurance_dept'}>Insurance Dept</option>
 
+              <option>Select Role</option>
+              <option value={"patient"}>Patient</option>
+              <option value={"doctor"}>Doctor</option>
+              <option value={"nurse"}>Nurse</option>
+              <option value={"lab_technician"}>Lab Technician</option>
+              <option value={"insurance_dept"}>Insurance Dept</option>
             </select>
-              <button
-                onClick={() => {
-                  setopeningAddStaffForm(true);
-                }}
-                className="bg-[#01B49C] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
-              >
-                + Create Staff
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                setopeningAddStaffForm(true);
+              }}
+              className="bg-[#01B49C] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base text-white"
+            >
+              + Create Staff
+            </button>
           </div>
+        </div>
       </div>
       <div className="grid m-5 grid-cols-3 gap-5">
-        {filteredUser.map((user) => (
-          <div className="bg-white p-5 rounded border border-gray-300 shadow">
+        {filteredUser.filter(user => user.Hospital_name === hospitalName).map((user) => (
+          <div className="bg-white p-5 border border-gray-300">
             <div className="flex items-start justify-between">
               <p className="text-[#003441] text-lg font-bold">{user.name}</p>
 
@@ -103,7 +103,7 @@ function StaffManagement() {
                     setopeningSalaryForm(true);
                     setcapturingStaffData(user);
                   }}
-                  className="bg-[#01B49C] text-white py-1 text-sm px-3 mr-2 rounded"
+                  className="bg-[#01B49C] text-white py-1 text-sm px-3 mr-2"
                 >
                   Add Salary
                 </button>
@@ -125,13 +125,13 @@ function StaffManagement() {
 
             <hr className="border-gray-300 my-3" />
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center text-sm justify-between">
               <div>
                 <p className="text-[#01B49C]">Role:</p>
                 <p className="text-[#003441] font-semibold">{user.role}</p>
               </div>
 
-              <div>
+              <div className="text-sm">
                 <p className="text-[#01B49C]">Phone No:</p>
                 <p className="text-[#003441] font-semibold">
                   +91 {user.phone_no}
@@ -147,8 +147,8 @@ function StaffManagement() {
               </p>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-1.5 rounded border border-gray-300">
-                  <p className="text-[#01B49C] bg-gray-100  px-2 py-0.5 border border-gray-300">
+                <div className="p-1.5 border border-gray-300">
+                  <p className="text-[#01B49C] text-sm bg-gray-100  px-2 py-0.5 border border-gray-300">
                     Basic Pay:
                   </p>
                   <p className="text-[#003441] flex mt-2 items-center font-semibold">
@@ -157,8 +157,8 @@ function StaffManagement() {
                   </p>
                 </div>
 
-                <div className="p-1.5 rounded border border-gray-300">
-                  <p className="text-[#01B49C] border bg-gray-100  border-gray-300 py-0.5 px-2 ">
+                <div className="p-1.5 border border-gray-300">
+                  <p className="text-[#01B49C] text-sm border bg-gray-100  border-gray-300 py-0.5 px-2 ">
                     HRA (House Rent Allowance):
                   </p>
                   <p className="text-[#003441] flex mt-2 items-center font-semibold">
@@ -167,8 +167,8 @@ function StaffManagement() {
                   </p>
                 </div>
 
-                <div className="p-1.5 rounded border border-gray-300">
-                  <p className="text-[#01B49C] border border-gray-300 py-0.5 px-2 bg-gray-100 ">
+                <div className="p-1.5 border border-gray-300">
+                  <p className="text-[#01B49C] text-sm border border-gray-300 py-0.5 px-2 bg-gray-100 ">
                     General Allowance:
                   </p>
                   <p className="text-[#003441] flex mt-2 items-center font-semibold">
@@ -177,8 +177,8 @@ function StaffManagement() {
                   </p>
                 </div>
 
-                <div className="p-1.5 rounded border border-gray-300">
-                  <p className="text-[#01B49C] bg-gray-100  border border-gray-300 py-0.5 px-2">
+                <div className="p-1.5 border border-gray-300">
+                  <p className="text-[#01B49C] text-sm bg-gray-100  border border-gray-300 py-0.5 px-2">
                     Deduction:
                   </p>
                   <p className="text-red-500 flex mt-2 items-center font-semibold">
@@ -187,8 +187,8 @@ function StaffManagement() {
                   </p>
                 </div>
 
-                <div className="p-1.5 rounded border border-gray-300">
-                  <p className="text-[#01B49C] py-0.5 px-2 bg-gray-100  border border-gray-300">
+                <div className="p-1.5 border border-gray-300">
+                  <p className="text-[#01B49C] text-sm py-0.5 px-2 bg-gray-100  border border-gray-300">
                     Final Net Salary:
                   </p>
                   <p className="text-[#003441] flex mt-2 items-center font-bold text-lg">
