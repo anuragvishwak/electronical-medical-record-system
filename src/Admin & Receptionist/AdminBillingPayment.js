@@ -62,7 +62,7 @@ function AdminBillingPayment() {
     <div className="bg-gray-100 h-screen">
       <AdminNavbar />
 
-      <div className="bg-white m-5 p-5 border border-gray-300 shadow rounded">
+      <div className="bg-white m-5 p-5 border border-gray-300">
         <div className="flex items-center justify-between">
           <div className="">
             <p className="text-2xl text-[#003441] font-bold">
@@ -142,7 +142,7 @@ function AdminBillingPayment() {
          </div>
         </div>
       </div>
-      <div className="flex bg-white shadow m-3 border border-gray-300 rounded p-3 justify-center">
+      <div className="flex bg-white  m-5 border border-gray-300 p-5 justify-center">
         <table className="w-full table-auto">
           <thead className="border border-gray-300 text-[#003441] bg-gray-50">
             <tr>

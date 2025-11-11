@@ -7,7 +7,7 @@ function DoctorNavbar() {
   const location = useLocation();
 
   return (
-    <div className="flex bg-white text-[#003441] font-semibold shadow items-center border-b justify-between p-3">
+    <div className="flex bg-white text-[#003441] font-semibold items-center border-b border-gray-300 justify-between p-3">
       <div className="flex items-center space-x-5">
         <button
           onClick={() => {

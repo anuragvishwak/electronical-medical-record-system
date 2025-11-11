@@ -61,11 +61,11 @@ function AdminDashboard() {
       <AdminNavbar />
       <div>
         <div className="grid grid-cols-4 gap-5 p-5">
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaCalendarAlt
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">
@@ -78,11 +78,11 @@ function AdminDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Patients</p>
@@ -93,11 +93,11 @@ function AdminDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Revenue</p>
@@ -113,11 +113,11 @@ function AdminDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Staff</p>
@@ -130,13 +130,13 @@ function AdminDashboard() {
         </div>
 
         <div className="mx-5 flex items-start gap-5">
-          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
+          <div className="bg-white p-5 w-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] border border-gray-300">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <FaCalendarAlt />
               <p className="text-xl font-bold">Recent Appointments</p>
             </div>
             {gettingAppointments.map((appointment) => (
-              <div className="flex p-3 rounded border border-gray-300 mb-3 justify-between items-start">
+              <div className="flex p-3 border mb-3 justify-between items-start">
                 <div>
                   {gettingUser
                     .filter((user) => user.email === appointment.patient)
@@ -157,20 +157,20 @@ function AdminDashboard() {
                     <p>{appointment.time}</p>
                   </div>
                 </div>
-                <p className="border px-3 text-sm font-semibold py-1 text-[#003441] rounded-full border-gray-300">
+                <p className="border px-3 text-sm font-semibold py-1 text-[#003441] -full border-gray-300">
                   {appointment.status}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] border border-gray-300">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <RxCounterClockwiseClock size={20} />
               <p className="text-xl font-bold">Recent Activities</p>
             </div>
 
-            <div className="border rounded border-gray-300 p-2.5">
+            <div className="border border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Appointment Update
               </p>
@@ -179,7 +179,7 @@ function AdminDashboard() {
               </p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Consultation added
               </p>
@@ -188,7 +188,7 @@ function AdminDashboard() {
               </p>
             </div>
 
-            <div className="border rounded border-gray-300 p-2.5">
+            <div className="border border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Appointment Update
               </p>
@@ -197,18 +197,18 @@ function AdminDashboard() {
               </p>
             </div>
           </div>
-          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-full border-gray-300 p-5 rounded">
+          <div className="border border-gray-300 bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-full p-5">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>
             </div>
 
             <div className="grid grid-cols-2 gap-5">
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3 border-gray-300">
                 <div className="flex items-center space-x-1">
                   <FaIndianRupeeSign
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     Process Payment
@@ -221,17 +221,17 @@ function AdminDashboard() {
                   onClick={() => {
                     navigation("/AdminBillingPayment");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                  className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]"
                 >
                   Process Payment
                 </button>
               </div>
 
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3 border-gray-300">
                 <div className="flex items-center space-x-1">
                   <FaCalendarAlt
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     Schedule Appointment
@@ -244,16 +244,16 @@ function AdminDashboard() {
                 onClick={()=>{
                     navigation('/AdminAppointment');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
                   + Create Appointment
                 </button>
               </div>
 
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3 border-gray-300">
                 <div className="flex items-center space-x-1">
                   <GiMedicines
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     Update Medicine
@@ -266,16 +266,16 @@ function AdminDashboard() {
                 onClick={()=>{
                     navigation('/MedicinesTreatment');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
                   Update Medicine
                 </button>
               </div>
 
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3 border-gray-300">
                 <div className="flex items-center space-x-1">
                   <FaUser
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1 border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     Manage Staff
@@ -288,7 +288,7 @@ function AdminDashboard() {
                 onClick={()=>{
                     navigation('/StaffManagement');
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
                    Manage Staff
                 </button>
               </div>

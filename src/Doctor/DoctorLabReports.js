@@ -88,7 +88,7 @@ function DoctorLabReports() {
   return (
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">Lab Reports</p>
           <p className="text-[#01B49C]">
@@ -152,7 +152,7 @@ function DoctorLabReports() {
       </div>
       {currentTab === "order" ? (
         <div>
-          <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
+          <div className="flex justify-center m-5 p-5 bg-white border border-gray-300">
             <table className="w-full table-auto">
               <thead className="bg-gray-50 border text-[#003441]">
                 <tr>

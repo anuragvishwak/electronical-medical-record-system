@@ -69,7 +69,7 @@ function UserManagement() {
         setopeningAdminNavbar={setopeningAdminNavbar}
         openingAdminNavbar={openingAdminNavbar}
       />
-      <div className="p-5 bg-white m-5 border border-gray-300 shadow">
+      <div className="p-5 bg-white m-5 border border-gray-300">
         <div className="flex items-center justify-between w-full">
           <div>
             <div className="flex items-center justify-between">
@@ -80,7 +80,7 @@ function UserManagement() {
                 onClick={() => {
                   setopeningAdminNavbar(true);
                 }}
-                className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
+                className="border-2 border-[#003441] text-[#003441] p-1 sm:hidden"
               >
                 <FaBars />
               </button>
@@ -145,14 +145,14 @@ function UserManagement() {
             setfilterByUserName(event.target.value);
           }}
             placeholder="Search Users..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
 
           <select
             onChange={(event) => {
               setFilterByRole(event.target.value);
             }}
-            className="border border-gray-300 w-60 p-1.5 rounded"
+            className="border border-gray-300 w-60 p-1.5"
           >
             <option>Filter by Roles</option>
             <option value={"patient"}>Patient</option>
@@ -166,7 +166,7 @@ function UserManagement() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 gap-5 m-5">
         {gettingUser.map((user) => (
-          <div className="bg-white border border-gray-300 shadow p-3 rounded">
+          <div className="bg-white border border-gray-300 p-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-1">
                 <div className="w-9 h-9 flex items-center justify-center rounded-full bg-[#003441] text-white font-bold">

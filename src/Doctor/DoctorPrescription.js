@@ -61,7 +61,7 @@ function DoctorPrescription() {
   return (
     <div className="bg-gray-100 h-screen">
       <DoctorNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold ">Prescriptions</p>
           <p className="text-[#01B49C]">
@@ -96,8 +96,8 @@ function DoctorPrescription() {
       </div>
       <div className="grid grid-cols-3 m-5 gap-5">
         {gettingPrescriptions.filter(prep => prep.hospitalName === hospitalName).map((prep) => (
-          <div className="bg-white rounded shadow border border-gray-300">
-            <div className="p-3 bg-[#01B49C] text-white rounded-t">
+          <div className="bg-white border border-gray-300">
+            <div className="p-3 bg-[#01B49C] text-white">
               {gettingUser
                 .filter((user) => user.email === prep.patient)
                 .map((user) => (

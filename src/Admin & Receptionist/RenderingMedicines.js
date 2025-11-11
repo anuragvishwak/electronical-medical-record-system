@@ -8,6 +8,7 @@ import { FaPencil } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 
 function RenderingMedicines({ search }) {
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingMedicines, setgettingMedicines] = useState([]);
   const [openingAdditionalDetails, setOpeningAdditionalDetails] =
     useState(false);
@@ -38,7 +39,7 @@ function RenderingMedicines({ search }) {
   }, [search]);
 
   return (
-    <div className="flex bg-white w-auto overflow-x-auto shadow m-5 border border-gray-300 rounded p-5 justify-center">
+    <div className="flex bg-white w-auto overflow-x-auto  m-5 border border-gray-300 p-5 justify-center">
       <table className="table-auto w-full">
         <thead className="border border-gray-300 text-[#003441] bg-gray-50 ">
           <th className="py-1">Name</th>
@@ -52,7 +53,7 @@ function RenderingMedicines({ search }) {
         </thead>
 
         <tbody>
-          {gettingMedicines.map((med) => (
+          {gettingMedicines.filter(med => med.hospitalName === hospitalName).map((med) => (
             <>
               <tr className="text-[#01B49C] border-b">
                 <td className="text-center py-2">{med.name}</td>

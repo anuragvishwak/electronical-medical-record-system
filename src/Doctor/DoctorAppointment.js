@@ -31,15 +31,13 @@ function DoctorAppointment() {
   }, []);
 
   return (
-    <div className="bg-gray-50 h-screen">
+    <div className="bg-gray-50 min-h-screen h-full">
       <DoctorNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl text-[#003441] font-bold">Appointments</p>
           <p className="text-[#01B49C]">
-            Doctor can view their patient's{" "}
-            appointments
-            here
+            Doctor can view their patient's appointments here
           </p>
         </div>
         <hr className="my-4 border-gray-300" />

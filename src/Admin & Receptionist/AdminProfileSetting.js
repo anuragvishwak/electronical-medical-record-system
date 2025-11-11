@@ -49,7 +49,7 @@ function AdminProfileSetting() {
       <div className="p-5">
         <div className="flex justify-center">
           {gettingUser.map((user) => (
-            <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
+            <div className="w-full bg-white p-5 border border-gray-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5">
                   <p className="bg-[#003441] py-10 px-12 text-5xl font-bold rounded-full text-white">
@@ -93,7 +93,7 @@ function AdminProfileSetting() {
                     setopeningAdminProfileForm(true);
                     setcurrentUser(user);
                   }}
-                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4 py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -108,7 +108,7 @@ function AdminProfileSetting() {
           {gettingUser.map((user) => (
             <div className="w-full">
               <div className="grid grid-cols-2 gap-5">
-                <div className="bg-white p-5 rounded shadow border border-gray-300">
+                <div className="bg-white p-5  border border-gray-300">
                   <p className="text-xl font-semibold mb-2">
                     Personal Information
                   </p>
@@ -142,7 +142,7 @@ function AdminProfileSetting() {
                   </div>
                 </div>
 
-                <div className="bg-white p-5 rounded shadow border border-gray-300">
+                <div className="bg-white p-5 border border-gray-300">
                   <p className="text-xl font-semibold mb-2">System Details</p>
                   <div className="flex items-center mb-2 gap-5">
                     <div>
@@ -174,7 +174,7 @@ function AdminProfileSetting() {
                 </div>
               </div>
 
-              <div className="bg-white mt-5 rounded shadow border border-gray-300 p-5">
+              <div className="bg-white mt-5 border border-gray-300 p-5">
                 <p className="text-xl font-semibold mb-2">
                   Work / Employment Details
                 </p>

@@ -8,6 +8,7 @@ import { z } from "zod";
 
 function CreateMedicineForm({ setopeningMedicineForm }) {
   const toast = useRef(null);
+  const hospitalName = localStorage.getItem("hospitalName");
   const [name, setname] = useState("");
   const [brand, setbrand] = useState("");
   const [genericName, setgenericName] = useState("");
@@ -27,46 +28,46 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
   const [stock, setstock] = useState("");
   const [expiry_date, setexpiry_date] = useState("");
 
- const medicineSchema = z.object({
-  name: z.string().min(1, "Medicine name is required"),
-  brand: z.string().min(1, "Brand is required"),
-  category: z.string().min(1, "Category is required"),
-  genericName: z.string().min(1, "Generic name is required"),
-  Form: z.string().min(1, "Form is required"),
-  dosage: z.string().min(1, "Dosage is required"),
-  dosage_instruction: z.string().min(1, "Dosage instruction is required."),
-  maxDailyDose: z.string().min(1, "Daily Dose is required"),
-  ageGroupRestriction: z.string().min(1, "Age Restriction is required."),
-  timing: z.string().min(1, "Timing is required."),
-  frequency: z.string().min(1, "Frequency is required."),
-  precautions: z.string().min(1, "Precautions are required."),
-  sideEffects: z.string().min(1, "Side Effects are required."),
-  constraindications: z.string().min(1, "constraindications are required."),
-  storage_instruction: z.string().min(1, "Storage Instruction is required."),
-  stock: z.string().min(1, "Stock is required"),
-  expiry_date: z.string().min(1, "Expiry date is required"),
-});
+  const medicineSchema = z.object({
+    name: z.string().min(1, "Medicine name is required"),
+    brand: z.string().min(1, "Brand is required"),
+    category: z.string().min(1, "Category is required"),
+    genericName: z.string().min(1, "Generic name is required"),
+    Form: z.string().min(1, "Form is required"),
+    dosage_instruction: z.string().min(1, "Dosage instruction is required."),
+    maxDailyDose: z.string().min(1, "Daily Dose is required"),
+    ageGroupRestriction: z.string().min(1, "Age Restriction is required."),
+    timing: z.string().min(1, "Timing is required."),
+    frequency: z.string().min(1, "Frequency is required."),
+    precautions: z.string().min(1, "Precautions are required."),
+    sideEffects: z.string().min(1, "Side Effects are required."),
+    constraindications: z.string().min(1, "constraindications are required."),
+    storage_instruction: z.string().min(1, "Storage Instruction is required."),
+    stock: z.string().min(1, "Stock is required"),
+    expiry_date: z.string().min(1, "Expiry date is required"),
+  });
 
   function creatingMedicine() {
     const medicineData = {
-        name: name,
-        brand: brand,
-        category: category,
-        genericName: genericName,
-        Form: Form,
-        dosage: dosage,
-        dosage_instruction: dosage_instruction,
-        maxDailyDose: maxDailyDose,
-        ageGroupRestriction: ageGroupRestriction,
-        timing: timing,
-        frequency: frequency,
-        precautions: precautions,
-        sideEffects: sideEffects,
-        constraindications: constraindications,
-        storage_instruction: storage_instruction,
-        stock: stock,
-        expiry_date: expiry_date,
-    }
+      name: name,
+      brand: brand,
+      category: category,
+      genericName: genericName,
+      Form: Form,
+      dosage: dosage,
+      dosage_instruction: dosage_instruction,
+      maxDailyDose: maxDailyDose,
+      ageGroupRestriction: ageGroupRestriction,
+      timing: timing,
+      frequency: frequency,
+      precautions: precautions,
+      sideEffects: sideEffects,
+      constraindications: constraindications,
+      storage_instruction: storage_instruction,
+      stock: stock,
+      expiry_date: expiry_date,
+      hospitalName: hospitalName
+    };
     try {
       medicineSchema.parse(medicineData);
 
@@ -80,17 +81,17 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
       });
       setopeningMedicineForm(false);
     } catch (error) {
-    if (error.name === "ZodError") {
-      const fieldErrors = {};
-      error.issues.forEach((err) => {
-        fieldErrors[err.path[0]] = err.message;
-      });
-      setErrors(fieldErrors); 
-      console.error("Validation Errors:", fieldErrors);
-    } else {
-      console.error("Error while creating medicine:", error.message);
+      if (error.name === "ZodError") {
+        const fieldErrors = {};
+        error.issues.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        console.error("Validation Errors:", fieldErrors);
+      } else {
+        console.error("Error while creating medicine:", error.message);
+      }
     }
-  }
   }
 
   const handleDosageChange = (value) => {
@@ -135,9 +136,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Combiflame"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.name && (
-                <p className="text-red-500 text-sm">{errors.name}</p>
-              )}
+                {errors.name && (
+                  <p className="text-red-500 text-sm">{errors.name}</p>
+                )}
               </div>
 
               <div>
@@ -150,9 +151,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Sanofi India Limited"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.brand && (
-                <p className="text-red-500 text-sm">{errors.brand}</p>
-              )}
+                {errors.brand && (
+                  <p className="text-red-500 text-sm">{errors.brand}</p>
+                )}
               </div>
 
               <div>
@@ -166,9 +167,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   <option value={"analgesic"}>Analgesic</option>
                   <option value={"antipyretic"}>Antipyretic</option>
                 </select>
-                 {errors.category && (
-                <p className="text-red-500 text-sm">{errors.category}</p>
-              )}
+                {errors.category && (
+                  <p className="text-red-500 text-sm">{errors.category}</p>
+                )}
               </div>
 
               <div>
@@ -181,9 +182,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Acetaminophen"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.genericName && (
-                <p className="text-red-500 text-sm">{errors.genericName}</p>
-              )}
+                {errors.genericName && (
+                  <p className="text-red-500 text-sm">{errors.genericName}</p>
+                )}
               </div>
 
               <div>
@@ -198,9 +199,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   <option value={"syrup"}>Syrup</option>
                   <option value={"injection"}>Injection</option>
                 </select>
-                 {errors.Form && (
-                <p className="text-red-500 text-sm">{errors.Form}</p>
-              )}
+                {errors.Form && (
+                  <p className="text-red-500 text-sm">{errors.Form}</p>
+                )}
               </div>
             </div>
           </div>
@@ -225,10 +226,6 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                     </div>
                   ))}
                 </div>
-
-                 {errors.dosage && (
-                <p className="text-red-500 text-sm">{errors.dosage}</p>
-              )}
               </div>
 
               <div className="">
@@ -240,12 +237,14 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   onChange={(e) => {
                     setdosage_instruction(e.target.value);
                   }}
-                      placeholder="1 tablet after meal, every 8 hours"
+                  placeholder="1 tablet after meal, every 8 hours"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.dosage_instruction && (
-                <p className="text-red-500 text-sm">{errors.dosage_instruction}</p>
-              )}
+                {errors.dosage_instruction && (
+                  <p className="text-red-500 text-sm">
+                    {errors.dosage_instruction}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -258,9 +257,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="4 tablets"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.maxDailyDose && (
-                <p className="text-red-500 text-sm">{errors.maxDailyDose}</p>
-              )}
+                {errors.maxDailyDose && (
+                  <p className="text-red-500 text-sm">{errors.maxDailyDose}</p>
+                )}
               </div>
 
               <div>
@@ -275,9 +274,11 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Not for under 5 yrs"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.ageGroupRestriction && (
-                <p className="text-red-500 text-sm">{errors.ageGroupRestriction}</p>
-              )}
+                {errors.ageGroupRestriction && (
+                  <p className="text-red-500 text-sm">
+                    {errors.ageGroupRestriction}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -293,9 +294,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   <option value={"before_food"}>Before Food</option>
                   <option value={"after_food"}>After Food</option>
                 </select>
-                 {errors.timing && (
-                <p className="text-red-500 text-sm">{errors.timing}</p>
-              )}
+                {errors.timing && (
+                  <p className="text-red-500 text-sm">{errors.timing}</p>
+                )}
               </div>
 
               <div>
@@ -311,9 +312,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   <option value={"once"}>Once a day</option>
                   <option value={"twice"}>Twice a day</option>
                 </select>
-                 {errors.frequency && (
-                <p className="text-red-500 text-sm">{errors.frequency}</p>
-              )}
+                {errors.frequency && (
+                  <p className="text-red-500 text-sm">{errors.frequency}</p>
+                )}
               </div>
             </div>
           </div>
@@ -335,9 +336,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Liver patient caution"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.precautions && (
-                <p className="text-red-500 text-sm">{errors.precautions}</p>
-              )}
+                {errors.precautions && (
+                  <p className="text-red-500 text-sm">{errors.precautions}</p>
+                )}
               </div>
 
               <div>
@@ -350,9 +351,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Drowsiness, Nausea"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.sideEffects && (
-                <p className="text-red-500 text-sm">{errors.sideEffects}</p>
-              )}
+                {errors.sideEffects && (
+                  <p className="text-red-500 text-sm">{errors.sideEffects}</p>
+                )}
               </div>
 
               <div>
@@ -367,9 +368,11 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Not with alcohol"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.constraindications && (
-                <p className="text-red-500 text-sm">{errors.constraindications}</p>
-              )}
+                {errors.constraindications && (
+                  <p className="text-red-500 text-sm">
+                    {errors.constraindications}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -384,9 +387,11 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="Keep below 25°C"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.storage_instruction && (
-                <p className="text-red-500 text-sm">{errors.storage_instruction}</p>
-              )}
+                {errors.storage_instruction && (
+                  <p className="text-red-500 text-sm">
+                    {errors.storage_instruction}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -404,9 +409,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   placeholder="100 units"
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.stock && (
-                <p className="text-red-500 text-sm">{errors.stock}</p>
-              )}
+                {errors.stock && (
+                  <p className="text-red-500 text-sm">{errors.stock}</p>
+                )}
               </div>
 
               <div>
@@ -418,9 +423,9 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
                   }}
                   className="border rounded border-gray-300 w-full p-1.5"
                 ></input>
-                 {errors.expiry_date && (
-                <p className="text-red-500 text-sm">{errors.expiry_date}</p>
-              )}
+                {errors.expiry_date && (
+                  <p className="text-red-500 text-sm">{errors.expiry_date}</p>
+                )}
               </div>
             </div>
           </div>

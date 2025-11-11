@@ -26,7 +26,7 @@ function InsuranceToPatient() {
 
   return (
     <div>
-      <div className="bg-white p-3 border border-gray-300 shadow rounded m-5">
+      <div className="bg-white p-3 border border-gray-300 m-5">
         <table className="table-auto w-full">
           <thead className="bg-gray-50 text-[#003441] border border-gray-300">
             <th className="text-start px-3 py-2">Patient Name</th>

@@ -66,13 +66,13 @@ function AdminAppointment() {
   }, [filterByAppointmentId, filterByPatient, filterByDate]);
 
   return (
-    <div className="bg-gray-50 h-screen">
+    <div className="bg-gray-50 min-h-screen h-full">
       <AdminNavbar
         setopeningAdminNavbar={setopeningAdminNavbar}
         openingAdminNavbar={openingAdminNavbar}
       />
 
-      <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
+      <div className="bg-white border border-gray-300 m-5 p-5">
         <div className="flex items-center justify-between">
           <div className="">
             <p className="text-xl sm:text-2xl font-bold text-[#003441]">
@@ -87,7 +87,7 @@ function AdminAppointment() {
               onClick={() => {
                 setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -108,14 +108,14 @@ function AdminAppointment() {
               setfilterByAppointmentId(event.target.value);
             }}
             placeholder="Search Appointments by appointment id..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
           <div className="flex items-center space-x-3">
             <select
               onChange={(event) => {
                 setfilterByPatient(event.target.value);
               }}
-              className="border border-gray-300 w-60 p-1.5 rounded"
+              className="border border-gray-300 w-60 p-1.5"
             >
               <option>Filter by Patient</option>
               {gettingUser
@@ -129,13 +129,13 @@ function AdminAppointment() {
               onChange={(event) => {
                 setfilterByDate(event.target.value);
               }}
-              className="border border-gray-300 w-60 p-1 rounded"
+              className="border border-gray-300 w-60 p-1"
             ></input>
             <button
               onClick={() => {
                 setopeningCreateAppointmentForm(true);
               }}
-              className="bg-[#01B49C] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base rounded shadow text-white"
+              className="bg-[#01B49C] py-1 sm:px-5 w-full sm:w-auto text-sm sm:text-base  text-white"
             >
               + Create Appointment
             </button>
@@ -144,7 +144,7 @@ function AdminAppointment() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 overflow-auto h-[460px] scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 m-5 gap-5">
         {gettingAppointments.map((appointment) => (
-          <div className="bg-white border border-gray-300 shadow p-4 rounded">
+          <div className="bg-white border border-gray-300 p-5">
             <div className="text-[#01B49C] items-center justify-between">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -190,7 +190,7 @@ function AdminAppointment() {
                   // onChange={(e) => {
                   //   setstatus(e.target.value);
                   // }}
-                  className="border text-sm rounded border-gray-300 w-full p-1"
+                  className="border text-sm border-gray-300 w-full p-1"
                 >
                   <option>Select Status</option>
                   <option value={"scheduled"}>Scheduled</option>
@@ -203,7 +203,7 @@ function AdminAppointment() {
                     setopeningAddBillingPaymentForm(true);
                     setcapturingObject(appointment);
                   }}
-                  className="bg-[#003441] w-48 text-white py-1 px-3 rounded text-sm"
+                  className="bg-[#003441] w-48 text-white py-1 px-3 text-sm"
                 >
                   + Add Bill
                 </button>
