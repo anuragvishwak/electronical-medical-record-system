@@ -88,7 +88,7 @@ function PatientProfileSetting() {
       <div className="p-5">
         <div className="flex justify-center">
           {gettingUser.map((user) => (
-            <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
+            <div className="w-full bg-white p-5  border border-gray-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-5">
                   <p className="bg-[#003441] py-14 px-12 text-5xl font-bold rounded-full text-white">
@@ -137,7 +137,7 @@ function PatientProfileSetting() {
                           {user.dateOfBirth}
                         </p>
                       </div>
-                      <p className="text-white px-4 py-0.5 rounded-full text-sm bg-[#01B49C]">
+                      <p className="text-white px-4 py-0.5 -full text-sm bg-[#01B49C]">
                         {user.status}
                       </p>
                     </div>
@@ -148,7 +148,7 @@ function PatientProfileSetting() {
                     setopeningPatientProfileUpdateForm(true);
                     setcurrentUserName(user);
                   }}
-                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4  py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -162,7 +162,7 @@ function PatientProfileSetting() {
 
         {gettingUser.map((user) => (
           <div>
-            <div className="bg-white p-5 my-5 rounded shadow border border-gray-300">
+            <div className="bg-white p-5 my-5  border border-gray-300">
               <p className="text-xl font-semibold mb-2">Medical History</p>
 
               <div className="flex items-center gap-5">
@@ -181,7 +181,7 @@ function PatientProfileSetting() {
                 </div>
               </div>
 
-              <div className="p-3 my-3 rounded border border-gray-300">
+              <div className="p-3 my-3  border border-gray-300">
                 <p className="text-[#01B49C] font-bold">Current Medications</p>
                 {gettingConsultations.map((consult) => (
                   <p className="text-[#003441] font-semibold text-sm text-justify">
@@ -190,7 +190,7 @@ function PatientProfileSetting() {
                 ))}
               </div>
 
-              <div className="p-3 rounded border border-gray-300">
+              <div className="p-3  border border-gray-300">
                 <p className="text-[#01B49C] font-bold ">Medical History</p>
                 {gettingConsultations.map((consult) => (
                   <p className="text-[#003441] font-semibold text-sm text-justify">
@@ -200,7 +200,7 @@ function PatientProfileSetting() {
               </div>
             </div>
 
-            <div className="bg-white p-5 rounded border shadow border-gray-300">
+            <div className="bg-white p-5  border border-gray-300">
               <div>
                 <p className="text-xl font-semibold mb-2">Insurance Details</p>
                 <div>

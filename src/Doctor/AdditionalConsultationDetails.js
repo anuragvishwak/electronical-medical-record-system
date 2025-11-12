@@ -8,7 +8,7 @@ function AdditionalConsultationDetails({
   console.log(capturingDataObject);
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white h-screen overflow-auto my-5 w-8/12 p-3 rounded">
+      <div className="bg-white h-screen overflow-auto my-5 w-8/12 p-3">
         <div className="flex items-center justify-between mb-3">
           <p className="text-[#1976D2] text-xl font-bold">
             Additional Consultation Details
@@ -24,7 +24,7 @@ function AdditionalConsultationDetails({
         </div>
 
         <div>
-          <div className="broder p-2 rounded border border-gray-300">
+          <div className="broder p-2 border border-gray-300">
             <p className="text-xl font-semibold">
               <span className="text-gray-400">Patient:</span>{" "}
               {capturingDataObject.patientName}
@@ -36,7 +36,7 @@ function AdditionalConsultationDetails({
             </p>
           </div>
 
-          <div className="border border-gray-300 rounded my-3 p-3">
+          <div className="border border-gray-300 my-3 p-3">
             <p className="mb-2">Vitals</p>
 
             <table className="min-w-full border text-sm border-gray-200  overflow-hidden text-center">
@@ -81,7 +81,7 @@ function AdditionalConsultationDetails({
         </div>
 
 
-        <div className="border border-gray-300 rounded my-3 p-3">
+        <div className="border border-gray-300 my-3 p-3">
             <div className="flex items-center space-x-2 my-3">
                 <GrNotes/>
                 <p>Medical Records</p>
@@ -106,7 +106,7 @@ function AdditionalConsultationDetails({
         </div>
 
 
-         <div className="border border-gray-300 rounded my-3 p-3">
+         <div className="border border-gray-300 my-3 p-3">
             <div className="flex items-center space-x-2 my-3">
                 <GrNotes/>
                 <p>Medicine Procedures and Additional Instruction</p>

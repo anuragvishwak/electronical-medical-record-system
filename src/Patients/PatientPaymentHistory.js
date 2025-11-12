@@ -61,7 +61,7 @@ function PatientPaymentHistory() {
     <div className="bg-gray-50 min-h-screen h-full">
       <PatientNavbar />
 
-      <div className="bg-white shadow rounded border border-gray-300 m-5 p-5">
+      <div className="bg-white border border-gray-300 m-5 p-5">
         <div className="flex items-center justify-between">
           <div className="flex item-start justify-between w-full">
             <div className="">
@@ -117,7 +117,7 @@ function PatientPaymentHistory() {
               onClick={() => {
                 //   setopeningAdminNavbar(true);
               }}
-              className="border-2 border-[#003441] text-[#003441] p-1 rounded sm:hidden"
+              className="border-2 border-[#003441] text-[#003441] p-1 sm:hidden"
             >
               <FaBars size={15} />
             </button>
@@ -128,10 +128,10 @@ function PatientPaymentHistory() {
         <div className="flex items-center justify-end space-x-3">
           <input
             placeholder="Search Doctors, bills and more..."
-            className="border border-gray-300 w-full sm:w-5/12 p-1 rounded"
+            className="border border-gray-300 w-full sm:w-5/12 p-1"
           ></input>
 
-          <select className="border border-gray-300 w-60 p-1.5 rounded">
+          <select className="border border-gray-300 w-60 p-1.5">
             <option>Filter by Doctor</option>
             {gettingUser.filter(user => user.role === "doctor").map((user) => (
               <option>{user.name}</option>
@@ -141,7 +141,7 @@ function PatientPaymentHistory() {
       </div>
 
       <div>
-        <div className="flex bg-white shadow m-5 border border-gray-300 rounded p-5 justify-center">
+        <div className="flex bg-white m-5 border border-gray-300 p-5 justify-center">
           <table className="w-full table-auto">
             <thead className="border border-gray-300 text-[#003441] bg-gray-50">
               <tr>

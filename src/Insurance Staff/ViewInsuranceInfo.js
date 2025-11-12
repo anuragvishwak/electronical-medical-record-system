@@ -63,7 +63,7 @@ function ViewInsuranceInfo() {
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
 
-      <div className="m-5 p-5 bg-white rounded shadow border border-gray-300">
+      <div className="m-5 p-5 bg-white border border-gray-300">
         <div>
           <p className="text-3xl text-[#003441] font-bold">
             View Insurance Information
@@ -77,16 +77,16 @@ function ViewInsuranceInfo() {
         <div className="flex items-center justify-between ">
           <input
             placeholder="Search Insurance details by policy number..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
           <div className="flex items-center space-x-3">
-            <select className="p-1.5 rounded w-60 border border-gray-300">
+            <select className="p-1.5 w-60 border border-gray-300">
               <option>Insurance Company</option>
               {gettingInsuranceCompanies.map((company) => (
                 <option value={company.providerName}>{company.providerName}</option>
               ))}
             </select>
-            <select className="p-1.5 w-60 rounded border border-gray-300">
+            <select className="p-1.5 w-60 border border-gray-300">
               <option>Coverage Type</option>
                <option value={"inpatient"}>Inpatient</option>
                   <option value={"outpatient"}>Outpatient</option>
@@ -98,7 +98,7 @@ function ViewInsuranceInfo() {
               onClick={() => {
                 setopeningAddInsuranceForm(true);
               }}
-              className="bg-[#01B49C] py-1 px-3 rounded shadow text-white"
+              className="bg-[#01B49C] py-1 px-3  text-white"
             >
               + Add Insurance
             </button>
@@ -108,10 +108,10 @@ function ViewInsuranceInfo() {
 
       <div className="grid grid-cols-4 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
         {gettingInsurances.filter(insurance => insurance.hospitalName === hospitalName).map((insurance) => (
-          <div className="bg-white p-5 rounded-lg shadow">
+          <div className="bg-white p-5 border border-gray-300">
             <div className="flex items-start justify-between">
               <p className="text-xl font-bold">{insurance.patient}</p>
-              <p className="bg-[#01B49C] rounded-full text-white py-1 text-sm font-semibold px-4">
+              <p className="bg-[#01B49C]-full text-white py-1 text-sm font-semibold px-4">
                 {insurance.status}
               </p>
             </div>

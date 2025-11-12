@@ -44,7 +44,7 @@ function InsuranceProvider() {
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
 
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl text-[#003441] font-bold">
             Insurance Provider
@@ -59,10 +59,10 @@ function InsuranceProvider() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search Insurance provider..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
           <div className="flex items-center space-x-3">
-            <select className="border border-gray-400 w-60 p-1 rounded">
+            <select className="border border-gray-400 w-60 p-1">
               <option>Policy Type</option>
               <option>Select Poicy Supported</option>
               <option value={"health"}>Health</option>
@@ -76,7 +76,7 @@ function InsuranceProvider() {
               onClick={() => {
                 setopeningAddInsuranceCompany(true);
               }}
-              className="bg-[#01B49C] py-1 w-56 rounded shadow text-white"
+              className="bg-[#01B49C] py-1 w-56 text-white"
             >
               + Add Insurance Provider
             </button>
@@ -85,7 +85,7 @@ function InsuranceProvider() {
       </div>
       <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
         {gettingInsuranceCompanies.filter(insurance => insurance.hospitalName === hospitalName).map((insurance) => (
-          <div className="bg-white mb-5 p-5 rounded-lg border border-gray-300 shadow">
+          <div className="bg-white mb-5 p-5 border border-gray-300">
             <div>
               <div>
                 <div className="flex items-center justify-between">
@@ -187,7 +187,7 @@ function InsuranceProvider() {
                 <p className="text-[#01B49C] flex items-center font-semibold">
                   <GrNotes className="mr-1" /> Coverage Notes
                 </p>
-                <p className="text-gray-600 shadow p-3 rounded bg-[#e6f3f8] border border-[#01B49C] text-justify w-auto  italic">
+                <p className="text-gray-600 p-3 rounded bg-[#e6f3f8] border border-[#01B49C] text-justify w-auto  italic">
                   {capturingDataObject.coverageNotes}
                 </p>
               </div>
@@ -196,7 +196,7 @@ function InsuranceProvider() {
                 <p className="text-orange-500 flex items-center space-x-2 font-semibold">
                   <CgDanger size={20} className="mr-1" /> Limitations:
                 </p>
-                <p className="text-gray-600 p-3 rounded shadow bg-orange-50 border border-orange-500 text-justify w-auto  italic">
+                <p className="text-gray-600 p-3 rounded bg-orange-50 border border-orange-500 text-justify w-auto  italic">
                   {capturingDataObject.limitations}
                 </p>
               </div>

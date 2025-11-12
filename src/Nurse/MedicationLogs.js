@@ -66,7 +66,7 @@ function MedicationLogs() {
     <div className="bg-gray-50 min-h-screen h-full">
       <NurseNavbar />
 
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">
             Medication Logs
@@ -79,12 +79,12 @@ function MedicationLogs() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search patients..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
 
           <div>
             <div className="flex items-center space-x-3">
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5">
                 <option>Patient</option>
                 {gettingUser
                   .filter((user) => user.role === "patient")
@@ -93,7 +93,7 @@ function MedicationLogs() {
                   ))}
               </select>
 
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5">
                 <option>Doctor</option>
                 {gettingUser
                   .filter((user) => user.role === "doctor")
@@ -108,7 +108,7 @@ function MedicationLogs() {
       <div className="m-5">
         <div className="grid grid-cols-3 gap-5">
           {gettingAppointments.map((appointment) => (
-            <div className="bg-white p-5 shadow rounded border border-gray-300">
+            <div className="bg-white p-5 border border-gray-300">
               <div>
                 <div className="flex items-center space-x-2">
                   {gettingUser

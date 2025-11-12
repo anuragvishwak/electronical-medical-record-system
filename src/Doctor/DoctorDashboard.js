@@ -80,7 +80,7 @@ function DoctorDashboard() {
         {gettingUser
           .filter((user) => user.email === email)
           .map((user) => (
-            <div className="flex justify-between p-5 rounded border border-gray-300 shadow m-5 bg-white">
+            <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
               <div>
                 <p className="text-[#003441] text-2xl font-bold">{user.name}</p>
                 <p className="text-[#01B49C]">{user.email}</p>
@@ -94,7 +94,7 @@ function DoctorDashboard() {
           ))}
 
         <div className="grid grid-cols-4 gap-5 m-5">
-          <div className="bg-white p-6 shadow rounded border border-gray-300">
+          <div className="bg-white p-6  border border-gray-300">
             <div className="flex items-center  justify-center space-x-5">
               <CgUser
                 size={45}
@@ -112,7 +112,7 @@ function DoctorDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 shadow rounded border border-gray-300">
+          <div className="bg-white p-6  rounded border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaRegCalendarAlt
                 size={45}
@@ -132,7 +132,7 @@ function DoctorDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 shadow rounded border border-gray-300">
+          <div className="bg-white p-6  rounded border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <GiMedicinePills
                 size={45}
@@ -152,7 +152,7 @@ function DoctorDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 shadow rounded border border-gray-300">
+          <div className="bg-white p-6  rounded border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <GoDiscussionClosed
                 size={45}
@@ -278,7 +278,7 @@ function DoctorDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-5 w-full rounded border border-gray-300 shadow">
+          <div className="bg-white p-5 w-full rounded border border-gray-300 ">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>

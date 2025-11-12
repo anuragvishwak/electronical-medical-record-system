@@ -29,7 +29,7 @@ function PatientAppointment() {
   return (
     <div className="bg-gray-50 h-screen">
       <PatientNavbar />
-      <div className="m-5 bg-white p-3 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-3 border border-gray-300">
        <div className="flex items-center justify-between">
          <div>
           <p className="text-2xl text-[#003441] font-bold">Appointments</p>

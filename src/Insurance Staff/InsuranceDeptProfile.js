@@ -50,7 +50,7 @@ function InsuranceDeptProfile() {
           <div>
             <div className="flex justify-center">
               {gettingUser.map((user) => (
-                <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
+                <div className="w-full bg-white p-5  border border-gray-300">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-5">
                       <p className="bg-[#003441] py-10 px-12 text-5xl font-bold rounded-full text-white">

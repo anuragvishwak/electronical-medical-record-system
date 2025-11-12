@@ -47,35 +47,35 @@ function NurseProfileUpdateSetting() {
         <div>
           {gettingUser.map((user) => (
             <div className="grid grid-cols-5 gap-5">
-              <div className="border border-gray-300 p-5 rounded-lg bg-white shadow">
+              <div className="border border-gray-300 p-5 bg-white">
                 <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.yearsOfExperience}
                 </p>
                 <p className="text-[#01B49C]">Years of Experience</p>
               </div>
 
-              <div className="border  border-gray-300 p-5 rounded-lg bg-white shadow">
+              <div className="border  border-gray-300 p-5 bg-white">
                 <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.workingHours}
                 </p>
                 <p className="text-[#01B49C]">Working Hours</p>
               </div>
 
-              <div className="border  border-gray-300 p-5 rounded-lg bg-white shadow">
+              <div className="border  border-gray-300 p-5 bg-white">
                 <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.leavesHoliday}
                 </p>
                 <p className="text-[#01B49C]">Leaves / Holidays</p>
               </div>
 
-              <div className="border border-gray-300  p-5 rounded-lg bg-white shadow">
+              <div className="border border-gray-300  p-5 bg-white">
                 <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.shiftTime}
                 </p>
                 <p className="text-[#01B49C]">Shift Time</p>
               </div>
 
-              <div className="border border-gray-300  p-5 rounded-lg bg-white shadow">
+              <div className="border border-gray-300  p-5 bg-white">
                 <p className="text-[#003441] text-2xl capitalize font-bold">
                   {user.department}
                 </p>
@@ -87,7 +87,7 @@ function NurseProfileUpdateSetting() {
 
         <div className="flex mt-5 justify-center">
           {gettingUser.map((user) => (
-            <div className="w-full bg-white p-5 rounded border border-gray-300 shadow">
+            <div className="w-full bg-white p-5 border border-gray-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5">
                   <p className="bg-[#003441] py-10 px-12 text-5xl font-bold rounded-full text-white">
@@ -131,7 +131,7 @@ function NurseProfileUpdateSetting() {
                     setopeningNurseProfileForm(true);
                     setcurrentUser(user);
                   }}
-                  className="bg-[#003441] text-white font-semibold px-4 rounded py-1.5"
+                  className="bg-[#003441] text-white font-semibold px-4 py-1.5"
                 >
                   <div className="flex items-center space-x-2">
                     <FaRegEdit size={18} />
@@ -144,7 +144,7 @@ function NurseProfileUpdateSetting() {
         </div>
 
         <div>
-          <div className="bg-white p-5 my-5 rounded border border-gray-300 shadow">
+          <div className="bg-white p-5 my-5 border border-gray-300">
             <p className="text-xl font-semibold mb-2">Professional Details</p>
             {gettingUser.map((user) => (
               <div className="grid grid-cols-5 gap-5">
@@ -174,7 +174,7 @@ function NurseProfileUpdateSetting() {
 
           <div>
             {gettingUser.map((user) => (
-              <div className="bg-white p-5 rounded border border-gray-300 shadow">
+              <div className="bg-white p-5 border border-gray-300">
                 <div className="w-full text-center">
                   <p className="text-[#01B49C]">Acheievements / Awards</p>
                   <p className="text-[#003441] mt-2 flex items-center justify-center space-x-2 text-xl font-semibold">

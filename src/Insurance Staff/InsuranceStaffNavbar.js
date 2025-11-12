@@ -6,7 +6,7 @@ function InsuranceStaffNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <div className="flex items-center font-semibold text-[#003441] border-gray-300 bg-white shadow border-b justify-between p-3">
+    <div className="flex items-center font-semibold text-[#003441] border-gray-300 bg-white  border-b justify-between p-3">
       <div className="flex items-center space-x-5">
         <button
           onClick={() => {
@@ -53,7 +53,7 @@ function InsuranceStaffNavbar() {
       </div>
       <button
       onClick={()=>{
-        navigate("/");
+        navigate("/Login");
         localStorage.clear();
       }}
       >

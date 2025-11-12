@@ -159,7 +159,7 @@ function CentralizedAppointment({
   return (
     <div>
       <div className={`grid grid-cols-3 m-5 gap-5`}>
-        {filteredAppointments.map((appointment) => (
+        {filteredAppointments?.map((appointment) => (
           <div className="bg-white border border-gray-300 p-5">
             <div className="flex items-start justify-between">
               <div className="text-sm">
@@ -289,7 +289,7 @@ function CentralizedAppointment({
                       Additional Images
                     </p>
                     <div className="grid grid-cols-2 gap-5">
-                      {appointment.images.map((img) => (
+                      {appointment.images?.map((img) => (
                         <img src={img} className="h-40 border w-full"/>
                       ))}
                     </div>

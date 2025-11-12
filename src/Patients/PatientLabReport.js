@@ -43,7 +43,7 @@ function PatientLabReport() {
   return (
     <div className="bg-gray-100 h-screen">
       <PatientNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-2xl font-bold">Lab Reports</p>
@@ -65,13 +65,13 @@ function PatientLabReport() {
         <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search Lab Reports..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 "
           ></input>
 
           <button>
             <IoNotifications
               size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
+              className="border border-gray-500 p-1  text-gray-500"
             />
           </button>
         </div>
@@ -79,8 +79,8 @@ function PatientLabReport() {
 
       <div className="m-5 grid grid-cols-3 gap-5">
         {gettingLabResults.map((lab) => (
-          <div className="rounded bg-white border border-gray-300 shadow">
-            <div className=" bg-[#01B49C] rounded-t p-3 text-white ">
+          <div className=" bg-white border border-gray-300">
+            <div className=" bg-[#01B49C] -t p-3 text-white ">
               <div className="flex text-sm items-center space-x-1">
                 <p>
                   <span className="text-gray-300">Appointment Id:</span>{" "}
@@ -93,7 +93,7 @@ function PatientLabReport() {
               </p>
             </div>
 
-            <div className="border m-3 p-2 rounded-lg border-gray-300">
+            <div className="border m-3 p-2 -lg border-gray-300">
               {gettingUser
                 .filter((user) => user.email === lab.doctor)
                 .map((user) => (
@@ -127,7 +127,7 @@ function PatientLabReport() {
                   setcapturingResultId(lab.id);
                   setextendingTable(!extendingTable);
                 }}
-                className="bg-[#003441] text-sm text-white py-1 px-4 rounded hover:bg-blue-800"
+                className="bg-[#003441] text-sm text-white py-1 px-4  hover:bg-blue-800"
               >
                 <div className="flex items-center space-x-1">
                   <FaEye />
@@ -138,7 +138,7 @@ function PatientLabReport() {
 
             {extendingTable && capturingResultId === lab.id && (
               <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-                <div className="bg-white p-5 w-6/12 rounded">
+                <div className="bg-white p-5 w-6/12 ">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-[#01B49C] text-xl font-bold">
                       Lab Results
