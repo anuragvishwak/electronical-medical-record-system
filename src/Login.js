@@ -79,7 +79,7 @@ function Login() {
               navigate("/LabTechnicianDashboard");
               break;
             case "insurance_dept":
-              navigate("/InsuranceStaffDashboard");
+              navigate("/InsuranceDeptDashboard");
               break;
             default:
               toast.current.show({

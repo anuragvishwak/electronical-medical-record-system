@@ -7,7 +7,7 @@ function LabTechnicianNavbar() {
   const location = useLocation();
 
   return (
-    <div className="flex bg-white shadow items-center border-b justify-between p-3">
+    <div className="flex bg-white items-center border-b justify-between p-3">
       <div className="flex items-center [#003441] font-semibold space-x-5">
         <button
         onClick={() => {
@@ -55,7 +55,7 @@ function LabTechnicianNavbar() {
         <button
           onClick={() => {
             localStorage.clear();
-            navigate("/");
+            navigate("/Login");
           }}
         >
           <LuLogOut />

@@ -55,7 +55,7 @@ function PatientDashboard() {
           {gettingUser
             .filter((user) => user.email === email)
             .map((user) => (
-              <div className="flex justify-between p-5 rounded border border-gray-300 shadow m-5 bg-white">
+              <div className="flex justify-between p-5  border border-gray-300 m-5 bg-white">
                 <div>
                   <p className="text-[#003441] text-2xl font-bold">
                     {user.name}
@@ -71,13 +71,13 @@ function PatientDashboard() {
             ))}
 
           <div className="flex items-start m-5 gap-5">
-            <div className="w-[600px] bg-white p-5 border border-gray-300 rounded shadow">
+            <div className="w-[600px] bg-white p-5 border border-gray-300 ">
               <div className="flex items-center space-x-1 text-[#01B49C] mb-3">
                 <FaCalendarAlt />
                 <p className="text-xl font-bold">Recent Appointments</p>
               </div>
               {gettingAppointments.map((appoint) => (
-                <div className="rounded border flex items-start justify-between p-3 mb-5 border-gray-300">
+                <div className=" border flex items-start justify-between p-3 mb-5 border-gray-300">
                   <div>
                     {gettingUser
                       .filter((user) => user.email === appoint.doctor)
@@ -90,10 +90,10 @@ function PatientDashboard() {
                   </div>
 
                   <div className="text-sm font-semibold">
-                    <p className="border border-gray-300 py-0.5 px-4 rounded-full">
+                    <p className="border border-gray-300 py-0.5 px-4 -full">
                       {appoint.status}
                     </p>
-                    <p className="border border-gray-300 py-0.5 px-4 rounded-full">
+                    <p className="border border-gray-300 py-0.5 px-4 -full">
                       {appoint.visitvisitStatus}
                     </p>
                   </div>
@@ -101,13 +101,13 @@ function PatientDashboard() {
               ))}
             </div>
 
-            <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px] rounded border border-gray-300">
+            <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[550px]  border border-gray-300">
               <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
                 <RxCounterClockwiseClock size={20} />
                 <p className="text-xl font-bold">Recent Activities</p>
               </div>
 
-              <div className="border rounded border-gray-300 p-2.5">
+              <div className="border  border-gray-300 p-2.5">
                 <p className="text-lg font-semibold text-[#003441]">
                   Appointment Scheduled
                 </p>
@@ -117,7 +117,7 @@ function PatientDashboard() {
                 </p>
               </div>
 
-              <div className="border rounded my-3 border-gray-300 p-2.5">
+              <div className="border  my-3 border-gray-300 p-2.5">
                 <p className="text-lg font-semibold text-[#003441]">
                   Prescription Added
                 </p>
@@ -127,7 +127,7 @@ function PatientDashboard() {
                 </p>
               </div>
 
-              <div className="border rounded border-gray-300 p-2.5">
+              <div className="border  border-gray-300 p-2.5">
                 <p className="text-lg font-semibold text-[#003441]">
                   Insurance Claim Submitted
                 </p>
@@ -137,33 +137,33 @@ function PatientDashboard() {
               </div>
             </div>
 
-            <div className=" bg-white p-5 rounded shadow border border-gray-300 w-full">
+            <div className=" bg-white p-5  border border-gray-300 w-full">
               <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
                 <MdTimer size={20} />
                 <p className="text-xl font-bold">Quick Actions</p>
               </div>
               <div className="grid grid-cols-2 gap-5">
-                <div className="border border-gray-300 p-3 rounded">
+                <div className="border border-gray-300 p-3 ">
                   <div className="flex items-center space-x-1">
                     <FaCalendarAlt
                       size={25}
-                      className="border rounded border-gray-300 p-1"
+                      className="border  border-gray-300 p-1"
                     />
                     <p className="text-lg font-semibold text-[#003441]">
                       Request Appointment
                     </p>
                   </div>
                   <p className="text-[#01B49C]">Request your next visit.</p>
-                  <button className="bg-[#003441] text-white py-1 px-3 text-sm rounded">
+                  <button className="bg-[#003441] text-white py-1 px-3 text-sm ">
                     Request Appointment
                   </button>
                 </div>
 
-                <div className="border border-gray-300 p-3 rounded">
+                <div className="border border-gray-300 p-3 ">
                   <div className="flex items-center space-x-1">
                     <GiMedicinePills
                       size={25}
-                      className="border rounded border-gray-300 p-1"
+                      className="border  border-gray-300 p-1"
                     />
                     <p className="text-lg font-semibold text-[#003441]">
                       View Prescriptions
@@ -174,16 +174,16 @@ function PatientDashboard() {
                   onClick={()=>{
                     navigation('/PatientPrescription');
                   }}
-                  className="bg-[#003441] text-white py-1 px-3 text-sm rounded">
+                  className="bg-[#003441] text-white py-1 px-3 text-sm ">
                     View Prescriptions
                   </button>
                 </div>
 
-                <div className="border border-gray-300 p-3 rounded">
+                <div className="border border-gray-300 p-3 ">
                   <div className="flex items-center space-x-1">
                     <GrTest
                       size={25}
-                      className="border rounded border-gray-300 p-1"
+                      className="border  border-gray-300 p-1"
                     />
                     <p className="text-lg font-semibold text-[#003441]">
                       Check Lab Reports
@@ -194,16 +194,16 @@ function PatientDashboard() {
                   onClick={()=>{
                     navigation('/PatientLabReport');
                   }}
-                  className="bg-[#003441] text-white py-1 px-3 text-sm rounded">
+                  className="bg-[#003441] text-white py-1 px-3 text-sm ">
                     View Reports
                   </button>
                 </div>
 
-                <div className="border border-gray-300 p-3 rounded">
+                <div className="border border-gray-300 p-3 ">
                   <div className="flex items-center space-x-1">
                     <GrMoney
                       size={25}
-                      className="border rounded border-gray-300 p-1"
+                      className="border  border-gray-300 p-1"
                     />
                     <p className="text-lg font-semibold text-[#003441]">
                       View Payment History
@@ -214,7 +214,7 @@ function PatientDashboard() {
                   onClick={()=>{
                     navigation('/PatientPaymentHistory');
                   }}
-                  className="bg-[#003441] text-white py-1 px-3 text-sm rounded">
+                  className="bg-[#003441] text-white py-1 px-3 text-sm ">
                     View History
                   </button>
                 </div>

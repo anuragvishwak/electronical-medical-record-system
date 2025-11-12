@@ -75,7 +75,7 @@ function PatientMedicalHistory() {
       <PatientNavbar />
 
       <div className="flex space-x-5 m-5">
-        <div className="bg-white border overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full p-4 border-gray-300 shadow">
+        <div className="bg-white border overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full p-4 border-gray-300">
           <div className="flex items-center mb-4 text-[#01B49C] space-x-3">
             <FaRegCalendarAlt size={20} />
             <p className="text-xl font-bold capitalize">Past Consultations</p>
@@ -126,7 +126,7 @@ function PatientMedicalHistory() {
           ))}
         </div>
 
-        <div className="p-5 rounded overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full shadow border border-gray-300 bg-white">
+        <div className="p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[550px] w-full border border-gray-300 bg-white">
           <div className="flex items-center mb-4 text-[#01B49C] space-x-3">
             <FaStethoscope size={20} />
             <p className="text-xl font-bold capitalize">Past Prescriptions</p>

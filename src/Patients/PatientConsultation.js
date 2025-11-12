@@ -45,7 +45,7 @@ function PatientConsultation() {
   return (
     <div className="bg-gray-100 h-screen">
       <PatientNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-2xl font-bold text-[#003441]">Consultation</p>
@@ -72,13 +72,13 @@ function PatientConsultation() {
         <div className="flex items-center justify-end space-x-2">
           <input
             placeholder="Search Users..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 "
           ></input>
 
           <button>
             <FaSearch
               size={31}
-              className="border border-gray-500 p-1 rounded text-gray-500"
+              className="border border-gray-500 p-1  text-gray-500"
             />
           </button>
         </div>
@@ -87,12 +87,12 @@ function PatientConsultation() {
         {gettingConsultations
           .filter((prep) => prep.patient === email)
           .map((prep) => (
-            <div className="bg-white rounded shadow border border-gray-300 ">
+            <div className="bg-white  border border-gray-300 ">
               <div className="m-5">
                 <p className="font-semibold text-[#1976D2] mb-3">
                   History of Present Illness
                 </p>
-                <p className="text-gray-600 p-2 bg-gray-50 rounded-xl border-l-8 border-blue-500 text-sm text-justify">
+                <p className="text-gray-600 p-2 bg-gray-50 -xl border-l-8 border-blue-500 text-sm text-justify">
                   {prep.historyofPresentIllness}
                 </p>
               </div>
@@ -107,7 +107,7 @@ function PatientConsultation() {
                     setcapturingDataObject(prep);
                     setopeningAdditionalDetails(true);
                   }}
-                  className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2 rounded text-white"
+                  className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2  text-white"
                 >
                   <div className="flex items-center space-x-1">
                     <FaEye />

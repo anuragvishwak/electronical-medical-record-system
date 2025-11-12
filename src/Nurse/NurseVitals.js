@@ -52,7 +52,7 @@ function NurseVitals() {
   return (
     <div className="bg-gray-100 h-screen">
       <NurseNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">Patient Vitals</p>
           <p className="text-[#01B49C]">
@@ -67,14 +67,14 @@ function NurseVitals() {
               //   setsearch(e.target.value);
             }}
             placeholder="Search Patient's Vitals by Id..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 "
           ></input>
 
           <select
             onChange={(event) => {
               setfilterByPatient(event.target.value);
             }}
-            className="border border-gray-300 w-60 p-1.5 rounded"
+            className="border border-gray-300 w-60 p-1.5 "
           >
             <option>Filter by Patient</option>
             {gettingUser
@@ -86,7 +86,7 @@ function NurseVitals() {
         </div>
       </div>
 
-      <div className="bg-white p-3 m-3 shadow rounded border border-gray-300">
+      <div className="bg-white p-5 m-5 border border-gray-300">
         <table className="w-full table-auto">
           <thead className="text-[#003441] bg-gray-100 border border-gray-300">
             <tr>

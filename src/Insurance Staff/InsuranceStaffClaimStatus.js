@@ -34,7 +34,7 @@ function InsuranceStaffClaimStatus() {
     <div className="bg-gray-100 h-screen">
       <InsuranceStaffNavbar />
 
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-3xl font-bold text-[#003441]">Claim Status</p>
           <p className="text-[#01B49C]">
@@ -46,15 +46,15 @@ function InsuranceStaffClaimStatus() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search by claim id or policy number..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 "
           ></input>
           <div className="flex items-center space-x-3">
-            <select className="border rounded w-60 border-gray-300 p-2">
+            <select className="border  w-60 border-gray-300 p-2">
               <option>Claim Type</option>
               <option>Cashless</option>
               <option>Reimbursement</option>
             </select>
-            <select className="border rounded border-gray-300 w-60 p-2">
+            <select className="border  border-gray-300 w-60 p-2">
               <option>Payment Mode</option>
               <option>Cash</option>
               <option>Bank Transfer</option>
@@ -64,7 +64,7 @@ function InsuranceStaffClaimStatus() {
               onClick={() => {
                 setopeningClaimStatus(true);
               }}
-              className="bg-[#01B49C] py-1.5 px-3 rounded shadow text-white"
+              className="bg-[#01B49C] py-1.5 px-3   text-white"
             >
               + Add Claim
             </button>
@@ -73,16 +73,16 @@ function InsuranceStaffClaimStatus() {
       </div>
       <div className="grid m-5 grid-cols-2 gap-5">
         {gettingClaimStatus.filter(claim => claim.hospitalName === hospitalName).map((claim) => (
-          <div className="bg-white rounded-lg shadow">
+          <div className="bg-white -lg ">
             <div>
-              <div className="bg-[#01B49C] p-5 rounded-t-lg">
+              <div className="bg-[#01B49C] p-5 -t-lg">
                 <div className="flex items-start w-full justify-between">
                   <div className="">
                     <p className="text-white text-xl font-semibold">
                       {claim.patient}
                     </p>
                   </div>
-                  <p className="text-[#01B49C] bg-white px-3 py-0.5 rounded-full text-sm font-semibold">
+                  <p className="text-[#01B49C] bg-white px-3 py-0.5 -full text-sm font-semibold">
                     {claim.claimType}
                   </p>
                 </div>

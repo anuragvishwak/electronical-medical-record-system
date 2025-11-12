@@ -92,7 +92,7 @@ function PatientInsuranceDetails() {
               <div>
                 <div
                   key={insurance.id}
-                  className="bg-white border p-4 rounded shadow broder-gray-300"
+                  className="bg-white border p-4 border-gray-300"
                 >
                   <div>
                     <div className="flex items-center text-[#003441] space-x-1">
@@ -141,7 +141,7 @@ function PatientInsuranceDetails() {
                     <div>
                       <p className=" text-[#01B49C]">Status</p>
                       <p
-                        className={`font-bold py-0.5 px-3 rounded-full text-sm ${
+                        className={`font-bold py-0.5 px-3 text-sm ${
                           insurance.status === "pending"
                             ? "bg-red-500 text-white"
                             : "bg-green-500 text-white"
@@ -169,7 +169,7 @@ function PatientInsuranceDetails() {
                   </div>
                 </div>
 
-                <div className="bg-white p-5 mt-5 rounded shadow border border-gray-300">
+                <div className="bg-white p-5 mt-5 border border-gray-300">
                   <div>
                     <div className="flex items-center text-[#003441] space-x-1">
                       <TbCheckupList size={20} />

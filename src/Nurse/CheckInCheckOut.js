@@ -25,7 +25,7 @@ function CheckInCheckOut() {
   return (
     <div className="bg-gray-100 h-screen">
       <NurseNavbar />
-      <div className="m-5 bg-white p-3 border rounded border-gray-300">
+      <div className="m-5 bg-white p-3 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">Check In Check Out</p>
           <p className="text-[#01B49C]">
@@ -38,13 +38,13 @@ function CheckInCheckOut() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search Appointments by Id..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1"
           ></input>
           <select
             onChange={(event) => {
               setfilterByPatient(event.target.value);
             }}
-            className="border border-gray-300 w-60 p-1.5 rounded"
+            className="border border-gray-300 w-60 p-1.5"
           >
             <option>Filter by Patient</option>
             {gettingUser

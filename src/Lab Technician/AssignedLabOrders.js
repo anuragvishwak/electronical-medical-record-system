@@ -72,7 +72,7 @@ function AssignedLabOrders() {
     <div className="bg-gray-50 h-screen">
       <LabTechnicianNavbar />
       <div>
-        <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+        <div className="m-5 bg-white p-5 border border-gray-300">
           <div>
             <p className="text-2xl text-[#003441] font-bold">
               Assigned Lab Orders
@@ -85,11 +85,11 @@ function AssignedLabOrders() {
           <div className="flex items-center justify-between ">
             <input
               placeholder="Search Lab Orders by order id or appointment id..."
-              className="border border-gray-400 w-96 p-1 rounded"
+              className="border border-gray-400 w-96 p-1"
             ></input>
 
             <div className="flex items-center space-x-3">
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5">
                 <option>Patient</option>
                 {gettingUser
                   .filter((user) => user.role === "patient")
@@ -98,7 +98,7 @@ function AssignedLabOrders() {
                   ))}
               </select>
 
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5">
                 <option>Doctor</option>
                 {gettingUser
                   .filter((user) => user.role === "doctor")
@@ -106,7 +106,7 @@ function AssignedLabOrders() {
                     <option>{user.name}</option>
                   ))}
               </select>
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5">
                 <option>Tests</option>
                 {labTestsList.map((test) => (
                   <option value={test.name}>{test.name}</option>
@@ -116,7 +116,7 @@ function AssignedLabOrders() {
           </div>
         </div>
 
-        <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
+        <div className="flex justify-center m-5 p-5 bg-white border border-gray-300">
           <table className="w-full table-auto">
             <thead className="bg-gray-50 border border-gray-300 text-[#003441]">
               <tr>
@@ -158,7 +158,7 @@ function AssignedLabOrders() {
                         onClick={() => {
                           setopeningNote(true);
                         }}
-                        className="bg-[#01B49C] text-white px-2 mt-1.5 py-1 rounded"
+                        className="bg-[#01B49C] text-white px-2 mt-1.5 py-1"
                       >
                         <div className="flex items-center space-x-1">
                           <GrNotes />
@@ -173,7 +173,7 @@ function AssignedLabOrders() {
                             setcapturingLabOrderObject(order);
                             setopeningCreateLabResultsForm(true);
                           }}
-                          className="text-[#01B49C] border border-[#01B49C] hover:bg-[#01B49C] py-1 px-3 rounded hover:text-white"
+                          className="text-[#01B49C] border border-[#01B49C] hover:bg-[#01B49C] py-1 px-3 hover:text-white"
                         >
                           + Upload Results
                         </button>
@@ -190,8 +190,8 @@ function AssignedLabOrders() {
                   </tr>
                   {openingNote && (
                     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-                      <div className="bg-white p-3.5 rounded shadow-lg w-5/12">
-                        <div className="p-3.5 rounded border border-gray-400">
+                      <div className="bg-white p-3.5 shadow-lg w-5/12">
+                        <div className="p-3.5 border border-gray-400">
                           <div className="flex itesm-center justify-between mb-3">
                             <div className="flex items-center space-x-1">
                               <GrNotes size={18} className="text-[#01B49C]" />

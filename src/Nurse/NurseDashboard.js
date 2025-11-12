@@ -119,11 +119,11 @@ function NurseDashboard() {
 
       <div>
         <div className="grid grid-cols-4 gap-5 m-5">
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6  border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaUser
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Patients</p>
@@ -134,11 +134,11 @@ function NurseDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300 flex-1 min-w-[250px]">
+          <div className="bg-white p-6  border border-gray-300 flex-1 min-w-[250px]">
             <div className="flex items-center justify-center space-x-5">
               <GiMedicines
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Medication Logs</p>
@@ -150,11 +150,11 @@ function NurseDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6  border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <FaHeartbeat
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">
@@ -167,11 +167,11 @@ function NurseDashboard() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded border border-gray-300">
+          <div className="bg-white p-6  border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
               <BsBuildingFillCheck
                 size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 rounded"
+                className="text-[#01B49C] bg-gray-200 p-1.5 "
               />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Checked In</p>
@@ -187,13 +187,13 @@ function NurseDashboard() {
           </div>
         </div>
         <div className="flex items-start m-5 gap-5">
-          <div className="bg-white p-5 w-[550px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] rounded border border-gray-300">
+          <div className="bg-white p-5 w-[550px] overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px]  border border-gray-300">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <FaCalendarAlt />
               <p className="text-xl font-bold">Recent Appointments</p>
             </div>
             {gettingAppointments.map((appointment) => (
-              <div className="flex p-3 rounded border border-gray-300 mb-3 justify-between items-start">
+              <div className="flex p-3  border border-gray-300 mb-3 justify-between items-start">
                 <div>
                   {gettingUser
                     .filter((user) => user.email === appointment.patient)
@@ -215,7 +215,7 @@ function NurseDashboard() {
                   </div>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <p className="border px-3 text-sm font-semibold py-1 text-[#003441] rounded-full border-gray-300">
+                  <p className="border px-3 text-sm font-semibold py-1 text-[#003441] -full border-gray-300">
                     {appointment.status}
                   </p>
                   <button
@@ -223,7 +223,7 @@ function NurseDashboard() {
                       setaddVitalsForm(true);
                       setcapturingWholeObject(appointment);
                     }}
-                    className="bg-[#01B49C] text-sm py-1 px-3 rounded text-white"
+                    className="bg-[#01B49C] text-sm py-1 px-3  text-white"
                   >
                     + Add Vitals
                   </button>
@@ -232,13 +232,13 @@ function NurseDashboard() {
             ))}
           </div>
 
-          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[400px] rounded border border-gray-300">
+          <div className="bg-white p-5 overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-[400px]  border border-gray-300">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <RxCounterClockwiseClock size={20} />
               <p className="text-xl font-bold">Recent Activities</p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border  my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Vitals Recorded
               </p>
@@ -248,7 +248,7 @@ function NurseDashboard() {
               </p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border  my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Patient Checked In
               </p>
@@ -259,7 +259,7 @@ function NurseDashboard() {
               </p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border  my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Medication Logged
               </p>
@@ -270,7 +270,7 @@ function NurseDashboard() {
               </p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border  my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">
                 Appointment Completed
               </p>
@@ -281,7 +281,7 @@ function NurseDashboard() {
               </p>
             </div>
 
-            <div className="border rounded my-3 border-gray-300 p-2.5">
+            <div className="border  my-3 border-gray-300 p-2.5">
               <p className="text-lg font-semibold text-[#003441]">Note Added</p>
               <p className="text-[#01B49C] text-sm">
                 Additional note added for patient{" "}
@@ -289,18 +289,18 @@ function NurseDashboard() {
               </p>
             </div>
           </div>
-          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-auto border-gray-300 p-5 rounded">
+          <div className="border bg-white overflow-auto scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200 h-[500px] w-auto border-gray-300 p-5 ">
             <div className="flex mb-2 text-[#01B49C] items-center space-x-2">
               <MdTimer size={20} />
               <p className="text-xl font-bold">Quick Actions</p>
             </div>
 
             <div className="grid grid-cols-2 gap-5">
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3  border-gray-300">
                 <div className="flex items-center space-x-1">
                   <FaHeartbeat
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1  border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     View Patient Vitals
@@ -313,17 +313,17 @@ function NurseDashboard() {
                   onClick={() => {
                     navigation("/NurseVitals");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                  className="py-1 mt-3 text-white text-sm px-3  bg-[#003441]"
                 >
                   View Vitals
                 </button>
               </div>
 
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3  border-gray-300">
                 <div className="flex items-center space-x-1">
                   <FaCalendarAlt
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1  border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     View Checked-In Patients
@@ -336,17 +336,17 @@ function NurseDashboard() {
                   onClick={() => {
                     navigation("/CheckInCheckOut");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                  className="py-1 mt-3 text-white text-sm px-3  bg-[#003441]"
                 >
                   View Today's Patients
                 </button>
               </div>
 
-              <div className="border p-3 rounded border-gray-300">
+              <div className="border p-3  border-gray-300">
                 <div className="flex items-center space-x-1">
                   <GiMedicines
                     size={25}
-                    className="text-[#003441] border p-1 rounded border-gray-300"
+                    className="text-[#003441] border p-1  border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
                     View Medication Logs
@@ -359,7 +359,7 @@ function NurseDashboard() {
                   onClick={() => {
                     navigation("/MedicationLogs");
                   }}
-                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                  className="py-1 mt-3 text-white text-sm px-3  bg-[#003441]"
                 >
                   View Logs
                 </button>

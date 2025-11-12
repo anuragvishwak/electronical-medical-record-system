@@ -9,7 +9,7 @@ import { FaPencil, FaPlus, FaRupeeSign, FaRupiahSign } from "react-icons/fa6";
 import AddChargesForm from "./AddChargesForm";
 
 function UploadTestResults() {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
   const [gettingLabOrders, setgettingLabOrders] = useState([]);
@@ -83,7 +83,7 @@ function UploadTestResults() {
   return (
     <div className="bg-gray-50 h-screen">
       <LabTechnicianNavbar />
-      <div className="m-5 bg-white p-5 border border-gray-300 shadow rounded">
+      <div className="m-5 bg-white p-5 border border-gray-300">
         <div>
           <p className="text-2xl font-bold text-[#003441]">
             Upload Test Results
@@ -96,12 +96,12 @@ function UploadTestResults() {
         <div className="flex items-center justify-between">
           <input
             placeholder="Search lab results..."
-            className="border border-gray-400 w-96 p-1 rounded"
+            className="border border-gray-400 w-96 p-1 "
           ></input>
 
           <div>
             <div className="flex items-center space-x-3">
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5 ">
                 <option>Patient</option>
                 {gettingUser
                   .filter((user) => user.role === "patient")
@@ -110,7 +110,7 @@ function UploadTestResults() {
                   ))}
               </select>
 
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5 ">
                 <option>Doctor</option>
                 {gettingUser
                   .filter((user) => user.role === "doctor")
@@ -118,7 +118,7 @@ function UploadTestResults() {
                     <option>{user.name}</option>
                   ))}
               </select>
-              <select className="border border-gray-300 w-60 p-1.5 rounded">
+              <select className="border border-gray-300 w-60 p-1.5 ">
                 <option>Tests</option>
                 {labTestsList.map((test) => (
                   <option value={test.name}>{test.name}</option>
@@ -130,7 +130,7 @@ function UploadTestResults() {
       </div>
 
       <div>
-        <div className="flex justify-center m-5 p-5 bg-white border border-gray-300 shadow rounded">
+        <div className="flex justify-center m-5 p-5 bg-white border border-gray-300">
           <table className="w-full table-auto">
             <thead className="bg-gray-50 text-[#003441] border border-gray-300">
               <tr>
@@ -147,76 +147,80 @@ function UploadTestResults() {
             </thead>
 
             <tbody>
-              {gettingLabResults.filter(lab => lab.hospitalName === hospitalName).map((lab) => (
-                <tr className="text-[#01B49C] border-b border-gray-300">
-                  {gettingUser
-                    .filter((user) => user.email === lab.patient)
-                    .map((user) => (
-                      <td className="text-center  py-3">{user.name}</td>
-                    ))}
+              {gettingLabResults
+                .filter((lab) => lab.hospitalName === hospitalName)
+                .map((lab) => (
+                  <tr className="text-[#01B49C] border-b border-gray-300">
+                    {gettingUser
+                      .filter((user) => user.email === lab.patient)
+                      .map((user) => (
+                        <td className="text-center  py-3">{user.name}</td>
+                      ))}
 
-                  {gettingUser
-                    .filter((user) => user.email === lab.doctor)
-                    .map((user) => (
-                      <td className="text-center">{user.name}</td>
-                    ))}
+                    {gettingUser
+                      .filter((user) => user.email === lab.doctor)
+                      .map((user) => (
+                        <td className="text-center">{user.name}</td>
+                      ))}
 
-                  <td className="text-center">{lab.testRequested}</td>
-                  <td className="text-center text-sm">{lab.appointmentId}</td>
-                  <td className="text-center text-sm">{lab.constulationId}</td>
-                  {gettingLabOrders
-                    .filter((order) => order.id === lab.orderId)
-                    .map((order) => (
-                      <td className="text-center">{order.priority}</td>
-                    ))}
+                    <td className="text-center">{lab.testRequested}</td>
+                    <td className="text-center text-sm">{lab.appointmentId}</td>
+                    <td className="text-center text-sm">
+                      {lab.constulationId}
+                    </td>
+                    {gettingLabOrders
+                      .filter((order) => order.id === lab.orderId)
+                      .map((order) => (
+                        <td className="text-center">{order.priority}</td>
+                      ))}
 
-                  <th>
-                    <div className="flex items-center justify-center">
-                      <MdCurrencyRupee />
-                      <p>{lab.labCharges}/-</p>
-                    </div>
-                  </th>
+                    <th>
+                      <div className="flex items-center justify-center">
+                        <MdCurrencyRupee />
+                        <p>{lab.labCharges}/-</p>
+                      </div>
+                    </th>
 
-                  {gettingLabOrders
-                    .filter((order) => order.id === lab.orderId)
-                    .map((order) => (
-                      <td className="text-center">{order.orderStatus}</td>
-                    ))}
+                    {gettingLabOrders
+                      .filter((order) => order.id === lab.orderId)
+                      .map((order) => (
+                        <td className="text-center">{order.orderStatus}</td>
+                      ))}
 
-                  <td>
-                    <div className="flex items-center justify-center space-x-2">
-                      <button
-                        onClick={() => {
-                          setcapturingLab(lab);
-                          setopeningChargesForm(true);
-                        }}
-                        className="text-[#01B49C] text-sm border border-[#01B49C] hover:bg-[#01B49C] py-1 px-3 rounded hover:text-white"
-                      >
-                        <div className="flex items-center space-x-1">
-                          <FaPlus />
-                          <p>Charges</p>
-                        </div>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setcapturingLab(lab);
-                          setopeningTestResults(true);
-                        }}
-                        className="text-[#003441]"
-                      >
-                        <FaEye />
-                      </button>
-                      <button className="text-[#003441]">
-                        <FaPencil />
-                      </button>
+                    <td>
+                      <div className="flex items-center justify-center space-x-2">
+                        <button
+                          onClick={() => {
+                            setcapturingLab(lab);
+                            setopeningChargesForm(true);
+                          }}
+                          className="text-[#01B49C] text-sm border border-[#01B49C] hover:bg-[#01B49C] py-1 px-3  hover:text-white"
+                        >
+                          <div className="flex items-center space-x-1">
+                            <FaPlus />
+                            <p>Charges</p>
+                          </div>
+                        </button>
+                        <button
+                          onClick={() => {
+                            setcapturingLab(lab);
+                            setopeningTestResults(true);
+                          }}
+                          className="text-[#003441]"
+                        >
+                          <FaEye />
+                        </button>
+                        <button className="text-[#003441]">
+                          <FaPencil />
+                        </button>
 
-                      <button className="text-[#01B49C]">
-                        <MdDelete size={19} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        <button className="text-[#01B49C]">
+                          <MdDelete size={19} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
