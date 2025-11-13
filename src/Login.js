@@ -154,24 +154,25 @@ function Login() {
         className="text-gray-300 opacity-20 fixed bottom-12 left-12"
       />
 
-      <GiTestTubes size={160}
-        className="text-gray-300 opacity-20 fixed bottom-20 left-80"/>
+      <GiTestTubes
+        size={160}
+        className="text-gray-300 opacity-20 fixed bottom-20 left-80"
+      />
 
-         <FaAmbulance size={160}
-        className="text-gray-300 opacity-20 fixed bottom-48 right-80"/>
+      <FaAmbulance
+        size={160}
+        className="text-gray-300 opacity-20 fixed bottom-48 right-80"
+      />
       <div>
         <div className="border m-5 sm:m-0 sm:w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
-          <div className="text-center mb-5">
+          <div className="mb-5">
             <img src={img1} className="h-14  mb-2" />
-            <p className="text-2xl mt-3 text-[#003441] font-bold">Login</p>
+            <p className="text-2xl mt-3 text-[#003441] font-bold">Welcome Back!</p>
             <p className="text-[#01B49C]">
               Access your medical records securely
             </p>
           </div>
-
-          <p className="text-[#003441] mb-3 bg-[#ecfbff] rounded-lg p-2 border border-[#003441]">
-            This is a secure medical system. All access is logged and monitored.
-          </p>
+    
           <div>
             <p className="font-semibold text-[#01B49C]">Email</p>
             <input
@@ -210,24 +211,28 @@ function Login() {
               onClick={() => {
                 Login();
               }}
-              className="bg-[#003441] hover:bg-[#001920] font-semibold py-1 w-full shadow rounded text-white"
+              className="bg-[#003441] hover:bg-[#154350] font-semibold py-1 w-full shadow rounded text-white"
             >
               Sign In
             </button>
           </div>
+
           <div className="flex items-center space-x-2 justify-center">
             <p className="text-[#003441]">Don't have an account</p>
             <button
               onClick={() => {
                 navigate("/SignUp");
               }}
-              className="text-[#003441] font-semibold"
+              className="text-[#01B49C] font-bold"
             >
               SignUp
             </button>
           </div>
 
-          <div className="flex text-[#003441] items-center mt-5 justify-center">
+
+          <hr className="mt-4 mb-2.5 border-gray-300"/>
+
+          <div className="flex text-[#01B49C] items-center justify-center">
             <button
               onClick={() => {
                 setopeningRegisterHospital(true);

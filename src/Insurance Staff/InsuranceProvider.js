@@ -5,7 +5,7 @@ import AddInsuranceCompanyForm from "./AddInsuranceCompanyForm";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { FaEye, FaTrash } from "react-icons/fa6";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPencilAlt } from "react-icons/fa";
 import { CgDanger } from "react-icons/cg";
 import { GrNotes } from "react-icons/gr";
 import UpdateInsuranceCompanyForm from "./UpdateInsuranceCompanyForm";
@@ -144,13 +144,13 @@ function InsuranceProvider() {
                     setopeningUpdateInsuranceCompanyForm(true);
                     setcapturingDataObject(insurance);
                   }}
-                  className="text-green-500"
+                  className="text-[#154350]"
                 >
-                  <FaEdit size={25} />
+                  <FaPencilAlt />
                 </button>
 
-                <button className="text-red-500">
-                  <FaTrash size={20} />
+                <button className="text-[#01B49C]">
+                  <FaTrash  />
                 </button>
               </div>
             </div>

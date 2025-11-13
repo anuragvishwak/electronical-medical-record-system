@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { auth, database } from "./FirebaseConfiguration";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
+import img1 from "./Anumed’s logo.jpg";
 
 function RegisterHospital({ setopeningRegisterHospital }) {
   const [step, setstep] = useState(1);
@@ -27,68 +28,71 @@ function RegisterHospital({ setopeningRegisterHospital }) {
   const [paymentMode, setpaymentMode] = useState("");
 
   function RegisterHospitalData() {
-  const hospitalId = uuidv4(); // unique ID for hospital
+    const hospitalId = uuidv4();
 
-  const hospitalData = {
-    Hospital_name: hospitalName,
-    hospitalName,
-    hospitalCode,
-    hospitalType,
-    yearOfEstablishment,
-    hospitalEmail,
-    hospitalPhone,
-    alternativePhone,
-    address,
-    city,
-    state,
-    country,
-    adminName,
-    designation,
-    adminEmail,
-    planType,
-    startDate,
-    expiryDate,
-    paymentMode,
-    createdAt: new Date().toISOString(),
-    status: 'approved'
-  };
+    const hospitalData = {
+      Hospital_name: hospitalName,
+      hospitalName,
+      hospitalCode,
+      hospitalType,
+      yearOfEstablishment,
+      hospitalEmail,
+      hospitalPhone,
+      alternativePhone,
+      address,
+      city,
+      state,
+      country,
+      adminName,
+      designation,
+      adminEmail,
+      planType,
+      startDate,
+      expiryDate,
+      paymentMode,
+      createdAt: new Date().toISOString(),
+      status: "approved",
+    };
 
-  try {
-    createUserWithEmailAndPassword(auth, adminEmail, password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
+    try {
+      createUserWithEmailAndPassword(auth, adminEmail, password)
+        .then(async (userCredential) => {
+          const user = userCredential.user;
 
-        await addDoc(collection(database, "hospital_database"), hospitalData);
+          await addDoc(collection(database, "hospital_database"), hospitalData);
 
-        const userData = {
-          uid: user.uid,
-          hospitalId: hospitalId,
-          name: adminName,
-          email: adminEmail,
-          role: "admin",
-          designation: designation,
-          planType: planType,
-          createdAt: new Date().toISOString(),
-        };
+          const userData = {
+            uid: user.uid,
+            hospitalId: hospitalId,
+            name: adminName,
+            email: adminEmail,
+            role: "admin",
+            designation: designation,
+            planType: planType,
+            createdAt: new Date().toISOString(),
+          };
 
-        await addDoc(collection(database, "user_database"), userData);
+          await addDoc(collection(database, "user_database"), userData);
 
-        console.log("✅ Hospital and admin registered successfully");
-        alert("Hospital Registered Successfully!");
-        setopeningRegisterHospital(false);
-      })
-      .catch((error) => {
-        console.error("Error creating admin auth: ", error.message);
-        alert(error.message);
-      });
-  } catch (error) {
-    console.error("Error registering hospital: ", error);
+          console.log("✅ Hospital and admin registered successfully");
+          alert("Hospital Registered Successfully!");
+          setopeningRegisterHospital(false);
+        })
+        .catch((error) => {
+          console.error("Error creating admin auth: ", error.message);
+          alert(error.message);
+        });
+    } catch (error) {
+      console.error("Error registering hospital: ", error);
+    }
   }
-}
 
   return (
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white p-4 rounded">
+        <div className="flex justify-center">
+          <img src={img1} className="h-14  mb-2" />
+        </div>
         <div className="flex items-center mb-3 justify-between">
           <p className="text-[#003441] text-2xl font-bold">Register Hospital</p>
           <button
