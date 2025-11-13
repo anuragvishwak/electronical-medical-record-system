@@ -12,6 +12,7 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { GiHealthCapsule, GiTestTubes } from "react-icons/gi";
 import { TbRibbonHealth } from "react-icons/tb";
 import { FaAmbulance, FaHospital } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function Login() {
   const toast = useRef(null);
@@ -166,13 +167,31 @@ function Login() {
       <div>
         <div className="border m-5 sm:m-0 sm:w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
           <div className="mb-5">
-            <img src={img1} className="h-14  mb-2" />
-            <p className="text-2xl mt-3 text-[#003441] font-bold">Welcome Back!</p>
-            <p className="text-[#01B49C]">
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <img src={img1} className="h-14  mb-2" />
+            </motion.div>
+            <motion.p
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
+              className="text-2xl mt-3 text-[#003441] font-bold"
+            >
+              Welcome Back!
+            </motion.p>
+            <motion.p
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.3, duration: 1, ease: "easeOut" }}
+              className="text-[#01B49C]"
+            >
               Access your medical records securely
-            </p>
+            </motion.p>
           </div>
-    
+
           <div>
             <p className="font-semibold text-[#01B49C]">Email</p>
             <input
@@ -229,8 +248,7 @@ function Login() {
             </button>
           </div>
 
-
-          <hr className="mt-4 mb-2.5 border-gray-300"/>
+          <hr className="mt-4 mb-2.5 border-gray-300" />
 
           <div className="flex text-[#01B49C] items-center justify-center">
             <button

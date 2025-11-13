@@ -12,9 +12,6 @@ function PatientInsuranceDetails() {
   const [gatheringInsuranceDetails, setgatheringInsuranceDetails] = useState(
     []
   );
-  const [gatheringInssuranceProvider, setgatheringInsuranceProvider] = useState(
-    []
-  );
   const [gettingUser, setgettingUser] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 

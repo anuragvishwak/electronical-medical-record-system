@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { addDoc, collection } from "firebase/firestore";
 import { z } from "zod";
+import { motion } from "framer-motion";
+
 
 function CreateStaff({ setopeningAddStaffForm }) {
   const [name, setname] = useState("");
@@ -47,10 +49,19 @@ function CreateStaff({ setopeningAddStaffForm }) {
   }
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="p-5 rounded bg-white">
+    <motion.div 
+     initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
+      <motion.div 
+       initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      className="p-5 rounded bg-white">
         <div className="flex items-center mb-6 justify-between">
-          <p className="text-[#1976D2] text-xl font-bold">Add Staff</p>
+          <p className="text-[#003441] text-xl font-bold">Add Staff</p>
           <button
             className="text-red-500 font-semibold"
             onClick={() => {
@@ -131,13 +142,13 @@ function CreateStaff({ setopeningAddStaffForm }) {
             onClick={() => {
               addStaff();
             }}
-            className="bg-[#01B49C] border hover:text-white hover:bg-[#01B49C] border-[#01B49C] text-white py-1 px-4 rounded"
+            className="bg-[#003441] border hover:text-white hover:bg-[#003441] border-[#01B49C] text-white py-1 px-4 rounded"
           >
             Create Staff
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

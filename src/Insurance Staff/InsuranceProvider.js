@@ -6,12 +6,14 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { FaEdit, FaPencilAlt } from "react-icons/fa";
+
 import { CgDanger } from "react-icons/cg";
 import { GrNotes } from "react-icons/gr";
 import UpdateInsuranceCompanyForm from "./UpdateInsuranceCompanyForm";
+import { motion } from "framer-motion";
 
 function InsuranceProvider() {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [openingAddInsuranceCompany, setopeningAddInsuranceCompany] =
     useState(false);
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
@@ -50,9 +52,7 @@ function InsuranceProvider() {
             Insurance Provider
           </p>
           <p className="text-[#01B49C]">
-            All the{" "}
-            Insurance provider
-            details will be displayed here.
+            All the Insurance provider details will be displayed here.
           </p>
         </div>
         <hr className="border-gray-300 my-4" />
@@ -84,83 +84,96 @@ function InsuranceProvider() {
         </div>
       </div>
       <div className="grid grid-cols-3 overflow-auto h-[460px] gap-5 m-5 scrollbar-thin scrollbar-thumb-[#01B49C] scrollbar-track-gray-200">
-        {gettingInsuranceCompanies.filter(insurance => insurance.hospitalName === hospitalName).map((insurance) => (
-          <div className="bg-white mb-5 p-5 border border-gray-300">
-            <div>
+        {gettingInsuranceCompanies
+          .filter((insurance) => insurance.hospitalName === hospitalName)
+          .map((insurance) => (
+            <div className="bg-white mb-5 p-5 border border-gray-300">
               <div>
-                <div className="flex items-center justify-between">
-                  <p className="text-xl text-[#003441] font-bold">
-                    {insurance.providerName}
-                  </p>
-                  <p className="bg-[#01B49C] rounded-full text-white py-1 text-sm font-semibold px-4">
-                    {insurance.policyTypeSupported}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xl text-[#003441] font-bold">
+                      {insurance.providerName}
+                    </p>
+                    <p className="bg-[#01B49C] rounded-full text-white py-1 text-sm font-semibold px-4">
+                      {insurance.policyTypeSupported}
+                    </p>
+                  </div>
+                  <p className="text-gray-500">
+                    <span>Code:</span> {insurance.companyCode}
                   </p>
                 </div>
-                <p className="text-gray-500">
-                  <span>Code:</span> {insurance.companyCode}
-                </p>
               </div>
-            </div>
 
-            <div className="my-5">
-              <p className="text-[#01B49C]">Contact Person</p>
-              <p className="text-[#003441] font-semibold">
-                {insurance.contactPerson}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-3">
-              <div>
-                <p className="text-[#01B49C]">Phone No</p>
+              <div className="my-5">
+                <p className="text-[#01B49C]">Contact Person</p>
                 <p className="text-[#003441] font-semibold">
-                  {insurance.phoneNumber}
+                  {insurance.contactPerson}
                 </p>
               </div>
-              <div>
-                <p className="text-[#01B49C]">Email</p>
-                <p className="text-[#003441] font-semibold">
-                  {insurance.email}
-                </p>
-              </div>
-            </div>
 
-            <hr className="border-gray-300 my-3" />
-            <div className="flex items-center justify-between">
-              <button
-                onClick={() => {
-                  setopeningAdditionalDetails(true);
-                  setcapturingDataObject(insurance);
-                }}
-                className="bg-[#003441] text-white px-3 rounded py-1"
-              >
-                <div className="flex items-center space-x-1">
-                  <FaEye />
-                  <p>Additional Details</p>
+              <div className="grid grid-cols-3">
+                <div>
+                  <p className="text-[#01B49C]">Phone No</p>
+                  <p className="text-[#003441] font-semibold">
+                    {insurance.phoneNumber}
+                  </p>
                 </div>
-              </button>
-              <div className="flex items-center space-x-2">
+                <div>
+                  <p className="text-[#01B49C]">Email</p>
+                  <p className="text-[#003441] font-semibold">
+                    {insurance.email}
+                  </p>
+                </div>
+              </div>
+
+              <hr className="border-gray-300 my-3" />
+              <div className="flex items-center justify-between">
                 <button
                   onClick={() => {
-                    setopeningUpdateInsuranceCompanyForm(true);
+                    setopeningAdditionalDetails(true);
                     setcapturingDataObject(insurance);
                   }}
-                  className="text-[#154350]"
+                  className="bg-[#003441] text-white px-3 rounded py-1"
                 >
-                  <FaPencilAlt />
+                  <div className="flex items-center space-x-1">
+                    <FaEye />
+                    <p>Additional Details</p>
+                  </div>
                 </button>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => {
+                      setopeningUpdateInsuranceCompanyForm(true);
+                      setcapturingDataObject(insurance);
+                    }}
+                    className="text-[#154350]"
+                  >
+                    <FaPencilAlt />
+                  </button>
 
-                <button className="text-[#01B49C]">
-                  <FaTrash  />
-                </button>
-              </div>
+                  <button className="text-[#01B49C]">
+                    <FaTrash />
+                  </button>
+                </div>
+              </div>    
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {openingAdditionalDetails && (
-        <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-          <div className="bg-white w-6/12 p-4 rounded">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+        >
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="bg-white w-6/12 p-4 rounded"
+          >
             <div className="flex items-start mb-5 justify-between">
               <p className="text-[#003441] text-xl font-bold">
                 Additonal Details (Address / Coverage Notes / Limitations)
@@ -201,8 +214,8 @@ function InsuranceProvider() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
 
       {openingAddInsuranceCompany && (

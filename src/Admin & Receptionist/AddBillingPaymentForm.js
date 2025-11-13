@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { FaBriefcaseMedical, FaIndianRupeeSign, FaUser } from "react-icons/fa6";
 import { z } from "zod";
+import { motion } from "framer-motion";
 
 function AddBillingPaymentForm({
   setopeningAddBillingPaymentForm,
   capturingObject,
 }) {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingConsultations, setgettingConsultations] = useState([]);
   const [gettingLabResults, setgettingLabResults] = useState([]);
@@ -38,12 +39,12 @@ function AddBillingPaymentForm({
       labCharges: labCharges,
       subTotal: subTotal,
       finalAmount: finalAmount,
-      hospitalName: hospitalName
+      hospitalName: hospitalName,
     };
 
     try {
       billSchema.parse(billData);
-    await addDoc(collection(database, "billing_payment_database"), billData);
+      await addDoc(collection(database, "billing_payment_database"), billData);
 
       setopeningAddBillingPaymentForm(false);
     } catch (error) {
@@ -135,8 +136,17 @@ function AddBillingPaymentForm({
   }, [gettingConsultations, gettingLabResults, surgeryFee]);
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="bg-white h-[600px] overflow-auto sm:h-auto w-80 sm:w-auto sm
       :w-5/12 p-4 rounded"
       >
@@ -225,9 +235,9 @@ function AddBillingPaymentForm({
               className="w-full border border-gray-300 rounded-md p-2"
               placeholder="60000/-"
             />
-             {errors.surgeryFee && (
-                <p className="text-red-500 text-sm">{errors.surgeryFee}</p>
-              )}
+            {errors.surgeryFee && (
+              <p className="text-red-500 text-sm">{errors.surgeryFee}</p>
+            )}
           </div>
         </div>
 
@@ -325,8 +335,8 @@ function AddBillingPaymentForm({
             Add Bill
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
