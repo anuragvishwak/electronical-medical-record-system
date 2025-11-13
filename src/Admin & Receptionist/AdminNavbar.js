@@ -16,60 +16,59 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const [openingHRMS, setopeningHRMS] = useState(false);
 
   async function downloadAllData() {
-    const collections = [
-      "user_database",
-      "appointment_database",
-      "consultation_database",
-      "prescription_database",
-      "patient_vitals_database",
-      "billing_payment_database",
-      "insurance_database",
-      "insurance_provider_database",
-      "claim_status_database",
-      "lab_order_database",
-      "lab_order_results_database",
-      "medicine_database",
-    ];
+  const hospitalName = localStorage.getItem("hospitalName"); 
+  const collections = [
+    "user_database",
+    "appointment_database",
+    "consultation_database",
+    "prescription_database",
+    "patient_vitals_database",
+    "billing_payment_database",
+    "insurance_database",
+    "insurance_provider_database",
+    "claim_status_database",
+    "lab_order_database",
+    "lab_order_results_database",
+    "medicine_database",
+  ];
 
-    const workbook = XLSX.utils.book_new();
+  const workbook = XLSX.utils.book_new();
 
-    for (const col of collections) {
-      const snapshot = await getDocs(collection(database, col));
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+  for (const col of collections) {
+    const snapshot = await getDocs(collection(database, col));
+    let data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-      if (data.length === 0) {
-        console.log(`⚠️ No data found in ${col}`);
-        continue;
-      }
+    data = data.filter(
+      (item) => item.hospitalName === hospitalName
+    );
 
-      console.log(`✅ ${data.length} records fetched from ${col}`);
-
-      const worksheet = XLSX.utils.json_to_sheet(data);
-
-      const cols = Object.keys(data[0] || {}).map((key) => ({
-        wch: key.length + 10,
-      }));
-      worksheet["!cols"] = cols;
-
-      XLSX.utils.book_append_sheet(workbook, worksheet, col);
+    if (data.length === 0) {
+      console.log(`⚠️ No data found for ${hospitalName} in ${col}`);
+      continue;
     }
 
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
+    console.log(`${data.length} records fetched from ${col} for ${hospitalName}`);
 
-    const blob = new Blob([excelBuffer], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
+    const worksheet = XLSX.utils.json_to_sheet(data);
 
-    saveAs(blob, `hospital_data_${new Date().toLocaleDateString()}.xlsx`);
+    const cols = Object.keys(data[0] || {}).map((key) => ({ wch: key.length + 10 }));
+    worksheet["!cols"] = cols;
 
-    alert("Data downloaded! Each collection is in a separate Excel sheet.");
+    XLSX.utils.book_append_sheet(workbook, worksheet, col);
   }
+
+  const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  const blob = new Blob([excelBuffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+
+  saveAs(blob, `${hospitalName}_data_${new Date().toLocaleDateString()}.xlsx`);
+  alert(`Data downloaded for ${hospitalName}! Each collection is a separate sheet.`);
+}
+
 
   return (
     <div>

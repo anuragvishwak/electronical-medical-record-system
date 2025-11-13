@@ -64,10 +64,11 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
   };
 
   return (
-    <div>
+    <div className="border border-gray-300 mt-5 p-4 rounded">
+      <p className="text-[#003441] text-xl font-bold">Add Item</p>
       <div className="grid grid-cols-3 gap-3">
         <div>
-          <p className="font-semibold text-[#1976D2]">Category</p>
+          <p className="font-semibold text-[#01B49C]">Category</p>
           <select
             value={selectedCategory}
             onChange={(e) => setselectedCategory(e.target.value)}
@@ -83,7 +84,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
         </div>
 
         <div>
-          <p className="font-semibold text-[#1976D2]">Sub Category</p>
+          <p className="font-semibold text-[#01B49C]">Sub Category</p>
           <select
             onChange={(e) => {
               setselectedSubCategory(e.target.value);
@@ -104,7 +105,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
         </div>
 
         <div>
-          <p className="font-semibold text-[#1976D2]">Name</p>
+          <p className="font-semibold text-[#01B49C]">Name</p>
           <input
             type="text"
             onChange={(e) => {
@@ -118,7 +119,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
 
       <div className="grid grid-cols-3 gap-3 my-3">
         <div>
-          <p className="font-semibold text-[#1976D2]">Quantity</p>
+          <p className="font-semibold text-[#01B49C]">Quantity</p>
           <input
             type="number"
             onChange={(e) => {
@@ -130,7 +131,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
         </div>
 
         <div>
-          <p className="font-semibold text-[#1976D2]">Vendor</p>
+          <p className="font-semibold text-[#01B49C]">Vendor</p>
           <input
             type="text"
             onChange={(e) => {
@@ -142,7 +143,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
         </div>
 
         <div>
-          <p className="font-semibold text-[#1976D2]">Purchase Date</p>
+          <p className="font-semibold text-[#01B49C]">Purchase Date</p>
           <input
             type="date"
             onChange={(e) => {
@@ -153,7 +154,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
         </div>
       </div>
       <div>
-        <p className="font-semibold text-[#1976D2]">
+        <p className="font-semibold text-[#01B49C]">
           Remarks / Additional Notes
         </p>
         <textarea
@@ -171,7 +172,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
           onClick={() => {
             AddItems();
           }}
-          className="bg-[#1976D2] border hover:text-white hover:bg-[#1976D2] border-[#1976D2] text-white py-1 px-4 rounded"
+          className="bg-[#003441] border hover:text-white hover:bg-[#003441] border-[#003441] text-white py-1 px-4 rounded"
         >
           + Add Item
         </button>

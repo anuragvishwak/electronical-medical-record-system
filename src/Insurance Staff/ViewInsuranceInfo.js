@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InsuranceStaffNavbar from "./InsuranceStaffNavbar";
 import { IoNotifications } from "react-icons/io5";
 import AddingInsuranceForm from "./AddingInsuranceForm";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPencilAlt } from "react-icons/fa";
 import { FaIndianRupeeSign, FaTrash } from "react-icons/fa6";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
@@ -166,12 +166,12 @@ function ViewInsuranceInfo() {
                   setopeningInsuranceUpdateForm(true);
                   setcapturingDataObject(insurance);
                 }}
-                className="text-green-500"
+                className="text-[#154350]"
               >
-                <FaEdit />
+                <FaPencilAlt />
               </button>
 
-              <button className="text-red-500">
+              <button className="text-[#01B49C]">
                 <FaTrash />
               </button>
             </div>
