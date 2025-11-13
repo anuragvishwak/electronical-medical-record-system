@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   const navigation = useNavigate();
+  const email = localStorage.getItem('email');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingBills, setgettingBills] = useState([]);
@@ -59,6 +61,25 @@ function AdminDashboard() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <AdminNavbar />
+      {gettingUser
+          .filter((user) => user.email === email)
+          .map((user) => (
+            <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
+              <div>
+                <p className="text-3xl text-[#003441] font-bold">
+                  {hospitalName}
+                </p>
+                <p className="text-[#01B49C] text-lg font-semibold">
+                  Welcome back, Admin
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[#003441] text-xl text-end font-bold">{user.name}</p>
+                <p className="text-[#01B49C] text-end">{user.email}</p>
+              </div>
+            </div>
+          ))}
       <div>
         <div className="grid grid-cols-4 gap-5 p-5">
           <div className="bg-white p-6 border border-gray-300">
@@ -80,10 +101,7 @@ function AdminDashboard() {
 
           <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
-              <FaUser
-                size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 "
-              />
+              <FaUser size={45} className="text-[#01B49C] bg-gray-200 p-1.5 " />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Patients</p>
                 <p className="text-center text-3xl font-bold text-[#003441]">
@@ -95,10 +113,7 @@ function AdminDashboard() {
 
           <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
-              <FaUser
-                size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 "
-              />
+              <FaUser size={45} className="text-[#01B49C] bg-gray-200 p-1.5 " />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Revenue</p>
                 <p className="text-center text-3xl font-bold text-[#003441]">
@@ -115,10 +130,7 @@ function AdminDashboard() {
 
           <div className="bg-white p-6 border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
-              <FaUser
-                size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 "
-              />
+              <FaUser size={45} className="text-[#01B49C] bg-gray-200 p-1.5 " />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Staff</p>
                 <p className="text-center text-3xl font-bold text-[#003441]">
@@ -240,11 +252,12 @@ function AdminDashboard() {
                 <p className="text-[#01B49C] text-sm">
                   Create a new appointment for a patient.
                 </p>
-                <button 
-                onClick={()=>{
-                    navigation('/AdminAppointment');
+                <button
+                  onClick={() => {
+                    navigation("/AdminAppointment");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]"
+                >
                   + Create Appointment
                 </button>
               </div>
@@ -262,11 +275,12 @@ function AdminDashboard() {
                 <p className="text-[#01B49C] text-sm">
                   Add or update medicine and their stock.
                 </p>
-                <button 
-                onClick={()=>{
-                    navigation('/MedicinesTreatment');
+                <button
+                  onClick={() => {
+                    navigation("/MedicinesTreatment");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]"
+                >
                   Update Medicine
                 </button>
               </div>
@@ -284,12 +298,13 @@ function AdminDashboard() {
                 <p className="text-[#01B49C] text-sm">
                   Add or Manage Staff and their stock.
                 </p>
-                <button 
-                onClick={()=>{
-                    navigation('/StaffManagement');
+                <button
+                  onClick={() => {
+                    navigation("/StaffManagement");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]">
-                   Manage Staff
+                  className="py-1 mt-3 text-white text-sm px-3 bg-[#003441]"
+                >
+                  Manage Staff
                 </button>
               </div>
             </div>

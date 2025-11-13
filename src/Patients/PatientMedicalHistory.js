@@ -115,7 +115,7 @@ function PatientMedicalHistory() {
                 </div>
               </div>
 
-              <div>
+              <div className="mt-3">
                 <p className="text-lg text-[#01B49C] font-semibold">
                   Present Illness
                 </p>

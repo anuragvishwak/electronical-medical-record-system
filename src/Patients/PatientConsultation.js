@@ -89,10 +89,10 @@ function PatientConsultation() {
           .map((prep) => (
             <div className="bg-white  border border-gray-300 ">
               <div className="m-5">
-                <p className="font-semibold text-[#1976D2] mb-3">
+                <p className="font-semibold text-[#003441] text-xl mb-3">
                   History of Present Illness
                 </p>
-                <p className="text-gray-600 p-2 bg-gray-50 -xl border-l-8 border-blue-500 text-sm text-justify">
+                <p className="text-[#01B49C] p-2 bg-gray-50 -xl border-l-8 border-[#003441] text-sm text-justify">
                   {prep.historyofPresentIllness}
                 </p>
               </div>
@@ -107,7 +107,7 @@ function PatientConsultation() {
                     setcapturingDataObject(prep);
                     setopeningAdditionalDetails(true);
                   }}
-                  className="border-2 border-[#1976D2] bg-[#1976D2] py-0.5 px-2  text-white"
+                  className="border-2 border-[#003441] bg-[#003441] py-0.5 px-2  text-white"
                 >
                   <div className="flex items-center space-x-1">
                     <FaEye />

@@ -6,6 +6,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 import RegisterHospital from "./RegisterHospital";
+import img1 from "./Anumed’s logo.jpg";
+import { BiHealth, BiInjection } from "react-icons/bi";
+import { MdHealthAndSafety } from "react-icons/md";
+import { GiHealthCapsule, GiTestTubes } from "react-icons/gi";
+import { TbRibbonHealth } from "react-icons/tb";
+import { FaAmbulance, FaHospital } from "react-icons/fa";
 
 function Login() {
   const toast = useRef(null);
@@ -118,22 +124,56 @@ function Login() {
   }, []);
 
   return (
-    <div className="flex bg-[#ddeeff] justify-center items-center w-full h-screen">
+    <div className="flex bg-[#003441] justify-center items-center w-full h-screen">
+      <BiHealth
+        size={130}
+        className="text-gray-300 opacity-20 fixed top-14 left-10"
+      />
+      <MdHealthAndSafety
+        size={300}
+        className="text-gray-300 opacity-20 fixed top-40 left-40"
+      />
+
+      <GiHealthCapsule
+        size={160}
+        className="text-gray-300 opacity-20 fixed top-40 right-10"
+      />
+
+      <TbRibbonHealth
+        size={300}
+        className="text-gray-300 opacity-20 fixed top-10 right-60"
+      />
       <Toast ref={toast} />
+
+      <FaHospital
+        size={260}
+        className="text-gray-300 opacity-20 fixed bottom-14 right-10"
+      />
+      <BiInjection
+        size={160}
+        className="text-gray-300 opacity-20 fixed bottom-12 left-12"
+      />
+
+      <GiTestTubes size={160}
+        className="text-gray-300 opacity-20 fixed bottom-20 left-80"/>
+
+         <FaAmbulance size={160}
+        className="text-gray-300 opacity-20 fixed bottom-48 right-80"/>
       <div>
         <div className="border m-5 sm:m-0 sm:w-[430px] bg-white border-gray-300 shadow-lg p-6 rounded-lg">
-          <div className="text-center mb-10">
-            <p className="text-2xl font-bold">Login</p>
-            <p className="text-gray-600">
+          <div className="text-center mb-5">
+            <img src={img1} className="h-14  mb-2" />
+            <p className="text-2xl mt-3 text-[#003441] font-bold">Login</p>
+            <p className="text-[#01B49C]">
               Access your medical records securely
             </p>
           </div>
 
-          <p className="text-[#1976D2] mb-3 bg-blue-50 rounded-lg p-2 border border-[#1976D2]">
+          <p className="text-[#003441] mb-3 bg-[#ecfbff] rounded-lg p-2 border border-[#003441]">
             This is a secure medical system. All access is logged and monitored.
           </p>
           <div>
-            <p className="font-semibold text-[#1976D2]">Email</p>
+            <p className="font-semibold text-[#01B49C]">Email</p>
             <input
               type="email"
               onChange={(e) => {
@@ -145,7 +185,7 @@ function Login() {
           </div>
 
           <div className="mt-5">
-            <p className="font-semibold text-[#1976D2]">Password</p>
+            <p className="font-semibold text-[#01B49C]">Password</p>
             <input
               type="password"
               onChange={(e) => {
@@ -160,7 +200,7 @@ function Login() {
               <input className="mt-1" type="checkbox"></input>
               <p className="text-gray-600">remember me</p>
             </div>
-            <button className="text-blue-700 font-semibold">
+            <button className="text-[#003441] font-semibold">
               Forgot Password?
             </button>
           </div>
@@ -170,24 +210,24 @@ function Login() {
               onClick={() => {
                 Login();
               }}
-              className="bg-[#1976D2] hover:bg-blue-800 font-semibold py-1 w-full shadow rounded text-white"
+              className="bg-[#003441] hover:bg-[#001920] font-semibold py-1 w-full shadow rounded text-white"
             >
               Sign In
             </button>
           </div>
           <div className="flex items-center space-x-2 justify-center">
-            <p className="text-gray-600">Don't have an account</p>
+            <p className="text-[#003441]">Don't have an account</p>
             <button
               onClick={() => {
                 navigate("/SignUp");
               }}
-              className="text-[#1976D2] font-semibold"
+              className="text-[#003441] font-semibold"
             >
               SignUp
             </button>
           </div>
 
-          <div className="flex text-[#1976D2] items-center mt-5 justify-center">
+          <div className="flex text-[#003441] items-center mt-5 justify-center">
             <button
               onClick={() => {
                 setopeningRegisterHospital(true);

@@ -7,7 +7,7 @@ import { GrNote, GrNotes } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 
 function PatientPrescription() {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const email = localStorage.getItem("email");
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
   const [gettingUser, setgettingUser] = useState([]);
@@ -94,83 +94,86 @@ function PatientPrescription() {
           </button>
         </div>
       </div>
-     <div className="grid grid-cols-3 gap-5">
-  {gettingPrescriptions
-    .filter(
-      (prep) => 
-        prep.patient === email &&
-        prep.hospitalName === hospitalName // ✅ Filter by hospital
-    )
-    .map((prep) => (
-      <div key={prep.id} className="bg-white border border-gray-300 mx-5">
-        <div className="p-5">
-          {gettingUser
-            .filter(
-              (user) => 
-                user.email === prep.doctor && 
-                user.hospitalName === hospitalName // ✅ Doctor from same hospital
-            )
-            .map((user) => (
-              <p key={user.id}>
-                <span className="text-gray-400">Doctor:</span> {user?.name}
-              </p>
-            ))}
+      <div className="grid grid-cols-3 gap-5">
+        {gettingPrescriptions
+          .filter(
+            (prep) =>
+              prep.patient === email && prep.hospitalName === hospitalName
+          )
+          .map((prep) => (
+            <div key={prep.id} className="bg-white border border-gray-300 mx-5">
+              <div className="">
+                <div className="p-5">
+                  <p className="text-[#01B49C]">Doctor:</p>
+                  {gettingUser
+                    .filter((user) => user.email === prep.doctor)
+                    .map((user) => (
+                      <p
+                        className="text-[#003441] text-xl font-semibold"
+                        key={user.id}
+                      >
+                        {user?.name}
+                      </p>
+                    ))}
+                </div>
 
-          <div className="my-4">
-            <p className="font-semibold text-gray-400">Medicines</p>
-            <table className="w-full text-sm border border-gray-300 border-collapse">
-              <thead className="bg-gray-100 border border-gray-300">
-                <tr>
-                  <th className="py-1 pl-2">Name</th>
-                  <th>Dosage</th>
-                  <th className="py-1 pr-2">Duration</th>
-                </tr>
-              </thead>
+                <hr className="border-gray-300" />
+                <div className="p-5">
+                  <p className="font-semibold text-gray-400">Medicines</p>
+                  <table className="w-full text-sm border border-gray-300 border-collapse">
+                    <thead className="bg-gray-100 border border-gray-300">
+                      <tr>
+                        <th className="py-1 pl-2">Name</th>
+                        <th>Dosage</th>
+                        <th className="py-1 pr-2">Duration</th>
+                      </tr>
+                    </thead>
 
-              <tbody>
-                {gettingMedicines
-                  .filter(
-                    (med) =>
-                      med.name === prep.medicine &&
-                      med.hospitalName === hospitalName // ✅ Medicine of same hospital
-                  )
-                  .map((med) => (
-                    <tr key={med.id}>
-                      <td className="text-center text-gray-500">{med.name}</td>
-                      <td className="text-center text-gray-500">
-                        {med.dosage.map((dose, i) => (
-                          <p key={i}>{dose}</p>
+                    <tbody>
+                      {gettingMedicines
+                        .filter(
+                          (med) =>
+                            med.name === prep.medicine &&
+                            med.hospitalName === hospitalName
+                        )
+                        .map((med) => (
+                          <tr key={med.id}>
+                            <td className="text-center text-gray-500">
+                              {med.name}
+                            </td>
+                            <td className="text-center text-gray-500">
+                              {med.dosage.map((dose, i) => (
+                                <p key={i}>{dose}</p>
+                              ))}
+                            </td>
+                            <td className="text-center text-gray-500">
+                              {med.timing === "after_food"
+                                ? "After Food"
+                                : "Before Food"}
+                            </td>
+                          </tr>
                         ))}
-                      </td>
-                      <td className="text-center text-gray-500">
-                        {med.timing === "after_food"
-                          ? "After Food"
-                          : "Before Food"}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="p-5 border-y border-gray-300">
+                  <p className="text-[#01B49C] font-semibold">Tests:</p>
+                  <p className="text-[#003441] font-semibold">{prep.test}</p>
+                </div>
 
-          <p>
-            <span className="text-gray-400">Tests:</span> {prep.test}
-          </p>
-
-          <div>
-            <div className="flex items-center space-x-1 mt-2">
-              <GrNotes className="text-blue-400" />
-              <p className="text-blue-400">Notes:</p>
+                <div className="p-5">
+                  <div className="flex items-center space-x-1 mt-2">
+                    <GrNotes className="text-[#01B49C]" />
+                    <p className="text-[#01B49C] font-semibold">Notes:</p>
+                  </div>
+                  <p className="bg-[#e8faff] text-[#003441] font-semibold p-2">
+                    {prep.additionalNote}
+                  </p>
+                </div>
+              </div>
             </div>
-            <p className="bg-blue-50 text-[#1976D2] text-sm p-2">
-              {prep.additionalNote}
-            </p>
-          </div>
-        </div>
+          ))}
       </div>
-    ))}
-</div>
-
     </div>
   );
 }
