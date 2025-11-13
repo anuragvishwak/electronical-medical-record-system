@@ -4,6 +4,8 @@ import { database } from "../FirebaseConfiguration";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 import { z } from "zod";
+import { motion } from "framer-motion";
+
 
 function CreateAppointmentForm({
   setopeningCreateAppointmentForm,
@@ -94,8 +96,19 @@ function CreateAppointmentForm({
   }, []);
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="p-4 rounded bg-white">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="p-4 rounded bg-white"
+      >
         <Toast ref={toast} />
         <div className="flex items-center mb-6 justify-between">
           <p className="text-[#003441] text-xl font-bold">Create Appointment</p>
@@ -171,7 +184,7 @@ function CreateAppointmentForm({
                 <option value={"completed"}>Completed</option>
                 <option value={"cancelled"}>Cancelled</option>
               </select>
-               {errors.status && (
+              {errors.status && (
                 <p className="text-red-500 text-sm">{errors.status}</p>
               )}
             </div>
@@ -186,9 +199,9 @@ function CreateAppointmentForm({
               placeholder="Note for the doctor and patients..."
               className="border rounded border-gray-300 w-full p-2 h-40"
             ></textarea>
-             {errors.additionalNote && (
-                <p className="text-red-500 text-sm">{errors.additionalNote}</p>
-              )}
+            {errors.additionalNote && (
+              <p className="text-red-500 text-sm">{errors.additionalNote}</p>
+            )}
           </div>
 
           <div className="flex justify-end mt-3 ">
@@ -202,8 +215,8 @@ function CreateAppointmentForm({
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

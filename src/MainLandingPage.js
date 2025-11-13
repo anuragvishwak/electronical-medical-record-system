@@ -9,7 +9,7 @@ import { MdCheckCircleOutline } from "react-icons/md";
 import Footer from "./Footer";
 import { FaBars } from "react-icons/fa";
 import MainNavbar from "./MainNavbar";
-import { useNavigate, useNavigationType } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function MainLandingPage() {
   return (
@@ -18,22 +18,46 @@ function MainLandingPage() {
 
       <div className="py-10 sm:py-20">
         <div className="text-center">
-          <p className="font-semibold text-lg sm:text-2xl">
+          <motion.p
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="font-semibold text-lg sm:text-2xl"
+          >
             Empowering Health with Innovation
-          </p>
-          <p className="font-bold text-5xl sm:text-8xl mt-7 sm:mt-12 mb-3 sm:mb-5 text-[#003441]">
+          </motion.p>
+          <motion.p
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              delay: 1,
+              duration: 0.8,
+              type: "spring",
+              stiffness: 120,
+            }}
+            className="font-bold text-5xl sm:text-8xl mt-7 sm:mt-12 mb-3 sm:mb-5 text-[#003441]"
+          >
             <span className="text-[#01B49C]">ANU</span>med's -{" "}
             <span className="text-[#01B49C]">EMR</span>
-          </p>
+          </motion.p>
           <div className="flex justify-center w-full">
-            <p className="text-[#01B49C] w-auto px-5  sm:w-7/12 italic text-sm sm:text-lg">
+            <motion.p
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
+              className="text-[#01B49C] w-auto px-5  sm:w-7/12 italic text-sm sm:text-lg"
+            >
               Anumed's EMR system connects doctors, patients, and healthcare
               teams in one seamless platform. Streamline workflows, improve
               patient outcomes, and reduce administrative burden.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-center text-sm sm:text-base space-x-2 justify-center mt-2">
+          <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
+          className="flex items-center text-sm sm:text-base space-x-2 justify-center mt-2">
             <button className="flex items-center font-semibold bg-[#01B49C] py-1 px-3 rounded text-white space-x-1">
               Get Started <GoArrowRight />
             </button>
@@ -41,7 +65,7 @@ function MainLandingPage() {
               Watch Demo
               <GoArrowUpRight />
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -210,7 +234,9 @@ function MainLandingPage() {
             <div className="flex items-center text-white space-x-2">
               <MdCheckCircleOutline size={30} />
               <div className="">
-                <p className="sm:text-xl font-semibold">Grows with Your Clinic</p>
+                <p className="sm:text-xl font-semibold">
+                  Grows with Your Clinic
+                </p>
                 <p className="text-sm sm:text-base">
                   From a single-doctor setup to multi-specialty hospitals —
                   ANUMED adapts to your scale.
@@ -231,12 +257,17 @@ function MainLandingPage() {
           </div>
         </div>
         <div className="py-20">
-            <p className="text-2xl sm:text-4xl text-[#003441] text-center font-semibold">Transform Your Healthcare Practice Today.</p>
-            <div className="flex justify-center">
-                <p className="text-[#01B49C] mt-4 text-sm text-center px-5 sm:text-lg">Join thousands of healthcare providers already using Anumed's to deliver better patient care</p>
-            </div>
+          <p className="text-2xl sm:text-4xl text-[#003441] text-center font-semibold">
+            Transform Your Healthcare Practice Today.
+          </p>
+          <div className="flex justify-center">
+            <p className="text-[#01B49C] mt-4 text-sm text-center px-5 sm:text-lg">
+              Join thousands of healthcare providers already using Anumed's to
+              deliver better patient care
+            </p>
+          </div>
 
-           <div className="flex items-center space-x-2 text-sm sm:text-base justify-center mt-2">
+          <div className="flex items-center space-x-2 text-sm sm:text-base justify-center mt-2">
             <button className="flex items-center bg-[#01B49C] py-1 font-semibold px-3 rounded text-white space-x-1">
               Start Free Trial <GoArrowRight />
             </button>

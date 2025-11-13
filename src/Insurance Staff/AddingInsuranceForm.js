@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { z, ZodError } from "zod";
+import { motion } from "framer-motion";
+
 
 function AddingInsuranceForm({
   setopeningAddInsuranceForm,
@@ -10,7 +12,7 @@ function AddingInsuranceForm({
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
     []
   );
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingUsers, setgettingUsers] = useState([]);
   const [providerName, setproviderName] = useState("");
   const [patient, setpatient] = useState("");
@@ -55,7 +57,6 @@ function AddingInsuranceForm({
     setgettingInsuranceCompanies(multipleArray);
   }
 
-
   async function creatingInasurance() {
     setErrors({});
 
@@ -68,7 +69,7 @@ function AddingInsuranceForm({
       validFrom: validFrom,
       validTo: validTo,
       status: status,
-      hospitalName: hospitalName
+      hospitalName: hospitalName,
     };
 
     try {
@@ -105,8 +106,19 @@ function AddingInsuranceForm({
   }, []);
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-3 rounded">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-white p-3 rounded"
+      >
         <div className="flex items-center mb-3 justify-between">
           <p className="text-[#003441] text-xl font-bold">Add Insurance</p>
           <button
@@ -277,14 +289,14 @@ function AddingInsuranceForm({
               onClick={() => {
                 creatingInasurance();
               }}
-              className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+              className="bg-[#003441] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
             >
               Add Insurance
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

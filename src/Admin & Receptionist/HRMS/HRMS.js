@@ -3,13 +3,25 @@ import AdvancedInvestoryManagement from "./AdvancedInvestoryManagement";
 import ResourceUtilizationAnalysis from "./ResourceUtilizationAnalysis";
 import FacilityInfrastructure from "./FacilityInfrastructure";
 import UtilityAssetManagment from "./UtilityAssetManagment";
+import { motion } from "framer-motion";
 
 function HRMS({ setopeningHRMS }) {
   const [currentTab, setcurrentTab] = useState("advanced_inventory_management");
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white h-screen my-7 w-10/12 p-4 rounded">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-white h-screen my-7 w-10/12 p-4 rounded"
+      >
         <div className="flex items-center mb-4 justify-between">
           <p className="text-[#003441] text-xl font-bold">
             Hospital Resource Management System (HRMS)
@@ -82,8 +94,8 @@ function HRMS({ setopeningHRMS }) {
             <ResourceUtilizationAnalysis />
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

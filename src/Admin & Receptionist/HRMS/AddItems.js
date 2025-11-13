@@ -1,6 +1,8 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { database } from "../../FirebaseConfiguration";
+import { motion } from "framer-motion";
+
 
 function AddItems({ setopeningAddItemForm, renderingItems }) {
   const [selectedCategory, setselectedCategory] = useState("");
@@ -64,7 +66,14 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
   };
 
   return (
-    <div className="border border-gray-300 mt-5 p-4 rounded">
+    <motion.div 
+      initial={{ y: -100, opacity: 0 }} 
+        animate={{ y: 0, opacity: 1 }}    
+        transition={{
+          duration: 0.8,                  
+          ease: "easeOut",                
+        }}
+    className="border border-gray-300 mt-5 p-4 rounded">
       <p className="text-[#003441] text-xl font-bold">Add Item</p>
       <div className="grid grid-cols-3 gap-3">
         <div>
@@ -177,7 +186,7 @@ function AddItems({ setopeningAddItemForm, renderingItems }) {
           + Add Item
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

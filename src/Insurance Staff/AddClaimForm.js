@@ -2,9 +2,10 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { z } from "zod";
+import { motion } from "framer-motion";
 
 function AddClaimForm({ setopeningClaimStatus }) {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingUsers, setgettingUsers] = useState([]);
   const [gettingInsurance, setgettingInsurance] = useState([]);
   const [patient, setpatient] = useState("");
@@ -84,7 +85,7 @@ function AddClaimForm({ setopeningClaimStatus }) {
       dateOfPayment: dateOfPayment,
       paymentMode: paymentMode,
       transactionReferenceNo: transactionReferenceNo,
-      hospitalName: hospitalName
+      hospitalName: hospitalName,
     };
     try {
       claimStatusSchema.parse(claimStatusData);
@@ -120,8 +121,19 @@ function AddClaimForm({ setopeningClaimStatus }) {
   }, [selectedInsurance]);
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-4 rounded">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-white p-4 rounded"
+      >
         <div className="flex items-center mb-2 justify-between">
           <p className="text-[#003441] text-xl font-bold">Add Claim</p>
           <button
@@ -368,8 +380,8 @@ function AddClaimForm({ setopeningClaimStatus }) {
             Add Claim Status
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

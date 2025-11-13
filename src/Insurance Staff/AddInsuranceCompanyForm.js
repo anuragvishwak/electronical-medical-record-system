@@ -2,12 +2,13 @@ import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { database } from "../FirebaseConfiguration";
 import { z } from "zod";
+import { motion } from "framer-motion";
 
 function AddInsuranceCompanyForm({
   setopeningAddInsuranceCompany,
   renderingInsuranceCompany,
 }) {
-  const hospitalName = localStorage.getItem('hospitalName');
+  const hospitalName = localStorage.getItem("hospitalName");
   const [providerName, setproviderName] = useState("");
   const [companyCode, setcompanyCode] = useState("");
   const [address, setaddress] = useState("");
@@ -44,7 +45,7 @@ function AddInsuranceCompanyForm({
       policyTypeSupported: policyTypeSupported,
       coverageNotes: coverageNotes,
       limitations: limitations,
-      hospitalName: hospitalName
+      hospitalName: hospitalName,
     };
     try {
       insuranceProviderSchema.parse(insuranceProviderData);
@@ -71,8 +72,19 @@ function AddInsuranceCompanyForm({
   }
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-3 rounded">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
+    >
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-white p-3 rounded"
+      >
         <div className="flex items-center mb-3 justify-between">
           <p className="text-[#003441] text-xl font-bold">
             Add Insurance Provider
@@ -244,13 +256,13 @@ function AddInsuranceCompanyForm({
             onClick={() => {
               handleAddInsuranceProvider();
             }}
-            className="bg-[#01B49C] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
+            className="bg-[#003441] text-white py-1.5 px-4 rounded mt-3  hover:bg-blue-800"
           >
             Add Provider Details
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
