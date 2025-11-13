@@ -64,7 +64,7 @@ function NurseNavbar() {
       </div>
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/Login");
           localStorage.clear();
         }}
       >

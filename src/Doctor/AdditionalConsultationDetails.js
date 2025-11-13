@@ -10,7 +10,7 @@ function AdditionalConsultationDetails({
     <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
       <div className="bg-white h-screen overflow-auto my-5 w-8/12 p-3">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-[#1976D2] text-xl font-bold">
+          <p className="text-[#003441] text-xl font-bold">
             Additional Consultation Details
           </p>
           <button
@@ -26,11 +26,11 @@ function AdditionalConsultationDetails({
         <div>
           <div className="broder p-2 border border-gray-300">
             <p className="text-xl font-semibold">
-              <span className="text-gray-400">Patient:</span>{" "}
+              <span className="text-[#003441]">Patient:</span>{" "}
               {capturingDataObject.patientName}
             </p>
 
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-[#01B49C]">
               <span className="">appointment id:</span>{" "}
               {capturingDataObject.appointmentId}
             </p>
@@ -82,24 +82,24 @@ function AdditionalConsultationDetails({
 
 
         <div className="border border-gray-300 my-3 p-3">
-            <div className="flex items-center space-x-2 my-3">
+            <div className="flex items-center text-[#003441] text-xl font-bold space-x-2 my-3">
                 <GrNotes/>
                 <p>Medical Records</p>
             </div>
             <div className="mb-5">
-                <p className="font-semibold text-gray-500 mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                 History of Present Illness
                 </p>
-                <p className="text-gray-600 text-sm text-justify">
+                <p className="text-[#003441] text-sm text-justify">
                 {capturingDataObject.historyofPresentIllness}
                 </p>
             </div>
 
              <div className="">
-                <p className="font-semibold text-gray-500 mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                 Past Medical History
                 </p>
-                <p className="text-gray-600 text-sm text-justify">
+                <p className="text-[#003441] text-sm text-justify">
                 {capturingDataObject.pastMedicalHistory}
                 </p>
             </div>
@@ -107,24 +107,24 @@ function AdditionalConsultationDetails({
 
 
          <div className="border border-gray-300 my-3 p-3">
-            <div className="flex items-center space-x-2 my-3">
+            <div className="flex items-center text-[#003441] text-xl font-bold space-x-2 my-3">
                 <GrNotes/>
                 <p>Medicine Procedures and Additional Instruction</p>
             </div>
             <div className="mb-5">
-                <p className="font-semibold text-gray-500 mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                 Medical Procedures
                 </p>
-                <p className="text-gray-600 text-sm text-justify">
+                <p className="text-[#003441] text-sm text-justify">
                 {capturingDataObject.medication_procedures}
                 </p>
             </div>
 
              <div className="">
-                <p className="font-semibold text-gray-500 mb-2">
+                <p className="font-semibold text-[#01B49C] mb-2">
                 Additional Instructions
                 </p>
-                <p className="text-gray-600 text-sm text-justify">
+                <p className="text-[#003441] text-sm text-justify">
                 {capturingDataObject.additionalInstructions}
                 </p>
             </div>

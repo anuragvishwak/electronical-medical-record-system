@@ -49,6 +49,7 @@ import LabTechnicianProfileUpdateSetting from "./Lab Technician/LabTechnicianPro
 import InsuranceDeptDashboard from "./Insurance Staff/InsuranceDeptDashboard";
 import MainLandingPage from "./MainLandingPage";
 import Resource from "./Resource";
+import AnimatorPage from "./AnimatorPage";
 
 function App() {
   return (
@@ -69,10 +70,7 @@ function App() {
             path="/InsuranceStaffDashboard"
             element={<InsuranceStaffDashboard />}
           />
-           <Route
-            path="/Resource"
-            element={<Resource />}
-          />
+          <Route path="/Resource" element={<Resource />} />
           <Route path="/MedicationLogs" element={<MedicationLogs />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           {/* Internal Routes */}
@@ -88,8 +86,10 @@ function App() {
           <Route path="/DoctorLabReports" element={<DoctorLabReports />} />
           <Route path="/NurseVitals" element={<NurseVitals />} />
           <Route path="/CheckInCheckOut" element={<CheckInCheckOut />} />
-          <Route path="/InsuranceDeptDashboard" element={<InsuranceDeptDashboard />} />
-
+          <Route
+            path="/InsuranceDeptDashboard"
+            element={<InsuranceDeptDashboard />}
+          />
           <Route
             path="/PatientPrescription"
             element={<PatientPrescription />}
@@ -98,12 +98,7 @@ function App() {
             path="/PatientConsultation"
             element={<PatientConsultation />}
           />
-
-           <Route
-            path="/"
-            element={<MainLandingPage />}
-          />
-          
+          <Route path="/" element={<MainLandingPage />} />
           <Route path="/PatientLabReport" element={<PatientLabReport />} />
           <Route path="/ViewInsuranceInfo" element={<ViewInsuranceInfo />} />
           <Route path="/InsuranceProvider" element={<InsuranceProvider />} />
@@ -157,11 +152,12 @@ function App() {
             path="/NurseProfileUpdateSetting"
             element={<NurseProfileUpdateSetting />}
           />
-
           <Route
             path="/LabTechnicianProfileUpdateSetting"
             element={<LabTechnicianProfileUpdateSetting />}
           />
+          //created a animated route.
+          <Route path="/AnimatorPage" element={<AnimatorPage />} />
         </Routes>
       </Router>
     </div>

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 function DoctorDashboard() {
   const email = localStorage.getItem("email");
   const navigation = useNavigate();
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [gettingPrescriptions, setgettingPrescriptions] = useState([]);
@@ -82,13 +83,21 @@ function DoctorDashboard() {
           .map((user) => (
             <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
               <div>
-                <p className="text-[#003441] text-2xl font-bold">{user.name}</p>
-                <p className="text-[#01B49C]">{user.email}</p>
+                <p className="text-3xl text-[#003441] font-bold">
+                  {hospitalName}
+                </p>
+                <p className="text-[#01B49C] text-lg font-semibold">
+                  Welcome back, Doctor
+                </p>
               </div>
 
               <div>
-                <p className="text-[#003441] font-bold">Doctor Id</p>
-                <p className="text-[#01B49C] text-end">{user.doctorId}</p>
+                <p className="text-[#003441] text-xl text-end font-bold">{user.name}</p>
+               <div className="flex items-center space-x-1">
+                <p className="text-[#01B49C]">{user.email}</p> <span>|</span>
+                 <p className="text-[#003441] font-bold">Doctor Id -</p>
+                <p className="text-[#01B49C] font-bold text-end">{user.doctorId}</p>
+               </div>
               </div>
             </div>
           ))}
@@ -340,11 +349,12 @@ function DoctorDashboard() {
                   </p>
                 </div>
                 <p className="text-[#01B49C] text-sm">Review latest results.</p>
-                <button 
-                onClick={() => {
+                <button
+                  onClick={() => {
                     navigation("/DoctorLabReports");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                >
                   View Reports
                 </button>
               </div>

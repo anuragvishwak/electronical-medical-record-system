@@ -97,7 +97,7 @@ function DoctorNavbar() {
       </div>
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/Login");
           localStorage.clear();
         }}
       >

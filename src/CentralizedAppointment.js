@@ -200,7 +200,7 @@ function CentralizedAppointment({
                     setcapturingDataObject(appointment);
                     setopeningUploadImage(true);
                   }}
-                  className="text-sm bg-[#003441] text-white py-1 px-3"
+                  className="text-sm hidden bg-[#003441] text-white py-1 px-3"
                 >
                   Upload Images
                 </button>

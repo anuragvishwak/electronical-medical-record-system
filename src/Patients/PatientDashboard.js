@@ -14,6 +14,7 @@ import { negative } from "zod";
 function PatientDashboard() {
   const email = localStorage.getItem("email");
   const navigation = useNavigate();
+  const hospitalName = localStorage.getItem('hospitalName');
   const [gettingUser, setgettingUser] = useState([]);
   const [gettingAppointments, setgettingAppointments] = useState([]);
 
@@ -52,23 +53,29 @@ function PatientDashboard() {
       <PatientNavbar />
       <div>
         <div>
-          {gettingUser
-            .filter((user) => user.email === email)
-            .map((user) => (
-              <div className="flex justify-between p-5  border border-gray-300 m-5 bg-white">
-                <div>
-                  <p className="text-[#003441] text-2xl font-bold">
-                    {user.name}
-                  </p>
-                  <p className="text-[#01B49C]">{user.email}</p>
-                </div>
-
-                <div>
-                  <p className="text-[#003441] font-bold">Patient Id</p>
-                  <p className="text-[#01B49C] text-end">{user.patientId}</p>
-                </div>
+        {gettingUser
+          .filter((user) => user.email === email)
+          .map((user) => (
+            <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
+              <div>
+                <p className="text-3xl text-[#003441] font-bold">
+                  {hospitalName}
+                </p>
+                <p className="text-[#01B49C] text-lg font-semibold">
+                  Welcome back, Patient
+                </p>
               </div>
-            ))}
+
+              <div>
+                <p className="text-[#003441] text-xl text-end font-bold">{user.name}</p>
+               <div className="flex items-center space-x-1">
+                <p className="text-[#01B49C]">{user.email}</p> <span>|</span>
+                 <p className="text-[#003441] font-bold">Patient Id -</p>
+                <p className="text-[#01B49C] font-bold text-end">{user.patientId}</p>
+               </div>
+              </div>
+            </div>
+          ))}
 
           <div className="flex items-start m-5 gap-5">
             <div className="w-[600px] bg-white p-5 border border-gray-300 ">

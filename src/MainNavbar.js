@@ -46,7 +46,7 @@ function MainNavbar() {
       <div className="flex items-center text-sm sm:text-base space-x-2 sm:space-x-3">
         <button
           onClick={() => {
-            navigation("/Login");
+            navigation("/AnimatorPage");
           }}
           className="bg-[#01B49C] text-white py-1 px-2 sm:px-3 rounded"
         >

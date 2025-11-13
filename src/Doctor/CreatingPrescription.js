@@ -6,6 +6,7 @@ import {z} from "zod";
 
 function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
   const toast = useRef(null);
+  const hospitalName = localStorage.getItem('hospitalName');
   const [patientData, setpatientData] = useState([]);
   const [gettingMedicines, setgettingMedicines] = useState([]);
   const email = localStorage.getItem("email");
@@ -64,6 +65,7 @@ function CreatingPrescription({ setopeningPrescriptionForm, appointment }) {
       medicine: medicine,
       additionalNote: additionalNote,
       appointmentId: appointment.id,
+      hospitalName: hospitalName
     };
     try {
       prescriptionSchema.parse(prescriptionData);

@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 function NurseDashboard() {
   const navigation = useNavigate();
+  const email = localStorage.getItem('email');
+  const hospitalName = localStorage.getItem('hospitalName');
   const [addVitalsForm, setaddVitalsForm] = useState(false);
   const [gettingAppointments, setgettingAppointments] = useState([]);
   const [capturingWholeObject, setcapturingWholeObject] = useState({});
@@ -116,15 +118,32 @@ function NurseDashboard() {
   return (
     <div className="bg-gray-100 h-screen">
       <NurseNavbar />
+      {gettingUser
+        .filter((user) => user.email === email)
+        .map((user) => (
+          <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
+            <div>
+              <p className="text-3xl text-[#003441] font-bold">
+                {hospitalName}
+              </p>
+              <p className="text-[#01B49C] text-lg font-semibold">
+                Welcome back, Nurse
+              </p>
+            </div>
 
+            <div>
+              <p className="text-[#003441] text-xl text-end font-bold">
+                {user.name}
+              </p>
+                <p className="text-[#01B49C] text-end">{user.email}</p>
+            </div>
+          </div>
+        ))}
       <div>
         <div className="grid grid-cols-4 gap-5 m-5">
           <div className="bg-white p-6  border border-gray-300">
             <div className="flex items-center justify-center space-x-5">
-              <FaUser
-                size={45}
-                className="text-[#01B49C] bg-gray-200 p-1.5 "
-              />
+              <FaUser size={45} className="text-[#01B49C] bg-gray-200 p-1.5 " />
               <div>
                 <p className="text-[#01B49C] font-semibold">Total Patients</p>
                 <p className="text-center text-3xl font-bold text-[#003441]">

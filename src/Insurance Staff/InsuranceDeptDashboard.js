@@ -13,11 +13,14 @@ import { useNavigate } from "react-router-dom";
 
 function InsuranceDeptDashboard() {
   const navigation = useNavigate();
+  const email = localStorage.getItem("email");
+  const hospitalName = localStorage.getItem("hospitalName");
   const [gettingInsuranceCompanies, setgettingInsuranceCompanies] = useState(
     []
   );
   const [gettingInsurances, setgettingInsurances] = useState([]);
   const [gettingClaimStatus, setgettingClaimStatus] = useState([]);
+  const [gettingUser, setgettingUser] = useState([]);
 
   async function renderingInsuranceCompany() {
     const taskDetails = await getDocs(
@@ -28,6 +31,16 @@ function InsuranceDeptDashboard() {
       ...doc.data(),
     }));
     setgettingInsuranceCompanies(multipleArray);
+  }
+
+  async function renderingUser() {
+    const taskDetails = await getDocs(collection(database, "user_database"));
+    let multipleArray = taskDetails.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    setgettingUser(multipleArray);
   }
 
   async function renderingInsurances() {
@@ -58,12 +71,33 @@ function InsuranceDeptDashboard() {
     renderingInsuranceCompany();
     renderingInsurances();
     renderingClaimStatus();
+    renderingUser();
   }, []);
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <InsuranceStaffNavbar />
+      {gettingUser
+        .filter((user) => user.email === email)
+        .map((user) => (
+          <div className="flex justify-between p-5 border border-gray-300  m-5 bg-white">
+            <div>
+              <p className="text-3xl text-[#003441] font-bold">
+                {hospitalName}
+              </p>
+              <p className="text-[#01B49C] text-lg font-semibold">
+                Welcome back, Insurance Dept
+              </p>
+            </div>
 
+            <div>
+              <p className="text-[#003441] text-xl text-end font-bold">
+                {user.name}
+              </p>
+                <p className="text-[#01B49C] text-end">{user.email}</p>
+            </div>
+          </div>
+        ))}
       <div>
         <div className="grid grid-cols-3 gap-5 mt-5 mx-5">
           <div className="bg-white p-6 rounded border border-gray-300">
@@ -172,11 +206,12 @@ function InsuranceDeptDashboard() {
                 <p className="text-[#01B49C] text-sm">
                   View a provider instantly.
                 </p>
-                <button 
-                onClick={() => {
+                <button
+                  onClick={() => {
                     navigation("/InsuranceProvider");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                >
                   View Insurance Provider
                 </button>
               </div>
@@ -188,17 +223,18 @@ function InsuranceDeptDashboard() {
                     className="text-[#003441] border p-1 rounded border-gray-300"
                   />
                   <p className="text-[#003441] text-lg font-semibold">
-                   View Assigned Patients
+                    View Assigned Patients
                   </p>
                 </div>
                 <p className="text-[#01B49C] text-sm">
-                 View Linked insurances to patient.
+                  View Linked insurances to patient.
                 </p>
-                <button 
-                onClick={() => {
+                <button
+                  onClick={() => {
                     navigation("/ViewInsuranceInfo");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                >
                   View Assigned Insurances
                 </button>
               </div>
@@ -216,11 +252,12 @@ function InsuranceDeptDashboard() {
                 <p className="text-[#01B49C] text-sm">
                   View Claim Status details quickly.
                 </p>
-                <button 
-                onClick={() => {
+                <button
+                  onClick={() => {
                     navigation("/InsuranceStaffClaimStatus");
                   }}
-                className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]">
+                  className="py-1 mt-3 text-white text-sm px-3 rounded bg-[#003441]"
+                >
                   View Claim Status
                 </button>
               </div>
