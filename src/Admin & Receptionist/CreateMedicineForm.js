@@ -113,10 +113,14 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
       className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
     >
       <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -100, opacity: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+         initial={{ opacity: 0, scale: 0.8, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.8, y: 40 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 14,
+        }}
         className="p-4 rounded bg-white"
       >
         <Toast ref={toast} />
@@ -137,7 +141,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
             <p className="text-[#003441] text-lg  font-bold">
               Basic Information
             </p>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-4 gap-3">
               <div>
                 <p className="font-semibold text-[#01B49C]">Name</p>
                 <input
@@ -220,7 +224,7 @@ function CreateMedicineForm({ setopeningMedicineForm }) {
 
           <div className="my-5">
             <p className="text-[#003441] text-lg font-bold">Dosage Details</p>
-            <div className="grid grid-cols-6 gap-3">
+            <div className="grid grid-cols-4 gap-3">
               <div>
                 <p className="font-semibold text-[#01B49C]">
                   Available Dosages

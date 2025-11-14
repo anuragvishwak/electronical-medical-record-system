@@ -16,10 +16,14 @@ function HRMS({ setopeningHRMS }) {
       className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70"
     >
       <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -100, opacity: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.8, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.8, y: 40 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 14,
+        }}
         className="bg-white h-screen my-7 w-10/12 p-4 rounded"
       >
         <div className="flex items-center mb-4 justify-between">

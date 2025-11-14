@@ -1,13 +1,14 @@
 import React from "react";
 import { LuLogOut } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
+import CentralizedChat from "../CentralizedChat";
 
 function DoctorNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <div className="flex bg-white text-[#003441] font-semibold items-center border-b border-gray-300 justify-between p-3">
+    <div className="flex text-white bg-[#003441] font-semibold items-center border-b border-gray-300 justify-between p-3">
       <div className="flex items-center space-x-5">
         <button
           onClick={() => {
@@ -95,14 +96,17 @@ function DoctorNavbar() {
           Profile / Setting
         </button>
       </div>
-      <button
+      <div className="flex items-center space-x-2">
+        <CentralizedChat />
+        <button
         onClick={() => {
           navigate("/Login");
           localStorage.clear();
         }}
       >
-        <LuLogOut />
+        <LuLogOut size={23}/>
       </button>
+      </div>
     </div>
   );
 }
