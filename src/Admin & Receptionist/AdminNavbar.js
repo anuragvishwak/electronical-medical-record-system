@@ -8,78 +8,90 @@ import { saveAs } from "file-saver";
 import { getDocs, collection } from "firebase/firestore";
 import { database } from "../FirebaseConfiguration";
 import { GiCloudDownload } from "react-icons/gi";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import MainChat from "../In House Chat App/MainChat";
+import CentralizedChat from "../CentralizedChat";
 
 function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
-
   const location = useLocation();
   const [openingHRMS, setopeningHRMS] = useState(false);
 
   async function downloadAllData() {
-  const hospitalName = localStorage.getItem("hospitalName"); 
-  const collections = [
-    "user_database",
-    "appointment_database",
-    "consultation_database",
-    "prescription_database",
-    "patient_vitals_database",
-    "billing_payment_database",
-    "insurance_database",
-    "insurance_provider_database",
-    "claim_status_database",
-    "lab_order_database",
-    "lab_order_results_database",
-    "medicine_database",
-  ];
+    const hospitalName = localStorage.getItem("hospitalName");
+    const collections = [
+      "user_database",
+      "appointment_database",
+      "consultation_database",
+      "prescription_database",
+      "patient_vitals_database",
+      "billing_payment_database",
+      "insurance_database",
+      "insurance_provider_database",
+      "claim_status_database",
+      "lab_order_database",
+      "lab_order_results_database",
+      "medicine_database",
+    ];
 
-  const workbook = XLSX.utils.book_new();
+    const workbook = XLSX.utils.book_new();
 
-  for (const col of collections) {
-    const snapshot = await getDocs(collection(database, col));
-    let data = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    for (const col of collections) {
+      const snapshot = await getDocs(collection(database, col));
+      let data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    data = data.filter(
-      (item) => item.hospitalName === hospitalName
-    );
+      data = data.filter((item) => item.hospitalName === hospitalName);
 
-    if (data.length === 0) {
-      console.log(`⚠️ No data found for ${hospitalName} in ${col}`);
-      continue;
+      if (data.length === 0) {
+        console.log(`⚠️ No data found for ${hospitalName} in ${col}`);
+        continue;
+      }
+
+      console.log(
+        `${data.length} records fetched from ${col} for ${hospitalName}`
+      );
+
+      const worksheet = XLSX.utils.json_to_sheet(data);
+
+      const cols = Object.keys(data[0] || {}).map((key) => ({
+        wch: key.length + 10,
+      }));
+      worksheet["!cols"] = cols;
+
+      XLSX.utils.book_append_sheet(workbook, worksheet, col);
     }
 
-    console.log(`${data.length} records fetched from ${col} for ${hospitalName}`);
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
 
-    const worksheet = XLSX.utils.json_to_sheet(data);
-
-    const cols = Object.keys(data[0] || {}).map((key) => ({ wch: key.length + 10 }));
-    worksheet["!cols"] = cols;
-
-    XLSX.utils.book_append_sheet(workbook, worksheet, col);
+    saveAs(
+      blob,
+      `${hospitalName}_data_${new Date().toLocaleDateString()}.xlsx`
+    );
+    alert(
+      `Data downloaded for ${hospitalName}! Each collection is a separate sheet.`
+    );
   }
-
-  const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-  const blob = new Blob([excelBuffer], {
-    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  });
-
-  saveAs(blob, `${hospitalName}_data_${new Date().toLocaleDateString()}.xlsx`);
-  alert(`Data downloaded for ${hospitalName}! Each collection is a separate sheet.`);
-}
-
 
   return (
     <div>
-      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-[#003441] bg-white  border-b border-gray-300 justify-between p-3">
+      <div className="hidden sm:flex font-semibold items-center sticky top-0 text-white bg-[#003441]  border-b border-gray-300 justify-between p-3">
         <div className="flex items-center space-x-5">
           <button
             onClick={() => {
               navigate("/AdminDashboard");
             }}
-            className={`${location.pathname === "/AdminDashboard" ? "text-[#01B49C]" : ""
-              }`}
+            className={`${
+              location.pathname === "/AdminDashboard" ? "text-[#01B49C]" : ""
+            }`}
           >
             Home
           </button>
@@ -87,8 +99,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminAppointment");
             }}
-            className={`${location.pathname === "/AdminAppointment" ? "text-[#01B49C]" : ""
-              }`}
+            className={`${
+              location.pathname === "/AdminAppointment" ? "text-[#01B49C]" : ""
+            }`}
           >
             Appointment
           </button>
@@ -96,8 +109,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/UserManagement");
             }}
-            className={`${location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
-              }`}
+            className={`${
+              location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
+            }`}
           >
             User Management
           </button>
@@ -105,10 +119,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminBillingPayment");
             }}
-            className={`${location.pathname === "/AdminBillingPayment"
-              ? "text-[#01B49C]"
-              : ""
-              }`}
+            className={`${
+              location.pathname === "/AdminBillingPayment"
+                ? "text-[#01B49C]"
+                : ""
+            }`}
           >
             Billing & Payment
           </button>
@@ -116,10 +131,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminInsuranceCoordination");
             }}
-            className={`${location.pathname === "/AdminInsuranceCoordination"
-              ? "text-[#01B49C]"
-              : ""
-              }`}
+            className={`${
+              location.pathname === "/AdminInsuranceCoordination"
+                ? "text-[#01B49C]"
+                : ""
+            }`}
           >
             Insurance Coordination
           </button>
@@ -127,10 +143,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/MedicinesTreatment");
             }}
-            className={`${location.pathname === "/MedicinesTreatment"
-              ? "text-[#01B49C]"
-              : ""
-              }`}
+            className={`${
+              location.pathname === "/MedicinesTreatment"
+                ? "text-[#01B49C]"
+                : ""
+            }`}
           >
             Medicines
           </button>
@@ -138,8 +155,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/StaffManagement");
             }}
-            className={`${location.pathname === "/StaffManagement" ? "text-[#01B49C]" : ""
-              }`}
+            className={`${
+              location.pathname === "/StaffManagement" ? "text-[#01B49C]" : ""
+            }`}
           >
             Staff Management
           </button>
@@ -147,10 +165,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               navigate("/AdminProfileSetting");
             }}
-            className={`${location.pathname === "/AdminProfileSetting"
-              ? "text-[#01B49C]"
-              : ""
-              }`}
+            className={`${
+              location.pathname === "/AdminProfileSetting"
+                ? "text-[#01B49C]"
+                : ""
+            }`}
           >
             Profile / Setting
           </button>
@@ -158,11 +177,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
         <div className="flex items-center space-x-2">
           <button
             onClick={downloadAllData}
-            className="bg-[#003441] text-white py-1 px-2.5 hover:bg-[#01B49C]"
+            className="border border-white text-sm text-white py-1 hover:text-[#003441] px-2.5 hover:bg-white"
           >
             <div className="flex items-center space-x-1">
               <GiCloudDownload />
-              <p>Download Data</p>
+              <p>Offline Data</p>
             </div>
           </button>
 
@@ -170,11 +189,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             onClick={() => {
               setopeningHRMS(true);
             }}
-            className="bg-[#01B49C] hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-0.5 px-2.5"
+            className="bg-[#01B49C] text-sm hover:border-blue-800 hover:bg-blue-800 border border-[#01B49C] text-white py-1 px-2.5"
           >
             HRMS
           </button>
-          <button>Notify</button>
+          <CentralizedChat />
           <button
             onClick={() => {
               navigate("/Login");
@@ -209,8 +228,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminPatient");
               }}
-              className={`${location.pathname === "/AdminPatient" ? "text-[#01B49C]" : ""
-                }`}
+              className={`${
+                location.pathname === "/AdminPatient" ? "text-[#01B49C]" : ""
+              }`}
             >
               Patient
             </button>
@@ -218,10 +238,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminAppointment");
               }}
-              className={`${location.pathname === "/AdminAppointment"
-                ? "text-[#01B49C]"
-                : ""
-                }`}
+              className={`${
+                location.pathname === "/AdminAppointment"
+                  ? "text-[#01B49C]"
+                  : ""
+              }`}
             >
               Appointment
             </button>
@@ -229,8 +250,9 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/UserManagement");
               }}
-              className={`${location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
-                }`}
+              className={`${
+                location.pathname === "/UserManagement" ? "text-[#01B49C]" : ""
+              }`}
             >
               User Management
             </button>
@@ -238,10 +260,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/AdminBillingPayment ");
               }}
-              className={`${location.pathname === "/AdminBillingPayment "
-                ? "text-[#01B49C]"
-                : ""
-                }`}
+              className={`${
+                location.pathname === "/AdminBillingPayment "
+                  ? "text-[#01B49C]"
+                  : ""
+              }`}
             >
               Billing & Payment
             </button>
@@ -250,10 +273,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
               onClick={() => {
                 navigate("/MedicinesTreatment");
               }}
-              className={`${location.pathname === "/MedicinesTreatment"
-                ? "text-[#01B49C]"
-                : ""
-                }`}
+              className={`${
+                location.pathname === "/MedicinesTreatment"
+                  ? "text-[#01B49C]"
+                  : ""
+              }`}
             >
               Medicines
             </button>
@@ -269,7 +293,11 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
             >
               HRMS
             </button>
-            <button>Notify</button>
+            <button>
+              <div>
+                <IoChatbubbleEllipsesOutline />
+              </div>
+            </button>
             <button
               onClick={() => {
                 navigate("/Login");

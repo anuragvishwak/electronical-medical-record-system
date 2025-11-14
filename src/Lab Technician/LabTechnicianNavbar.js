@@ -1,22 +1,27 @@
 import React from "react";
 import { LuLogOut } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
+import CentralizedChat from "../CentralizedChat";
 
 function LabTechnicianNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <div className="flex bg-white items-center border-b justify-between p-3">
-      <div className="flex items-center [#003441] font-semibold space-x-5">
+    <div className="flex text-white bg-[#003441] items-center border-b justify-between p-3">
+      <div className="flex items-center font-semibold space-x-5">
         <button
-        onClick={() => {
+          onClick={() => {
             navigate("/LabTechnicianDashboard");
           }}
           className={`${
-            location.pathname === "/LabTechnicianDashboard" ? "text-[#01B49C]" : ""
+            location.pathname === "/LabTechnicianDashboard"
+              ? "text-[#01B49C]"
+              : ""
           }`}
-        >Home</button>
+        >
+          Home
+        </button>
         <button
           onClick={() => {
             navigate("/AssignedLabOrders");
@@ -51,14 +56,14 @@ function LabTechnicianNavbar() {
         </button>
       </div>
       <div className="flex items-center space-x-2">
-        <button>Notify</button>
+        <CentralizedChat />
         <button
           onClick={() => {
             localStorage.clear();
             navigate("/Login");
           }}
         >
-          <LuLogOut />
+          <LuLogOut size={23} />
         </button>
       </div>
     </div>

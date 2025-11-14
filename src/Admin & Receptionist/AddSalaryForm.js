@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { database } from "../FirebaseConfiguration";
 import { doc, updateDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 import { z } from "zod";
 
 function AddSalaryForm({
@@ -70,8 +71,21 @@ function AddSalaryForm({
   }
 
   return (
-    <div className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
-      <div className="bg-white p-5">
+    <motion.div 
+    initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    className="bg-black z-50 flex flex-col justify-center items-center fixed inset-0 bg-opacity-70">
+      <motion.div 
+       initial={{ opacity: 0, scale: 0.8, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.8, y: 40 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 14,
+        }}
+      className="bg-white p-5">
         <div className="flex items-center mb-6 justify-between">
           <p className="text-[#003441] text-xl font-bold">Add Salary</p>
           <button
@@ -160,8 +174,8 @@ function AddSalaryForm({
             Add Salary
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

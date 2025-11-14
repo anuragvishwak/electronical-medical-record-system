@@ -4,6 +4,7 @@ import { LuLogOut } from "react-icons/lu";
 import { database } from "../FirebaseConfiguration";
 import { FaUser } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import CentralizedChat from "../CentralizedChat";
 
 function PatientNavbar() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function PatientNavbar() {
   }, []);
 
   return (
-    <div className="flex items-center text-[#003441] bg-white shadow border-b justify-between p-3">
+    <div className="flex items-center text-white bg-[#003441] border-b justify-between p-3">
       <div className="flex font-semibold items-center space-x-5">
         <button
           onClick={() => {
@@ -125,6 +126,7 @@ function PatientNavbar() {
       </div>
 
       <div className="flex items-center space-x-3 relative group">
+          <CentralizedChat />
         <button>
           <FaUser className="text-xl cursor-pointer" />
         </button>
@@ -146,7 +148,7 @@ function PatientNavbar() {
 
         <button
           onClick={() => {
-            navigate("/");
+            navigate("/Login");
             localStorage.clear();
           }}
         >
