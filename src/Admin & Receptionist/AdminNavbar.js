@@ -11,6 +11,7 @@ import { GiCloudDownload } from "react-icons/gi";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import MainChat from "../In House Chat App/MainChat";
 import CentralizedChat from "../CentralizedChat";
+import AIAssistant from "../AIAssistant";
 
 function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
   const navigate = useNavigate();
@@ -310,6 +311,7 @@ function AdminNavbar({ openingAdminNavbar, setopeningAdminNavbar }) {
         </div>
       )}
       {openingHRMS && <HRMS setopeningHRMS={setopeningHRMS} />}
+      <AIAssistant />
     </div>
   );
 }

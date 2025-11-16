@@ -16,7 +16,7 @@ function MainLandingPage() {
     <div className="">
       <MainNavbar />
 
-      <div className="py-10 sm:py-20">
+      <div className="pb-10 pt-20 sm:pt-40 sm:pb-20">
         <div className="text-center">
           <motion.p
             initial={{ y: -100, opacity: 0 }}
@@ -53,11 +53,12 @@ function MainLandingPage() {
             </motion.p>
           </div>
 
-          <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
-          className="flex items-center text-sm sm:text-base space-x-2 justify-center mt-2">
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2.5, duration: 0.8, ease: "easeOut" }}
+            className="flex items-center text-sm sm:text-base space-x-2 justify-center mt-2"
+          >
             <button className="flex items-center font-semibold bg-[#01B49C] py-1 px-3 rounded text-white space-x-1">
               Get Started <GoArrowRight />
             </button>
