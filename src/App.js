@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  BrowserRouter,
+  useLocation,
 } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -50,8 +50,10 @@ import InsuranceDeptDashboard from "./Insurance Staff/InsuranceDeptDashboard";
 import MainLandingPage from "./MainLandingPage";
 import Resource from "./Resource";
 import AnimatorPage from "./AnimatorPage";
+import AIAssistant from "./AIAssistant";
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -156,7 +158,6 @@ function App() {
             path="/LabTechnicianProfileUpdateSetting"
             element={<LabTechnicianProfileUpdateSetting />}
           />
-          //created a animated route.
           <Route path="/AnimatorPage" element={<AnimatorPage />} />
         </Routes>
       </Router>
