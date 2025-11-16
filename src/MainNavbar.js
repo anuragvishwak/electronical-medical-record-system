@@ -49,7 +49,7 @@ function MainNavbar() {
           onClick={() => {
             navigation("/AnimatorPage");
           }}
-          className="bg-white text-[#01B49C] py-1 px-2 sm:px-3 rounded-full"
+          className="bg-white text-[#003441] font-semibold py-1 px-2 sm:px-3 rounded-full"
         >
           See Demo
         </button>

@@ -3,12 +3,12 @@ import { BsArrowUp } from "react-icons/bs";
 import { FaRobot } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { motion } from "framer-motion";
 
 function AIAssistant() {
   const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
- const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); // ✅ Corrected model name
-// OR:
-// const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  // OR:
 
   const publicRoutes = ["/", "/Login", "/SignUp"];
   const location = useLocation();
@@ -17,6 +17,7 @@ function AIAssistant() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [spin, setSpin] = useState(false);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -51,26 +52,42 @@ function AIAssistant() {
   return (
     <div>
       {!isPublic && !openingChatBot && (
-        <button
-          onClick={() => setopeningChatBot(true)}
+        <motion.button
+          onClick={() => {
+            setSpin(true);
+            setTimeout(() => {
+              setSpin(false);
+              setopeningChatBot(true);
+            }, 400);
+          }}
+          animate={spin ? { rotate: 360 } : { rotate: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed bottom-4 right-4 p-2.5 rounded-full shadow-lg bg-[#003441] text-white"
         >
           <FaRobot size={40} />
-        </button>
+        </motion.button>
       )}
 
       {openingChatBot && (
-        <div className="fixed z-50 shadow bg-white border border-gray-300 h-[550px] w-[400px] bottom-4 right-4 rounded-lg flex flex-col">
-          {/* Header */}
-          <div className="flex bg-[#003441] p-4 items-start justify-between">
+        <motion.div
+          initial={{ y: 200, opacity: 0, scale: 0.9 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          exit={{ y: 200, opacity: 0, scale: 0.9 }}
+          transition={{
+            duration: 0.25,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="fixed z-50 shadow-xl bg-white border border-gray-300 h-[550px] w-[400px] bottom-4 right-4 rounded-lg flex flex-col"
+        >
+          <div className="flex backdrop-blur-md bg-[#01B49C] border border-white/30 rounded-t p-4 items-start justify-between">
             <div>
-              <p className="text-white font-semibold">AnuMed AI</p>
-              <p className="text-[#01B49C] text-sm">Your Smart EMR Assistant</p>
+              <p className="text-[#003441] text-xl font-bold">AnuMed AI</p>
+              <p className="text-white text-sm">Your Smart EMR Assistant</p>
             </div>
 
             <button
               onClick={() => setopeningChatBot(false)}
-              className="font-semibold text-red-400 hover:text-red-600"
+              className="font-semibold text-red-500 hover:text-red-800"
             >
               Close
             </button>
@@ -109,7 +126,7 @@ function AIAssistant() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
